@@ -17,6 +17,12 @@ Stable releases, including binary packages for Windows & Mac OS, are available f
 install.packages("serrsBayes")
 ```
 
+The current development version can be installed from GitHub:
+
+``` r
+devtools::install_github("mooresm/serrsBayes")
+```
+
 Example Usage
 =============
 
@@ -54,7 +60,7 @@ Sample 200 particles from the posterior distribution:
 ``` r
 print(tm)
 #>    user  system elapsed 
-#> 522.342  10.374 165.835
+#> 544.116  11.152 173.035
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
 for (pt in samp.idx) {
@@ -64,4 +70,4 @@ for (pt in samp.idx) {
 }
 ```
 
-![](inst/image/README-unnamed-chunk-4-1.png)
+![](inst/image/README-plotting-1.png)

@@ -1,0 +1,12 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.git
+^cran-comments.md
+^cran-comments.html
+^NEWS.html
+^README.Rmd
+vignettes/*\.Rmd$
+vignettes/*\.html$
+vignettes/article.tex
+vignettes/jss.bst
+vignettes/jss.cls

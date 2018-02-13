@@ -33,6 +33,11 @@ Stable releases, including binary packages for Windows & Mac OS, are available f
 install.packages("serrsBayes")
 ```
 
+The current development version can be installed from GitHub:
+```{r eval=FALSE}
+devtools::install_github("mooresm/serrsBayes")
+```
+
 # Example Usage
 
 To simulate a synthetic Raman spectrum with known parameters:
@@ -56,7 +61,7 @@ lines(wavenumbers, baseline + signature, col=4, lty=2, lwd=2)
 
 Fit the model using SMC:
 
-```{r SMC results='hide'}
+```{r SMC, results='hide'}
 lPriors <- list(scale.mu=log(11.6) - (0.4^2)/2, scale.sd=0.4, bl.smooth=10^11, bl.knots=50,
                  beta.mu=5000, beta.sd=5000, noise.sd=200, noise.nu=4)
 tm <- system.time(result <- fitSpectraSMC(wavenumbers, spectra, peakLocations, lPriors))
