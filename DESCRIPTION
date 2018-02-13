@@ -1,8 +1,8 @@
 Package: serrsBayes
 Type: Package
 Title: Bayesian Modelling of Raman Spectroscopy
-Version: 0.3-9
-Date: 2018-02-12
+Version: 0.3-10
+Date: 2018-02-14
 Authors@R: c(
     person("Matt", "Moores", role = c("aut", "cre"), email = "M.T.Moores@warwick.ac.uk", comment = c(ORCID = "0000-0003-4531-3572")),
     person("Jake", "Carson", role="aut", email="Jake.Carson@warwick.ac.uk"),
@@ -18,7 +18,7 @@ Description: Sequential Monte Carlo (SMC) algorithms for fitting a generalised a
     and additive white noise. The parameters of each component of the model are estimated
     iteratively using SMC. The posterior distributions of the parameters given the observed
     spectra are represented as a population of weighted particles.
-License: GPL (>= 2)
+License: GPL (>= 2) | file LICENSE
 URL: https://github.com/mooresm/serrsBayes
 BugReports: https://github.com/mooresm/serrsBayes/issues
 Depends:

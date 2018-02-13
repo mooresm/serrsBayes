@@ -1,4 +1,5 @@
 ^.*\.Rproj$
+^.travis.yml$
 ^\.Rproj\.user$
 ^\.git
 ^cran-comments.md
