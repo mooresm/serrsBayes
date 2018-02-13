@@ -1,28 +1,43 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-[![cran version](http://www.r-pkg.org/badges/version/serrsBayes)](https://cran.r-project.org/package=serrsBayes) [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/serrsBayes)](https://github.com/metacran/cranlogs.app)
+---
+output:
+  md_document:
+    variant: markdown_github
+---
 
-serrsBayes
-==========
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  comment = "#>",
+  fig.path = "inst/image/README-"
+)
+```
+
+[![cran version](http://www.r-pkg.org/badges/version/serrsBayes)](https://cran.r-project.org/package=serrsBayes)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/serrsBayes)](https://github.com/metacran/cranlogs.app)
+
+# serrsBayes
 
 `serrsBayes` provides model-based quantification of surface-enhanced resonance Raman spectroscopy (SERRS), using sequential Monte Carlo (SMC) algorithms.
 
-Installation Instructions
-=========================
+# Installation Instructions
 
 Stable releases, including binary packages for Windows & Mac OS, are available from CRAN:
 
--   <https://CRAN.R-project.org/package=serrsBayes>
+* <https://CRAN.R-project.org/package=serrsBayes>
 
-``` r
+```{r eval=FALSE}
 install.packages("serrsBayes")
 ```
 
-Example Usage
-=============
+# Example Usage
 
 To simulate a synthetic Raman spectrum with known parameters:
 
-``` r
+```{r example}
 set.seed(1234)
 library(serrsBayes)
 
@@ -39,11 +54,9 @@ lines(wavenumbers, baseline, col=2, lty=4)
 lines(wavenumbers, baseline + signature, col=4, lty=2, lwd=2)
 ```
 
-![](inst/image/README-example-1.png)
-
 Fit the model using SMC:
 
-``` r
+```{r SMC results='hide'}
 lPriors <- list(scale.mu=log(11.6) - (0.4^2)/2, scale.sd=0.4, bl.smooth=10^11, bl.knots=50,
                  beta.mu=5000, beta.sd=5000, noise.sd=200, noise.nu=4)
 tm <- system.time(result <- fitSpectraSMC(wavenumbers, spectra, peakLocations, lPriors))
@@ -51,10 +64,8 @@ tm <- system.time(result <- fitSpectraSMC(wavenumbers, spectra, peakLocations, l
 
 Sample 200 particles from the posterior distribution:
 
-``` r
+```{r plotting}
 print(tm)
-#>    user  system elapsed 
-#> 522.342  10.374 165.835
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
 for (pt in samp.idx) {
@@ -63,5 +74,3 @@ for (pt in samp.idx) {
   lines(wavenumbers, bl.est + result$expFn[pt,], col="#0000C309")
 }
 ```
-
-![](inst/image/README-unnamed-chunk-4-1.png)

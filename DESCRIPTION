@@ -1,0 +1,30 @@
+Package: serrsBayes
+Type: Package
+Title: Bayesian Modelling of Raman Spectroscopy
+Version: 0.3-9
+Date: 2018-02-12
+Authors@R: c(
+    person("Matt", "Moores", role = c("aut", "cre"), email = "M.T.Moores@warwick.ac.uk", comment = c(ORCID = "0000-0003-4531-3572")),
+    person("Jake", "Carson", role="aut", email="Jake.Carson@warwick.ac.uk"),
+    person("Mark", "Girolami", role="aut", email="M.Girolami@warwick.ac.uk"),
+    person("Engineering and Physical Sciences Research Council", role="fnd", comment="EPSRC programme grant ref: EP/L014165/1"),
+    person("University of Warwick", role="cph"))
+Description: Sequential Monte Carlo (SMC) algorithms for fitting a generalised additive
+    mixed model (GAMM) to surface-enhanced resonance Raman spectroscopy (SERRS),
+    using the method of Moores et al. (2016) <arXiv:1604.07299>. Multivariate
+    observations of SERRS are highly collinear and lend themselves to a reduced-rank
+    representation. The GAMM separates the SERRS signal into three components: a
+    sequence of Lorentzian, Gaussian, or pseudo-Voigt peaks; a smoothly-varying baseline;
+    and additive white noise. The parameters of each component of the model are estimated
+    iteratively using SMC. The posterior distributions of the parameters given the observed
+    spectra are represented as a population of weighted particles.
+License: GPL (>= 2)
+Depends:
+    R (>= 3.1.0), Matrix, truncnorm, splines, MASS
+Imports:
+    Rcpp (>= 0.11.3), methods
+LinkingTo: Rcpp, RcppEigen
+Suggests:
+    hyperSpec,
+    testthat
+RoxygenNote: 6.0.1
