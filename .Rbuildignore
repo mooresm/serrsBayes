@@ -10,3 +10,4 @@ vignettes/*\.html$
 vignettes/article.tex
 vignettes/jss.bst
 vignettes/jss.cls
+^docs$

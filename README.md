@@ -4,7 +4,7 @@
 serrsBayes
 ==========
 
-`serrsBayes` provides model-based quantification of surface-enhanced resonance Raman spectroscopy (SERRS), using sequential Monte Carlo (SMC) algorithms. The details of the Bayesian model and informative priors are provided in the arXiv preprint, Moores et al. (2016; v2 2018) "[Bayesian modelling and quantification of Raman spectroscopy.](https://arxiv.org/abs/1604.07299)" Development of this software was supported by the UK Engineering & Physical Sciences Research Council (EPSRC) programme grant "[In Situ Nanoparticle Assemblies for Healthcare Diagnostics and Therapy](http://gow.epsrc.ac.uk/NGBOViewGrant.aspx?GrantRef=EP/L014165/1)" (ref: EP/L014165/1).
+`serrsBayes` provides model-based quantification of surface-enhanced resonance Raman spectroscopy (SERRS) using sequential Monte Carlo (SMC) algorithms. The details of the Bayesian model and informative priors are provided in the arXiv preprint, Moores et al. (2016; v2 2018) "[Bayesian modelling and quantification of Raman spectroscopy.](https://arxiv.org/abs/1604.07299)" Development of this software was supported by the UK Engineering & Physical Sciences Research Council (EPSRC) programme grant "[In Situ Nanoparticle Assemblies for Healthcare Diagnostics and Therapy](http://gow.epsrc.ac.uk/NGBOViewGrant.aspx?GrantRef=EP/L014165/1)" (ref: EP/L014165/1).
 
 Installation Instructions
 =========================
@@ -60,7 +60,7 @@ Sample 200 particles from the posterior distribution:
 ``` r
 print(tm)
 #>    user  system elapsed 
-#> 533.978  10.648 167.737
+#> 533.317  10.470 177.048
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
 for (pt in samp.idx) {
