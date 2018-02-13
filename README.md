@@ -4,7 +4,7 @@
 serrsBayes
 ==========
 
-`serrsBayes` provides model-based quantification of surface-enhanced resonance Raman spectroscopy (SERRS), using sequential Monte Carlo (SMC) algorithms.
+`serrsBayes` provides model-based quantification of surface-enhanced resonance Raman spectroscopy (SERRS), using sequential Monte Carlo (SMC) algorithms. Development of this software was supported by the UK Engineering & Physical Sciences Research Council (EPSRC) programme grant "[In Situ Nanoparticle Assemblies for Healthcare Diagnostics and Therapy](http://gow.epsrc.ac.uk/NGBOViewGrant.aspx?GrantRef=EP/L014165/1)" (ref: EP/L014165/1).
 
 Installation Instructions
 =========================
@@ -60,7 +60,7 @@ Sample 200 particles from the posterior distribution:
 ``` r
 print(tm)
 #>    user  system elapsed 
-#> 544.116  11.152 173.035
+#> 528.236  10.004 165.948
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
 for (pt in samp.idx) {
