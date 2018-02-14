@@ -27,6 +27,18 @@
 #' @references
 #' Chopin (2002) "A Sequential Particle Filter Method for Static Models," Biometrika 89(3): 539--551,
 #' DOI: \href{http://dx.doi.org/10.1093/biomet/89.3.539}{10.1093/biomet/89.3.539}
+#' @examples 
+#' wavenumbers <- seq(200,600,by=10)
+#' spectra <- matrix(nrow=1, ncol=length(wavenumbers))
+#' peakLocations <- c(300,500)
+#' peakAmplitude <- c(10000,4000)
+#' peakScale <- c(10, 15)
+#' signature <- weightedLorentzian(peakLocations, peakScale, peakAmplitude, wavenumbers)
+#' baseline <- 1000*cos(wavenumbers/200) + 2*wavenumbers
+#' spectra[1,] <- signature + baseline + rnorm(length(wavenumbers),0,200)
+#' lPriors <- list(scale.mu=log(11.6) - (0.4^2)/2, scale.sd=0.4, bl.smooth=10^11, bl.knots=20,
+#'                 beta.mu=5000, beta.sd=5000, noise.sd=200, noise.nu=4)
+#' result <- fitSpectraSMC(wavenumbers, spectra, peakLocations, lPriors, npart=2000)
 fitSpectraSMC <- function(wl, spc, peakWL, lPriors, conc=rep(1.0,nrow(spc)), npart=10000, rate=0.9, minESS=npart/2, destDir=NA) {
   NP <- length(peakWL)
   nWL <- length(wl)

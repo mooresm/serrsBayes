@@ -3,6 +3,19 @@
 #' @inheritParams fitSpectraSMC
 #' @param mcAR target acceptance rate for the MCMC kernel
 #' @param mcSteps number of iterations of the MCMC kernel
+#' @examples 
+#' wavenumbers <- seq(200,600,by=10)
+#' spectra <- matrix(nrow=1, ncol=length(wavenumbers))
+#' peakLocations <- c(300,500)
+#' peakAmplitude <- c(10000,4000)
+#' peakScale <- c(10, 15)
+#' signature <- weightedLorentzian(peakLocations, peakScale, peakAmplitude, wavenumbers)
+#' baseline <- 1000*cos(wavenumbers/200) + 2*wavenumbers
+#' spectra[1,] <- signature + baseline + rnorm(length(wavenumbers),0,200)
+#' lPriors <- list(scaG.mu=log(11.6) - (0.4^2)/2, scaG.sd=0.4, scaL.mu=log(11.6) - (0.4^2)/2,
+#'    scaL.sd=0.4, bl.smooth=5, bl.knots=20, loc.mu=peakLocations, loc.sd=c(5,5),
+#'    beta.mu=c(5000,5000), beta.sd=c(5000,5000), noise.sd=200, noise.nu=4)
+#' result <- fitVoigtPeaksSMC(wavenumbers, spectra, lPriors, npart=100, mcSteps=1)
 fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10000, rate=0.9, mcAR=0.23, mcSteps=10, minESS=npart/2, destDir=NA) {
   N_Peaks <- length(lPriors$loc.mu)
   N_WN_Cal <- length(wl)
