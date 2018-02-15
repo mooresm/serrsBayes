@@ -24,6 +24,14 @@ The value of the pseudo-Voigt function at the given wavenumbers.
 Calculates the value of the pseudo-Voigt broadening function at the given wavenumbers,
 given the parameters of the peaks. This function is thread-safe.
 }
+\examples{
+  Cal_V <- seq(300,400,by=5)
+  loc <- c(320,350,375)
+  scG <- c(10,5,1)
+  scL <- c(3,20,7)
+  amp <- c(100,500,200)
+  mixedVoigt(loc,scG,scL,amp,Cal_V)
+}
 \references{
 Thompson, Cox & Hastings (1987) "Rietveld refinement of Debye--Scherrer synchrotron X-ray data from \eqn{Al_2 O_3},"
 J. Appl. Crystallogr. 20(2): 79--83, DOI: \href{https://doi.org/10.1107/S0021889887087090}{10.1107/S0021889887087090}

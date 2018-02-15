@@ -24,6 +24,12 @@ The sum of the log-likelihoods (log of the product of the likelihoods)
 for independent, identically-distributed, Gaussian random variables.
 Note: this Rcpp function is thread-safe, unlike the equivalent alternatives.
 }
+\examples{
+  x <- rnorm(100)
+  mu <- rep(0,length(x))
+  sd <- rep(1,length(x))
+  sumDnorm(x,mu,sd)
+}
 \seealso{
 \code{sum(dnorm(x, mean, sd, log=TRUE))}
 }

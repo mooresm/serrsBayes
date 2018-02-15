@@ -24,6 +24,10 @@ The sum of the log-likelihoods (log of the product of the likelihoods)
 for independent, identically-distributed, lognormal random variables. 
 Note: this Rcpp function is thread-safe, unlike the equivalent alternatives.
 }
+\examples{
+x <- rlnorm(100)
+sumDlogNorm(x,0,1)
+}
 \seealso{
 \code{sum(dlnorm(x, meanlog, sdlog, log=TRUE))}
 }

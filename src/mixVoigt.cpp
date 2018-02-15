@@ -59,6 +59,11 @@ Eigen::VectorXd dNorm(Eigen::VectorXd Cal_V, double loc, double sd)
 //' @param sd Vector of standard deviations
 //' @return log-likelihood of x
 //' @seealso \code{sum(dnorm(x, mean, sd, log=TRUE))}
+//' @examples
+//'   x <- rnorm(100)
+//'   mu <- rep(0,length(x))
+//'   sd <- rep(1,length(x))
+//'   sumDnorm(x,mu,sd)
 // [[Rcpp::export]]
 double sumDnorm(Eigen::VectorXd x, Eigen::VectorXd mean, Eigen::VectorXd sd)
 {
@@ -83,6 +88,9 @@ double sumDnorm(Eigen::VectorXd x, Eigen::VectorXd mean, Eigen::VectorXd sd)
 //' @param sdlog standard deviation on the log scale
 //' @return log-likelihood of x
 //' @seealso \code{sum(dlnorm(x, meanlog, sdlog, log=TRUE))}
+//' @examples
+//' x <- rlnorm(100)
+//' sumDlogNorm(x,0,1)
 // [[Rcpp::export]]
 double sumDlogNorm(Eigen::VectorXd x, double meanlog, double sdlog)
 {
@@ -104,6 +112,13 @@ double sumDlogNorm(Eigen::VectorXd x, double meanlog, double sdlog)
 //' @param amplitude Vector of amplitudes of the peaks (a.u.)
 //' @param wavenum Vector of wavenumbers at which to compute the function.
 //' @return The value of the pseudo-Voigt function at the given wavenumbers.
+//' @examples
+//'   Cal_V <- seq(300,400,by=5)
+//'   loc <- c(320,350,375)
+//'   scG <- c(10,5,1)
+//'   scL <- c(3,20,7)
+//'   amp <- c(100,500,200)
+//'   mixedVoigt(loc,scG,scL,amp,Cal_V)
 //' @references
 //' Thompson, Cox & Hastings (1987) "Rietveld refinement of Debye--Scherrer synchrotron X-ray data from \eqn{Al_2 O_3},"
 //' J. Appl. Crystallogr. 20(2): 79--83, DOI: \href{https://doi.org/10.1107/S0021889887087090}{10.1107/S0021889887087090}

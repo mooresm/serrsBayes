@@ -17,6 +17,10 @@ The ESS is a "rule of thumb" for assessing the degeneracy of
 the importance distribution:
 \deqn{ESS = \frac{(\sum_{q=1}^Q w_q)^2}{\sum_{q=1}^Q w_q^2}}
 }
+\examples{
+x <- runif(100)
+effectiveSampleSize(log(x))
+}
 \references{
 Liu, JS (2001) "Monte Carlo Strategies in Scientific Computing." Springer, NY, pp. 34--36.
 }

@@ -38,7 +38,7 @@
 #' spectra[1,] <- signature + baseline + rnorm(length(wavenumbers),0,200)
 #' lPriors <- list(scale.mu=log(11.6) - (0.4^2)/2, scale.sd=0.4, bl.smooth=10^11, bl.knots=20,
 #'                 beta.mu=5000, beta.sd=5000, noise.sd=200, noise.nu=4)
-#' result <- fitSpectraSMC(wavenumbers, spectra, peakLocations, lPriors, npart=2000)
+#' result <- fitSpectraSMC(wavenumbers, spectra, peakLocations, lPriors, npart=500)
 fitSpectraSMC <- function(wl, spc, peakWL, lPriors, conc=rep(1.0,nrow(spc)), npart=10000, rate=0.9, minESS=npart/2, destDir=NA) {
   NP <- length(peakWL)
   nWL <- length(wl)

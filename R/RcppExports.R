@@ -11,6 +11,12 @@
 #' @param amplitude Vector of amplitudes of the peaks.
 #' @param wavelengths Vector of wavenumbers at which to compute the function.
 #' @return The value of the Lorentian function at the given wavelengths.
+#' @examples
+#'   Cal_V <- seq(300,400,by=5)
+#'   loc <- c(320,350,375)
+#'   sca <- c(10,5,18)
+#'   amp <- c(1000,5000,2000)
+#'   weightedLorentzian(loc,sca,amp,Cal_V)
 weightedLorentzian <- function(location, scale, amplitude, wavelengths) {
     .Call('_serrsBayes_weightedLorentzian', PACKAGE = 'serrsBayes', location, scale, amplitude, wavelengths)
 }
@@ -23,6 +29,9 @@ weightedLorentzian <- function(location, scale, amplitude, wavelengths) {
 #' 
 #' @param log_weights logarithms of the importance weights of each particle.
 #' @return the effective sample size, a scalar between 0 and Q
+#' @examples
+#' x <- runif(100)
+#' effectiveSampleSize(log(x))
 #' @references
 #' Liu, JS (2001) "Monte Carlo Strategies in Scientific Computing." Springer, NY, pp. 34--36.
 effectiveSampleSize <- function(log_weights) {
@@ -128,6 +137,12 @@ weightedVariance <- function(particles, log_weights, mean) {
 #' @param amplitude Vector of amplitudes of the peaks.
 #' @param wavelengths Vector of wavenumbers at which to compute the function.
 #' @return The value of the Gaussian function at the given wavelengths.
+#' @examples
+#'   Cal_V <- seq(300,400,by=5)
+#'   loc <- c(320,350,375)
+#'   sca <- c(10,5,18)
+#'   amp <- c(1000,5000,2000)
+#'   weightedGaussian(loc,sca,amp,Cal_V)
 weightedGaussian <- function(location, scale, amplitude, wavelengths) {
     .Call('_serrsBayes_weightedGaussian', PACKAGE = 'serrsBayes', location, scale, amplitude, wavelengths)
 }
@@ -177,6 +192,11 @@ marginalMetropolisUpdate <- function(spectra, n, conc, wavelengths, peakWL, beta
 #' @param sd Vector of standard deviations
 #' @return log-likelihood of x
 #' @seealso \code{sum(dnorm(x, mean, sd, log=TRUE))}
+#' @examples
+#'   x <- rnorm(100)
+#'   mu <- rep(0,length(x))
+#'   sd <- rep(1,length(x))
+#'   sumDnorm(x,mu,sd)
 sumDnorm <- function(x, mean, sd) {
     .Call('_serrsBayes_sumDnorm', PACKAGE = 'serrsBayes', x, mean, sd)
 }
@@ -194,6 +214,9 @@ sumDnorm <- function(x, mean, sd) {
 #' @param sdlog standard deviation on the log scale
 #' @return log-likelihood of x
 #' @seealso \code{sum(dlnorm(x, meanlog, sdlog, log=TRUE))}
+#' @examples
+#' x <- rlnorm(100)
+#' sumDlogNorm(x,0,1)
 sumDlogNorm <- function(x, meanlog, sdlog) {
     .Call('_serrsBayes_sumDlogNorm', PACKAGE = 'serrsBayes', x, meanlog, sdlog)
 }
@@ -209,6 +232,13 @@ sumDlogNorm <- function(x, meanlog, sdlog) {
 #' @param amplitude Vector of amplitudes of the peaks (a.u.)
 #' @param wavenum Vector of wavenumbers at which to compute the function.
 #' @return The value of the pseudo-Voigt function at the given wavenumbers.
+#' @examples
+#'   Cal_V <- seq(300,400,by=5)
+#'   loc <- c(320,350,375)
+#'   scG <- c(10,5,1)
+#'   scL <- c(3,20,7)
+#'   amp <- c(100,500,200)
+#'   mixedVoigt(loc,scG,scL,amp,Cal_V)
 #' @references
 #' Thompson, Cox & Hastings (1987) "Rietveld refinement of Debye--Scherrer synchrotron X-ray data from \eqn{Al_2 O_3},"
 #' J. Appl. Crystallogr. 20(2): 79--83, DOI: \href{https://doi.org/10.1107/S0021889887087090}{10.1107/S0021889887087090}

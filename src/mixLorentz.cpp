@@ -15,6 +15,12 @@ using namespace Eigen;
 //' @param amplitude Vector of amplitudes of the peaks.
 //' @param wavelengths Vector of wavenumbers at which to compute the function.
 //' @return The value of the Lorentian function at the given wavelengths.
+//' @examples
+//'   Cal_V <- seq(300,400,by=5)
+//'   loc <- c(320,350,375)
+//'   sca <- c(10,5,18)
+//'   amp <- c(1000,5000,2000)
+//'   weightedLorentzian(loc,sca,amp,Cal_V)
 // [[Rcpp::export]]
 Eigen::VectorXd weightedLorentzian(Eigen::VectorXd location, Eigen::VectorXd scale, Eigen::VectorXd amplitude, Eigen::VectorXd wavelengths)
 {
@@ -52,6 +58,9 @@ double sum_logs(NumericVector log_prob)
 //' 
 //' @param log_weights logarithms of the importance weights of each particle.
 //' @return the effective sample size, a scalar between 0 and Q
+//' @examples
+//' x <- runif(100)
+//' effectiveSampleSize(log(x))
 //' @references
 //' Liu, JS (2001) "Monte Carlo Strategies in Scientific Computing." Springer, NY, pp. 34--36.
 // [[Rcpp::export]]
@@ -320,6 +329,12 @@ NumericVector weightedVariance(NumericMatrix particles, NumericVector log_weight
 //' @param amplitude Vector of amplitudes of the peaks.
 //' @param wavelengths Vector of wavenumbers at which to compute the function.
 //' @return The value of the Gaussian function at the given wavelengths.
+//' @examples
+//'   Cal_V <- seq(300,400,by=5)
+//'   loc <- c(320,350,375)
+//'   sca <- c(10,5,18)
+//'   amp <- c(1000,5000,2000)
+//'   weightedGaussian(loc,sca,amp,Cal_V)
 // [[Rcpp::export]]
 Eigen::VectorXd weightedGaussian(Eigen::VectorXd location, Eigen::VectorXd scale, Eigen::VectorXd amplitude, Eigen::VectorXd wavelengths)
 {

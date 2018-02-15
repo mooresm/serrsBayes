@@ -22,3 +22,10 @@ The value of the Lorentian function at the given wavelengths.
 Calculates the value of the Lorentzian function at the given wavelengths,
 given the parameters of the peaks. This function is thread-safe.
 }
+\examples{
+  Cal_V <- seq(300,400,by=5)
+  loc <- c(320,350,375)
+  sca <- c(10,5,18)
+  amp <- c(1000,5000,2000)
+  weightedLorentzian(loc,sca,amp,Cal_V)
+}

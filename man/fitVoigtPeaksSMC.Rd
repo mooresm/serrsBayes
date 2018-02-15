@@ -44,5 +44,5 @@ spectra[1,] <- signature + baseline + rnorm(length(wavenumbers),0,200)
 lPriors <- list(scaG.mu=log(11.6) - (0.4^2)/2, scaG.sd=0.4, scaL.mu=log(11.6) - (0.4^2)/2,
    scaL.sd=0.4, bl.smooth=5, bl.knots=20, loc.mu=peakLocations, loc.sd=c(5,5),
    beta.mu=c(5000,5000), beta.sd=c(5000,5000), noise.sd=200, noise.nu=4)
-result <- fitVoigtPeaksSMC(wavenumbers, spectra, lPriors, npart=100, mcSteps=1)
+result <- fitVoigtPeaksSMC(wavenumbers, spectra, lPriors, npart=50, mcSteps=1)
 }
