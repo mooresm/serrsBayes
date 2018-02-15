@@ -1,11 +1,11 @@
 // #  -------------------------------------------------------------------------
 // #  This file contains C++ code to fit Voigt peaks to spectroscopic data.
 // #  For more detail, see:
-// #  Moores; Gracie; Carson; Faulds; Graham & Girolami (2016)
+// #  Moores; Gracie; Carson; Faulds; Graham & Girolami (2016; v2 2018)
 // #  "Bayesian modelling and quantification of Raman spectroscopy"
 // #  https://arxiv.org/abs/1604.07299
 // #
-// #  Copyright (C) 2017,  Matthew Moores
+// #  Copyright (C) 2017,2018  University of Warwick
 // # 
 // #  This source code is free software: you can redistribute it and/or modify
 // #  it under the terms of the GNU General Public License as published by

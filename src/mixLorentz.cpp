@@ -1,3 +1,25 @@
+// #  -------------------------------------------------------------------------
+// #  This file contains C++ code to fit Gaussian or Lorentzian peaks to
+// #  spectroscopic data. For more detail, see:
+// #  Moores; Gracie; Carson; Faulds; Graham & Girolami (2016; v2 2018)
+// #  "Bayesian modelling and quantification of Raman spectroscopy"
+// #  https://arxiv.org/abs/1604.07299
+// #
+// #  Copyright (C) 2017,2018  University of Warwick
+// # 
+// #  This source code is free software: you can redistribute it and/or modify
+// #  it under the terms of the GNU General Public License as published by
+// #  the Free Software Foundation, either version 2 of the License, or
+// #  (at your option) any later version.
+// # 
+// #  This software is distributed in the hope that it will be useful,
+// #  but WITHOUT ANY WARRANTY; without even the implied warranty of
+// #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// #  GNU General Public License for more details.
+// # 
+// #  You should have received a copy of the GNU General Public License
+// #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// #  -------------------------------------------------------------------------
 // [[Rcpp::depends(RcppEigen)]]
 #include <RcppEigen.h>
 using namespace Rcpp;
@@ -175,17 +197,17 @@ Eigen::ArrayXi residualResampling(NumericVector log_wt)
   {
     if (std::isfinite(log_wt(i)))
     {
-      int tW = (int)trunc(exp(log_wt(i) + log(n)));
+      int tW = (int)trunc(exp(log_wt(i) + log((double)n)));
       for (int j=0; j < tW; j++)
       {
         idx[r+j] = i;
       }
       r += tW;
-      log_wt(i) = log(exp(log_wt(i) + log(n)) - tW);
+      log_wt(i) = log(exp(log_wt(i) + log((double)n)) - (double)tW);
     }
   }
   // renormalize the weights
-  log_wt = log_wt - log(n-r);
+  log_wt = log_wt - log(((double)n-r));
 
   // second loop uses multinomial resampling for the remaining n-r particles
   const NumericVector randU = runif(n-r);
