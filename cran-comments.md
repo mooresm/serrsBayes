@@ -9,8 +9,8 @@ This version fixes a compile error on Solaris:
 * `devtools::build_win`, see status at
     + <https://win-builder.r-project.org/53Ua629HmLIT/00check.log>
 * `rhub::check_for_cran`, see status at
-    + <http://builder.r-hub.io/status/serrsBayes_0.3-11.tar.gz-6ac8ea059ba54ae3a8a386da162aba30>
-    + <http://builder.r-hub.io/status/serrsBayes_0.3-11.tar.gz-686ad603c5bb4055bc12582a89a77aa3>
+    + <http://builder.r-hub.io/status/serrsBayes_0.3-12.tar.gz-5e7de42ceb8e4231a5e58ce16e3f6981>
+    + <http://builder.r-hub.io/status/serrsBayes_0.3-12.tar.gz-1cb84d217cf54fe6b85296a925aa6363>
 
 ## R CMD check results
 There were no ERRORs nor WARNings. 

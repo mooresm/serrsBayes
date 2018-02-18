@@ -6,9 +6,10 @@
 ^cran-comments.html
 ^NEWS.html
 ^README.Rmd
-vignettes/*\.Rmd$
-vignettes/*\.html$
-vignettes/article.tex
-vignettes/jss.bst
-vignettes/jss.cls
+^vignettes/jss.bst
+^vignettes/jss.cls
+^vignettes/refs.bib.bak
+^vignettes/refs.bib.sav
+^vignettes/Figure 2$
+^Figure 2$
 ^docs$

@@ -133,7 +133,7 @@ Eigen::VectorXd mixedVoigt(Eigen::VectorXd location, Eigen::VectorXd scale_G, Ei
     // (0,1) Voigt parameter gives the mixing proportions of the two components
     double Temp_e = 1.36603*(scale_L[j]/Temp_f) - 0.47719*pow(scale_L[j]/Temp_f, 2) + 0.11116*pow(scale_L[j]/Temp_f, 3);
     // weighted additive combination of Cauchy and Gaussian functions
-    Sigi += amplitude[j] * (Temp_e*dCauchy(wavenum,location[j],Temp_f/2) + (1-Temp_e)*dNorm(wavenum,location[j],Temp_f/(2*sqrt(2*log(2)))))/(Temp_e*(1/(PI*(Temp_f/2))) + (1-Temp_e)*(1/sqrt(2*PI*pow(Temp_f/(2*sqrt(2*log(2))), 2))));
+    Sigi += amplitude[j] * (Temp_e*dCauchy(wavenum,location[j],Temp_f/2.0) + (1.0-Temp_e)*dNorm(wavenum,location[j],Temp_f/(2.0*sqrt(2.0*log(2.0)))))/(Temp_e*(1.0/(PI*(Temp_f/2.0))) + (1.0-Temp_e)*(1.0/sqrt(2.0*PI*pow(Temp_f/(2.0*sqrt(2.0*log(2.0))), 2.0))));
   }
   return Sigi;
 }  
