@@ -21,7 +21,6 @@ src-i386
 src-x64
 # other documentation
 inst/doc
-man/
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf

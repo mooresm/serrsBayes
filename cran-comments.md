@@ -22,7 +22,7 @@ There were 2 NOTEs:
     - (this is a known issue with RcppEigen when compiled with debug symbols)
 
 * checking CRAN incoming feasibility
-    - Days since last update: 1
+    - Days since last update: 3
 
 ## Downstream dependencies
 There are currently no downstream dependencies for this package.
