@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Citation and Authors • serrsBayes</title>
+<title>SMC particles for TAMRA+DNA (T20) — result • serrsBayes</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -20,9 +20,9 @@
 
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script>
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
+<script src="../pkgdown.js"></script>
   
   
 <!-- mathjax -->
@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <div class="container template-citation-authors">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -47,18 +47,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">serrsBayes</a>
+      <a class="navbar-brand" href="../index.html">serrsBayes</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -68,12 +68,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/Introduction.html">Introducing serrsBayes</a>
+      <a href="../articles/Introduction.html">Introducing serrsBayes</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">News</a>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -93,55 +93,55 @@
       </header>
 
       <div class="row">
-  <div class="contents col-md-9">
-
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Citation</h1>
+    <h1>SMC particles for TAMRA+DNA (T20)</h1>
     </div>
 
-    <p>Moores MT, Gracie K, Carson J, Faulds K, Graham D and Girolami M (2016).
-&ldquo;Bayesian modelling and quantification of Raman spectroscopy.&rdquo;
-<em>arXiv preprint</em>.
-<a href="http://arxiv.org/abs/1604.07299">http://arxiv.org/abs/1604.07299</a>. 
-</p>
-    <pre>@Article{,
-  title = {Bayesian modelling and quantification of {R}aman spectroscopy},
-  author = {Matthew T. Moores and Kirsten Gracie and Jake Carson and Karen Faulds and Duncan Graham and Mark Girolami},
-  journal = {arXiv preprint},
-  year = {2016},
-  url = {http://arxiv.org/abs/1604.07299},
-}</pre>
-    <div class="page-header">
-      <h1>Authors</h1>
-    </div>
+    
+    <p>Posterior distribution for pseudo-Voigt parameters, obtained by running
+`fitVoigtPeaksSMC` on a spectrum from Gracie et al. (Anal. Chem., 2016).
+1000 SMC particles with 32 peaks. For details, see the vignette.</p>
+    
 
-    <ul class="list-unstyled">
-      <li>
-        <p><strong>Matt Moores</strong>. Author, maintainer.
-        <br /><small>0000-0003-4531-3572</small></p>
-      </li>
-      <li>
-        <p><strong>Jake Carson</strong>. Author.
-        </p>
-      </li>
-      <li>
-        <p><strong>Mark Girolami</strong>. Author.
-        </p>
-      </li>
-      <li>
-        <p><strong>Engineering and Physical Sciences Research Council</strong>. Funder.
-        <br /><small>EPSRC programme grant ref: EP/L014165/1</small></p>
-      </li>
-      <li>
-        <p><strong>University of Warwick</strong>. Copyright holder.
-        </p>
-      </li>
-    </ul>
+    <pre class="usage"><span class='no'>result</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A list containing 15 variables:</p><dl class='dl-horizontal'>
+  <dt>weights</dt><dd><p>normalised importance weights for each particle</p></dd>
+  <dt>location</dt><dd><p>location parameters of 32 peaks</p></dd>
+  <dt>beta</dt><dd><p>amplitudes of 32 peaks</p></dd>
+  <dt>scale_G</dt><dd><p>scale of the Gaussian (RBF) broadening</p></dd>
+  <dt>scale_L</dt><dd><p>scale of the Lorentzian (Cauchy) broadening</p></dd>
+  <dt>sigma</dt><dd><p>standard deviation of the additive white noise</p></dd>
+  <dt>lambda</dt><dd><p>smoothing parameter of the cubic B-splines</p></dd>
+  <dt>priors</dt><dd><p>List of informative priors</p></dd>
+  <dt>ess</dt><dd><p>history of the effective sample size</p></dd>
+  <dt>kappa</dt><dd><p>history of the likelihood tempering</p></dd>
+  <dt>accept</dt><dd><p>history of Metropolis-Hastings acceptance rates</p></dd>
+  <dt>mhSteps</dt><dd><p>history of Metropolis-Hastings steps</p></dd>
+  <dt>times</dt><dd><p>history of times for each SMC iteration</p></dd>
+  <dt>time</dt><dd><p>computation time taken by the SMC algorithm</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://pure.strath.ac.uk/portal/files/43595106/Figure_2.zip'>https://pure.strath.ac.uk/portal/files/43595106/Figure_2.zip</a></p>
+    
 
   </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      <li><a href="#format">Format</a></li>
 
+      <li><a href="#source">Source</a></li>
+          </ul>
+
+  </div>
 </div>
-
 
       <footer>
       <div class="copyright">

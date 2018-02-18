@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Citation and Authors • serrsBayes</title>
+<title>Sum log-likelihoods of i.i.d. lognormal. — sumDlogNorm • serrsBayes</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -20,9 +20,9 @@
 
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script>
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
+<script src="../pkgdown.js"></script>
   
   
 <!-- mathjax -->
@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <div class="container template-citation-authors">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -47,18 +47,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">serrsBayes</a>
+      <a class="navbar-brand" href="../index.html">serrsBayes</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -68,12 +68,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/Introduction.html">Introducing serrsBayes</a>
+      <a href="../articles/Introduction.html">Introducing serrsBayes</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">News</a>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -93,55 +93,69 @@
       </header>
 
       <div class="row">
-  <div class="contents col-md-9">
-
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Citation</h1>
+    <h1>Sum log-likelihoods of i.i.d. lognormal.</h1>
     </div>
 
-    <p>Moores MT, Gracie K, Carson J, Faulds K, Graham D and Girolami M (2016).
-&ldquo;Bayesian modelling and quantification of Raman spectroscopy.&rdquo;
-<em>arXiv preprint</em>.
-<a href="http://arxiv.org/abs/1604.07299">http://arxiv.org/abs/1604.07299</a>. 
-</p>
-    <pre>@Article{,
-  title = {Bayesian modelling and quantification of {R}aman spectroscopy},
-  author = {Matthew T. Moores and Kirsten Gracie and Jake Carson and Karen Faulds and Duncan Graham and Mark Girolami},
-  journal = {arXiv preprint},
-  year = {2016},
-  url = {http://arxiv.org/abs/1604.07299},
-}</pre>
-    <div class="page-header">
-      <h1>Authors</h1>
-    </div>
+    
+    <p>This is an internal function that is only exposed on the public API for unit testing purposes.</p>
+    
 
-    <ul class="list-unstyled">
-      <li>
-        <p><strong>Matt Moores</strong>. Author, maintainer.
-        <br /><small>0000-0003-4531-3572</small></p>
-      </li>
-      <li>
-        <p><strong>Jake Carson</strong>. Author.
-        </p>
-      </li>
-      <li>
-        <p><strong>Mark Girolami</strong>. Author.
-        </p>
-      </li>
-      <li>
-        <p><strong>Engineering and Physical Sciences Research Council</strong>. Funder.
-        <br /><small>EPSRC programme grant ref: EP/L014165/1</small></p>
-      </li>
-      <li>
-        <p><strong>University of Warwick</strong>. Copyright holder.
-        </p>
-      </li>
+    <pre class="usage"><span class='fu'>sumDlogNorm</span>(<span class='no'>x</span>, <span class='no'>meanlog</span>, <span class='no'>sdlog</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>Vector of i.i.d. lognormal random varibles</p></td>
+    </tr>
+    <tr>
+      <th>meanlog</th>
+      <td><p>mean of the distribution on the log scale</p></td>
+    </tr>
+    <tr>
+      <th>sdlog</th>
+      <td><p>standard deviation on the log scale</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>log-likelihood of x</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The sum of the log-likelihoods (log of the product of the likelihoods)
+for independent, identically-distributed, lognormal random variables. 
+Note: this Rcpp function is thread-safe, unlike the equivalent alternatives.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code>sum(dlnorm(x, meanlog, sdlog, log=TRUE))</code></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>rlnorm</span>(<span class='fl'>100</span>)
+<span class='fu'>sumDlogNorm</span>(<span class='no'>x</span>,<span class='fl'>0</span>,<span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] -139.659</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
-
 </div>
-
 
       <footer>
       <div class="copyright">

@@ -113,8 +113,8 @@ for (pt in 1:length(samp.idx)) {
   k <- samp.idx[pt]
   samp.mat[pt,] <- mixedVoigt(result$location[k,], result$scale_G[k,],
                               result$scale_L[k,], result$beta[k,], wavenumbers)
-  samp.sigi[pt] <- result$sigma[k]
-  samp.lambda[pt] <- result$lambda[k]
+  samp.sigi[pt] <- result$sigma
+  samp.lambda[pt] <- result$lambda
   
   Obsi <- spectra[1,] - samp.mat[pt,]
   g0_Cal <- length(Obsi) * samp.lambda[pt] * result$priors$bl.precision
@@ -122,8 +122,8 @@ for (pt in 1:length(samp.idx)) {
   mi_Cal <- as.vector(solve(gi_Cal, crossprod(result$priors$bl.basis, Obsi)))
 
   bl.est <- result$priors$bl.basis %*% mi_Cal # smoothed residuals = estimated basline
-  lines(wavenumbers, bl.est, col="#C3000020")
-  lines(wavenumbers, bl.est + samp.mat[pt,], col="#0000C30F")
+  lines(wavenumbers, bl.est, col=2)
+  lines(wavenumbers, bl.est + samp.mat[pt,], col=4)
   resid.mat[pt,] <- Obsi - bl.est[,1]
 }
 title(main="Baseline for TAMRA")
@@ -131,8 +131,7 @@ title(main="Baseline for TAMRA")
 plot(range(wavenumbers), range(samp.mat), type='n', xlab="Raman offset", ylab="Intensity")
 abline(h=0,lty=2)
 for (pt in 1:length(samp.idx)) {
-  lines(wavenumbers, samp.mat[pt,], col="#0000C330")
-  lines(wavenumbers, resid.mat[pt,] + samp.mat[pt,], col="#00000020")
+  lines(wavenumbers, samp.mat[pt,], col=4)
 }
 title(main="Spectral Signature")
 ```

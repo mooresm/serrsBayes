@@ -60,7 +60,7 @@ Sample 200 particles from the posterior distribution:
 ``` r
 print(tm)
 #>    user  system elapsed 
-#> 531.018  12.817 189.815
+#> 539.478  13.446 185.588
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
 for (pt in samp.idx) {
