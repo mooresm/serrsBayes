@@ -3,6 +3,7 @@
 ## New Features
 
 * Vignette with example for tetramethylrhodamine (TAMRA)
+* pkgdown website https://mooresm.github.io/serrsBayes/
 
 ## Bug Fixes
 

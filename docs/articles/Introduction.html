@@ -75,7 +75,7 @@
       <h1>Introducing serrsBayes</h1>
                         <h4 class="author">Matt Moores</h4>
             
-            <h4 class="date">2018-02-18</h4>
+            <h4 class="date">2018-02-19</h4>
           </div>
 
     
@@ -138,7 +138,7 @@ priors &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="d
 <p>The downside of choosing smaller values for these tuning parameters is that you run the risk of the SMC collapsing. The quality of the particle distribution deteriorates with each iteration, as measured by the effective sample size (ESS):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot.ts</span>(result<span class="op">$</span>ess, <span class="dt">ylab=</span><span class="st">"ESS"</span>, <span class="dt">main=</span><span class="st">"Effective Sample Size"</span>,
         <span class="dt">xlab=</span><span class="st">"SMC iteration"</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">max</span>(result<span class="op">$</span>ess)))
-<span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">length</span>(result<span class="op">$</span>sigma)<span class="op">/</span><span class="dv">2</span>, <span class="dt">col=</span><span class="dv">4</span>, <span class="dt">lty=</span><span class="dv">2</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">max</span>(result<span class="op">$</span>ess)<span class="op">/</span><span class="dv">2</span>, <span class="dt">col=</span><span class="dv">4</span>, <span class="dt">lty=</span><span class="dv">2</span>)
 <span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">0</span>,<span class="dt">lty=</span><span class="dv">2</span>)
 <span class="kw">plot.ts</span>(result<span class="op">$</span>accept, <span class="dt">ylab=</span><span class="st">"accept"</span>, <span class="dt">main=</span><span class="st">"M-H Acceptance Rate"</span>,
         <span class="dt">xlab=</span><span class="st">"SMC iteration"</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">max</span>(result<span class="op">$</span>accept)))
@@ -200,650 +200,203 @@ spectra &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocu
 <table class="table">
 <caption>95% highest posterior density intervals for pseudo-Voigt peaks</caption>
 <thead><tr class="header">
-<th></th>
-<th align="right">lower</th>
-<th align="right">upper</th>
+<th align="right">Location (cm-1)</th>
+<th align="right">Amplitude</th>
+<th align="right">FWHM (cm-1)</th>
+<th align="right">Voigt</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>loc[1]</td>
-<td align="right">591.98</td>
-<td align="right">698.80</td>
+<td align="right">[ 589; 693]</td>
+<td align="right">[ 0; 339]</td>
+<td align="right">[ 23; 58]</td>
+<td align="right">[0.74; 0.98]</td>
 </tr>
 <tr class="even">
-<td>loc[2]</td>
-<td align="right">530.10</td>
-<td align="right">621.35</td>
-</tr>
-<tr class="odd">
-<td>loc[3]</td>
-<td align="right">632.84</td>
-<td align="right">633.62</td>
-</tr>
-<tr class="even">
-<td>loc[4]</td>
-<td align="right">601.25</td>
-<td align="right">793.45</td>
+<td align="right">[ 535; 626]</td>
+<td align="right">[ 21; 22807]</td>
+<td align="right">[ 22; 44]</td>
+<td align="right">[0.50; 0.89]</td>
 </tr>
 <tr class="odd">
-<td>loc[5]</td>
-<td align="right">723.54</td>
-<td align="right">752.12</td>
+<td align="right">[ 633; 634]</td>
+<td align="right">[ 2715; 3080]</td>
+<td align="right">[ 12; 15]</td>
+<td align="right">[0.64; 0.87]</td>
 </tr>
 <tr class="even">
-<td>loc[6]</td>
-<td align="right">750.14</td>
-<td align="right">759.38</td>
+<td align="right">[ 618; 813]</td>
+<td align="right">[ 2; 212]</td>
+<td align="right">[ 20; 42]</td>
+<td align="right">[0.61; 0.93]</td>
 </tr>
 <tr class="odd">
-<td>loc[7]</td>
-<td align="right">751.17</td>
-<td align="right">913.10</td>
+<td align="right">[ 724; 753]</td>
+<td align="right">[ 164; 496]</td>
+<td align="right">[ 20; 49]</td>
+<td align="right">[0.75; 0.96]</td>
 </tr>
 <tr class="even">
-<td>loc[8]</td>
-<td align="right">834.87</td>
-<td align="right">845.09</td>
+<td align="right">[ 750; 759]</td>
+<td align="right">[ 156; 679]</td>
+<td align="right">[ 14; 28]</td>
+<td align="right">[0.50; 0.90]</td>
 </tr>
 <tr class="odd">
-<td>loc[9]</td>
-<td align="right">863.92</td>
-<td align="right">997.19</td>
+<td align="right">[ 753; 925]</td>
+<td align="right">[ 0; 222]</td>
+<td align="right">[ 17; 38]</td>
+<td align="right">[0.69; 0.96]</td>
 </tr>
 <tr class="even">
-<td>loc[10]</td>
-<td align="right">963.37</td>
-<td align="right">974.35</td>
+<td align="right">[ 835; 845]</td>
+<td align="right">[ 149; 441]</td>
+<td align="right">[ 19; 36]</td>
+<td align="right">[0.44; 0.87]</td>
 </tr>
 <tr class="odd">
-<td>loc[11]</td>
-<td align="right">959.04</td>
-<td align="right">1070.77</td>
+<td align="right">[ 864; 996]</td>
+<td align="right">[ 0; 92]</td>
+<td align="right">[ 18; 38]</td>
+<td align="right">[0.68; 0.95]</td>
 </tr>
 <tr class="even">
-<td>loc[12]</td>
-<td align="right">966.11</td>
-<td align="right">1115.60</td>
+<td align="right">[ 963; 974]</td>
+<td align="right">[ 169; 499]</td>
+<td align="right">[ 19; 39]</td>
+<td align="right">[0.55; 0.94]</td>
 </tr>
 <tr class="odd">
-<td>loc[13]</td>
-<td align="right">1083.43</td>
-<td align="right">1130.58</td>
+<td align="right">[ 959; 1069]</td>
+<td align="right">[ 17; 222]</td>
+<td align="right">[ 25; 61]</td>
+<td align="right">[0.64; 0.97]</td>
 </tr>
 <tr class="even">
-<td>loc[14]</td>
-<td align="right">939.08</td>
-<td align="right">1075.25</td>
+<td align="right">[ 967; 1126]</td>
+<td align="right">[ 3; 166]</td>
+<td align="right">[ 21; 45]</td>
+<td align="right">[0.56; 0.94]</td>
 </tr>
 <tr class="odd">
-<td>loc[15]</td>
-<td align="right">1188.41</td>
-<td align="right">1196.36</td>
+<td align="right">[1083; 1129]</td>
+<td align="right">[ 38; 290]</td>
+<td align="right">[ 15; 30]</td>
+<td align="right">[0.58; 0.87]</td>
 </tr>
 <tr class="even">
-<td>loc[16]</td>
-<td align="right">1140.60</td>
-<td align="right">1147.04</td>
+<td align="right">[ 942; 1079]</td>
+<td align="right">[ 3; 132]</td>
+<td align="right">[ 26; 60]</td>
+<td align="right">[0.72; 0.98]</td>
 </tr>
 <tr class="odd">
-<td>loc[17]</td>
-<td align="right">1222.54</td>
-<td align="right">1223.68</td>
+<td align="right">[1188; 1196]</td>
+<td align="right">[ 253; 618]</td>
+<td align="right">[ 20; 38]</td>
+<td align="right">[0.48; 0.90]</td>
 </tr>
 <tr class="even">
-<td>loc[18]</td>
-<td align="right">1249.16</td>
-<td align="right">1296.98</td>
+<td align="right">[1140; 1147]</td>
+<td align="right">[ 390; 742]</td>
+<td align="right">[ 18; 42]</td>
+<td align="right">[0.60; 0.91]</td>
 </tr>
 <tr class="odd">
-<td>loc[19]</td>
-<td align="right">1287.52</td>
-<td align="right">1295.92</td>
+<td align="right">[1223; 1224]</td>
+<td align="right">[ 2294; 2716]</td>
+<td align="right">[ 18; 23]</td>
+<td align="right">[0.59; 0.86]</td>
 </tr>
 <tr class="even">
-<td>loc[20]</td>
-<td align="right">1242.33</td>
-<td align="right">1352.75</td>
+<td align="right">[1250; 1297]</td>
+<td align="right">[ 5; 172]</td>
+<td align="right">[ 17; 38]</td>
+<td align="right">[0.54; 0.92]</td>
 </tr>
 <tr class="odd">
-<td>loc[21]</td>
-<td align="right">1358.74</td>
-<td align="right">1360.25</td>
+<td align="right">[1288; 1296]</td>
+<td align="right">[ 426; 885]</td>
+<td align="right">[ 28; 57]</td>
+<td align="right">[0.30; 0.75]</td>
 </tr>
 <tr class="even">
-<td>loc[22]</td>
-<td align="right">1371.76</td>
-<td align="right">1378.76</td>
+<td align="right">[1236; 1349]</td>
+<td align="right">[ 1; 147]</td>
+<td align="right">[ 17; 37]</td>
+<td align="right">[0.58; 0.92]</td>
 </tr>
 <tr class="odd">
-<td>loc[23]</td>
-<td align="right">1333.25</td>
-<td align="right">1478.97</td>
+<td align="right">[1359; 1360]</td>
+<td align="right">[ 3057; 3714]</td>
+<td align="right">[ 15; 22]</td>
+<td align="right">[0.79; 0.96]</td>
 </tr>
 <tr class="even">
-<td>loc[24]</td>
-<td align="right">1418.91</td>
-<td align="right">1423.42</td>
+<td align="right">[1372; 1379]</td>
+<td align="right">[ 677; 1326]</td>
+<td align="right">[ 17; 32]</td>
+<td align="right">[0.56; 0.90]</td>
 </tr>
 <tr class="odd">
-<td>loc[25]</td>
-<td align="right">1454.47</td>
-<td align="right">1463.09</td>
+<td align="right">[1322; 1476]</td>
+<td align="right">[ 0; 124]</td>
+<td align="right">[ 23; 57]</td>
+<td align="right">[0.65; 0.94]</td>
 </tr>
 <tr class="even">
-<td>loc[26]</td>
-<td align="right">1508.70</td>
-<td align="right">1514.60</td>
+<td align="right">[1419; 1423]</td>
+<td align="right">[ 981; 1503]</td>
+<td align="right">[ 25; 40]</td>
+<td align="right">[0.59; 0.93]</td>
 </tr>
 <tr class="odd">
-<td>loc[27]</td>
-<td align="right">1508.54</td>
-<td align="right">1515.02</td>
+<td align="right">[1455; 1463]</td>
+<td align="right">[ 864; 1942]</td>
+<td align="right">[ 29; 70]</td>
+<td align="right">[0.81; 0.98]</td>
 </tr>
 <tr class="even">
-<td>loc[28]</td>
-<td align="right">1538.34</td>
-<td align="right">1539.23</td>
+<td align="right">[1508; 1514]</td>
+<td align="right">[ 848; 1860]</td>
+<td align="right">[ 13; 35]</td>
+<td align="right">[0.49; 0.90]</td>
 </tr>
 <tr class="odd">
-<td>loc[29]</td>
-<td align="right">1653.19</td>
-<td align="right">1653.69</td>
+<td align="right">[1509; 1516]</td>
+<td align="right">[ 1022; 2860]</td>
+<td align="right">[ 24; 85]</td>
+<td align="right">[0.65; 0.97]</td>
 </tr>
 <tr class="even">
-<td>loc[30]</td>
-<td align="right">1570.02</td>
-<td align="right">1576.20</td>
+<td align="right">[1538; 1539]</td>
+<td align="right">[ 2875; 3471]</td>
+<td align="right">[ 13; 16]</td>
+<td align="right">[0.46; 0.77]</td>
 </tr>
 <tr class="odd">
-<td>loc[31]</td>
-<td align="right">1615.39</td>
-<td align="right">1637.33</td>
+<td align="right">[1653; 1654]</td>
+<td align="right">[ 7248; 7798]</td>
+<td align="right">[ 18; 21]</td>
+<td align="right">[0.71; 0.87]</td>
 </tr>
 <tr class="even">
-<td>loc[32]</td>
-<td align="right">1700.78</td>
-<td align="right">1717.35</td>
+<td align="right">[1570; 1576]</td>
+<td align="right">[ 1169; 2497]</td>
+<td align="right">[ 44; 105]</td>
+<td align="right">[0.69; 0.97]</td>
 </tr>
 <tr class="odd">
-<td>amp[1]</td>
-<td align="right">0.02</td>
-<td align="right">227.09</td>
+<td align="right">[1615; 1637]</td>
+<td align="right">[ 415; 1344]</td>
+<td align="right">[ 26; 76]</td>
+<td align="right">[0.73; 0.99]</td>
 </tr>
 <tr class="even">
-<td>amp[2]</td>
-<td align="right">7.42</td>
-<td align="right">17579.62</td>
-</tr>
-<tr class="odd">
-<td>amp[3]</td>
-<td align="right">2732.24</td>
-<td align="right">3090.76</td>
-</tr>
-<tr class="even">
-<td>amp[4]</td>
-<td align="right">0.23</td>
-<td align="right">194.97</td>
-</tr>
-<tr class="odd">
-<td>amp[5]</td>
-<td align="right">158.14</td>
-<td align="right">496.22</td>
-</tr>
-<tr class="even">
-<td>amp[6]</td>
-<td align="right">156.87</td>
-<td align="right">693.04</td>
-</tr>
-<tr class="odd">
-<td>amp[7]</td>
-<td align="right">0.11</td>
-<td align="right">206.09</td>
-</tr>
-<tr class="even">
-<td>amp[8]</td>
-<td align="right">138.45</td>
-<td align="right">417.28</td>
-</tr>
-<tr class="odd">
-<td>amp[9]</td>
-<td align="right">0.00</td>
-<td align="right">74.34</td>
-</tr>
-<tr class="even">
-<td>amp[10]</td>
-<td align="right">169.19</td>
-<td align="right">499.68</td>
-</tr>
-<tr class="odd">
-<td>amp[11]</td>
-<td align="right">8.12</td>
-<td align="right">198.66</td>
-</tr>
-<tr class="even">
-<td>amp[12]</td>
-<td align="right">0.72</td>
-<td align="right">125.35</td>
-</tr>
-<tr class="odd">
-<td>amp[13]</td>
-<td align="right">32.88</td>
-<td align="right">261.83</td>
-</tr>
-<tr class="even">
-<td>amp[14]</td>
-<td align="right">1.87</td>
-<td align="right">120.08</td>
-</tr>
-<tr class="odd">
-<td>amp[15]</td>
-<td align="right">228.27</td>
-<td align="right">589.25</td>
-</tr>
-<tr class="even">
-<td>amp[16]</td>
-<td align="right">383.42</td>
-<td align="right">732.90</td>
-</tr>
-<tr class="odd">
-<td>amp[17]</td>
-<td align="right">2331.83</td>
-<td align="right">2751.75</td>
-</tr>
-<tr class="even">
-<td>amp[18]</td>
-<td align="right">3.00</td>
-<td align="right">155.60</td>
-</tr>
-<tr class="odd">
-<td>amp[19]</td>
-<td align="right">411.21</td>
-<td align="right">884.15</td>
-</tr>
-<tr class="even">
-<td>amp[20]</td>
-<td align="right">0.63</td>
-<td align="right">112.55</td>
-</tr>
-<tr class="odd">
-<td>amp[21]</td>
-<td align="right">3053.07</td>
-<td align="right">3713.26</td>
-</tr>
-<tr class="even">
-<td>amp[22]</td>
-<td align="right">673.74</td>
-<td align="right">1325.30</td>
-</tr>
-<tr class="odd">
-<td>amp[23]</td>
-<td align="right">0.00</td>
-<td align="right">61.22</td>
-</tr>
-<tr class="even">
-<td>amp[24]</td>
-<td align="right">970.22</td>
-<td align="right">1461.46</td>
-</tr>
-<tr class="odd">
-<td>amp[25]</td>
-<td align="right">831.81</td>
-<td align="right">1783.39</td>
-</tr>
-<tr class="even">
-<td>amp[26]</td>
-<td align="right">844.72</td>
-<td align="right">1815.62</td>
-</tr>
-<tr class="odd">
-<td>amp[27]</td>
-<td align="right">921.87</td>
-<td align="right">2776.92</td>
-</tr>
-<tr class="even">
-<td>amp[28]</td>
-<td align="right">2860.53</td>
-<td align="right">3461.73</td>
-</tr>
-<tr class="odd">
-<td>amp[29]</td>
-<td align="right">7244.29</td>
-<td align="right">7797.14</td>
-</tr>
-<tr class="even">
-<td>amp[30]</td>
-<td align="right">1195.14</td>
-<td align="right">2530.06</td>
-</tr>
-<tr class="odd">
-<td>amp[31]</td>
-<td align="right">401.61</td>
-<td align="right">1343.48</td>
-</tr>
-<tr class="even">
-<td>amp[32]</td>
-<td align="right">299.04</td>
-<td align="right">2297.57</td>
-</tr>
-<tr class="odd">
-<td>FWHM[1]</td>
-<td align="right">22.40</td>
-<td align="right">54.30</td>
-</tr>
-<tr class="even">
-<td>FWHM[2]</td>
-<td align="right">21.37</td>
-<td align="right">42.76</td>
-</tr>
-<tr class="odd">
-<td>FWHM[3]</td>
-<td align="right">12.17</td>
-<td align="right">14.86</td>
-</tr>
-<tr class="even">
-<td>FWHM[4]</td>
-<td align="right">19.26</td>
-<td align="right">38.78</td>
-</tr>
-<tr class="odd">
-<td>FWHM[5]</td>
-<td align="right">19.67</td>
-<td align="right">48.10</td>
-</tr>
-<tr class="even">
-<td>FWHM[6]</td>
-<td align="right">14.10</td>
-<td align="right">27.49</td>
-</tr>
-<tr class="odd">
-<td>FWHM[7]</td>
-<td align="right">16.25</td>
-<td align="right">36.22</td>
-</tr>
-<tr class="even">
-<td>FWHM[8]</td>
-<td align="right">18.23</td>
-<td align="right">34.93</td>
-</tr>
-<tr class="odd">
-<td>FWHM[9]</td>
-<td align="right">17.55</td>
-<td align="right">36.15</td>
-</tr>
-<tr class="even">
-<td>FWHM[10]</td>
-<td align="right">19.02</td>
-<td align="right">39.12</td>
-</tr>
-<tr class="odd">
-<td>FWHM[11]</td>
-<td align="right">22.86</td>
-<td align="right">57.61</td>
-</tr>
-<tr class="even">
-<td>FWHM[12]</td>
-<td align="right">20.36</td>
-<td align="right">42.99</td>
-</tr>
-<tr class="odd">
-<td>FWHM[13]</td>
-<td align="right">15.09</td>
-<td align="right">29.71</td>
-</tr>
-<tr class="even">
-<td>FWHM[14]</td>
-<td align="right">24.22</td>
-<td align="right">57.81</td>
-</tr>
-<tr class="odd">
-<td>FWHM[15]</td>
-<td align="right">18.87</td>
-<td align="right">35.82</td>
-</tr>
-<tr class="even">
-<td>FWHM[16]</td>
-<td align="right">17.63</td>
-<td align="right">40.62</td>
-</tr>
-<tr class="odd">
-<td>FWHM[17]</td>
-<td align="right">18.06</td>
-<td align="right">22.58</td>
-</tr>
-<tr class="even">
-<td>FWHM[18]</td>
-<td align="right">17.13</td>
-<td align="right">37.70</td>
-</tr>
-<tr class="odd">
-<td>FWHM[19]</td>
-<td align="right">27.24</td>
-<td align="right">56.74</td>
-</tr>
-<tr class="even">
-<td>FWHM[20]</td>
-<td align="right">16.87</td>
-<td align="right">37.23</td>
-</tr>
-<tr class="odd">
-<td>FWHM[21]</td>
-<td align="right">15.72</td>
-<td align="right">21.85</td>
-</tr>
-<tr class="even">
-<td>FWHM[22]</td>
-<td align="right">16.45</td>
-<td align="right">30.95</td>
-</tr>
-<tr class="odd">
-<td>FWHM[23]</td>
-<td align="right">19.60</td>
-<td align="right">52.35</td>
-</tr>
-<tr class="even">
-<td>FWHM[24]</td>
-<td align="right">24.39</td>
-<td align="right">39.59</td>
-</tr>
-<tr class="odd">
-<td>FWHM[25]</td>
-<td align="right">28.51</td>
-<td align="right">69.88</td>
-</tr>
-<tr class="even">
-<td>FWHM[26]</td>
-<td align="right">12.94</td>
-<td align="right">32.49</td>
-</tr>
-<tr class="odd">
-<td>FWHM[27]</td>
-<td align="right">23.05</td>
-<td align="right">81.74</td>
-</tr>
-<tr class="even">
-<td>FWHM[28]</td>
-<td align="right">12.73</td>
-<td align="right">15.63</td>
-</tr>
-<tr class="odd">
-<td>FWHM[29]</td>
-<td align="right">18.13</td>
-<td align="right">20.55</td>
-</tr>
-<tr class="even">
-<td>FWHM[30]</td>
-<td align="right">44.51</td>
-<td align="right">106.16</td>
-</tr>
-<tr class="odd">
-<td>FWHM[31]</td>
-<td align="right">20.72</td>
-<td align="right">69.85</td>
-</tr>
-<tr class="even">
-<td>FWHM[32]</td>
-<td align="right">29.08</td>
-<td align="right">187.55</td>
-</tr>
-<tr class="odd">
-<td>voigt[1]</td>
-<td align="right">0.75</td>
-<td align="right">0.99</td>
-</tr>
-<tr class="even">
-<td>voigt[2]</td>
-<td align="right">0.49</td>
-<td align="right">0.86</td>
-</tr>
-<tr class="odd">
-<td>voigt[3]</td>
-<td align="right">0.65</td>
-<td align="right">0.87</td>
-</tr>
-<tr class="even">
-<td>voigt[4]</td>
-<td align="right">0.63</td>
-<td align="right">0.93</td>
-</tr>
-<tr class="odd">
-<td>voigt[5]</td>
-<td align="right">0.78</td>
-<td align="right">0.96</td>
-</tr>
-<tr class="even">
-<td>voigt[6]</td>
-<td align="right">0.53</td>
-<td align="right">0.90</td>
-</tr>
-<tr class="odd">
-<td>voigt[7]</td>
-<td align="right">0.70</td>
-<td align="right">0.96</td>
-</tr>
-<tr class="even">
-<td>voigt[8]</td>
-<td align="right">0.44</td>
-<td align="right">0.87</td>
-</tr>
-<tr class="odd">
-<td>voigt[9]</td>
-<td align="right">0.72</td>
-<td align="right">0.97</td>
-</tr>
-<tr class="even">
-<td>voigt[10]</td>
-<td align="right">0.58</td>
-<td align="right">0.95</td>
-</tr>
-<tr class="odd">
-<td>voigt[11]</td>
-<td align="right">0.66</td>
-<td align="right">0.98</td>
-</tr>
-<tr class="even">
-<td>voigt[12]</td>
-<td align="right">0.61</td>
-<td align="right">0.96</td>
-</tr>
-<tr class="odd">
-<td>voigt[13]</td>
-<td align="right">0.60</td>
-<td align="right">0.89</td>
-</tr>
-<tr class="even">
-<td>voigt[14]</td>
-<td align="right">0.78</td>
-<td align="right">0.99</td>
-</tr>
-<tr class="odd">
-<td>voigt[15]</td>
-<td align="right">0.53</td>
-<td align="right">0.95</td>
-</tr>
-<tr class="even">
-<td>voigt[16]</td>
-<td align="right">0.63</td>
-<td align="right">0.92</td>
-</tr>
-<tr class="odd">
-<td>voigt[17]</td>
-<td align="right">0.59</td>
-<td align="right">0.86</td>
-</tr>
-<tr class="even">
-<td>voigt[18]</td>
-<td align="right">0.60</td>
-<td align="right">0.95</td>
-</tr>
-<tr class="odd">
-<td>voigt[19]</td>
-<td align="right">0.29</td>
-<td align="right">0.72</td>
-</tr>
-<tr class="even">
-<td>voigt[20]</td>
-<td align="right">0.58</td>
-<td align="right">0.92</td>
-</tr>
-<tr class="odd">
-<td>voigt[21]</td>
-<td align="right">0.80</td>
-<td align="right">0.96</td>
-</tr>
-<tr class="even">
-<td>voigt[22]</td>
-<td align="right">0.54</td>
-<td align="right">0.89</td>
-</tr>
-<tr class="odd">
-<td>voigt[23]</td>
-<td align="right">0.67</td>
-<td align="right">0.94</td>
-</tr>
-<tr class="even">
-<td>voigt[24]</td>
-<td align="right">0.62</td>
-<td align="right">0.95</td>
-</tr>
-<tr class="odd">
-<td>voigt[25]</td>
-<td align="right">0.82</td>
-<td align="right">0.99</td>
-</tr>
-<tr class="even">
-<td>voigt[26]</td>
-<td align="right">0.49</td>
-<td align="right">0.91</td>
-</tr>
-<tr class="odd">
-<td>voigt[27]</td>
-<td align="right">0.71</td>
-<td align="right">0.98</td>
-</tr>
-<tr class="even">
-<td>voigt[28]</td>
-<td align="right">0.46</td>
-<td align="right">0.77</td>
-</tr>
-<tr class="odd">
-<td>voigt[29]</td>
-<td align="right">0.73</td>
-<td align="right">0.88</td>
-</tr>
-<tr class="even">
-<td>voigt[30]</td>
-<td align="right">0.73</td>
-<td align="right">0.98</td>
-</tr>
-<tr class="odd">
-<td>voigt[31]</td>
-<td align="right">0.77</td>
-<td align="right">0.99</td>
-</tr>
-<tr class="even">
-<td>voigt[32]</td>
-<td align="right">0.83</td>
-<td align="right">1.00</td>
+<td align="right">[1702; 1719]</td>
+<td align="right">[ 356; 2384]</td>
+<td align="right">[ 36; 203]</td>
+<td align="right">[0.79; 1.00]</td>
 </tr>
 </tbody>
 </table>
