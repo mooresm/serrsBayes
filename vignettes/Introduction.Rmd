@@ -85,7 +85,7 @@ The downside of choosing smaller values for these tuning parameters is that you 
 ```{r ess, fig.show='hold'}
 plot.ts(result$ess, ylab="ESS", main="Effective Sample Size",
         xlab="SMC iteration", ylim=c(0,max(result$ess)))
-abline(h=length(result$sigma)/2, col=4, lty=2)
+abline(h=max(result$ess)/2, col=4, lty=2)
 abline(h=0,lty=2)
 plot.ts(result$accept, ylab="accept", main="M-H Acceptance Rate",
         xlab="SMC iteration", ylim=c(0,max(result$accept)))

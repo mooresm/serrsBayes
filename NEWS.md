@@ -1,4 +1,8 @@
-# serrsBayes 0.3-11
+# serrsBayes 0.3-12
+
+## New Features
+
+* Vignette with example for tetramethylrhodamine (TAMRA)
 
 ## Bug Fixes
 

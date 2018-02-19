@@ -7,7 +7,7 @@ This version fixes a compile error on Solaris:
 * Travis CI on Ubuntu 14.04.5 LTS, R 3.4.2, see status at
     + <https://travis-ci.org/mooresm/serrsBayes>
 * `devtools::build_win`, see status at
-    + <https://win-builder.r-project.org/S5I7K8rQDjAA/00check.log>
+    + <https://win-builder.r-project.org/5drqDZNj8Mb1/00check.log>
 * `rhub::check_for_cran`, see status at
     + <http://builder.r-hub.io/status/serrsBayes_0.3-12.tar.gz-5e7de42ceb8e4231a5e58ce16e3f6981>
     + <http://builder.r-hub.io/status/serrsBayes_0.3-12.tar.gz-1cb84d217cf54fe6b85296a925aa6363>
