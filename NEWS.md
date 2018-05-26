@@ -1,3 +1,7 @@
+# serrsBayes 0.?
+
+* currently in development
+
 # serrsBayes 0.3-12
 
 ## New Features

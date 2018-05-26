@@ -19,6 +19,44 @@ knitr::opts_chunk$set(
 [![Travis-CI Build Status](https://travis-ci.org/mooresm/serrsBayes.svg?branch=master)](https://travis-ci.org/mooresm/serrsBayes)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mooresm/serrsBayes/master.svg)](https://codecov.io/github/mooresm/serrsBayes?branch=master)
 
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='right', fig.width=2, fig.asp=1, fig.height=2}
+tmp <- tempfile()
+download.file("https://pure.strath.ac.uk/portal/files/43595106/Figure_2.zip", tmp)
+tmp2 <- unzip(tmp, "Figure 2/T20 SERS spectra/T20_1_ REP1  Well_A1.SPC")
+library(hyperSpec)
+spcT20 <- read.spc (tmp2)
+spectra <- spcT20[1,,600~1800]
+wavenumbers <- wl(spectra)
+nWL <- length(wavenumbers)
+library(serrsBayes)
+data("result", package = "serrsBayes")
+samp.idx <- sample.int(length(result$weights), 50, prob=result$weights)
+samp.mat <- resid.mat <- matrix(0,nrow=length(samp.idx), ncol=nWL)
+samp.sigi <- samp.lambda <- numeric(length=nrow(samp.mat))
+spectra <- as.matrix(spectra)
+library(hexSticker)
+sticker(expression({plot(wavenumbers, spectra[1,], type='l', ann=FALSE, xaxt='n', yaxt='n', bty='n', lwd=2, col="#000000C0", xlim=c(600,1700))
+for (pt in 1:length(samp.idx)) {
+    k <- samp.idx[pt]
+    samp.mat[pt,] <- mixedVoigt(result$location[k,], result$scale_G[k,],
+                                result$scale_L[k,], result$beta[k,], wavenumbers)
+    samp.sigi[pt] <- result$sigma
+    samp.lambda[pt] <- result$lambda
+    
+    Obsi <- spectra[1,] - samp.mat[pt,]
+    g0_Cal <- length(Obsi) * samp.lambda[pt] * result$priors$bl.precision
+    gi_Cal <- crossprod(result$priors$bl.basis) + g0_Cal
+    mi_Cal <- as.vector(solve(gi_Cal, crossprod(result$priors$bl.basis, Obsi)))
+    
+    bl.est <- result$priors$bl.basis %*% mi_Cal # smoothed residuals = estimated basline
+    lines(wavenumbers, bl.est, col="#0000FF40")
+    lines(wavenumbers, bl.est + samp.mat[pt,], col="#FF00002F", lwd=0.5)
+    resid.mat[pt,] <- Obsi - bl.est[,1]
+}}),package="serrsBayes",p_size=8, s_x=0.68, s_y=.8, s_width=2.4, s_height=2, p_color = "#0000FFC0", h_color = "#0000FFC0", h_fill ="#FFFFFFFF", filename = "inst/image/README-logo.png")
+knitr::include_graphics("inst/image/README-logo.png", dpi=600)
+```
+
+
 # serrsBayes
 
 `serrsBayes` provides model-based quantification of surface-enhanced resonance Raman spectroscopy (SERRS) using sequential Monte Carlo (SMC) algorithms. The details of the Bayesian model and informative priors are provided in the arXiv preprint, Moores et al. (2016; v2 2018) "[Bayesian modelling and quantification of Raman spectroscopy.](https://arxiv.org/abs/1604.07299)" Development of this software was supported by the UK 
