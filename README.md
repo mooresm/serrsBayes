@@ -10,7 +10,7 @@ Status](https://travis-ci.org/mooresm/serrsBayes.svg?branch=master)](https://tra
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/mooresm/serrsBayes/master.svg)](https://codecov.io/github/mooresm/serrsBayes?branch=master)
 
-<img src="inst/image/README-logo.png" style="display: block; margin: auto 0 auto auto;" />
+<img src="inst/image/README-logo.png" width="100px" height="100px" style="display: block; margin: auto 0 auto auto;" />
 
 # serrsBayes
 
@@ -82,7 +82,7 @@ Sample 200 particles from the posterior distribution:
 ``` r
 print(tm)
 #>    user  system elapsed 
-#> 509.655   8.475 152.708
+#> 504.135   8.308 150.813
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
 for (pt in samp.idx) {

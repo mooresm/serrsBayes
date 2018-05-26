@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![Travis-CI Build Status](https://travis-ci.org/mooresm/serrsBayes.svg?branch=master)](https://travis-ci.org/mooresm/serrsBayes)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mooresm/serrsBayes/master.svg)](https://codecov.io/github/mooresm/serrsBayes?branch=master)
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='right', fig.width=2, fig.asp=1, fig.height=2}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='right', fig.asp=1, out.width='100px',out.height='100px'}
 tmp <- tempfile()
 download.file("https://pure.strath.ac.uk/portal/files/43595106/Figure_2.zip", tmp)
 tmp2 <- unzip(tmp, "Figure 2/T20 SERS spectra/T20_1_ REP1  Well_A1.SPC")
