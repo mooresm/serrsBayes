@@ -1,6 +1,7 @@
 # serrsBayes 0.?
 
 * currently in development
+* hex sticker
 
 # serrsBayes 0.3-12
 

@@ -35,7 +35,7 @@ samp.mat <- resid.mat <- matrix(0,nrow=length(samp.idx), ncol=nWL)
 samp.sigi <- samp.lambda <- numeric(length=nrow(samp.mat))
 spectra <- as.matrix(spectra)
 library(hexSticker)
-sticker(expression({plot(wavenumbers, spectra[1,], type='l', ann=FALSE, xaxt='n', yaxt='n', bty='n', lwd=2, col="#000000C0", xlim=c(600,1700))
+sticker(expression({plot(wavenumbers, spectra[1,], type='l', ann=FALSE, xaxt='n', yaxt='n', bty='n', lwd=2, col="#000000C0", xlim=c(1100,1800))
 for (pt in 1:length(samp.idx)) {
     k <- samp.idx[pt]
     samp.mat[pt,] <- mixedVoigt(result$location[k,], result$scale_G[k,],
@@ -52,7 +52,8 @@ for (pt in 1:length(samp.idx)) {
     lines(wavenumbers, bl.est, col="#0000FF40")
     lines(wavenumbers, bl.est + samp.mat[pt,], col="#FF00002F", lwd=0.5)
     resid.mat[pt,] <- Obsi - bl.est[,1]
-}}),package="serrsBayes",p_size=8, s_x=0.68, s_y=.8, s_width=2.4, s_height=2, p_color = "#0000FFC0", h_color = "#0000FFC0", h_fill ="#FFFFFFFF", filename = "inst/image/README-logo.png")
+}}),package="serrsBayes",p_size=8, s_x=0.75, s_y=.75, s_width=2.7, s_height=2.5, p_color = 2, h_color = "#0000FFC0", h_fill ="#FFFFFFFF", filename = "inst/image/README-logo.png", p_y=0.7,
+url="https://mooresm.github.io/serrsBayes/", u_x=0.92, u_y=0.08)
 knitr::include_graphics("inst/image/README-logo.png", dpi=600)
 ```
 
