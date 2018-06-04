@@ -1,7 +1,7 @@
-# serrsBayes 0.?
+# serrsBayes 0.3-13
 
-* currently in development
-* hex sticker
+* changed maintainer email address due to new academic affiliation
+* hex sticker in README
 
 # serrsBayes 0.3-12
 

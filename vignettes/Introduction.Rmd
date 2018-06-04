@@ -40,7 +40,7 @@ download.file("https://pure.strath.ac.uk/portal/files/43595106/Figure_2.zip", tm
 tmp2 <- unzip(tmp, "Figure 2/T20 SERS spectra/T20_1_ REP1  Well_A1.SPC")
 ```
 
-This data is in the binary `.spc` file format used by Grams/AI ^[<http://ftirsearch.com/Features/converters/SPCFileFormat.asp>]. Fortunately, we can use the R package **hyperSpec** to read this file and plot the spectrum:
+This data is in the binary `.spc` file format used by Grams/AI. Fortunately, we can use the R package **hyperSpec** to read this file and plot the spectrum:
 ```{r spc, message=FALSE, fig.width=6}
 library(hyperSpec)
 spcT20 <- read.spc (tmp2)
