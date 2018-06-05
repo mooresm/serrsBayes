@@ -1,12 +1,12 @@
 Package: serrsBayes
 Type: Package
 Title: Bayesian Modelling of Raman Spectroscopy
-Version: 0.3-13
-Date: 2018-06-04
+Version: 0.3-14.9000
+Date: 2018-06-05
 Authors@R: c(
     person("Matt", "Moores", role = c("aut", "cre"), email = "mmoores@gmail.com", comment = c(ORCID = "0000-0003-4531-3572")),
     person("Jake", "Carson", role="aut", email="Jake.Carson@warwick.ac.uk"),
-    person("Mark", "Girolami", role="aut", email="M.Girolami@warwick.ac.uk"),
+    person("Mark", "Girolami", role="aut", email="m.girolami@imperial.ac.uk"),
     person("Engineering and Physical Sciences Research Council", role="fnd", comment="EPSRC programme grant ref: EP/L014165/1"),
     person("University of Warwick", role="cph"))
 Description: Sequential Monte Carlo (SMC) algorithms for fitting a generalised additive
