@@ -230,17 +230,14 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
                                        X_Cal, Rsvd$d, lPriors$bl.precision, lPriors$bl.XtX,
                                        lPriors$bl.orthog, lPriors$bl.Ru)
 
-          lLik <- Kappa_Hist[i]*L_Ev + #sum(dgamma(Prop_Theta[k,1:(2*N_Peaks)],shape=2,scale=5,log=TRUE)) +
-            sum(dlnorm(Prop_Theta[k,1:N_Peaks], lPriors$scaG.mu, lPriors$scaG.sd, log=TRUE)) +
-            sum(dlnorm(Prop_Theta[k,(N_Peaks+1):(2*N_Peaks)], lPriors$scaL.mu, lPriors$scaL.sd, log=TRUE)) +
-            sum(dnorm(Prop_Theta[k,(2*N_Peaks+1):(3*N_Peaks)],mean=lPriors$loc.mu,sd=lPriors$loc.sd,log=TRUE)) +
-            #          sum(dgamma(Prop_Theta[k,(3*N_Peaks+1):(4*N_Peaks)],shape=3,scale=4,log=T)) 
-            -Kappa_Hist[i]*Sample[k,Offset_1+2] - #sum(dgamma(Sample[k,1:(2*N_Peaks)],shape=2,scale=5,log=TRUE)) -
-            sum(dlnorm(Sample[k,1:N_Peaks], lPriors$scaG.mu, lPriors$scaG.sd, log=TRUE)) -
-            sum(dlnorm(Sample[k,(N_Peaks+1):(2*N_Peaks)], lPriors$scaL.mu, lPriors$scaL.sd, log=TRUE)) -
-            sum(dnorm(Sample[k,(2*N_Peaks+1):(3*N_Peaks)],mean=lPriors$loc.mu,sd=lPriors$loc.sd,log=TRUE))
-          #          sum(dgamma(Sample[k,(3*N_Peaks+1):(4*N_Peaks)],shape=3,scale=4,log=T))
-          
+          lLik <- Kappa_Hist[i]*L_Ev + sumDlogNorm(Prop_Theta[k,1:N_Peaks], lPriors$scaG.mu, lPriors$scaG.sd) +
+            sumDlogNorm(Prop_Theta[k,(N_Peaks+1):(2*N_Peaks)], lPriors$scaL.mu, lPriors$scaL.sd) +
+            sumDnorm(Prop_Theta[k,(2*N_Peaks+1):(3*N_Peaks)],mean=lPriors$loc.mu,sd=lPriors$loc.sd) +
+            -Kappa_Hist[i]*Sample[k,Offset_1+2] - 
+            sumDlogNorm(Sample[k,1:N_Peaks], lPriors$scaG.mu, lPriors$scaG.sd) -
+            sumDlogNorm(Sample[k,(N_Peaks+1):(2*N_Peaks)], lPriors$scaL.mu, lPriors$scaL.sd) -
+            sumDnorm(Sample[k,(2*N_Peaks+1):(3*N_Peaks)],mean=lPriors$loc.mu,sd=lPriors$loc.sd)
+
           u <- log(runif(1))
           if(is.finite(lLik) && u < lLik) {
             T_Sample[k,1:(4*N_Peaks)]<-T_Prop_Theta[k,]                                 
