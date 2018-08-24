@@ -188,7 +188,7 @@ Eigen::VectorXd getVoigtParam(Eigen::VectorXd scale_G, Eigen::VectorXd scale_L)
 // [[Rcpp::export]]
 Eigen::VectorXd copyLogProposals(int nPK, Eigen::VectorXd T_Prop_Theta)
 {
-  VectorXd Prop_Theta(T_Prop_Theta.size());
+  VectorXd Prop_Theta(4*nPK);
   for (int par = 0; par < 4; par++)
   {
     if (par != 2)
@@ -299,11 +299,12 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
     prAmpMu = priors["beta.mu"];
     prAmpSD = priors["beta.sd"];
   }
+  double lambda = priors["bl.smooth"];
   int nPK = prLocMu.size();
-  int nWL = wavenum.size();
+  //int nWL = wavenum.size();
   int nPart = thetaMx.rows();
-  double a0_Cal = prErrNu/2.0;
-  double ai_Cal = a0_Cal + nWL/2.0;
+  //double a0_Cal = prErrNu/2.0;
+  // double ai_Cal = a0_Cal + nWL/2.0;
 
   // matrices for the cubic B-spline
   MatrixXd basisMx = priors["bl.basis"];
@@ -319,30 +320,33 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
   LLT<MatrixXd> mhChol(mhCov);
 
   long accept = 0;
-#pragma omp parallel for default(shared) reduction(+:accept)
   for (int pt = 0; pt < nPart; pt++)
   {
     VectorXd logTheta(nPK*4), stdVec(nPK*4);
     for (int pk = 0; pk < nPK*4; pk++)
     {
-      stdVec[pk] = stdNorm[pt*nPK*4 + pk];
-      logTheta[pk] = logThetaMx(pt,pk);
+      stdVec(pk) = stdNorm[pt*nPK*4 + pk];
+      logTheta(pk) = logThetaMx(pt,pk);
     }
     VectorXd theta = copyLogProposals(nPK, logTheta);
 //    Rcpp::Rcout << "Parameters: " << theta.transpose() << std::endl;
     VectorXd T_Prop_Theta = logTheta + mhChol.matrixL() * stdVec;
     VectorXd Prop_Theta = copyLogProposals(nPK, T_Prop_Theta);
 //    Rcpp::Rcout << "Proposals: " <<  Prop_Theta.transpose() << std::endl;
+    //Rcpp::Rcout << Prop_Theta.sum() << "; ";
 
-    VectorXd sigi = conc[n-1] * mixedVoigt(Prop_Theta.segment(2*nPK,nPK), Prop_Theta.segment(0,nPK),
+    VectorXd sigi = conc(n-1) * mixedVoigt(Prop_Theta.segment(2*nPK,nPK), Prop_Theta.segment(0,nPK),
        Prop_Theta.segment(nPK,nPK), Prop_Theta.segment(3*nPK,nPK), wavenum);
+    //Rcpp::Rcout << sigi.sum() << "; ";
     VectorXd obsi = spectra.row(n-1) - sigi;
-
+    //Rcpp::Rcout << obsi.squaredNorm() << "; ";
+    
     // smoothing spline:
-    double lambda = thetaMx(pt,4*nPK+2) / thetaMx(pt,4*nPK+3);
+    //double lambda = thetaMx(pt,4*nPK+2) / thetaMx(pt,4*nPK+3);
     // log-likelihood:
     double L_Ev = computeLogLikelihood(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal,
                                        precMx, xTx, aMx, ruMx);
+    //Rcpp::Rcout << "L_new = " << L_Ev << "; L_old = " << thetaMx(pt,4*nPK+1) << "; ";
 
     double lLik = kappa*L_Ev + sumDlogNorm(Prop_Theta.segment(0,nPK), prScaGmu, prScaGsd);
 //    Rcpp::Rcout << "(" << kappa*L_Ev << ", " << sumDlogNorm(Prop_Theta.segment(0,nPK), prScaGmu, prScaGsd);
@@ -363,23 +367,48 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
       lLik -= sumDnorm(theta.segment(3*nPK,nPK), prAmpMu, prAmpSD);
     }
 
-//    Rcpp::Rcout << "(" << lLik << "; " << log(rUnif[pt]) << "); " << std::endl;
-    if (log(rUnif[pt]) < lLik)
+    //Rcpp::Rcout << "(" << lLik << "; " << log(rUnif[pt]) << "); " << std::endl;
+    if (std::isnan(lLik)) {
+      Rcpp::Rcout << "?";
+    }
+    else if (std::isfinite(lLik) && log(rUnif[pt]) < lLik)
     {
       for (int pk=0; pk < nPK*4; pk++)
       {
-        logThetaMx(pt,pk) = T_Prop_Theta[pk];
-        thetaMx(pt,pk) = Prop_Theta[pk];
+         logThetaMx(pt,pk) = T_Prop_Theta(pk);
+         thetaMx(pt,pk) = Prop_Theta(pk);
       }
       logThetaMx(pt,4*nPK+1) = L_Ev;
       thetaMx(pt,4*nPK+1) = L_Ev;
       accept += 1;
-//      Rcpp::Rcout << "*";
+      Rcpp::Rcout << "*";
     }
-    // else
-    // {
-//      Rcpp::Rcout << ".";
-    // }
+    else
+    {
+     Rcpp::Rcout << ".";
+    }
   }
+  Rcpp::Rcout << "\n" << accept << " M-H proposals accepted.\n";
   return accept;
+}
+
+// [[Rcpp::export]]
+Eigen::MatrixXd randomWalkVoigt(NumericMatrix logThetaMx, Eigen::MatrixXd mhChol)
+{
+  int nPart = logThetaMx.nrow();
+  int nPK = mhChol.cols() / 4;
+  MatrixXd prop(nPart, nPK*4);
+  const NumericVector stdNorm = rnorm(nPK * nPart * 4, 0, 1);
+#pragma omp parallel for
+  for (int pt = 0; pt < nPart; pt++)
+  {
+    VectorXd logTheta(nPK*4), stdVec(nPK*4);
+    for (int pk = 0; pk < nPK*4; pk++)
+    {
+      stdVec(pk) = stdNorm[pt*nPK*4 + pk];
+      logTheta(pk) = logThetaMx(pt,pk);
+    }
+    prop.row(pt) = mhChol * stdVec + logTheta;
+  }
+  return prop;
 }

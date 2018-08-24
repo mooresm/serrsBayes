@@ -4,8 +4,8 @@
 \alias{marginalMetropolisUpdate}
 \title{Update all of the parameters using a single Metropolis-Hastings step.}
 \usage{
-marginalMetropolisUpdate(spectra, n, conc, wavelengths, peakWL, betaMx, scaleMx,
-  sigma, expMx, baselines, sd_mh, priors)
+marginalMetropolisUpdate(spectra, n, conc, wavelengths, peakWL, betaMx,
+  scaleMx, sigma, expMx, baselines, sd_mh, priors)
 }
 \arguments{
 \item{spectra}{\code{n_y * nwl} Matrix of observed Raman spectra.}

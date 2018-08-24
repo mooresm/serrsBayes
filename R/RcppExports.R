@@ -331,3 +331,7 @@ mhUpdateVoigt <- function(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx,
     .Call('_serrsBayes_mhUpdateVoigt', PACKAGE = 'serrsBayes', spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx, mhCov, priors)
 }
 
+randomWalkVoigt <- function(logThetaMx, mhCov) {
+    .Call('_serrsBayes_randomWalkVoigt', PACKAGE = 'serrsBayes', logThetaMx, mhCov)
+}
+

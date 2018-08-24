@@ -4,9 +4,9 @@
 \alias{fitVoigtPeaksSMC}
 \title{Fit the model with Voigt peaks using Sequential Monte Carlo (SMC).}
 \usage{
-fitVoigtPeaksSMC(wl, spc, lPriors, conc = rep(1, nrow(spc)), npart = 10000,
-  rate = 0.9, mcAR = 0.23, mcSteps = 10, minESS = npart/2,
-  destDir = NA)
+fitVoigtPeaksSMC(wl, spc, lPriors, conc = rep(1, nrow(spc)),
+  npart = 10000, rate = 0.9, mcAR = 0.23, mcSteps = 10,
+  minESS = npart/2, destDir = NA)
 }
 \arguments{
 \item{wl}{Vector of \code{nwl} wavenumbers at which the spetra are observed.}

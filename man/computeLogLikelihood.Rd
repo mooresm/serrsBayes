@@ -4,8 +4,8 @@
 \alias{computeLogLikelihood}
 \title{Compute the log-likelihood.}
 \usage{
-computeLogLikelihood(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal, precMx,
-  xTx, aMx, ruMx)
+computeLogLikelihood(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal,
+  precMx, xTx, aMx, ruMx)
 }
 \arguments{
 \item{obsi}{Vector of residuals after the spectral signature has been subtracted.}
