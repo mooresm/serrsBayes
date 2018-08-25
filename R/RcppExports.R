@@ -331,3 +331,14 @@ mhUpdateVoigt <- function(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx,
     .Call('_serrsBayes_mhUpdateVoigt', PACKAGE = 'serrsBayes', spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx, mhChol, priors)
 }
 
+#' Multivariate Gaussian random walk proposal.
+#' 
+#' This is an internal function that is only exposed on the public API for unit testing purposes.
+#' 
+#' @param logThetaMx Matrix of logarithms of the parameter values
+#' @param mhChol Cholesky factorisation of the covariance matrix
+#' @return proposals for each SMC particle
+randomWalkVoigt <- function(logThetaMx, mhChol) {
+    .Call('_serrsBayes_randomWalkVoigt', PACKAGE = 'serrsBayes', logThetaMx, mhChol)
+}
+

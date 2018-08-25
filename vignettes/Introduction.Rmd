@@ -78,7 +78,7 @@ if(!exists("result")) {
 
 The default values for the number of particles, Markov chain steps, and learning rate can be somewhat conservative, depending on the application. Unfortunately, the new function `fitVoigtPeaksSMC` has not been parallelised yet, so it only runs on a single core. Thus, it can take a long time to fit the model with 34 peaks and 2401 wavenumbers:
 ```{r time}
-print(paste(result$time["elapsed"]/3600,"hours for",length(result$ess),"SMC iterations."))
+print(paste(result$time["elapsed"]/60,"minutes for",length(result$ess),"SMC iterations."))
 ```
 
 The downside of choosing smaller values for these tuning parameters is that you run the risk of the SMC collapsing. The quality of the particle distribution deteriorates with each iteration, as measured by the effective sample size (ESS):

@@ -271,7 +271,7 @@ double computeLogLikelihood(Eigen::VectorXd obsi, double lambda, double prErrNu,
 //' @param wavenum Vector of \code{nwl} wavenumbers at which the spetra are observed.
 //' @param thetaMx \code{(4+npeaks*4) x npart} Matrix of parameter values for each peak.
 //' @param logThetaMx \code{(4+npeaks*4) x npart} Matrix of logarithms of the parameters.
-//' @param mhChol Cholesky factorisation of the covariance matrix for the random walk proposals.
+//' @param mhChol lower-triangular Cholesky factorisation of the covariance matrix for the random walk proposals.
 //' @param priors List of hyperparameters for the prior distributions.
 //' @return The number of RWMH proposals that were accepted.
 //' @references
@@ -327,42 +327,22 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
       logTheta(pk) = logThetaMx(pt,pk);
     }
     VectorXd T_Prop_Theta = mhChol * stdVec + logTheta;
-  
-//    Rcpp::Rcout << "Parameters: " << theta.transpose() << std::endl;
-    // Rcpp::Rcout << "Scale: (";
-    // for (int pk = 0; pk < nPK*2; pk++) {
-    //   Rcpp::Rcout << theta(pk) << "/" << exp(T_Prop_Theta(pk)) << "; ";
-    // }
-    // Rcpp::Rcout << ")\n";
     VectorXd Prop_Theta = copyLogProposals(nPK, T_Prop_Theta);
-//    Rcpp::Rcout << "Proposals: " <<  Prop_Theta.transpose() << std::endl;
-    //Rcpp::Rcout << Prop_Theta.sum() << "; ";
-
     VectorXd sigi = conc(n-1) * mixedVoigt(Prop_Theta.segment(2*nPK,nPK), Prop_Theta.segment(0,nPK),
        Prop_Theta.segment(nPK,nPK), Prop_Theta.segment(3*nPK,nPK), wavenum);
-    //Rcpp::Rcout << sigi.sum() << "; ";
     VectorXd obsi = spectra.row(n-1).transpose() - sigi;
-    //Rcpp::Rcout << obsi.squaredNorm() << "; ";
-    
+
     // smoothing spline:
     //double lambda = thetaMx(pt,4*nPK+2) / thetaMx(pt,4*nPK+3);
     // log-likelihood:
     double L_Ev = computeLogLikelihood(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal,
                                        precMx, xTx, aMx, ruMx);
-    //Rcpp::Rcout << "L_new = " << L_Ev << "; L_old = " << thetaMx(pt,4*nPK+1) << "; kappa=" << kappa << " ";
-
     double lLik = kappa*L_Ev + sumDlogNorm(Prop_Theta.segment(0,nPK), prScaGmu, prScaGsd);
-    //Rcpp::Rcout << "(" << kappa*L_Ev << ", " << sumDlogNorm(Prop_Theta.segment(0,nPK), prScaGmu, prScaGsd);
     lLik += sumDlogNorm(Prop_Theta.segment(nPK,nPK), prScaLmu, prScaLsd);
-    //Rcpp::Rcout << ", " << sumDlogNorm(Prop_Theta.segment(nPK,nPK), prScaLmu, prScaLsd);
     lLik += sumDnorm(Prop_Theta.segment(2*nPK,nPK), prLocMu, prLocSD);
-    //Rcpp::Rcout << ", " << sumDnorm(Prop_Theta.segment(2*nPK,nPK), prLocMu, prLocSD) << "); " << std::endl;
     lLik += -kappa*thetaMx(pt,4*nPK+1) - sumDlogNorm(theta.segment(0,nPK), prScaGmu, prScaGsd);
-    //Rcpp::Rcout << "(" << kappa*thetaMx(pt,4*nPK+1) << ", " << sumDlogNorm(theta.segment(0,nPK), prScaGmu, prScaGsd);
     lLik -= sumDlogNorm(theta.segment(nPK,nPK), prScaLmu, prScaLsd);
-    //Rcpp::Rcout << ", " << sumDlogNorm(theta.segment(nPK,nPK), prScaLmu, prScaLsd);
     lLik -= sumDnorm(theta.segment(2*nPK,nPK), prLocMu, prLocSD);
-    //Rcpp::Rcout << ", " << sumDnorm(theta.segment(2*nPK,nPK), prLocMu, prLocSD) << "); " << std::endl;
 
     if (priors.containsElementNamed("beta.mu"))
     {
@@ -370,10 +350,6 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
       lLik -= sumDnorm(theta.segment(3*nPK,nPK), prAmpMu, prAmpSD);
     }
 
-    //Rcpp::Rcout << "(" << lLik << "; " << log(rUnif[pt]) << "); " << std::endl;
-    // if (std::isnan(lLik)) {
-    //   Rcpp::Rcout << "?";
-    // }
     if (std::isfinite(lLik) && log(rUnif[pt]) < lLik)
     {
       for (int pk=0; pk < nPK*4; pk++)
@@ -384,14 +360,35 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
       logThetaMx(pt,4*nPK+1) = L_Ev;
       thetaMx(pt,4*nPK+1) = L_Ev;
       accept += 1;
-      //Rcpp::Rcout << "*";
     }
-    // else
-    // {
-    //  Rcpp::Rcout << ".";
-    // }
   }
-  //Rcpp::Rcout << "\n";
-  Rcpp::Rcout << accept << " M-H proposals accepted.\n";
   return accept;
+}
+
+//' Multivariate Gaussian random walk proposal.
+//' 
+//' This is an internal function that is only exposed on the public API for unit testing purposes.
+//' 
+//' @param logThetaMx Matrix of logarithms of the parameter values
+//' @param mhChol lower-triangular Cholesky factorisation of the covariance matrix
+//' @return proposals for each SMC particle
+// [[Rcpp::export]]
+Eigen::MatrixXd randomWalkVoigt(NumericMatrix logThetaMx, Eigen::MatrixXd mhChol)
+{
+  int nPart = logThetaMx.nrow();
+  int nPK = mhChol.cols() / 4;
+  MatrixXd prop(nPart, nPK*4);
+  const NumericVector stdNorm = rnorm(nPK * nPart * 4, 0, 1);
+#pragma omp parallel for
+  for (int pt = 0; pt < nPart; pt++)
+  {
+    VectorXd logTheta(nPK*4), stdVec(nPK*4);
+    for (int pk = 0; pk < nPK*4; pk++)
+    {
+      stdVec(pk) = stdNorm[pt*nPK*4 + pk];
+      logTheta(pk) = logThetaMx(pt,pk);
+    }
+    prop.row(pt) = mhChol * stdVec + logTheta;
+  }
+  return prop;
 }
