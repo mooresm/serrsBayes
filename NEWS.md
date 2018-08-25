@@ -2,6 +2,10 @@
 
 * currently in development
 
+# serrsBayes 0.3-14
+
+* OpenMP implementation of mhUpdateVoigt provides 3x improvement in elapsed runtime
+
 # serrsBayes 0.3-13
 
 * changed maintainer email address due to new academic affiliation
