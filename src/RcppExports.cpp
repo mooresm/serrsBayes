@@ -225,8 +225,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // mhUpdateVoigt
-long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::VectorXd conc, Eigen::VectorXd wavenum, NumericMatrix thetaMx, NumericMatrix logThetaMx, Eigen::MatrixXd mhCov, List priors);
-RcppExport SEXP _serrsBayes_mhUpdateVoigt(SEXP spectraSEXP, SEXP nSEXP, SEXP kappaSEXP, SEXP concSEXP, SEXP wavenumSEXP, SEXP thetaMxSEXP, SEXP logThetaMxSEXP, SEXP mhCovSEXP, SEXP priorsSEXP) {
+long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::VectorXd conc, Eigen::VectorXd wavenum, NumericMatrix thetaMx, NumericMatrix logThetaMx, Eigen::MatrixXd mhChol, List priors);
+RcppExport SEXP _serrsBayes_mhUpdateVoigt(SEXP spectraSEXP, SEXP nSEXP, SEXP kappaSEXP, SEXP concSEXP, SEXP wavenumSEXP, SEXP thetaMxSEXP, SEXP logThetaMxSEXP, SEXP mhCholSEXP, SEXP priorsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -237,21 +237,35 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Eigen::VectorXd >::type wavenum(wavenumSEXP);
     Rcpp::traits::input_parameter< NumericMatrix >::type thetaMx(thetaMxSEXP);
     Rcpp::traits::input_parameter< NumericMatrix >::type logThetaMx(logThetaMxSEXP);
-    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type mhCov(mhCovSEXP);
+    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type mhChol(mhCholSEXP);
     Rcpp::traits::input_parameter< List >::type priors(priorsSEXP);
-    rcpp_result_gen = Rcpp::wrap(mhUpdateVoigt(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx, mhCov, priors));
+    rcpp_result_gen = Rcpp::wrap(mhUpdateVoigt(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx, mhChol, priors));
     return rcpp_result_gen;
 END_RCPP
 }
 // randomWalkVoigt
-Eigen::MatrixXd randomWalkVoigt(NumericMatrix logThetaMx, Eigen::MatrixXd mhCov);
-RcppExport SEXP _serrsBayes_randomWalkVoigt(SEXP logThetaMxSEXP, SEXP mhCovSEXP) {
+Eigen::MatrixXd randomWalkVoigt(NumericMatrix logThetaMx, Eigen::MatrixXd mhChol);
+RcppExport SEXP _serrsBayes_randomWalkVoigt(SEXP logThetaMxSEXP, SEXP mhCholSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericMatrix >::type logThetaMx(logThetaMxSEXP);
-    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type mhCov(mhCovSEXP);
-    rcpp_result_gen = Rcpp::wrap(randomWalkVoigt(logThetaMx, mhCov));
+    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type mhChol(mhCholSEXP);
+    rcpp_result_gen = Rcpp::wrap(randomWalkVoigt(logThetaMx, mhChol));
+    return rcpp_result_gen;
+END_RCPP
+}
+// callMixVoigt
+Eigen::VectorXd callMixVoigt(Eigen::VectorXd Prop_Theta, Eigen::VectorXd conc, unsigned n, Eigen::VectorXd wavenum);
+RcppExport SEXP _serrsBayes_callMixVoigt(SEXP Prop_ThetaSEXP, SEXP concSEXP, SEXP nSEXP, SEXP wavenumSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::VectorXd >::type Prop_Theta(Prop_ThetaSEXP);
+    Rcpp::traits::input_parameter< Eigen::VectorXd >::type conc(concSEXP);
+    Rcpp::traits::input_parameter< unsigned >::type n(nSEXP);
+    Rcpp::traits::input_parameter< Eigen::VectorXd >::type wavenum(wavenumSEXP);
+    rcpp_result_gen = Rcpp::wrap(callMixVoigt(Prop_Theta, conc, n, wavenum));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -274,6 +288,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_serrsBayes_computeLogLikelihood", (DL_FUNC) &_serrsBayes_computeLogLikelihood, 10},
     {"_serrsBayes_mhUpdateVoigt", (DL_FUNC) &_serrsBayes_mhUpdateVoigt, 9},
     {"_serrsBayes_randomWalkVoigt", (DL_FUNC) &_serrsBayes_randomWalkVoigt, 2},
+    {"_serrsBayes_callMixVoigt", (DL_FUNC) &_serrsBayes_callMixVoigt, 4},
     {NULL, NULL, 0}
 };
 

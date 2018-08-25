@@ -4,8 +4,8 @@
 \alias{mhUpdateVoigt}
 \title{Update the parameters of the Voigt peaks using marginal Metropolis-Hastings.}
 \usage{
-mhUpdateVoigt(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx, mhCov,
-  priors)
+mhUpdateVoigt(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx,
+  mhChol, priors)
 }
 \arguments{
 \item{spectra}{\code{n_y * nwl} Matrix of observed Raman spectra.}
@@ -22,7 +22,7 @@ mhUpdateVoigt(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx, mhCov,
 
 \item{logThetaMx}{\code{(4+npeaks*4) x npart} Matrix of logarithms of the parameters.}
 
-\item{mhCov}{covariance matrix for the random walk proposals.}
+\item{mhChol}{Cholesky factorisation of the covariance matrix for the random walk proposals.}
 
 \item{priors}{List of hyperparameters for the prior distributions.}
 }

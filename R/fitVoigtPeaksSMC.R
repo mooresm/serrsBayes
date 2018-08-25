@@ -120,7 +120,7 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
     i<-i+1
     
     iTime<-system.time({
-      
+
       ptm <- proc.time()
       Min_Kappa<-Kappa_Hist[i-1]
       Max_Kappa<-1
@@ -209,16 +209,16 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
       if(!is.na(MC_AR[i-1])){
         MCMC_MP<-2^(-5*(0.23-MC_AR[i-1]))*MCMC_MP
       }
-      mhCov <- MCMC_MP*(2.38^2/(4*N_Peaks))*Prop_Cov
+      mhCov <- MCMC_MP*(2.38^2/(4*N_Peaks))*Prop_Cov + diag(1e-6, 4*nPK)
       mhChol <- chol(mhCov, pivot = FALSE) # error if not non-negative definite
-      print(paste("Cholesky factorisation",all.equal(mhCov, crossprod(mhChol))))
+      #print(paste("Cholesky factorisation",all.equal(mhCov, crossprod(mhChol))))
 
       for(mcr in 1:mcSteps){
         MC_Steps[i]<-MC_Steps[i]+1
-        #Acc <- Acc + mhUpdateVoigt(spc, Cal_I, Kappa_Hist[i], conc, wl, Sample, T_Sample, mhCov, lPriors)
-        
+        #Acc <- Acc + mhUpdateVoigt(spc, Cal_I, Kappa_Hist[i], conc, wl, Sample, T_Sample, mhChol, lPriors)
+
         T_Prop_Theta <- randomWalkVoigt(T_Sample[,1:(4*N_Peaks)], mhChol)
-        
+
         # T_Prop_Theta<-T_Sample[,1:(4*N_Peaks)]+mvrnorm(npart,mu=rep(0,4*N_Peaks),Sigma=MCMC_MP*(2.38^2/(4*N_Peaks))*Prop_Cov)
         # # Prop_Theta<-T_Prop_Theta
         # # Prop_Theta[,1:N_Peaks]<-exp(Prop_Theta[,1:N_Peaks])
