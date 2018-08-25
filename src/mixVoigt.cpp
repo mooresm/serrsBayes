@@ -316,6 +316,7 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
   const NumericVector rUnif = runif(nPart, 0, 1);
 
   long accept = 0;
+#pragma omp parallel for default(shared) reduction(+:accept)
   for (int pt = 0; pt < nPart; pt++)
   {
     VectorXd theta(nPK*4), logTheta(nPK*4), stdVec(nPK*4);
@@ -393,36 +394,4 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
   //Rcpp::Rcout << "\n";
   Rcpp::Rcout << accept << " M-H proposals accepted.\n";
   return accept;
-}
-
-// [[Rcpp::export]]
-Eigen::MatrixXd randomWalkVoigt(NumericMatrix logThetaMx, Eigen::MatrixXd mhChol)
-{
-  int nPart = logThetaMx.nrow();
-  int nPK = mhChol.cols() / 4;
-  MatrixXd prop(nPart, nPK*4);
-  const NumericVector stdNorm = rnorm(nPK * nPart * 4, 0, 1);
-#pragma omp parallel for
-  for (int pt = 0; pt < nPart; pt++)
-  {
-    VectorXd logTheta(nPK*4), stdVec(nPK*4);
-    for (int pk = 0; pk < nPK*4; pk++)
-    {
-      stdVec(pk) = stdNorm[pt*nPK*4 + pk];
-      logTheta(pk) = logThetaMx(pt,pk);
-    }
-    prop.row(pt) = mhChol * stdVec + logTheta;
-  }
-  return prop;
-}
-
-// [[Rcpp::export]]
-Eigen::VectorXd callMixVoigt(Eigen::MatrixXd spectra, unsigned n, Eigen::VectorXd Prop_Theta,
-                             Eigen::VectorXd conc, Eigen::VectorXd wavenum)
-{
-  int nPK = Prop_Theta.size() / 4;
-  VectorXd sigi = conc(n-1) * mixedVoigt(Prop_Theta.segment(2*nPK,nPK), Prop_Theta.segment(0,nPK),
-    Prop_Theta.segment(nPK,nPK), Prop_Theta.segment(3*nPK,nPK), wavenum);
-  VectorXd obsi = spectra.row(n-1).transpose() - sigi;
-  return obsi;
 }
