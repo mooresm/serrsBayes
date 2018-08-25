@@ -335,7 +335,7 @@ randomWalkVoigt <- function(logThetaMx, mhChol) {
     .Call('_serrsBayes_randomWalkVoigt', PACKAGE = 'serrsBayes', logThetaMx, mhChol)
 }
 
-callMixVoigt <- function(Prop_Theta, conc, n, wavenum) {
-    .Call('_serrsBayes_callMixVoigt', PACKAGE = 'serrsBayes', Prop_Theta, conc, n, wavenum)
+callMixVoigt <- function(spectra, n, Prop_Theta, conc, wavenum) {
+    .Call('_serrsBayes_callMixVoigt', PACKAGE = 'serrsBayes', spectra, n, Prop_Theta, conc, wavenum)
 }
 

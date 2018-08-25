@@ -33,6 +33,7 @@ test_that("calling mixedVoigt from C++", {
   N_Peaks <- length(loc)
   Sample <- matrix(c(scG,scL,loc,amp), nrow=1, ncol=N_Peaks*4)
   k <- 1
+  Cal_I <- 1
   Conc_Cal <- 1
   Sigi<-rep(0,N_WN_Cal)
   for(j in 1:N_Peaks) {
@@ -42,7 +43,13 @@ test_that("calling mixedVoigt from C++", {
     
     Sigi<-Sigi+Conc_Cal*Sample[k,3*N_Peaks+j]*(Temp_e*dcauchy(Cal_V,location=Sample[k,2*N_Peaks+j],scale=Temp_f/2)+(1-Temp_e)*dnorm(Cal_V,mean=Sample[k,2*N_Peaks+j],sd=Temp_f/(2*sqrt(2*log(2)))))/(Temp_e*(1/(pi*(Temp_f/2)))+(1-Temp_e)*(1/sqrt(2*pi*(Temp_f/(2*sqrt(2*log(2))))^2)))
   }
-  expect_equal(callMixVoigt(Sample[k,],Conc_Cal,k,Cal_V), Sigi)
+  
+  spectra <- matrix(nrow=1, ncol=length(Cal_V))
+  baseline <- 1000*cos(Cal_V/200) + 2*Cal_V
+  spectra[1,] <- Sigi + baseline + rnorm(length(Cal_V),0,200)
+  Obsi <- spectra[Cal_I,] - Sigi
+  
+  expect_equal(callMixVoigt(spectra, Cal_I, Sample, Conc_Cal, Cal_V), Obsi)
 })
 
 test_that("getVoigtParam computes the pseudo-Voigt mixing ratio", {

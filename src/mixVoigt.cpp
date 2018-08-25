@@ -340,7 +340,7 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
     VectorXd sigi = conc(n-1) * mixedVoigt(Prop_Theta.segment(2*nPK,nPK), Prop_Theta.segment(0,nPK),
        Prop_Theta.segment(nPK,nPK), Prop_Theta.segment(3*nPK,nPK), wavenum);
     //Rcpp::Rcout << sigi.sum() << "; ";
-    VectorXd obsi = spectra.row(n-1) - sigi;
+    VectorXd obsi = spectra.row(n-1).transpose() - sigi;
     //Rcpp::Rcout << obsi.squaredNorm() << "; ";
     
     // smoothing spline:
@@ -417,10 +417,12 @@ Eigen::MatrixXd randomWalkVoigt(NumericMatrix logThetaMx, Eigen::MatrixXd mhChol
 }
 
 // [[Rcpp::export]]
-Eigen::VectorXd callMixVoigt(Eigen::VectorXd Prop_Theta, Eigen::VectorXd conc,
-                             unsigned n, Eigen::VectorXd wavenum)
+Eigen::VectorXd callMixVoigt(Eigen::MatrixXd spectra, unsigned n, Eigen::VectorXd Prop_Theta,
+                             Eigen::VectorXd conc, Eigen::VectorXd wavenum)
 {
   int nPK = Prop_Theta.size() / 4;
-  return conc(n-1) * mixedVoigt(Prop_Theta.segment(2*nPK,nPK), Prop_Theta.segment(0,nPK),
+  VectorXd sigi = conc(n-1) * mixedVoigt(Prop_Theta.segment(2*nPK,nPK), Prop_Theta.segment(0,nPK),
     Prop_Theta.segment(nPK,nPK), Prop_Theta.segment(3*nPK,nPK), wavenum);
+  VectorXd obsi = spectra.row(n-1).transpose() - sigi;
+  return obsi;
 }

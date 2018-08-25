@@ -256,16 +256,17 @@ BEGIN_RCPP
 END_RCPP
 }
 // callMixVoigt
-Eigen::VectorXd callMixVoigt(Eigen::VectorXd Prop_Theta, Eigen::VectorXd conc, unsigned n, Eigen::VectorXd wavenum);
-RcppExport SEXP _serrsBayes_callMixVoigt(SEXP Prop_ThetaSEXP, SEXP concSEXP, SEXP nSEXP, SEXP wavenumSEXP) {
+Eigen::VectorXd callMixVoigt(Eigen::MatrixXd spectra, unsigned n, Eigen::VectorXd Prop_Theta, Eigen::VectorXd conc, Eigen::VectorXd wavenum);
+RcppExport SEXP _serrsBayes_callMixVoigt(SEXP spectraSEXP, SEXP nSEXP, SEXP Prop_ThetaSEXP, SEXP concSEXP, SEXP wavenumSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type spectra(spectraSEXP);
+    Rcpp::traits::input_parameter< unsigned >::type n(nSEXP);
     Rcpp::traits::input_parameter< Eigen::VectorXd >::type Prop_Theta(Prop_ThetaSEXP);
     Rcpp::traits::input_parameter< Eigen::VectorXd >::type conc(concSEXP);
-    Rcpp::traits::input_parameter< unsigned >::type n(nSEXP);
     Rcpp::traits::input_parameter< Eigen::VectorXd >::type wavenum(wavenumSEXP);
-    rcpp_result_gen = Rcpp::wrap(callMixVoigt(Prop_Theta, conc, n, wavenum));
+    rcpp_result_gen = Rcpp::wrap(callMixVoigt(spectra, n, Prop_Theta, conc, wavenum));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -288,7 +289,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_serrsBayes_computeLogLikelihood", (DL_FUNC) &_serrsBayes_computeLogLikelihood, 10},
     {"_serrsBayes_mhUpdateVoigt", (DL_FUNC) &_serrsBayes_mhUpdateVoigt, 9},
     {"_serrsBayes_randomWalkVoigt", (DL_FUNC) &_serrsBayes_randomWalkVoigt, 2},
-    {"_serrsBayes_callMixVoigt", (DL_FUNC) &_serrsBayes_callMixVoigt, 4},
+    {"_serrsBayes_callMixVoigt", (DL_FUNC) &_serrsBayes_callMixVoigt, 5},
     {NULL, NULL, 0}
 };
 
