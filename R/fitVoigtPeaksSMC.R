@@ -216,65 +216,19 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
       }
       mhCov <- MCMC_MP*(2.38^2/(4*N_Peaks))*Prop_Cov
       mhChol <- t(chol(mhCov, pivot = FALSE)) # error if not non-negative definite
-      #print(paste("Cholesky factorisation",all.equal(mhCov, crossprod(mhChol))))
 
       for(mcr in 1:mcSteps){
         MC_Steps[i]<-MC_Steps[i]+1
         mh_acc <- mhUpdateVoigt(spc, Cal_I, Kappa_Hist[i], conc, wl, Sample, T_Sample, mhChol, lPriors)
         Acc <- Acc + mh_acc
 
-        #T_Prop_Theta <- randomWalkVoigt(T_Sample[,1:(4*N_Peaks)], mhChol)
-
-        # T_Prop_Theta<-T_Sample[,1:(4*N_Peaks)]+mvrnorm(npart,mu=rep(0,4*N_Peaks),Sigma=MCMC_MP*(2.38^2/(4*N_Peaks))*Prop_Cov)
-        # # Prop_Theta<-T_Prop_Theta
-        # # Prop_Theta[,1:N_Peaks]<-exp(Prop_Theta[,1:N_Peaks])
-        # # Prop_Theta[,(N_Peaks+1):(2*N_Peaks)]<-exp(Prop_Theta[,(N_Peaks+1):(2*N_Peaks)])
-        # # Prop_Theta[,(3*N_Peaks+1):(4*N_Peaks)]<-exp(Prop_Theta[,(3*N_Peaks+1):(4*N_Peaks)])
-
-        # for(k in 1:npart){
-        #   propTh <- copyLogProposals(N_Peaks, T_Prop_Theta[k,])
-        #   # Sigi <- conc[Cal_I] * mixedVoigt(Prop_Theta[k,2*N_Peaks+(1:N_Peaks)], Prop_Theta[k,(1:N_Peaks)], Prop_Theta[k,N_Peaks+(1:N_Peaks)],
-        #   #                               Prop_Theta[k,3*N_Peaks+(1:N_Peaks)], wl)
-        #   Sigi <- conc[Cal_I] * mixedVoigt(propTh[2*N_Peaks+(1:N_Peaks)], propTh[(1:N_Peaks)],
-        #                                    propTh[N_Peaks+(1:N_Peaks)], propTh[3*N_Peaks+(1:N_Peaks)], wl)
-        #   Obsi <- spc[Cal_I,] - Sigi
-        #   lambda <- lPriors$bl.smooth # fixed smoothing penalty
-        #   L_Ev <- computeLogLikelihood(Obsi, lambda, lPriors$noise.nu, lPriors$noise.SS,
-        #                                X_Cal, Rsvd$d, lPriors$bl.precision, lPriors$bl.XtX,
-        #                                lPriors$bl.orthog, lPriors$bl.Ru)
-        #   if (!is.finite(L_Ev)) {
-        #     print(paste(sum(Obsi^2), lambda, lPriors$noise.SS))
-        #     break
-        #   }
-        # 
-        #   # lLik <- Kappa_Hist[i]*L_Ev + sumDlogNorm(Prop_Theta[k,1:N_Peaks], lPriors$scaG.mu, lPriors$scaG.sd) +
-        #   #   sumDlogNorm(Prop_Theta[k,(N_Peaks+1):(2*N_Peaks)], lPriors$scaL.mu, lPriors$scaL.sd) +
-        #   #   sumDnorm(Prop_Theta[k,(2*N_Peaks+1):(3*N_Peaks)],mean=lPriors$loc.mu,sd=lPriors$loc.sd) +
-        #   lLik <- Kappa_Hist[i]*L_Ev + sumDlogNorm(propTh[1:N_Peaks], lPriors$scaG.mu, lPriors$scaG.sd) +
-        #     sumDlogNorm(propTh[(N_Peaks+1):(2*N_Peaks)], lPriors$scaL.mu, lPriors$scaL.sd) +
-        #     sumDnorm(propTh[(2*N_Peaks+1):(3*N_Peaks)],mean=lPriors$loc.mu,sd=lPriors$loc.sd) +
-        #     -Kappa_Hist[i]*Sample[k,Offset_1+2] -
-        #     sumDlogNorm(Sample[k,1:N_Peaks], lPriors$scaG.mu, lPriors$scaG.sd) -
-        #     sumDlogNorm(Sample[k,(N_Peaks+1):(2*N_Peaks)], lPriors$scaL.mu, lPriors$scaL.sd) -
-        #     sumDnorm(Sample[k,(2*N_Peaks+1):(3*N_Peaks)],mean=lPriors$loc.mu,sd=lPriors$loc.sd)
-        # 
-        #   u <- log(runif(1))
-        #   if(is.finite(lLik) && u < lLik) {
-        #     T_Sample[k,1:(4*N_Peaks)]<-T_Prop_Theta[k,]
-        #     Sample[k,1:(4*N_Peaks)]<- propTh #Prop_Theta[k,]
-        #     T_Sample[k,Offset_1+2]<-L_Ev
-        #     Sample[k,Offset_1+2]<-L_Ev
-        #     Acc<-Acc+1
-        #   }
-        # }
+        # update effective sample size
         US1<-unique(Sample[,1])
         N_UP<-length(US1)
-        
         Temp_W<-numeric(N_UP)
         for(k in 1:N_UP){
           Temp_W[k]<-sum(Sample[which(Sample[,1]==US1[k]),Offset_1+1])
         }
-        
         Temp_ESS<-1/sum(Temp_W^2)
         print(paste(mh_acc,"M-H proposals accepted. Temp ESS is",Temp_ESS))
         ESS_AR[i]<-Temp_ESS
