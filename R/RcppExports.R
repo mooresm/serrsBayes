@@ -318,7 +318,7 @@ computeLogLikelihood <- function(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal
 #' @param wavenum Vector of \code{nwl} wavenumbers at which the spetra are observed.
 #' @param thetaMx \code{(4+npeaks*4) x npart} Matrix of parameter values for each peak.
 #' @param logThetaMx \code{(4+npeaks*4) x npart} Matrix of logarithms of the parameters.
-#' @param mhChol Cholesky factorisation of the covariance matrix for the random walk proposals.
+#' @param mhChol lower-triangular Cholesky factorisation of the covariance matrix for the random walk proposals.
 #' @param priors List of hyperparameters for the prior distributions.
 #' @return The number of RWMH proposals that were accepted.
 #' @references
@@ -329,16 +329,5 @@ computeLogLikelihood <- function(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal
 #' URL: \href{http://www.pphmj.com/abstract/1961.htm}{http://www.pphmj.com/abstract/1961.htm}
 mhUpdateVoigt <- function(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx, mhChol, priors) {
     .Call('_serrsBayes_mhUpdateVoigt', PACKAGE = 'serrsBayes', spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx, mhChol, priors)
-}
-
-#' Multivariate Gaussian random walk proposal.
-#' 
-#' This is an internal function that is only exposed on the public API for unit testing purposes.
-#' 
-#' @param logThetaMx Matrix of logarithms of the parameter values
-#' @param mhChol Cholesky factorisation of the covariance matrix
-#' @return proposals for each SMC particle
-randomWalkVoigt <- function(logThetaMx, mhChol) {
-    .Call('_serrsBayes_randomWalkVoigt', PACKAGE = 'serrsBayes', logThetaMx, mhChol)
 }
 

@@ -22,7 +22,7 @@ mhUpdateVoigt(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx,
 
 \item{logThetaMx}{\code{(4+npeaks*4) x npart} Matrix of logarithms of the parameters.}
 
-\item{mhChol}{Cholesky factorisation of the covariance matrix for the random walk proposals.}
+\item{mhChol}{lower-triangular Cholesky factorisation of the covariance matrix for the random walk proposals.}
 
 \item{priors}{List of hyperparameters for the prior distributions.}
 }

@@ -243,18 +243,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// randomWalkVoigt
-Eigen::MatrixXd randomWalkVoigt(NumericMatrix logThetaMx, Eigen::MatrixXd mhChol);
-RcppExport SEXP _serrsBayes_randomWalkVoigt(SEXP logThetaMxSEXP, SEXP mhCholSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type logThetaMx(logThetaMxSEXP);
-    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type mhChol(mhCholSEXP);
-    rcpp_result_gen = Rcpp::wrap(randomWalkVoigt(logThetaMx, mhChol));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_serrsBayes_weightedLorentzian", (DL_FUNC) &_serrsBayes_weightedLorentzian, 4},
@@ -273,7 +261,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_serrsBayes_copyLogProposals", (DL_FUNC) &_serrsBayes_copyLogProposals, 2},
     {"_serrsBayes_computeLogLikelihood", (DL_FUNC) &_serrsBayes_computeLogLikelihood, 10},
     {"_serrsBayes_mhUpdateVoigt", (DL_FUNC) &_serrsBayes_mhUpdateVoigt, 9},
-    {"_serrsBayes_randomWalkVoigt", (DL_FUNC) &_serrsBayes_randomWalkVoigt, 2},
     {NULL, NULL, 0}
 };
 

@@ -364,31 +364,3 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
   }
   return accept;
 }
-
-//' Multivariate Gaussian random walk proposal.
-//' 
-//' This is an internal function that is only exposed on the public API for unit testing purposes.
-//' 
-//' @param logThetaMx Matrix of logarithms of the parameter values
-//' @param mhChol lower-triangular Cholesky factorisation of the covariance matrix
-//' @return proposals for each SMC particle
-// [[Rcpp::export]]
-Eigen::MatrixXd randomWalkVoigt(NumericMatrix logThetaMx, Eigen::MatrixXd mhChol)
-{
-  int nPart = logThetaMx.nrow();
-  int nPK = mhChol.cols() / 4;
-  MatrixXd prop(nPart, nPK*4);
-  const NumericVector stdNorm = rnorm(nPK * nPart * 4, 0, 1);
-#pragma omp parallel for
-  for (int pt = 0; pt < nPart; pt++)
-  {
-    VectorXd logTheta(nPK*4), stdVec(nPK*4);
-    for (int pk = 0; pk < nPK*4; pk++)
-    {
-      stdVec(pk) = stdNorm[pt*nPK*4 + pk];
-      logTheta(pk) = logThetaMx(pt,pk);
-    }
-    prop.row(pt) = mhChol * stdVec + logTheta;
-  }
-  return prop;
-}
