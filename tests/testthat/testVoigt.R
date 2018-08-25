@@ -1,6 +1,4 @@
 library(serrsBayes)
-library(Rcpp)
-library(RcppEigen)
 context("Implementation of pseudo-Voigt broadening functions in Rcpp.")
 
 test_that("mixedVoigt computes the spectral signature", {
