@@ -18,6 +18,7 @@
 #'  \item{\code{knots}}{The knot locations.}
 #' }
 #' @seealso \code{\link[Matrix:sparseMatrix-class]{sparseMatrix}}
+#' @importFrom Matrix Matrix
 #' @references
 #' Eilers, PHC & Marx, BD (1996) "Flexible smoothing with B-splines and
 #' penalties," Statist. Sci.  11(2): 89--121,

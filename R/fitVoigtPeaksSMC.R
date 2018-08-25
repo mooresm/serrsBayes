@@ -3,6 +3,11 @@
 #' @inheritParams fitSpectraSMC
 #' @param mcAR target acceptance rate for the MCMC kernel
 #' @param mcSteps number of iterations of the MCMC kernel
+#' @importFrom methods as
+#' @importFrom stats rlnorm rnorm rgamma runif cov.wt cov2cor median
+#' @importFrom truncnorm rtruncnorm
+#' @importFrom splines bs
+#' @importFrom Matrix Matrix
 #' @examples 
 #' wavenumbers <- seq(200,600,by=10)
 #' spectra <- matrix(nrow=1, ncol=length(wavenumbers))
@@ -209,7 +214,7 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
       if(!is.na(MC_AR[i-1])){
         MCMC_MP<-2^(-5*(0.23-MC_AR[i-1]))*MCMC_MP
       }
-      mhCov <- MCMC_MP*(2.38^2/(4*N_Peaks))*Prop_Cov + diag(1e-6, 4*nPK)
+      mhCov <- MCMC_MP*(2.38^2/(4*N_Peaks))*Prop_Cov + diag(1e-6, 4*N_Peaks)
       mhChol <- chol(mhCov, pivot = FALSE) # error if not non-negative definite
       #print(paste("Cholesky factorisation",all.equal(mhCov, crossprod(mhChol))))
 

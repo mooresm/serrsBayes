@@ -27,6 +27,8 @@
 #' @references
 #' Chopin (2002) "A Sequential Particle Filter Method for Static Models," Biometrika 89(3): 539--551,
 #' DOI: \href{http://dx.doi.org/10.1093/biomet/89.3.539}{10.1093/biomet/89.3.539}
+#' @importFrom methods as
+#' @importFrom stats rlnorm rnorm rgamma
 #' @examples 
 #' wavenumbers <- seq(200,600,by=10)
 #' spectra <- matrix(nrow=1, ncol=length(wavenumbers))

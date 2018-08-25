@@ -16,6 +16,8 @@
 #'   \item{\code{n_acc}}{The number of RWMH proposals that were accepted.}
 #'   }
 #' @seealso \code{\link{marginalMetropolisUpdate}}
+#' @importFrom methods as
+#' @importFrom stats rlnorm rnorm rgamma
 #' @examples 
 #' wavenumbers <- seq(200,600,by=10)
 #' spectra <- matrix(nrow=1, ncol=length(wavenumbers))
