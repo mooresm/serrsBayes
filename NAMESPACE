@@ -2,6 +2,8 @@
 
 exportPattern("^[[:alpha:]]+")
 importFrom(Matrix,Matrix)
+importFrom(Matrix,crossprod)
+importFrom(Matrix,determinant)
 importFrom(Rcpp,evalCpp)
 importFrom(methods,as)
 importFrom(splines,bs)

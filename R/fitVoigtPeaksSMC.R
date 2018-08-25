@@ -7,7 +7,7 @@
 #' @importFrom stats rlnorm rnorm rgamma runif cov.wt cov2cor median
 #' @importFrom truncnorm rtruncnorm
 #' @importFrom splines bs
-#' @importFrom Matrix Matrix
+#' @importFrom Matrix Matrix crossprod determinant
 #' @examples 
 #' wavenumbers <- seq(200,600,by=10)
 #' spectra <- matrix(nrow=1, ncol=length(wavenumbers))
