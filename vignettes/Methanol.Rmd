@@ -1,0 +1,137 @@
+---
+title: "Methanol example"
+author: "Matt Moores and Karen Faulds"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{Methanol}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(1234)
+```
+
+There are 3 R functions available in the package **serrsBayes** for model-based, statistical analysis of spectroscopy:
+
+ * ``fitSpectraMCMC``
+ * ``fitSpectraSMC``
+ * ``fitVoigtPeaksSMC``
+
+This vignette will provide recommendations for choosing which function to use for a given purpose. As an example, let’s say I wanted to fit a Raman spectrum of methanol. With a quick Google search, I find that there should be 4 peaks located at wavenumbers 1033 (C-O stretching), 1106 (CH3 rocking), 1149 (CH3 bending), and 1448 cm$^{-1}$. However, we know that these peaks can shift slightly due to differences in temperature, pressure, spectrometer calibration, etc. My sample is in the liquid phase, so these peaks will not be exactly Gaussian or Lorentzian, but somewhere in the middle. On the other hand, I don’t want to wait for hours for SMC to finish running.
+
+The first point to emphasise is that ``fitSpectraMCMC`` should *not* be used for real data. It exists mainly to illustrate the differences between MCMC and SMC algorithms, so is only of interest to computational statisticians.
+
+``fitSpectraSMC`` is the fastest method, but can also be difficult to tune. You need to choose either Lorentzian or Gaussian broadening functions. You also need to use fixed peak locations and the results are sensitive to the choice of ``priors$bl.smooth``, however if you manage to get it working for your data then there is no real reason to use ``fitVoigtPeaksSMC``. 
+
+The main differences in ``fitVoigtPeaksSMC`` are as follows:
+
+ * There are 2 scale parameters, $\psi_G$ and $\psi_L$, that control the full-width at half-maximum (FWHM) of the peaks. The broadening profile is a mixture of Gaussian and Lorentzian, also known as a [pseudo-Voigt function](https://en.wikipedia.org/wiki/Voigt_profile#Numeric_approximations).
+ * The peak locations are not fixed. Instead, they are estimated as parameters of the model. This means that you need to supply informative prior distributions for the peak locations.
+ * The underlying SMC algorithm works differently. The main effect of this is that you should set ``priors$bl.smooth = 1`` if you are using ``fitVoigtPeaksSMC``, instead of ``priors$bl.smooth=10^11`` or something like that. The baseline estimation is more robust and easier to tune for "difficult" spectra.
+ * You do not need to set a prior for the amplitudes of the peaks. If you leave it out, then a uniform prior will be used by default. However, you can also set informative priors for the amplitude of each peak in the spectrum if that information is available.
+
+## Raw Data
+
+The first step is always to read in the spectrum and plot it. Normally I would use the R package **hyperSpec** for this, but the data that we are going to use is included in the R package **serrsBayes**:
+```{r data, fig.cap="Observed Raman spectrum for methanol.", fig.width=4}
+library(serrsBayes)
+data("methanol", package = "serrsBayes")
+attach(methanol)
+
+peakLocations <- c(1033, 1106, 1149, 1448)
+nPK <- length(peakLocations)
+pkIdx <- numeric(nPK)
+for (i in 1:nPK) {
+  pkIdx[i] <- which.min(wavenumbers < peakLocations[i])
+}
+nWL <- length(wavenumbers)
+plot(wavenumbers, spectra[1,], type='l', col=4,
+     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
+points(peakLocations, spectra[1,pkIdx], cex=2, col=2)
+text(peakLocations + c(100,20,40,0), spectra[1,pkIdx] + c(0,1400,700,700), labels=peakLocations)
+```
+
+## fitSpectraSMC
+
+We can use exactly the same priors as given in the package README:
+```{r fitSpectraSMC, results='hide'}
+lPriors <- list(scale.mu=log(11.6) - (0.4^2)/2, scale.sd=0.4, bl.smooth=10^11, bl.knots=50,
+                 beta.mu=5000, beta.sd=5000, noise.sd=200, noise.nu=4)
+tm <- system.time(result <- fitSpectraSMC(wavenumbers, spectra, peakLocations, lPriors))
+```
+
+We can see there is a problem with the model fit:
+```{r fitSpectraBL, fig.cap="Fitted model with Lorentzian peaks.", fig.width=4}
+print(tm)
+samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
+plot(wavenumbers, spectra[1,], type='l', lwd=3,
+     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
+for (pt in samp.idx) {
+  bl.est <- result$basis %*% result$alpha[,1,pt]
+  lines(wavenumbers, bl.est, col="#C3000009")
+  lines(wavenumbers, bl.est + result$expFn[pt,], col="#00C30009")
+}
+```
+
+Adjusting the priors is not going to fix this. The underlying issue is that the peak location of 1448 cm$^{-1}$ doesn't match our observed data. Even a small difference in the location of one of the peaks can adversely effect the entire model fit. This is the kind of issue that the function ``fitVoigtPeaksSMC`` is designed to handle.
+
+## fitVoigtPeaksSMC
+
+The priors here are very similar to what we used for TAMRA in [the other vignette](https://mooresm.github.io/serrsBayes/articles/Introduction.html). However, we don't need as many ``bl.knots`` because we have a narrower range of wavenumbers. Instead, we will use ``bl.knots = 50``, the same as what we used for ``fitSpectraSMC`` above.
+```{r fitVoigtPeaksSMC, results='hide'}
+lPriors2 <- list(loc.mu=peakLocations, loc.sd=rep(50,nPK), scaG.mu=log(16.47) - (0.34^2)/2,
+                 scaG.sd=0.34, scaL.mu=log(25.27) - (0.4^2)/2, scaL.sd=0.4, noise.nu=5,
+                 noise.sd=50, bl.smooth=1, bl.knots=50)
+data("result2", package = "serrsBayes")
+if(!exists("result2")) {
+  tm2 <- system.time(result2 <- fitVoigtPeaksSMC(wavenumbers, spectra, lPriors2, npart=3000))
+  result2$time <- tm2
+  save(result2, file="Figure 2/result2.rda")
+}
+```
+
+``fitVoigtPeaksSMC`` takes more than four times longer to fit the model, due to estimating the additional parameters. However, we obtain a much better fit to the observed spectrum:
+
+```{r fitVoigtBL, fig.cap="Fitted model with Voigt peaks.", fig.width=4}
+print(result2$time)
+samp.idx <- 1:nrow(result2$location)
+plot(wavenumbers, spectra[1,], type='l', lwd=3,
+     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
+samp.mat <- resid.mat <- matrix(0,nrow=length(samp.idx), ncol=nWL)
+samp.sigi <- samp.lambda <- numeric(length=nrow(samp.mat))
+for (pt in 1:length(samp.idx)) {
+  k <- samp.idx[pt]
+  samp.mat[pt,] <- mixedVoigt(result2$location[k,], result2$scale_G[k,],
+                              result2$scale_L[k,], result2$beta[k,], wavenumbers)
+  samp.sigi[pt] <- result2$sigma[k]
+  samp.lambda[pt] <- result2$lambda[k]
+  
+  Obsi <- spectra[1,] - samp.mat[pt,]
+  g0_Cal <- length(Obsi) * samp.lambda[pt] * result2$priors$bl.precision
+  gi_Cal <- crossprod(result2$priors$bl.basis) + g0_Cal
+  mi_Cal <- as.vector(solve(gi_Cal, crossprod(result2$priors$bl.basis, Obsi)))
+
+  bl.est <- result2$priors$bl.basis %*% mi_Cal # smoothed residuals = estimated basline
+  lines(wavenumbers, bl.est, col="#C3000009")
+  lines(wavenumbers, bl.est + samp.mat[pt,], col="#00C30009")
+  resid.mat[pt,] <- Obsi - bl.est[,1]
+}
+```
+
+The model fit could be further improved. For example, it appears that there is a shoulder peak around 1550 cm$^{-1}$. However, we can see that the posterior distribution for the fourth peak location is very far away from the theoretical value of 1448:
+
+```{r peakLoc, fig.cap="Posteriors for the peak locations.", fig.show='hold'}
+for (j in 1:4) {
+  hist(result2$location[,j], main=paste("Peak",j), xlab=expression(paste("Peak location (cm"^{-1}, ")")),
+     freq=FALSE, xlim=range(result2$location[,j], peakLocations[j]))
+  lines(density(result2$location[,j]), col=4, lty=2, lwd=3)
+  abline(v=peakLocations[j], col=2, lty=3)
+}
+```
+
+This explains why the results from ``fitSpectraSMC`` were so poor. You really need to have very precise information about all of the peak locations in order for that function to perform well. Otherwise, ``fitVoigtPeaksSMC`` will usually give much better fit to the observed spectrum.
