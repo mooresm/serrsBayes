@@ -2,6 +2,8 @@
 output: github_document
 ---
 
+# serrsBayes
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, echo = FALSE}
@@ -19,7 +21,7 @@ knitr::opts_chunk$set(
 [![Travis-CI Build Status](https://travis-ci.org/mooresm/serrsBayes.svg?branch=master)](https://travis-ci.org/mooresm/serrsBayes)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mooresm/serrsBayes/master.svg)](https://codecov.io/github/mooresm/serrsBayes?branch=master)
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='right', fig.asp=1, out.width='100px',out.height='100px'}
+```{r hexSticker, echo=FALSE, message=FALSE, warning=FALSE, fig.align='right', fig.asp=1, out.width='100px',out.height='100px'}
 tmp <- tempfile()
 download.file("https://pure.strath.ac.uk/portal/files/43595106/Figure_2.zip", tmp)
 tmp2 <- unzip(tmp, "Figure 2/T20 SERS spectra/T20_1_ REP1  Well_A1.SPC")
@@ -57,9 +59,6 @@ url="https://mooresm.github.io/serrsBayes/", u_x=0.92, u_y=0.08)
 knitr::include_graphics("inst/image/README-logo.png", dpi=600)
 ```
 
-
-# serrsBayes
-
 `serrsBayes` provides model-based quantification of surface-enhanced resonance Raman spectroscopy (SERRS) using sequential Monte Carlo (SMC) algorithms. The details of the Bayesian model and informative priors are provided in the arXiv preprint, Moores et al. (2016; v2 2018) "[Bayesian modelling and quantification of Raman spectroscopy.](https://arxiv.org/abs/1604.07299)" Development of this software was supported by the UK 
 Engineering & Physical Sciences Research Council (EPSRC) programme grant "[In Situ Nanoparticle Assemblies for Healthcare Diagnostics and Therapy](http://gow.epsrc.ac.uk/NGBOViewGrant.aspx?GrantRef=EP/L014165/1)" (ref: EP/L014165/1).
 
@@ -94,7 +93,7 @@ peakScale <- c(10, 15, 20, 10, 12)
 signature <- weightedLorentzian(peakLocations, peakScale, peakAmplitude, wavenumbers)
 baseline <- 1000*cos(wavenumbers/200) + 2*wavenumbers
 spectra[1,] <- signature + baseline + rnorm(length(wavenumbers),0,200)
-plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
+plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 lines(wavenumbers, baseline, col=2, lty=4)
 lines(wavenumbers, baseline + signature, col=4, lty=2, lwd=2)
 ```
@@ -112,7 +111,7 @@ Sample 200 particles from the posterior distribution:
 ```{r plotting}
 print(tm)
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
-plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
+plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 for (pt in samp.idx) {
   bl.est <- result$basis %*% result$alpha[,1,pt]
   lines(wavenumbers, bl.est, col="#C3000009")

@@ -1,4 +1,6 @@
 
+# serrsBayes
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![cran
@@ -11,8 +13,6 @@ Status](https://travis-ci.org/mooresm/serrsBayes.svg?branch=master)](https://tra
 Status](https://img.shields.io/codecov/c/github/mooresm/serrsBayes/master.svg)](https://codecov.io/github/mooresm/serrsBayes?branch=master)
 
 <img src="inst/image/README-logo.png" width="100px" height="100px" style="display: block; margin: auto 0 auto auto;" />
-
-# serrsBayes
 
 `serrsBayes` provides model-based quantification of surface-enhanced
 resonance Raman spectroscopy (SERRS) using sequential Monte Carlo (SMC)
@@ -61,7 +61,7 @@ peakScale <- c(10, 15, 20, 10, 12)
 signature <- weightedLorentzian(peakLocations, peakScale, peakAmplitude, wavenumbers)
 baseline <- 1000*cos(wavenumbers/200) + 2*wavenumbers
 spectra[1,] <- signature + baseline + rnorm(length(wavenumbers),0,200)
-plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
+plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 lines(wavenumbers, baseline, col=2, lty=4)
 lines(wavenumbers, baseline + signature, col=4, lty=2, lwd=2)
 ```
@@ -82,9 +82,9 @@ Sample 200 particles from the posterior distribution:
 ``` r
 print(tm)
 #>    user  system elapsed 
-#> 484.665   8.203 145.785
+#> 217.139   2.145 220.691
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
-plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
+plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 for (pt in samp.idx) {
   bl.est <- result$basis %*% result$alpha[,1,pt]
   lines(wavenumbers, bl.est, col="#C3000009")

@@ -108,7 +108,7 @@ samp.idx <- sample.int(length(result$weights), 50, prob=result$weights)
 samp.mat <- resid.mat <- matrix(0,nrow=length(samp.idx), ncol=nWL)
 samp.sigi <- samp.lambda <- numeric(length=nrow(samp.mat))
 spectra <- as.matrix(spectra)
-plot(wavenumbers, spectra[1,], type='l', xlab="Raman offset", ylab="intensity")
+plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 for (pt in 1:length(samp.idx)) {
   k <- samp.idx[pt]
   samp.mat[pt,] <- mixedVoigt(result$location[k,], result$scale_G[k,],
@@ -128,7 +128,7 @@ for (pt in 1:length(samp.idx)) {
 }
 title(main="Baseline for TAMRA")
 
-plot(range(wavenumbers), range(samp.mat), type='n', xlab="Raman offset", ylab="Intensity")
+plot(range(wavenumbers), range(samp.mat), type='n', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 abline(h=0,lty=2)
 for (pt in 1:length(samp.idx)) {
   lines(wavenumbers, samp.mat[pt,], col=4)

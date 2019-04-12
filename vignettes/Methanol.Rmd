@@ -31,9 +31,9 @@ The first point to emphasise is that ``fitSpectraMCMC`` should *not* be used for
 The main differences in ``fitVoigtPeaksSMC`` are as follows:
 
  * There are 2 scale parameters, $\psi_G$ and $\psi_L$, that control the full-width at half-maximum (FWHM) of the peaks. The broadening profile is a mixture of Gaussian and Lorentzian, also known as a [pseudo-Voigt function](https://en.wikipedia.org/wiki/Voigt_profile#Numeric_approximations).
- * The peak locations are not fixed. Instead, they are estimated as parameters of the model. This means that you need to supply informative prior distributions for the peak locations.
+ * The peak locations are not fixed. Instead, they are estimated as parameters of the model. This means that you need to supply informative prior distributions for the peak locations, ``loc.mu`` (mean) and ``loc.sd`` (standard deviation), in wavenumbers $\left(\mathrm{cm}^{-1}\right)$.
  * The underlying SMC algorithm works differently. The main effect of this is that you should set ``priors$bl.smooth = 1`` if you are using ``fitVoigtPeaksSMC``, instead of ``priors$bl.smooth=10^11`` or something like that. The baseline estimation is more robust and easier to tune for "difficult" spectra.
- * You do not need to set a prior for the amplitudes of the peaks. If you leave it out, then a uniform prior will be used by default. However, you can also set informative priors for the amplitude of each peak in the spectrum if that information is available.
+ * You do not need to set a prior for the amplitudes of the peaks (``beta.mu`` and ``beta.sd``). If you leave it out, then a uniform prior will be used by default. However, you can also set informative priors for the amplitude of each peak in the spectrum if that information is available.
 
 ## Raw Data
 
@@ -65,9 +65,12 @@ lPriors <- list(scale.mu=log(11.6) - (0.4^2)/2, scale.sd=0.4, bl.smooth=10^11, b
 tm <- system.time(result <- fitSpectraSMC(wavenumbers, spectra, peakLocations, lPriors))
 ```
 
+```{r timeSpectra}
+print(paste(tm["elapsed"]/60, "minutes"))
+```
+
 We can see there is a problem with the model fit:
 ```{r fitSpectraBL, fig.cap="Fitted model with Lorentzian peaks.", fig.width=4}
-print(tm)
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', lwd=3,
      xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
@@ -98,7 +101,7 @@ if(!exists("result2")) {
 ``fitVoigtPeaksSMC`` takes more than four times longer to fit the model, due to estimating the additional parameters. However, we obtain a much better fit to the observed spectrum:
 
 ```{r fitVoigtBL, fig.cap="Fitted model with Voigt peaks.", fig.width=4}
-print(result2$time)
+print(paste(result2$time["elapsed"]/60, "minutes"))
 samp.idx <- 1:nrow(result2$location)
 plot(wavenumbers, spectra[1,], type='l', lwd=3,
      xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
@@ -113,13 +116,13 @@ for (pt in 1:length(samp.idx)) {
   
   Obsi <- spectra[1,] - samp.mat[pt,]
   g0_Cal <- length(Obsi) * samp.lambda[pt] * result2$priors$bl.precision
-  gi_Cal <- crossprod(result2$priors$bl.basis) + g0_Cal
-  mi_Cal <- as.vector(solve(gi_Cal, crossprod(result2$priors$bl.basis, Obsi)))
-
-  bl.est <- result2$priors$bl.basis %*% mi_Cal # smoothed residuals = estimated basline
-  lines(wavenumbers, bl.est, col="#C3000009")
-  lines(wavenumbers, bl.est + samp.mat[pt,], col="#00C30009")
-  resid.mat[pt,] <- Obsi - bl.est[,1]
+  # gi_Cal <- crossprod(result2$priors$bl.basis) + g0_Cal
+  # mi_Cal <- as.vector(solve(gi_Cal, crossprod(result2$priors$bl.basis, Obsi)))
+  # 
+  # bl.est <- result2$priors$bl.basis %*% mi_Cal # smoothed residuals = estimated basline
+  # lines(wavenumbers, bl.est, col="#C3000009")
+  # lines(wavenumbers, bl.est + samp.mat[pt,], col="#00C30009")
+  # resid.mat[pt,] <- Obsi - bl.est[,1]
 }
 ```
 
@@ -127,8 +130,9 @@ The model fit could be further improved. For example, it appears that there is a
 
 ```{r peakLoc, fig.cap="Posteriors for the peak locations.", fig.show='hold'}
 for (j in 1:4) {
-  hist(result2$location[,j], main=paste("Peak",j), xlab=expression(paste("Peak location (cm"^{-1}, ")")),
-     freq=FALSE, xlim=range(result2$location[,j], peakLocations[j]))
+  hist(result2$location[,j], main=paste("Peak",j),
+       xlab=expression(paste("Peak location (cm"^{-1}, ")")),
+       freq=FALSE, xlim=range(result2$location[,j], peakLocations[j]))
   lines(density(result2$location[,j]), col=4, lty=2, lwd=3)
   abline(v=peakLocations[j], col=2, lty=3)
 }
