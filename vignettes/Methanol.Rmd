@@ -41,7 +41,8 @@ The first step is always to read in the spectrum and plot it. Normally I would u
 ```{r data, fig.cap="Observed Raman spectrum for methanol.", fig.width=4}
 library(serrsBayes)
 data("methanol", package = "serrsBayes")
-attach(methanol)
+wavenumbers <- methanol$wavenumbers
+spectra <- methanol$spectra
 
 peakLocations <- c(1033, 1106, 1149, 1448)
 nPK <- length(peakLocations)
@@ -116,13 +117,13 @@ for (pt in 1:length(samp.idx)) {
   
   Obsi <- spectra[1,] - samp.mat[pt,]
   g0_Cal <- length(Obsi) * samp.lambda[pt] * result2$priors$bl.precision
-  # gi_Cal <- crossprod(result2$priors$bl.basis) + g0_Cal
-  # mi_Cal <- as.vector(solve(gi_Cal, crossprod(result2$priors$bl.basis, Obsi)))
-  # 
-  # bl.est <- result2$priors$bl.basis %*% mi_Cal # smoothed residuals = estimated basline
-  # lines(wavenumbers, bl.est, col="#C3000009")
-  # lines(wavenumbers, bl.est + samp.mat[pt,], col="#00C30009")
-  # resid.mat[pt,] <- Obsi - bl.est[,1]
+  gi_Cal <- crossprod(result2$priors$bl.basis) + g0_Cal
+  mi_Cal <- as.vector(solve(gi_Cal, crossprod(result2$priors$bl.basis, Obsi)))
+
+  bl.est <- result2$priors$bl.basis %*% mi_Cal # smoothed residuals = estimated basline
+  lines(wavenumbers, bl.est, col="#C3000009")
+  lines(wavenumbers, bl.est + samp.mat[pt,], col="#00C30009")
+  resid.mat[pt,] <- Obsi - bl.est[,1]
 }
 ```
 

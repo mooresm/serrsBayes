@@ -1,8 +1,8 @@
 Package: serrsBayes
 Type: Package
 Title: Bayesian Modelling of Raman Spectroscopy
-Version: 0.4-0.9000
-Date: 2019-04-11
+Version: 0.4-0.9002
+Date: 2019-04-12
 Authors@R: c(
     person("Matt", "Moores", role = c("aut", "cre"), email = "mmoores@gmail.com", comment = c(ORCID = "0000-0003-4531-3572")),
     person("Jake", "Carson", role="aut", email="Jake.Carson@warwick.ac.uk", comment = c(ORCID = "0000-0002-7896-0971")),
