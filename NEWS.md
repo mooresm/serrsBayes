@@ -1,6 +1,6 @@
-# serrsBayes ?
+# serrsBayes 0.4-0
 
-* currently in development
+* New vignette illustrates when to use the 3 functions `fitSpectraMCMC`, `fitSpectraSMC`, and `fitVoigtPeaksSMC`
 
 # serrsBayes 0.3-14
 
