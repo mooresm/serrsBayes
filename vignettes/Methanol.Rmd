@@ -1,6 +1,6 @@
 ---
 title: "Methanol example"
-author: "Matt Moores and Karen Faulds"
+author: "Matt Moores, Benjamin Moskowitz and Karen Faulds"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
@@ -99,7 +99,7 @@ if(!exists("result2")) {
 }
 ```
 
-``fitVoigtPeaksSMC`` takes more than four times longer to fit the model, due to estimating the additional parameters. However, we obtain a much better fit to the observed spectrum:
+``fitVoigtPeaksSMC`` takes more than twice as long to fit the model, due to estimating the additional parameters. However, we obtain a much better fit to the observed spectrum:
 
 ```{r fitVoigtBL, fig.cap="Fitted model with Voigt peaks.", fig.width=4}
 print(paste(result2$time["elapsed"]/60, "minutes"))

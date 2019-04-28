@@ -114,6 +114,7 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
   Kappa_Hist[1]<-0
   Time_Hist[1]<-iTime[3]
   print(paste("Step 1: initialization for",N_Peaks,"Voigt peaks took",iTime[3],"sec."))
+  print(colMeans(Sample[,(3*N_Peaks+1):(4*N_Peaks)]))
 
   i<-1
   Cal_I <- 1
@@ -246,6 +247,7 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
       print(paste("Interim results saved to",iFile))
     }
 
+    print(colMeans(Sample[,(3*N_Peaks+1):(4*N_Peaks)]))
     print(paste0("Iteration ",i," took ",iTime[3],"sec. for ",MC_Steps[i]," MCMC loops (acceptance rate ",MC_AR[i],")"))
     if (Kappa >= 1 || MC_AR[i] < 1/npart) {
       break
