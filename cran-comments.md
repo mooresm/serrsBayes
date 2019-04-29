@@ -1,4 +1,3 @@
-Fixes a problem with the NAMESPACE in the previous version, caused by roxygen2. Vignette no longer attempts to download a .zip file over HTTPS, since this is unreliable on the current CRAN build environment.
 
 ## Test environments
 
