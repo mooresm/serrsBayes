@@ -21,9 +21,6 @@
   \item{times}{history of times for each SMC iteration}
   \item{time}{computation time taken by the SMC algorithm}
 }}
-\source{
-\url{https://pure.strath.ac.uk/portal/files/43595106/Figure_2.zip}
-}
 \usage{
 result
 }

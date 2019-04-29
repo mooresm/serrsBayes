@@ -38,7 +38,7 @@ The main differences in ``fitVoigtPeaksSMC`` are as follows:
 ## Raw Data
 
 The first step is always to read in the spectrum and plot it. Normally I would use the R package **hyperSpec** for this, but the data that we are going to use is included in the R package **serrsBayes**:
-```{r data, fig.cap="Observed Raman spectrum for methanol.", fig.width=4}
+```{r data, message=FALSE, fig.width=6}
 library(serrsBayes)
 data("methanol", package = "serrsBayes")
 wavenumbers <- methanol$wavenumbers
@@ -52,9 +52,9 @@ for (i in 1:nPK) {
 }
 nWL <- length(wavenumbers)
 plot(wavenumbers, spectra[1,], type='l', col=4,
-     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
+     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)", main="Observed Raman spectrum for methanol")
 points(peakLocations, spectra[1,pkIdx], cex=2, col=2)
-text(peakLocations + c(100,20,40,0), spectra[1,pkIdx] + c(0,1400,700,700), labels=peakLocations)
+text(peakLocations + c(100,20,40,0), spectra[1,pkIdx] + c(0,700,400,700), labels=peakLocations)
 ```
 
 ## fitSpectraSMC
@@ -71,10 +71,10 @@ print(paste(tm["elapsed"]/60, "minutes"))
 ```
 
 We can see there is a problem with the model fit:
-```{r fitSpectraBL, fig.cap="Fitted model with Lorentzian peaks.", fig.width=4}
+```{r fitSpectraBL, fig.width=6}
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', lwd=3,
-     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
+     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)", main="Fitted model with Lorentzian peaks")
 for (pt in samp.idx) {
   bl.est <- result$basis %*% result$alpha[,1,pt]
   lines(wavenumbers, bl.est, col="#C3000009")
@@ -101,11 +101,11 @@ if(!exists("result2")) {
 
 ``fitVoigtPeaksSMC`` takes more than twice as long to fit the model, due to estimating the additional parameters. However, we obtain a much better fit to the observed spectrum:
 
-```{r fitVoigtBL, fig.cap="Fitted model with Voigt peaks.", fig.width=4}
+```{r fitVoigtBL, fig.width=6}
 print(paste(result2$time["elapsed"]/60, "minutes"))
 samp.idx <- 1:nrow(result2$location)
 plot(wavenumbers, spectra[1,], type='l', lwd=3,
-     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
+     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)", main="Fitted model with Voigt peaks")
 samp.mat <- resid.mat <- matrix(0,nrow=length(samp.idx), ncol=nWL)
 samp.sigi <- samp.lambda <- numeric(length=nrow(samp.mat))
 for (pt in 1:length(samp.idx)) {
@@ -129,13 +129,13 @@ for (pt in 1:length(samp.idx)) {
 
 The model fit could be further improved. For example, it appears that there is a shoulder peak around 1550 cm$^{-1}$. However, we can see that the posterior distribution for the fourth peak location is very far away from the theoretical value of 1448:
 
-```{r peakLoc, fig.cap="Posteriors for the peak locations.", fig.show='hold'}
+```{r peakLoc, fig.cap="Posteriors for the peak locations.", fig.show='hold', fig.width=3}
 for (j in 1:4) {
   hist(result2$location[,j], main=paste("Peak",j),
        xlab=expression(paste("Peak location (cm"^{-1}, ")")),
        freq=FALSE, xlim=range(result2$location[,j], peakLocations[j]))
   lines(density(result2$location[,j]), col=4, lty=2, lwd=3)
-  abline(v=peakLocations[j], col=2, lty=3)
+  abline(v=peakLocations[j], col=2, lty=3, lwd=3)
 }
 ```
 
