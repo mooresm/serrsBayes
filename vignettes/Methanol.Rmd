@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     fig_caption: yes
+bibliography: refs.bib
 vignette: >
   %\VignetteIndexEntry{Methanol}
   %\VignetteEngine{knitr::rmarkdown}
@@ -130,7 +131,7 @@ for (pt in 1:length(samp.idx)) {
 The model fit could be further improved. For example, it appears that there is a shoulder peak around 1550 cm$^{-1}$. However, we can see that the posterior distribution for the fourth peak location is very far away from the theoretical value of 1448:
 
 ```{r peakLoc, fig.cap="Posteriors for the peak locations.", fig.show='hold', fig.width=3}
-for (j in 1:4) {
+for (j in 1:nPK) {
   hist(result2$location[,j], main=paste("Peak",j),
        xlab=expression(paste("Peak location (cm"^{-1}, ")")),
        freq=FALSE, xlim=range(result2$location[,j], peakLocations[j]))
@@ -140,3 +141,59 @@ for (j in 1:4) {
 ```
 
 This explains why the results from ``fitSpectraSMC`` were so poor. You really need to have very precise information about all of the peak locations in order for that function to perform well. Otherwise, ``fitVoigtPeaksSMC`` will usually give much better fit to the observed spectrum.
+
+## fitSpectraSMC, redux
+
+We can use the posterior from ``fitVoigtPeaksSMC`` to obtain priors for running ``fitSpectraSMC``. This can be useful, for example, for fitting the model to multiple datasets that were obtained under the same experimental conditions.
+
+The first question is whether to use Lorentzian or Gaussian broadening functions. We can transform the posteriors for $\psi_G$ and $\psi_L$ to obtain a number $\eta$ between 0 and 1 for each peak, where 0 implies pure Gaussian and 1 implies Lorentzian. The [Wikipedia page](https://en.wikipedia.org/wiki/Voigt_profile#Pseudo-Voigt_approximation) provides the equations [@Thompson1987]:
+$$
+f_G = 2\psi_G\sqrt{2\log\{2\}} \\
+f_L = 2\psi_L \\
+f_V \approx 0.5346 f_L + \sqrt{0.2166f_L^2 + f_G^2} \\
+f_{total} \approx \left(f_G^5 + 2.69269f_G^4 f_L + 2.42843f_G^3 f_L^2 + 4.47163f_G^2 f_L^3 + 0.07842f_G f_L^4 + f_L^5 \right)^{1/5} \\
+\eta \approx 1.33603 \frac{f_L}{f_{total}} - 0.47719 \left(\frac{f_L}{f_{total}} \right)^2 + 0.11116 \left(\frac{f_L}{f_{total}} \right)^3
+$$
+The above equations are implemented by the function ``getVoigtParam``:
+```{r voigt, fig.show='hold', fig.width=3}
+nPart <- nrow(result2$beta)
+result2$voigt <- result2$FWHM <- matrix(nrow=nPart, ncol=nPK)
+for (k in 1:nPart) {
+  result2$voigt[k,] <- getVoigtParam(result2$scale_G[k,], result2$scale_L[k,])
+  f_G <- 2*result2$scale_G[k,]*sqrt(2*log(2))
+  f_L <- 2*result2$scale_L[k,]
+  result2$FWHM[k,] <- 0.5346*f_L + sqrt(0.2166*f_L^2 + f_G^2)
+}
+for (j in 1:nPK) {
+  hist(result2$voigt[,j], main=paste("Peak",j),
+       xlab=expression(eta), freq=FALSE, xlim=c(0,1))
+  lines(density(result2$voigt[,j]), col=4, lty=2, lwd=3)
+}
+```
+
+The two largest peaks definitely look Lorentzian, while there is more uncertainty about the line shape for the smaller peaks. This gives us confidence that ``fitSpectraSMC`` should be able to give us a good fit to the data, as long as we get the peak locations closer to the correct values. We can also use moment matching to set informative priors for the amplitudes:
+```{r fitSpectraSMCagain, results='hide'}
+lPriors3 <- list(scale.mu=log(11.6) - (0.4^2)/2, scale.sd=0.4, bl.smooth=10^11, bl.knots=50, noise.sd=200, noise.nu=4)
+lPriors3$beta.mu <- mean(result2$beta)
+lPriors3$beta.sd <- sd(result2$beta)
+pkLocNew <- c(colMeans(result2$location), 1550)
+tm3 <- system.time(result3 <- fitSpectraSMC(wavenumbers, spectra, pkLocNew, lPriors3, npart=2000))
+```
+
+```{r time3}
+print(paste(tm3["elapsed"]/60, "minutes"))
+```
+
+```{r fitRedux, fig.width=6}
+samp.idx <- sample.int(length(result3$weights), 200, prob=result3$weights)
+plot(wavenumbers, spectra[1,], type='l', lwd=3,
+     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)", main="Fitted model with informative priors")
+for (pt in samp.idx) {
+  bl.est <- result3$basis %*% result3$alpha[,1,pt]
+  lines(wavenumbers, bl.est, col="#C3000009")
+  lines(wavenumbers, bl.est + result3$expFn[pt,], col="#00C30009")
+}
+rug(pkLocNew, col=4, lwd=2)
+```
+
+# References

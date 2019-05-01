@@ -147,8 +147,8 @@ Finally, display the lower and upper 95% highest posterior density (HPD) interva
 result$voigt <- result$FWHM <- matrix(nrow=nrow(result$beta), ncol=ncol(result$beta))
 for (k in 1:nrow(result$beta)) {
   result$voigt[k,] <- getVoigtParam(result$scale_G[k,], result$scale_L[k,])
-  f_G <- result$scale_G[k,]
-  f_L <- result$scale_L[k,]
+  f_G <- 2*result$scale_G[k,]*sqrt(2*log(2))
+  f_L <- 2*result$scale_L[k,]
   result$FWHM[k,] <- 0.5346*f_L + sqrt(0.2166*f_L^2 + f_G^2)
 }
 
