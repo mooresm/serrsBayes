@@ -340,15 +340,27 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
     double lLik = kappa*L_Ev + sumDlogNorm(Prop_Theta.segment(0,nPK), prScaGmu, prScaGsd);
     lLik += sumDlogNorm(Prop_Theta.segment(nPK,nPK), prScaLmu, prScaLsd);
     lLik += sumDnorm(Prop_Theta.segment(2*nPK,nPK), prLocMu, prLocSD);
-    lLik += -kappa*thetaMx(pt,4*nPK+1) - sumDlogNorm(theta.segment(0,nPK), prScaGmu, prScaGsd);
+    lLik += -kappa*thetaMx(pt,4*nPK+n) - sumDlogNorm(theta.segment(0,nPK), prScaGmu, prScaGsd);
     lLik -= sumDlogNorm(theta.segment(nPK,nPK), prScaLmu, prScaLsd);
     lLik -= sumDnorm(theta.segment(2*nPK,nPK), prLocMu, prLocSD);
-
     if (priors.containsElementNamed("beta.mu"))
     {
       lLik += sumDnorm(Prop_Theta.segment(3*nPK,nPK), prAmpMu, prAmpSD);
       lLik -= sumDnorm(theta.segment(3*nPK,nPK), prAmpMu, prAmpSD);
     }
+
+    // account for previous observations when n > 1
+    VectorXd oldLogLik(n);
+    for (int i=0; i < n-1; i++) {
+      sigi = conc(i) * mixedVoigt(Prop_Theta.segment(2*nPK,nPK), Prop_Theta.segment(0,nPK),
+                  Prop_Theta.segment(nPK,nPK), Prop_Theta.segment(3*nPK,nPK), wavenum);
+      obsi = spectra.row(i).transpose() - sigi;
+      oldLogLik(i) = computeLogLikelihood(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal,
+                precMx, xTx, aMx, ruMx);
+      lLik += oldLogLik(i);
+      lLik -= thetaMx(pt,4*nPK+i+1);
+    }
+    oldLogLik(n-1) = L_Ev;
 
     if (std::isfinite(lLik) && log(rUnif[pt]) < lLik)
     {
@@ -357,8 +369,10 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
          logThetaMx(pt,pk) = T_Prop_Theta(pk);
          thetaMx(pt,pk) = Prop_Theta(pk);
       }
-      logThetaMx(pt,4*nPK+1) = L_Ev;
-      thetaMx(pt,4*nPK+1) = L_Ev;
+      for (int i=0; i < n; i++) {
+        logThetaMx(pt,4*nPK+i+1) = oldLogLik(i);
+        thetaMx(pt,4*nPK+i+1) = oldLogLik(i);
+      }
       accept += 1;
     }
   }

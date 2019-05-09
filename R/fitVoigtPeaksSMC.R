@@ -57,7 +57,7 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
 
   # Step 1: Initialization (draw particles from the prior)
   ptm <- proc.time()
-  Sample<-matrix(numeric(npart*(4*N_Peaks+4)),nrow=npart)
+  Sample<-matrix(numeric(npart*(4*N_Peaks+3+N_Obs_Cal)),nrow=npart)
   Sample[,1:N_Peaks] <- rlnorm(N_Peaks*npart, lPriors$scaG.mu, lPriors$scaG.sd)
   Sample[,(N_Peaks+1):(2*N_Peaks)] <- rlnorm(N_Peaks*npart, lPriors$scaL.mu, lPriors$scaL.sd)
   Sample[,(2*N_Peaks+1):(3*N_Peaks)]<-matrix(rnorm(N_Peaks*npart,mean=lPriors$loc.mu,sd=lPriors$loc.sd),nrow=npart,byrow=T)
@@ -70,12 +70,13 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
     Sample[,(3*N_Peaks+1):(4*N_Peaks)] <- runif(N_Peaks*npart, 0, diff(range(spc))/max(conc))
   }
   Offset_1<-4*N_Peaks
+  Offset_2<-Offset_1 + N_Obs_Cal + 1
   Cal_I <- 1
-  Sample[,Offset_1+3] <- 1/rgamma(npart, lPriors$noise.nu/2, lPriors$noise.SS/2)
+  Sample[,Offset_2+1] <- 1/rgamma(npart, lPriors$noise.nu/2, lPriors$noise.SS/2)
   #Sample[,Offset_1+4] <- 1/rgamma(npart, lPriors$bl.nu/2, lPriors$bl.SS/2)
-  Sample[,Offset_1+4] <- Sample[,Offset_1+3]/lPriors$bl.smooth
-  print(paste("Mean noise parameter sigma is now",mean(sqrt(Sample[,Offset_1+3]))))
-  print(paste("Mean spline penalty lambda is now",mean(Sample[,Offset_1+3]/Sample[,Offset_1+4])))
+  Sample[,Offset_2+2] <- Sample[,Offset_2+1]/lPriors$bl.smooth
+  print(paste("Mean noise parameter sigma is now",mean(sqrt(Sample[,Offset_2+1]))))
+  print(paste("Mean spline penalty lambda is now",mean(Sample[,Offset_2+1]/Sample[,Offset_2+2])))
   # compute log-likelihood:
   g0_Cal <- N_WN_Cal * lPriors$bl.smooth * Pre_Cal
   gi_Cal <- XtX + g0_Cal
@@ -131,8 +132,8 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
       Min_Kappa<-Kappa_Hist[i-1]
       Max_Kappa<-1
       Kappa<-1
-      
-      Temp_w<-Sample[,Offset_1+1]*exp((Kappa-Kappa_Hist[i-1])*(Sample[,Offset_1+2]-max(Sample[,Offset_1+2])))
+
+      Temp_w<-Sample[,Offset_1+1]*exp((Kappa-Kappa_Hist[i-1])*(Sample[,Offset_1+Cal_I+1]-max(Sample[,Offset_1+Cal_I+1])))
       Temp_W<-Temp_w/sum(Temp_w)
       
       US1<-unique(Sample[,1])
@@ -154,7 +155,7 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
           
           Kappa<-0.5*(Min_Kappa+Max_Kappa)
           
-          Temp_w<-Sample[,Offset_1+1]*exp((Kappa-Kappa_Hist[i-1])*(Sample[,Offset_1+2]-max(Sample[,Offset_1+2])))
+          Temp_w<-Sample[,Offset_1+1]*exp((Kappa-Kappa_Hist[i-1])*(Sample[,Offset_1+Cal_I+1]-max(Sample[,Offset_1+Cal_I+1])))
           Temp_W<-Temp_w/sum(Temp_w)
           
           US1<-unique(Sample[,1])
@@ -262,5 +263,5 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
               accept=MC_AR[1:i], mhSteps=MC_Steps[1:i], essAR=ESS_AR[1:i], times=Time_Hist[1:i],
               scale_G=Sample[,1:N_Peaks], scale_L=Sample[,(N_Peaks+1):(2*N_Peaks)],
               location=Sample[,(2*N_Peaks+1):(3*N_Peaks)], beta=Sample[,(3*N_Peaks+1):(4*N_Peaks)],
-              sigma=sqrt(Sample[,Offset_1+3]), lambda=Sample[,Offset_1+3]/Sample[,Offset_1+4]))
+              sigma=sqrt(Sample[,Offset_2+1]), lambda=Sample[,Offset_2+1]/Sample[,Offset_2+2]))
 }
