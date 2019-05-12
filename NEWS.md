@@ -1,6 +1,17 @@
 # TBD
 
-* currently under development
+* currently under development.
+
+## New Features
+
+* New function `fitVoigtIBIS` updates a previous set of SMC particles (from either `fitVoigtPeaksSMC` or `fitVoigtIBIS`) with a new observation.
+* Added example of `fitSpectraSMC` with informative priors to the methanol vignette.
+
+## Bug Fixes
+
+* Fixed a rare bug in reweighting that could potentially result in an infinite loop.
+* Peak locations are now constrained to lie within the range of observed wavelengths. Locations are sorted to preserve identifiability.
+* Fixed error in equations for FWHM in `mixedVoigt` & `getVoigtParam` as well as in both vignettes.
 
 # serrsBayes 0.4-0
 

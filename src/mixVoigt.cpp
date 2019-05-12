@@ -101,6 +101,18 @@ double sumDlogNorm(Eigen::VectorXd x, double meanlog, double sdlog)
   return logLik.sum();
 }
 
+double calcVoigtFWHM(double f_G, double f_L)
+{
+  // combined scale is the average of the scales of the Gaussian/Lorentzian components
+  double Temp_d = pow(f_G,5)
+    + 2.69269*pow(f_G,4)*f_L
+    + 2.42843*pow(f_G,3)*pow(f_L,2)
+    + 4.47163*pow(f_G,2)*pow(f_L,3)
+    + 0.07842*f_G*pow(f_L,4)
+    + pow(f_L,5);
+  return pow(Temp_d, 0.2);
+}
+
 //' Compute the spectral signature using Voigt peaks.
 //' 
 //' Calculates the value of the pseudo-Voigt broadening function at the given wavenumbers,
@@ -129,9 +141,13 @@ Eigen::VectorXd mixedVoigt(Eigen::VectorXd location, Eigen::VectorXd scale_G, Ei
   for (int j=0; j < location.size(); j++)
   {
     // combined scale is the average of the scales of the Gaussian/Lorentzian components
-    double Temp_f = pow(pow(scale_G[j],5) + 2.69269*pow(scale_G[j],4)*scale_L[j] + 2.42843*pow(scale_G[j],3)*pow(scale_L[j],2) + 4.47163*pow(scale_G[j],2)*pow(scale_L[j],3) + 0.07842*scale_G[j]*pow(scale_L[j],4) + pow(scale_L[j],5), 0.2);
+    double f_G = 2.0*scale_G(j)*sqrt(2.0*PI);
+    double f_L = 2.0*scale_L(j);
+    double Temp_f = calcVoigtFWHM(f_G, f_L);
+
     // (0,1) Voigt parameter gives the mixing proportions of the two components
-    double Temp_e = 1.36603*(scale_L[j]/Temp_f) - 0.47719*pow(scale_L[j]/Temp_f, 2) + 0.11116*pow(scale_L[j]/Temp_f, 3);
+    double Temp_e = 1.36603*(f_L/Temp_f) - 0.47719*pow(f_L/Temp_f, 2) + 0.11116*pow(f_L/Temp_f, 3);
+
     // weighted additive combination of Cauchy and Gaussian functions
     Sigi += amplitude[j] * (Temp_e*dCauchy(wavenum,location[j],Temp_f/2.0) + (1.0-Temp_e)*dNorm(wavenum,location[j],Temp_f/(2.0*sqrt(2.0*log(2.0)))))/(Temp_e*(1.0/(PI*(Temp_f/2.0))) + (1.0-Temp_e)*(1.0/sqrt(2.0*PI*pow(Temp_f/(2.0*sqrt(2.0*log(2.0))), 2.0))));
   }
@@ -163,17 +179,12 @@ Eigen::VectorXd getVoigtParam(Eigen::VectorXd scale_G, Eigen::VectorXd scale_L)
   for (int j=0; j < scale_G.size(); j++)
   {
     // combined scale is the average of the scales of the Gaussian/Lorentzian components
-    double Temp_d = pow(scale_G[j],5)
-    + 2.69269*pow(scale_G[j],4)*scale_L[j]
-    + 2.42843*pow(scale_G[j],3)*pow(scale_L[j],2)
-    + 4.47163*pow(scale_G[j],2)*pow(scale_L[j],3)
-    + 0.07842*scale_G[j]*pow(scale_L[j],4)
-    + pow(scale_L[j],5);
-
-    double Temp_f = pow(Temp_d, 0.2);
+    double f_G = 2.0*scale_G(j)*sqrt(2.0*PI);
+    double f_L = 2.0*scale_L(j);
+    double Temp_f = calcVoigtFWHM(f_G, f_L);
 
     // (0,1) Voigt parameter gives the mixing proportions of the two components
-    voigt[j] = 1.36603*(scale_L[j]/Temp_f) - 0.47719*pow(scale_L[j]/Temp_f, 2) + 0.11116*pow(scale_L[j]/Temp_f, 3);
+    voigt[j] = 1.36603*(f_L/Temp_f) - 0.47719*pow(f_L/Temp_f, 2) + 0.11116*pow(f_L/Temp_f, 3);
   }
   return voigt;
 }
@@ -302,6 +313,7 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
   double lambda = priors["bl.smooth"];
   int nPK = prLocMu.size();
   int nPart = thetaMx.rows();
+  int nWL = wavenum.size();
 
   // matrices for the cubic B-spline
   MatrixXd basisMx = priors["bl.basis"];
@@ -328,6 +340,17 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
     }
     VectorXd T_Prop_Theta = mhChol * stdVec + logTheta;
     VectorXd Prop_Theta = copyLogProposals(nPK, T_Prop_Theta);
+    // enforce the boundary condition for proposed peak locations
+    for (int pk = 0; pk < nPK; pk++)
+    {
+      if (Prop_Theta(2*nPK+pk) < wavenum(0) || Prop_Theta(2*nPK+pk) > wavenum(nWL-1))
+      {
+        Prop_Theta(2*nPK+pk) = theta(2*nPK+pk);
+      }
+    }
+    std::sort(Prop_Theta.data() + 2*nPK,
+              Prop_Theta.data() + 3*nPK - 1); // for identifiability
+
     VectorXd sigi = conc(n-1) * mixedVoigt(Prop_Theta.segment(2*nPK,nPK), Prop_Theta.segment(0,nPK),
        Prop_Theta.segment(nPK,nPK), Prop_Theta.segment(3*nPK,nPK), wavenum);
     VectorXd obsi = spectra.row(n-1).transpose() - sigi;

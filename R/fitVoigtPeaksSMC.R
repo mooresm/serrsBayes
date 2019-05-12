@@ -60,7 +60,11 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
   Sample<-matrix(numeric(npart*(4*N_Peaks+3+N_Obs_Cal)),nrow=npart)
   Sample[,1:N_Peaks] <- rlnorm(N_Peaks*npart, lPriors$scaG.mu, lPriors$scaG.sd)
   Sample[,(N_Peaks+1):(2*N_Peaks)] <- rlnorm(N_Peaks*npart, lPriors$scaL.mu, lPriors$scaL.sd)
-  Sample[,(2*N_Peaks+1):(3*N_Peaks)]<-matrix(rnorm(N_Peaks*npart,mean=lPriors$loc.mu,sd=lPriors$loc.sd),nrow=npart,byrow=T)
+  # enforce window and identifiability constrants on peak locations
+  for (k in 1:npart) {
+    propLoc <- rtruncnorm(N_Peaks, a=min(wl), b=max(wl), mean=lPriors$loc.mu, sd=lPriors$loc.sd)
+    Sample[k,(2*N_Peaks+1):(3*N_Peaks)] <- sort(propLoc)
+  }
   # optional prior on beta
   if (exists("beta.mu", lPriors) && exists("beta.sd", lPriors)) {
     for (j in 1:N_Peaks) {
@@ -146,7 +150,7 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
       
       Temp_ESS<-1/sum(Temp_W2^2)
       if(Temp_ESS<(Alpha*ESS_AR[i-1])){
-        while(abs(Temp_ESS-((Alpha*ESS_AR[i-1])))>1){
+        while(abs(Temp_ESS-((Alpha*ESS_AR[i-1])))>1 & !isTRUE(all.equal(Kappa, Min_Kappa))){
           if(Temp_ESS<((Alpha*ESS_AR[i-1]))){
             Max_Kappa<-Kappa
           } else{
