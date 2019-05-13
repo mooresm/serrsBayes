@@ -10,7 +10,8 @@
 ## Bug Fixes
 
 * Fixed a rare bug in reweighting that could potentially result in an infinite loop.
-* Peak locations are now constrained to lie within the range of observed wavelengths. Locations are sorted to preserve identifiability.
+* Peak locations are now constrained to lie within the range of observed wavelengths.
+* Locations are sorted to preserve identifiability.
 * Fixed error in equations for FWHM in `mixedVoigt` & `getVoigtParam` as well as in both vignettes.
 
 # serrsBayes 0.4-0

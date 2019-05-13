@@ -60,6 +60,7 @@ fitVoigtIBIS <- function(wl, spc, n, lResult, conc=rep(1.0,nrow(spc)), batch=rep
 #  print(paste("Mean spline penalty lambda is now",mean(Sample[,Offset_2+1]/Sample[,Offset_2+2])))
   Sample[,Offset_1+1]<-rep(1/npart,npart)
   T_Sample<-Sample
+  T_Sample[T_Sample==0] <- 1e-9 # avoid numeric underflow in log
   T_Sample[,1:N_Peaks]<-log(T_Sample[,1:N_Peaks]) # scaG
   T_Sample[,(N_Peaks+1):(2*N_Peaks)]<-log(T_Sample[,(N_Peaks+1):(2*N_Peaks)]) # scaL
   T_Sample[,(3*N_Peaks+1):(4*N_Peaks)]<-log(T_Sample[,(3*N_Peaks+1):(4*N_Peaks)]) # amp/beta
