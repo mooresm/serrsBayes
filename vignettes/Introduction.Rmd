@@ -37,12 +37,11 @@ where $A_{i,p}$ is the *amplitude* of peak $p$; $\ell_p$ is the peak *location*;
 This example of surface-enhanced Raman spectroscopy (SERS) was originally published by @Gracie2015:
 ```{r data, message=FALSE, fig.width=6}
 library(serrsBayes)
-library(hyperSpec)
-data("TAMRA", package = "serrsBayes")
-plot(TAMRA[1,], col=4, wl.range=600~1800,
-     title.args=list(main="Raman Spectrum of TAMRA+DNA"))
-spectra <- TAMRA[1,,600~1800]
-wavenumbers <- wl(spectra)
+data("lsTamra", package = "serrsBayes")
+wavenumbers <- lsTamra$wavenumbers
+spectra <- lsTamra$spectra
+plot(wavenumbers, spectra[1,], type='l', col=4, main="Raman Spectrum of TAMRA+DNA",
+     xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 nWL <- length(wavenumbers)
 ```
 
@@ -63,7 +62,7 @@ Now we run the SMC algorithm to fit the model:
 ```{r SMC, results='hide'}
 data("result", package = "serrsBayes")
 if(!exists("result")) {
-  tm <- system.time(result <- fitVoigtPeaksSMC(wavenumbers, as.matrix(spectra), priors, npart=2000))
+  tm <- system.time(result <- fitVoigtPeaksSMC(wavenumbers, spectra, priors, npart=2000))
   result$time <- tm
   save(result, file="result.rda")
 }

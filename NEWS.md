@@ -1,14 +1,13 @@
-# TBD
-
-* currently under development.
+# serrsBayes 0.4-1
 
 ## New Features
 
-* New function `fitVoigtIBIS` updates a previous set of SMC particles (from either `fitVoigtPeaksSMC` or `fitVoigtIBIS`) with a new observation.
 * Added example of `fitSpectraSMC` with informative priors to the methanol vignette.
 
 ## Bug Fixes
 
+* Removed the R package ``hyperSpec`` from Suggests because it is no longer available on CRAN.
+* Fixed dependency on ``hyperSpec`` in Introduction vignette due to new CRAN check. This also affects the ``TAMRA`` dataset.
 * Fixed a rare bug in reweighting that could potentially result in an infinite loop.
 * Peak locations are now constrained to lie within the range of observed wavelengths.
 * Locations are sorted to preserve identifiability.

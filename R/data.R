@@ -9,9 +9,12 @@
 
 #' Surface-enhanced Raman spectram of tetramethylrhodamine+DNA (T20)
 #' 
-#' @format A ``hyperSpec`` spc object
-#' @source \url{https://pure.strath.ac.uk/portal/files/43595106/Figure_2.zip}
-"TAMRA"
+#' @format A list containing 2 variables:
+#' \describe{
+#'   \item{wavenumbers}{a numeric Vector of 2401 wavenumbers (cm^-1)}
+#'   \item{wavenumbers}{a \code{1 * 2401} Matrix of intensity values (a.u.)}
+#'  }
+"lsTamra"
 
 #' SMC particles for TAMRA+DNA (T20)
 #'
