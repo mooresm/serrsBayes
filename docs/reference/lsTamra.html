@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sum log-likelihoods of i.i.d. lognormal. — sumDlogNorm • serrsBayes</title>
+<title>Surface-enhanced Raman spectram of tetramethylrhodamine+DNA (T20) — lsTamra • serrsBayes</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Sum log-likelihoods of i.i.d. lognormal. — sumDlogNorm" />
-<meta property="og:description" content="This is an internal function that is only exposed on the public API for unit testing purposes." />
+<meta property="og:title" content="Surface-enhanced Raman spectram of tetramethylrhodamine+DNA (T20) — lsTamra" />
+<meta property="og:description" content="Surface-enhanced Raman spectram of tetramethylrhodamine+DNA (T20)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,58 +123,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sum log-likelihoods of i.i.d. lognormal.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mooresm/serrsBayes/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
-    <div class="hidden name"><code>sumDlogNorm.Rd</code></div>
+    <h1>Surface-enhanced Raman spectram of tetramethylrhodamine+DNA (T20)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mooresm/serrsBayes/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>lsTamra.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is an internal function that is only exposed on the public API for unit testing purposes.</p>
+    <p>Surface-enhanced Raman spectram of tetramethylrhodamine+DNA (T20)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sumDlogNorm</span>(<span class='no'>x</span>, <span class='no'>meanlog</span>, <span class='no'>sdlog</span>)</pre>
+    <pre class="usage"><span class='no'>lsTamra</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>Vector of i.i.d. lognormal random varibles</p></td>
-    </tr>
-    <tr>
-      <th>meanlog</th>
-      <td><p>mean of the distribution on the log scale</p></td>
-    </tr>
-    <tr>
-      <th>sdlog</th>
-      <td><p>standard deviation on the log scale</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>log-likelihood of x</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>A list containing 2 variables:</p><dl class='dl-horizontal'>
+  <dt>wavenumbers</dt><dd><p>a numeric Vector of 2401 wavenumbers (cm^-1)</p></dd>
+  <dt>wavenumbers</dt><dd><p>a <code>1 * 2401</code> Matrix of intensity values (a.u.)</p></dd>
+ 
+</dl>
 
-    <p>The sum of the log-likelihoods (log of the product of the likelihoods)
-for independent, identically-distributed, lognormal random variables. 
-Note: this Rcpp function is thread-safe, unlike the equivalent alternatives.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/sum.html'>sum(dlnorm(x, meanlog, sdlog, log=TRUE))</a></code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></span>(<span class='fl'>100</span>)
-<span class='fu'>sumDlogNorm</span>(<span class='no'>x</span>,<span class='fl'>0</span>,<span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] -130.6099</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
+      <li><a href="#format">Format</a></li>
     </ul>
 
   </div>

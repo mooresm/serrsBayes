@@ -8,21 +8,25 @@
 
 <title>Fit the model with Voigt peaks using Sequential Monte Carlo (SMC). — fitVoigtPeaksSMC • serrsBayes</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +34,11 @@
 
 
 
-<meta property="og:title" content="Fit the model with Voigt peaks using Sequential Monte Carlo (SMC). — fitVoigtPeaksSMC" />
 
+<meta property="og:title" content="Fit the model with Voigt peaks using Sequential Monte Carlo (SMC). — fitVoigtPeaksSMC" />
 <meta property="og:description" content="Fit the model with Voigt peaks using Sequential Monte Carlo (SMC)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -45,6 +50,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -63,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">serrsBayes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
       </span>
     </div>
 
@@ -71,7 +77,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,11 +103,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mooresm/serrsBayes">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -112,6 +117,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -123,15 +129,13 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Fit the model with Voigt peaks using Sequential Monte Carlo (SMC).</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>fitVoigtPeaksSMC</span>(<span class='no'>wl</span>, <span class='no'>spc</span>, <span class='no'>lPriors</span>, <span class='kw'>conc</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>spc</span>)),
+    <pre class="usage"><span class='fu'>fitVoigtPeaksSMC</span>(<span class='no'>wl</span>, <span class='no'>spc</span>, <span class='no'>lPriors</span>, <span class='kw'>conc</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>spc</span>)),
   <span class='kw'>npart</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>rate</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>mcAR</span> <span class='kw'>=</span> <span class='fl'>0.23</span>, <span class='kw'>mcSteps</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>minESS</span> <span class='kw'>=</span> <span class='no'>npart</span>/<span class='fl'>2</span>, <span class='kw'>destDir</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -176,164 +180,172 @@
       <td><p>destination directory to save intermediate results (for long-running computations)</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>wavenumbers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>200</span>,<span class='fl'>600</span>,<span class='kw'>by</span><span class='kw'>=</span><span class='fl'>10</span>)
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>ncol</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>wavenumbers</span>))
-<span class='no'>peakLocations</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>300</span>,<span class='fl'>500</span>)
-<span class='no'>peakAmplitude</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10000</span>,<span class='fl'>4000</span>)
-<span class='no'>peakScale</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>15</span>)
+    <pre class="examples"><div class='input'><span class='no'>wavenumbers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>200</span>,<span class='fl'>600</span>,<span class='kw'>by</span><span class='kw'>=</span><span class='fl'>10</span>)
+<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>ncol</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>wavenumbers</span>))
+<span class='no'>peakLocations</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>300</span>,<span class='fl'>500</span>)
+<span class='no'>peakAmplitude</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10000</span>,<span class='fl'>4000</span>)
+<span class='no'>peakScale</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>15</span>)
 <span class='no'>signature</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weightedLorentzian.html'>weightedLorentzian</a></span>(<span class='no'>peakLocations</span>, <span class='no'>peakScale</span>, <span class='no'>peakAmplitude</span>, <span class='no'>wavenumbers</span>)
-<span class='no'>baseline</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>*<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Trig'>cos</a></span>(<span class='no'>wavenumbers</span>/<span class='fl'>200</span>) + <span class='fl'>2</span>*<span class='no'>wavenumbers</span>
-<span class='no'>spectra</span>[<span class='fl'>1</span>,] <span class='kw'>&lt;-</span> <span class='no'>signature</span> + <span class='no'>baseline</span> + <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>wavenumbers</span>),<span class='fl'>0</span>,<span class='fl'>200</span>)
-<span class='no'>lPriors</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>scaG.mu</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='fl'>11.6</span>) - (<span class='fl'>0.4</span>^<span class='fl'>2</span>)/<span class='fl'>2</span>, <span class='kw'>scaG.sd</span><span class='kw'>=</span><span class='fl'>0.4</span>, <span class='kw'>scaL.mu</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>log</a></span>(<span class='fl'>11.6</span>) - (<span class='fl'>0.4</span>^<span class='fl'>2</span>)/<span class='fl'>2</span>,
-   <span class='kw'>scaL.sd</span><span class='kw'>=</span><span class='fl'>0.4</span>, <span class='kw'>bl.smooth</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>bl.knots</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>loc.mu</span><span class='kw'>=</span><span class='no'>peakLocations</span>, <span class='kw'>loc.sd</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>5</span>),
-   <span class='kw'>beta.mu</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5000</span>,<span class='fl'>5000</span>), <span class='kw'>beta.sd</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5000</span>,<span class='fl'>5000</span>), <span class='kw'>noise.sd</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>noise.nu</span><span class='kw'>=</span><span class='fl'>4</span>)
+<span class='no'>baseline</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>*<span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span>(<span class='no'>wavenumbers</span>/<span class='fl'>200</span>) + <span class='fl'>2</span>*<span class='no'>wavenumbers</span>
+<span class='no'>spectra</span>[<span class='fl'>1</span>,] <span class='kw'>&lt;-</span> <span class='no'>signature</span> + <span class='no'>baseline</span> + <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>wavenumbers</span>),<span class='fl'>0</span>,<span class='fl'>200</span>)
+<span class='no'>lPriors</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>scaG.mu</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>11.6</span>) - (<span class='fl'>0.4</span>^<span class='fl'>2</span>)/<span class='fl'>2</span>, <span class='kw'>scaG.sd</span><span class='kw'>=</span><span class='fl'>0.4</span>, <span class='kw'>scaL.mu</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>11.6</span>) - (<span class='fl'>0.4</span>^<span class='fl'>2</span>)/<span class='fl'>2</span>,
+   <span class='kw'>scaL.sd</span><span class='kw'>=</span><span class='fl'>0.4</span>, <span class='kw'>bl.smooth</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>bl.knots</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>loc.mu</span><span class='kw'>=</span><span class='no'>peakLocations</span>, <span class='kw'>loc.sd</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>5</span>),
+   <span class='kw'>beta.mu</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5000</span>,<span class='fl'>5000</span>), <span class='kw'>beta.sd</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5000</span>,<span class='fl'>5000</span>), <span class='kw'>noise.sd</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>noise.nu</span><span class='kw'>=</span><span class='fl'>4</span>)
 <span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>fitVoigtPeaksSMC</span>(<span class='no'>wavenumbers</span>, <span class='no'>spectra</span>, <span class='no'>lPriors</span>, <span class='kw'>npart</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>mcSteps</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] "SMC with 1 observations at 1 unique concentrations, 50 particles, and 41 wavenumbers."
-#&gt; [1] "Step 0: computing 24 B-spline basis functions (r=21.0526315789474) took 0.0159999999999911sec."
-#&gt; [1] "Mean noise parameter sigma is now 237.135625157295"
+#&gt; [1] "Step 0: computing 24 B-spline basis functions (r=21.0526315789474) took 0.289999999999999sec."
+#&gt; [1] "Mean noise parameter sigma is now 251.707012172913"
 #&gt; [1] "Mean spline penalty lambda is now 5"
-#&gt; [1] "Step 1: initialization for 2 Voigt peaks took 0.0180000000000007 sec."
-#&gt; [1] 7592.846 5846.064
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 45.4666155840655 with new kappa 0.01953125."
-#&gt; [1] "13 M-H proposals accepted. Temp ESS is 45.4666155840655"
-#&gt; [1] 7759.770 5824.073
-#&gt; [1] "Iteration 2 took 0.007000000000005sec. for 1 MCMC loops (acceptance rate 0.26)"
-#&gt; [1] "Reweighting took 0.00200000000000955sec. for ESS 40.1966003739475 with new kappa 0.0310211181640625."
-#&gt; [1] "18 M-H proposals accepted. Temp ESS is 40.1966003739475"
-#&gt; [1] 7258.658 5316.871
-#&gt; [1] "Iteration 3 took 0.007000000000005sec. for 1 MCMC loops (acceptance rate 0.36)"
-#&gt; [1] "Reweighting took 0.0029999999999859sec. for ESS 37.0342443826065 with new kappa 0.0385912656784058."
-#&gt; [1] "2 M-H proposals accepted. Temp ESS is 37.0342443826065"
-#&gt; [1] 7359.558 5327.796
-#&gt; [1] "Iteration 4 took 0.007000000000005sec. for 1 MCMC loops (acceptance rate 0.04)"
-#&gt; [1] "Reweighting took 0.00199999999998113sec. for ESS 34.0233554769581 with new kappa 0.0461022714152932."
-#&gt; [1] "16 M-H proposals accepted. Temp ESS is 34.0233554769581"
-#&gt; [1] 7078.89 4961.64
-#&gt; [1] "Iteration 5 took 0.00600000000000023sec. for 1 MCMC loops (acceptance rate 0.32)"
-#&gt; [1] "Reweighting took 0.00200000000000955sec. for ESS 31.5095188336404 with new kappa 0.0535545974198612."
-#&gt; [1] "11 M-H proposals accepted. Temp ESS is 31.5095188336404"
-#&gt; [1] 6875.868 5055.978
-#&gt; [1] "Iteration 6 took 0.00899999999998613sec. for 1 MCMC loops (acceptance rate 0.22)"
-#&gt; [1] "Reweighting took 0.0040000000000191sec. for ESS 29.1178223709203 with new kappa 0.0609487021275186."
-#&gt; [1] "9 M-H proposals accepted. Temp ESS is 29.1178223709203"
-#&gt; [1] 6224.311 4546.760
-#&gt; [1] "Iteration 7 took 0.0109999999999957sec. for 1 MCMC loops (acceptance rate 0.18)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 27.0547716546321 with new kappa 0.0682850403921473."
-#&gt; [1] "20 M-H proposals accepted. Temp ESS is 27.0547716546321"
-#&gt; [1] 6064.248 4488.660
-#&gt; [1] "Iteration 8 took 0.00600000000000023sec. for 1 MCMC loops (acceptance rate 0.4)"
-#&gt; [1] "Reweighting took 0.00300000000001432sec. for ESS 25.0371041789325 with new kappa 0.0755640635140837."
-#&gt; [1] "7 M-H proposals accepted. Temp ESS is 25.0371041789325"
-#&gt; [1] 6039.314 4409.979
-#&gt; [1] "Iteration 9 took 0.00800000000000978sec. for 1 MCMC loops (acceptance rate 0.14)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 22.9706390766225 with new kappa 0.0827862192678799."
-#&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
-#&gt; [1] "13 M-H proposals accepted. Temp ESS is 23.1481481481481"
-#&gt; [1] 7976.527 3272.191
-#&gt; [1] "Iteration 10 took 0.00499999999999545sec. for 1 MCMC loops (acceptance rate 0.26)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 20.3257799062644 with new kappa 0.0971176845918193."
-#&gt; [1] "*** Resampling with 20 unique indices took 0 sec ***"
-#&gt; [1] "16 M-H proposals accepted. Temp ESS is 23.5849056603774"
-#&gt; [1] 8114.949 2820.833
-#&gt; [1] "Iteration 11 took 0.00500000000002387sec. for 1 MCMC loops (acceptance rate 0.32)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 22.0637119499312 with new kappa 0.111225220770072."
-#&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
-#&gt; [1] "11 M-H proposals accepted. Temp ESS is 18.6567164179104"
-#&gt; [1] 8348.604 3143.621
-#&gt; [1] "Iteration 12 took 0.00600000000000023sec. for 1 MCMC loops (acceptance rate 0.22)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 16.687051741007 with new kappa 0.138999432621007."
-#&gt; [1] "*** Resampling with 18 unique indices took 0 sec ***"
-#&gt; [1] "12 M-H proposals accepted. Temp ESS is 18.6567164179104"
-#&gt; [1] 8788.414 3487.884
-#&gt; [1] "Iteration 13 took 0.00500000000002387sec. for 1 MCMC loops (acceptance rate 0.24)"
-#&gt; [1] "Reweighting took 0.00199999999998113sec. for ESS 15.841362583786 with new kappa 0.165905700351601."
-#&gt; [1] "*** Resampling with 18 unique indices took 0 sec ***"
-#&gt; [1] "17 M-H proposals accepted. Temp ESS is 19.53125"
-#&gt; [1] 9085.682 3582.569
-#&gt; [1] "Iteration 14 took 0.00600000000000023sec. for 1 MCMC loops (acceptance rate 0.34)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 17.8472366764519 with new kappa 0.178938423783607."
-#&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
-#&gt; [1] "6 M-H proposals accepted. Temp ESS is 18.3823529411765"
-#&gt; [1] 9316.776 3549.084
-#&gt; [1] "Iteration 15 took 0.00499999999999545sec. for 1 MCMC loops (acceptance rate 0.12)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 17.0404851957438 with new kappa 0.191767510911988."
+#&gt; [1] "Step 1: initialization for 2 Voigt peaks took 0.0199999999999996 sec."
+#&gt; [1] 6635.002 6180.201
+#&gt; [1] "Reweighting took 0sec. for ESS 45.0219890215427 with new kappa 0.02734375."
+#&gt; [1] "17 M-H proposals accepted. Temp ESS is 45.0219890215427"
+#&gt; [1] 6263.616 6076.730
+#&gt; [1] "Iteration 2 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.34)"
+#&gt; [1] "Reweighting took 0sec. for ESS 40.6913327506059 with new kappa 0.04254150390625."
+#&gt; [1] "11 M-H proposals accepted. Temp ESS is 40.6913327506059"
+#&gt; [1] 5998.973 5780.276
+#&gt; [1] "Iteration 3 took 0sec. for 1 MCMC loops (acceptance rate 0.22)"
+#&gt; [1] "Reweighting took 0sec. for ESS 36.3819571500594 with new kappa 0.0575017929077148."
+#&gt; [1] "10 M-H proposals accepted. Temp ESS is 36.3819571500594"
+#&gt; [1] 5914.771 5548.921
+#&gt; [1] "Iteration 4 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.2)"
+#&gt; [1] "Reweighting took 0sec. for ESS 32.3199226209689 with new kappa 0.0722283273935318."
+#&gt; [1] "11 M-H proposals accepted. Temp ESS is 32.3199226209689"
+#&gt; [1] 5468.343 5197.696
+#&gt; [1] "Iteration 5 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.22)"
+#&gt; [1] "Reweighting took 0sec. for ESS 28.58510501772 with new kappa 0.0867247597780079."
+#&gt; [1] "11 M-H proposals accepted. Temp ESS is 28.58510501772"
+#&gt; [1] 5629.045 5066.258
+#&gt; [1] "Iteration 6 took 0sec. for 1 MCMC loops (acceptance rate 0.22)"
+#&gt; [1] "Reweighting took 0.0199999999999996sec. for ESS 24.8852320535079 with new kappa 0.100994685406476."
 #&gt; [1] "*** Resampling with 21 unique indices took 0 sec ***"
-#&gt; [1] "9 M-H proposals accepted. Temp ESS is 20.8333333333333"
-#&gt; [1] 9516.545 3636.150
-#&gt; [1] "Iteration 16 took 0.00499999999999545sec. for 1 MCMC loops (acceptance rate 0.18)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 18.5162120825855 with new kappa 0.217024776195989."
-#&gt; [1] "*** Resampling with 18 unique indices took 0 sec ***"
-#&gt; [1] "8 M-H proposals accepted. Temp ESS is 13.2978723404255"
-#&gt; [1] 9365.153 3560.630
-#&gt; [1] "Iteration 17 took 0.00499999999999545sec. for 1 MCMC loops (acceptance rate 0.16)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 11.0200628713916 with new kappa 0.241492751939864."
-#&gt; [1] "*** Resampling with 15 unique indices took 0 sec ***"
-#&gt; [1] "16 M-H proposals accepted. Temp ESS is 15.2439024390244"
-#&gt; [1] 9647.994 3643.681
-#&gt; [1] "Iteration 18 took 0.00499999999999545sec. for 1 MCMC loops (acceptance rate 0.32)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 13.3315029217404 with new kappa 0.265196103441743."
-#&gt; [1] "*** Resampling with 19 unique indices took 0 sec ***"
-#&gt; [1] "14 M-H proposals accepted. Temp ESS is 11.9047619047619"
-#&gt; [1] 9745.161 3661.574
-#&gt; [1] "Iteration 19 took 0.007000000000005sec. for 1 MCMC loops (acceptance rate 0.28)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 10.2876198527751 with new kappa 0.288158725209189."
-#&gt; [1] "*** Resampling with 20 unique indices took 0 sec ***"
-#&gt; [1] "20 M-H proposals accepted. Temp ESS is 15.4320987654321"
-#&gt; [1] 9781.120 3587.293
-#&gt; [1] "Iteration 20 took 0.00600000000000023sec. for 1 MCMC loops (acceptance rate 0.4)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 14.0699301827639 with new kappa 0.310403765046402."
+#&gt; [1] "16 M-H proposals accepted. Temp ESS is 22.7272727272727"
+#&gt; [1] 4953.456 4185.926
+#&gt; [1] "Iteration 7 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.32)"
+#&gt; [1] "Reweighting took 0sec. for ESS 20.1822388001957 with new kappa 0.115041643447."
+#&gt; [1] "*** Resampling with 23 unique indices took 0 sec ***"
+#&gt; [1] "11 M-H proposals accepted. Temp ESS is 18.6567164179104"
+#&gt; [1] 4454.265 3934.373
+#&gt; [1] "Iteration 8 took 0.0200000000000014sec. for 1 MCMC loops (acceptance rate 0.22)"
+#&gt; [1] "Reweighting took 0sec. for ESS 17.0638534353983 with new kappa 0.121955380607571."
 #&gt; [1] "*** Resampling with 27 unique indices took 0 sec ***"
-#&gt; [1] "14 M-H proposals accepted. Temp ESS is 17.8571428571429"
-#&gt; [1] 9921.688 3575.921
-#&gt; [1] "Iteration 21 took 0.007000000000005sec. for 1 MCMC loops (acceptance rate 0.28)"
-#&gt; [1] "Reweighting took 0.00100000000000477sec. for ESS 15.1855866087995 with new kappa 0.353503529731001."
-#&gt; [1] "*** Resampling with 20 unique indices took 0 sec ***"
-#&gt; [1] "3 M-H proposals accepted. Temp ESS is 11.6822429906542"
-#&gt; [1] 9786.734 3609.509
-#&gt; [1] "Iteration 22 took 0.00600000000000023sec. for 1 MCMC loops (acceptance rate 0.06)"
-#&gt; [1] "Reweighting took 0.000999999999976353sec. for ESS 9.87502166026076 with new kappa 0.434315588514626."
-#&gt; [1] "*** Resampling with 13 unique indices took 0 sec ***"
-#&gt; [1] "11 M-H proposals accepted. Temp ESS is 9.12408759124088"
-#&gt; [1] 9805.618 3628.044
-#&gt; [1] "Iteration 23 took 0.00599999999997181sec. for 1 MCMC loops (acceptance rate 0.22)"
-#&gt; [1] "Reweighting took 0sec. for ESS 8.94276542291468 with new kappa 0.57573669138597."
-#&gt; [1] "*** Resampling with 14 unique indices took 0 sec ***"
-#&gt; [1] "10 M-H proposals accepted. Temp ESS is 8.62068965517241"
-#&gt; [1] 9742.735 3586.530
-#&gt; [1] "Iteration 24 took 0.00499999999999545sec. for 1 MCMC loops (acceptance rate 0.2)"
-#&gt; [1] "Reweighting took 0sec. for ESS 7.82298623208552 with new kappa 0.681802518539477."
-#&gt; [1] "*** Resampling with 18 unique indices took 0 sec ***"
-#&gt; [1] "15 M-H proposals accepted. Temp ESS is 13.7362637362637"
-#&gt; [1] 9770.341 3602.253
-#&gt; [1] "Iteration 25 took 0.00499999999999545sec. for 1 MCMC loops (acceptance rate 0.3)"
-#&gt; [1] "Reweighting took 0sec. for ESS 12.3958510074088 with new kappa 0.721577203722042."
+#&gt; [1] "9 M-H proposals accepted. Temp ESS is 25.5102040816327"
+#&gt; [1] 4390.723 3725.357
+#&gt; [1] "Iteration 9 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.18)"
+#&gt; [1] "Reweighting took 0sec. for ESS 22.461867856145 with new kappa 0.135674827785577."
 #&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
-#&gt; [1] "15 M-H proposals accepted. Temp ESS is 17.3611111111111"
-#&gt; [1] 9739.542 3568.772
-#&gt; [1] "Iteration 26 took 0.00699999999997658sec. for 1 MCMC loops (acceptance rate 0.3)"
-#&gt; [1] "Reweighting took 0sec. for ESS 14.8984795713768 with new kappa 0.860788601861021."
+#&gt; [1] "12 M-H proposals accepted. Temp ESS is 21.551724137931"
+#&gt; [1] 5103.714 3876.222
+#&gt; [1] "Iteration 10 took 0sec. for 1 MCMC loops (acceptance rate 0.24)"
+#&gt; [1] "Reweighting took 0sec. for ESS 19.9746123938649 with new kappa 0.149179908601428."
+#&gt; [1] "*** Resampling with 18 unique indices took 0 sec ***"
+#&gt; [1] "12 M-H proposals accepted. Temp ESS is 19.53125"
+#&gt; [1] 5553.547 3681.095
+#&gt; [1] "Iteration 11 took 0sec. for 1 MCMC loops (acceptance rate 0.24)"
+#&gt; [1] "Reweighting took 0sec. for ESS 16.7016852074047 with new kappa 0.175768036457633."
+#&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
+#&gt; [1] "8 M-H proposals accepted. Temp ESS is 19.2307692307692"
+#&gt; [1] 5543.164 3722.722
+#&gt; [1] "Iteration 12 took 0.00999999999999979sec. for 1 MCMC loops (acceptance rate 0.16)"
+#&gt; [1] "Reweighting took 0sec. for ESS 17.6771492494723 with new kappa 0.188646660887983."
+#&gt; [1] "*** Resampling with 17 unique indices took 0 sec ***"
+#&gt; [1] "16 M-H proposals accepted. Temp ESS is 25.5102040816327"
+#&gt; [1] 5720.547 3180.812
+#&gt; [1] "Iteration 13 took 0sec. for 1 MCMC loops (acceptance rate 0.32)"
+#&gt; [1] "Reweighting took 0sec. for ESS 23.1239742072579 with new kappa 0.239356244582484."
+#&gt; [1] "*** Resampling with 25 unique indices took 0 sec ***"
+#&gt; [1] "9 M-H proposals accepted. Temp ESS is 20.1612903225806"
+#&gt; [1] 6298.792 3004.667
+#&gt; [1] "Iteration 14 took 0sec. for 1 MCMC loops (acceptance rate 0.18)"
+#&gt; [1] "Reweighting took 0sec. for ESS 18.336896992616 with new kappa 0.286896479296078."
+#&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
+#&gt; [1] "14 M-H proposals accepted. Temp ESS is 17.8571428571429"
+#&gt; [1] 6449.332 3051.928
+#&gt; [1] "Iteration 15 took 0sec. for 1 MCMC loops (acceptance rate 0.28)"
+#&gt; [1] "Reweighting took 0.0199999999999996sec. for ESS 16.1983228556296 with new kappa 0.331465449340073."
 #&gt; [1] "*** Resampling with 19 unique indices took 0 sec ***"
-#&gt; [1] "9 M-H proposals accepted. Temp ESS is 15.4320987654321"
-#&gt; [1] 9749.091 3519.827
-#&gt; [1] "Iteration 27 took 0.00499999999999545sec. for 1 MCMC loops (acceptance rate 0.18)"
-#&gt; [1] "Reweighting took 0sec. for ESS 15.6206834105581 with new kappa 1."
+#&gt; [1] "13 M-H proposals accepted. Temp ESS is 20.1612903225806"
+#&gt; [1] 6597.955 2861.793
+#&gt; [1] "Iteration 16 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.26)"
+#&gt; [1] "Reweighting took 0sec. for ESS 17.9813650806255 with new kappa 0.352357154048196."
+#&gt; [1] "*** Resampling with 26 unique indices took 0 sec ***"
+#&gt; [1] "15 M-H proposals accepted. Temp ESS is 21.1864406779661"
+#&gt; [1] 6765.555 2978.587
+#&gt; [1] "Iteration 17 took 0.0200000000000014sec. for 1 MCMC loops (acceptance rate 0.3)"
+#&gt; [1] "Reweighting took 0.00999999999999979sec. for ESS 19.3603429285685 with new kappa 0.362476573516193."
+#&gt; [1] "*** Resampling with 26 unique indices took 0 sec ***"
+#&gt; [1] "5 M-H proposals accepted. Temp ESS is 18.1159420289855"
+#&gt; [1] 6848.542 2928.699
+#&gt; [1] "Iteration 18 took 0.00999999999999979sec. for 1 MCMC loops (acceptance rate 0.1)"
+#&gt; [1] "Reweighting took 0sec. for ESS 16.3145035262298 with new kappa 0.382399180593812."
+#&gt; [1] "*** Resampling with 24 unique indices took 0 sec ***"
+#&gt; [1] "15 M-H proposals accepted. Temp ESS is 26.0416666666667"
+#&gt; [1] 6901.877 2881.806
+#&gt; [1] "Iteration 19 took 0sec. for 1 MCMC loops (acceptance rate 0.3)"
+#&gt; [1] "Reweighting took 0sec. for ESS 23.9521036768412 with new kappa 0.401699206200256."
+#&gt; [1] "*** Resampling with 24 unique indices took 0 sec ***"
+#&gt; [1] "14 M-H proposals accepted. Temp ESS is 26.0416666666667"
+#&gt; [1] 6733.589 3028.415
+#&gt; [1] "Iteration 20 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.28)"
+#&gt; [1] "Reweighting took 0.00999999999999979sec. for ESS 22.7662892950956 with new kappa 0.43909300581274."
+#&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
+#&gt; [1] "8 M-H proposals accepted. Temp ESS is 17.6056338028169"
+#&gt; [1] 7097.211 3013.068
+#&gt; [1] "Iteration 21 took 0.00999999999999979sec. for 1 MCMC loops (acceptance rate 0.16)"
+#&gt; [1] "Reweighting took 0sec. for ESS 14.9787087456132 with new kappa 0.474149692949443."
+#&gt; [1] "*** Resampling with 20 unique indices took 0 sec ***"
+#&gt; [1] "12 M-H proposals accepted. Temp ESS is 13.1578947368421"
+#&gt; [1] 7377.151 3067.840
+#&gt; [1] "Iteration 22 took 0sec. for 1 MCMC loops (acceptance rate 0.24)"
+#&gt; [1] "Reweighting took 0sec. for ESS 11.374196803767 with new kappa 0.507015337140103."
+#&gt; [1] "*** Resampling with 17 unique indices took 0 sec ***"
+#&gt; [1] "12 M-H proposals accepted. Temp ESS is 10.2459016393443"
+#&gt; [1] 7678.229 3230.539
+#&gt; [1] "Iteration 23 took 0sec. for 1 MCMC loops (acceptance rate 0.24)"
+#&gt; [1] "Reweighting took 0sec. for ESS 9.09202415093272 with new kappa 0.537826878568847."
+#&gt; [1] "*** Resampling with 16 unique indices took 0 sec ***"
+#&gt; [1] "11 M-H proposals accepted. Temp ESS is 11.3636363636364"
+#&gt; [1] 7857.739 3300.104
+#&gt; [1] "Iteration 24 took 0sec. for 1 MCMC loops (acceptance rate 0.22)"
+#&gt; [1] "Reweighting took 0sec. for ESS 9.96441413979713 with new kappa 0.595598518747741."
+#&gt; [1] "*** Resampling with 16 unique indices took 0 sec ***"
+#&gt; [1] "16 M-H proposals accepted. Temp ESS is 12.7551020408163"
+#&gt; [1] 8050.136 3148.604
+#&gt; [1] "Iteration 25 took 0sec. for 1 MCMC loops (acceptance rate 0.32)"
+#&gt; [1] "Reweighting took 0sec. for ESS 11.3063638020647 with new kappa 0.79779925937387."
+#&gt; [1] "*** Resampling with 14 unique indices took 0 sec ***"
+#&gt; [1] "13 M-H proposals accepted. Temp ESS is 15.625"
+#&gt; [1] 8743.733 3133.301
+#&gt; [1] "Iteration 26 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.26)"
+#&gt; [1] "Reweighting took 0sec. for ESS 13.1415203588948 with new kappa 0.898899629686935."
+#&gt; [1] "*** Resampling with 20 unique indices took 0 sec ***"
+#&gt; [1] "7 M-H proposals accepted. Temp ESS is 13.8888888888889"
+#&gt; [1] 8747.184 3105.890
+#&gt; [1] "Iteration 27 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.14)"
+#&gt; [1] "Reweighting took 0sec. for ESS 12.4626912816888 with new kappa 0.949449814843468."
 #&gt; [1] "*** Resampling with 19 unique indices took 0 sec ***"
-#&gt; [1] "5 M-H proposals accepted. Temp ESS is 13.1578947368421"
-#&gt; [1] 9796.170 3474.857
-#&gt; [1] "Iteration 28 took 0.00499999999999545sec. for 1 MCMC loops (acceptance rate 0.1)"</div></pre>
+#&gt; [1] "11 M-H proposals accepted. Temp ESS is 15.4320987654321"
+#&gt; [1] 8879.895 3051.112
+#&gt; [1] "Iteration 28 took 0.0200000000000014sec. for 1 MCMC loops (acceptance rate 0.22)"
+#&gt; [1] "Reweighting took 0sec. for ESS 14.060139388755 with new kappa 1."
+#&gt; [1] "*** Resampling with 20 unique indices took 0 sec ***"
+#&gt; [1] "21 M-H proposals accepted. Temp ESS is 18.9393939393939"
+#&gt; [1] 8818.267 3008.041
+#&gt; [1] "Iteration 29 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.42)"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -341,13 +353,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
