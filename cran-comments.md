@@ -3,8 +3,6 @@
 
 * Travis CI on Ubuntu, see status at
     + <https://travis-ci.org/mooresm/serrsBayes>
-* `devtools::build_win`, see status at
-    + <https://win-builder.r-project.org/tC4e7e09YD9D/00check.log>
 * `rhub::check_for_cran`, see status at
     + Ubuntu Linux, R-devel, GCC <https://builder.r-hub.io/status/serrsBayes_0.4-1.tar.gz-a570a771ceb54c3a8b0bc9d4dd520e83>
     + Oracle Solaris 10, x86, 32 bit, R-patched <https://builder.r-hub.io/status/serrsBayes_0.4-1.tar.gz-0f235d6f0df443ac83b8915b39e8c966>

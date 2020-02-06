@@ -17,7 +17,7 @@ Status](https://img.shields.io/codecov/c/github/mooresm/serrsBayes/master.svg)](
 `serrsBayes` provides model-based quantification of surface-enhanced
 resonance Raman spectroscopy (SERRS) using sequential Monte Carlo (SMC)
 algorithms. The details of the Bayesian model and informative priors are
-provided in the arXiv preprint, Moores et al. (2016; v2 2018) “[Bayesian
+provided in the arXiv preprint, Moores et al. (2016; v2 2018) “[Bayesian
 modelling and quantification of Raman
 spectroscopy.](https://arxiv.org/abs/1604.07299)” Development of this
 software was supported by the UK Engineering & Physical Sciences
@@ -68,8 +68,7 @@ lines(wavenumbers, baseline + signature, col=4, lty=2, lwd=2)
 
 ![](inst/image/README-example-1.png)<!-- -->
 
-Fit the model using
-SMC:
+Fit the model using SMC:
 
 ``` r
 lPriors <- list(scale.mu=log(11.6) - (0.4^2)/2, scale.sd=0.4, bl.smooth=10^11, bl.knots=50,
@@ -82,7 +81,7 @@ Sample 200 particles from the posterior distribution:
 ``` r
 print(tm)
 #>    user  system elapsed 
-#> 217.139   2.145 220.691
+#>  450.61    4.12  116.87
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 for (pt in samp.idx) {
