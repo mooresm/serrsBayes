@@ -133,10 +133,10 @@ inline double diffTM(const struct timeval &x, const struct timeval &y)
 //' Pitt, dos Santos Silva, Giordani & Kohn (2012)
 //' "On some properties of Markov chain Monte Carlo simulation methods based on the particle filter"
 //' J. Econometrics 171(2): 134--151,
-//' DOI: \href{http://dx.doi.org/10.1016/j.jeconom.2012.06.004}{10.1016/j.jeconom.2012.06.004}
+//' DOI: \doi{10.1016/j.jeconom.2012.06.004}
 //' 
 //' Zhou, Johansen & Aston (2015) "Towards Automatic Model Comparison: An Adaptive Sequential Monte Carlo Approach"
-//' \href{http://arxiv.org/abs/1303.3123}{arXiv:1303.3123} [stat.ME]
+//' \href{https://arxiv.org/abs/1303.3123}{arXiv:1303.3123} [stat.ME]
 // [[Rcpp::export]]
 List reWeightParticles(NumericMatrix spectra, NumericMatrix peaks, NumericMatrix baselines, int i, int start,
                        NumericVector sigma, NumericVector old_weights, double alpha, IntegerVector idx)
@@ -180,11 +180,10 @@ List reWeightParticles(NumericMatrix spectra, NumericMatrix peaks, NumericMatrix
 //' @return Vector of indices to the particles that will be propagated forward to the next generation (i.e. the parents)
 //' @references
 //' Liu & Chen (1998) "Sequential Monte Carlo methods for dynamic systems," JASA 93(443): 1032-1044,
-//' DOI: \href{http://dx.doi.org/10.1080/01621459.1998.10473765}{10.1080/01621459.1998.10473765}
+//' \doi{10.1080/01621459.1998.10473765}
 //' 
 //' Douc, Cappe & Moulines (2005) "Comparison of resampling schemes for particle filtering"
-//' In Proc. 4th IEEE Int. Symp. ISPA, pp. 64-69,
-//' DOI: \href{http://dx.doi.org/10.1109/ISPA.2005.195385}{10.1109/ISPA.2005.195385}
+//' In Proc. 4th IEEE Int. Symp. ISPA, pp. 64-69, \doi{10.1109/ISPA.2005.195385}
 // [[Rcpp::export]]
 Eigen::ArrayXi residualResampling(NumericVector log_wt)
 {
@@ -250,7 +249,7 @@ Eigen::ArrayXi residualResampling(NumericVector log_wt)
 //' @param nwl number of wavenumbers
 //' @return Vector of indices to the parents of the resampled particles.
 //' @references
-//' Murray, L.M., Lee, A. & Jacob, P.E. (2015) "Parallel resampling in the particle filter" \href{http://arxiv.org/abs/1301.4019}{arXiv:1301.4019v3}
+//' Murray, L.M., Lee, A. & Jacob, P.E. (2015) "Parallel resampling in the particle filter" \href{https://arxiv.org/abs/1301.4019}{arXiv:1301.4019v3}
 //' @seealso \code{\link{residualResampling}}
 // [[Rcpp::export]]
 Eigen::ArrayXi resampleParticles(NumericVector log_weights, NumericMatrix ampMx, NumericMatrix scaleMx,
@@ -395,10 +394,10 @@ Eigen::VectorXd weightedGaussian(Eigen::VectorXd location, Eigen::VectorXd scale
 //' @return The number of RWMH proposals that were accepted.
 //' @references
 //' Chib (1995) "Marginal Likelihood from the Gibbs Output," JASA 90(432): 1313--1321,
-//' DOI: \href{http://dx.doi.org/10.1080/01621459.1995.10476635}{10.1080/01621459.1995.10476635}
+//' \doi{10.1080/01621459.1995.10476635}
 //' 
 //' Rosenthal (2000) "Parallel computing and Monte Carlo algorithms" Far East J. Theor. Stat. 4(2): 207--236,
-//' URL: \href{http://www.pphmj.com/abstract/1961.htm}{http://www.pphmj.com/abstract/1961.htm}
+//' URL: \href{https://www.pphmj.com/abstract/1961.htm}{https://www.pphmj.com/abstract/1961.htm}
 // [[Rcpp::export]]
 long marginalMetropolisUpdate(Eigen::MatrixXd spectra, unsigned n, Eigen::VectorXd conc, Eigen::VectorXd wavelengths,
               Eigen::VectorXd peakWL, NumericMatrix betaMx, NumericMatrix scaleMx, NumericVector sigma,

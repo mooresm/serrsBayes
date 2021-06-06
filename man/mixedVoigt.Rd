@@ -34,5 +34,5 @@ given the parameters of the peaks. This function is thread-safe.
 }
 \references{
 Thompson, Cox & Hastings (1987) "Rietveld refinement of Debye--Scherrer synchrotron X-ray data from \eqn{Al_2 O_3},"
-J. Appl. Crystallogr. 20(2): 79--83, DOI: \href{https://doi.org/10.1107/S0021889887087090}{10.1107/S0021889887087090}
+J. Appl. Crystallogr. 20(2): 79--83, DOI: \doi{10.1107/S0021889887087090}
 }

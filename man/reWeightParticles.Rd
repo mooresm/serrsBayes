@@ -51,8 +51,8 @@ Update the importance weights of each particle.
 Pitt, dos Santos Silva, Giordani & Kohn (2012)
 "On some properties of Markov chain Monte Carlo simulation methods based on the particle filter"
 J. Econometrics 171(2): 134--151,
-DOI: \href{http://dx.doi.org/10.1016/j.jeconom.2012.06.004}{10.1016/j.jeconom.2012.06.004}
+DOI: \doi{10.1016/j.jeconom.2012.06.004}
 
 Zhou, Johansen & Aston (2015) "Towards Automatic Model Comparison: An Adaptive Sequential Monte Carlo Approach"
-\href{http://arxiv.org/abs/1303.3123}{arXiv:1303.3123} [stat.ME]
+\href{https://arxiv.org/abs/1303.3123}{arXiv:1303.3123} [stat.ME]
 }

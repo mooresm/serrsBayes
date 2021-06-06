@@ -133,7 +133,7 @@ double calcVoigtFWHM(double f_G, double f_L)
 //'   mixedVoigt(loc,scG,scL,amp,Cal_V)
 //' @references
 //' Thompson, Cox & Hastings (1987) "Rietveld refinement of Debye--Scherrer synchrotron X-ray data from \eqn{Al_2 O_3},"
-//' J. Appl. Crystallogr. 20(2): 79--83, DOI: \href{https://doi.org/10.1107/S0021889887087090}{10.1107/S0021889887087090}
+//' J. Appl. Crystallogr. 20(2): 79--83, DOI: \doi{10.1107/S0021889887087090}
 // [[Rcpp::export]]
 Eigen::VectorXd mixedVoigt(Eigen::VectorXd location, Eigen::VectorXd scale_G, Eigen::VectorXd scale_L, Eigen::VectorXd amplitude, Eigen::VectorXd wavenum)
 {
@@ -171,7 +171,7 @@ Eigen::VectorXd mixedVoigt(Eigen::VectorXd location, Eigen::VectorXd scale_G, Ei
 //' @return The Voigt mixing weights for each peak, between 0 (Gaussian) and 1 (Lorentzian).
 //' @references
 //' Thompson, Cox & Hastings (1987) "Rietveld refinement of Debye--Scherrer synchrotron X-ray data from \eqn{Al_2 O_3},"
-//' J. Appl. Crystallogr. 20(2): 79--83, DOI: \href{https://doi.org/10.1107/S0021889887087090}{10.1107/S0021889887087090}
+//' J. Appl. Crystallogr. 20(2): 79--83, \doi{10.1107/S0021889887087090}
 // [[Rcpp::export]]
 Eigen::VectorXd getVoigtParam(Eigen::VectorXd scale_G, Eigen::VectorXd scale_L)
 {
@@ -287,10 +287,10 @@ double computeLogLikelihood(Eigen::VectorXd obsi, double lambda, double prErrNu,
 //' @return The number of RWMH proposals that were accepted.
 //' @references
 //' Chib (1995) "Marginal Likelihood from the Gibbs Output," JASA 90(432): 1313--1321,
-//' DOI: \href{http://dx.doi.org/10.1080/01621459.1995.10476635}{10.1080/01621459.1995.10476635}
+//' \doi{10.1080/01621459.1995.10476635}
 //' 
 //' Rosenthal (2000) "Parallel computing and Monte Carlo algorithms" Far East J. Theor. Stat. 4(2): 207--236,
-//' URL: \href{http://www.pphmj.com/abstract/1961.htm}{http://www.pphmj.com/abstract/1961.htm}
+//' URL: \href{https://www.pphmj.com/abstract/1961.htm}{https://www.pphmj.com/abstract/1961.htm}
 // [[Rcpp::export]]
 long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::VectorXd conc, Eigen::VectorXd wavenum,
                    NumericMatrix thetaMx, NumericMatrix logThetaMx, Eigen::MatrixXd mhChol, List priors)

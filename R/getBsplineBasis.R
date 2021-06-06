@@ -21,8 +21,7 @@
 #' @importFrom Matrix Matrix
 #' @references
 #' Eilers, PHC & Marx, BD (1996) "Flexible smoothing with B-splines and
-#' penalties," Statist. Sci.  11(2): 89--121,
-#' DOI: \href{http://dx.doi.org/10.1214/ss/1038425655}{10.1214/ss/1038425655}
+#' penalties," Statist. Sci.  11(2): 89--121, \doi{10.1214/ss/1038425655}
 #' 
 #' Green, PJ & Silverman, BW (1994) "Nonparametric Regression and
 #' Generalized Linear Models: a roughness penalty approach" Chapman & Hall, Boca

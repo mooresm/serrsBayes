@@ -60,10 +60,10 @@ effectiveSampleSize <- function(log_weights) {
 #' Pitt, dos Santos Silva, Giordani & Kohn (2012)
 #' "On some properties of Markov chain Monte Carlo simulation methods based on the particle filter"
 #' J. Econometrics 171(2): 134--151,
-#' DOI: \href{http://dx.doi.org/10.1016/j.jeconom.2012.06.004}{10.1016/j.jeconom.2012.06.004}
+#' DOI: \doi{10.1016/j.jeconom.2012.06.004}
 #' 
 #' Zhou, Johansen & Aston (2015) "Towards Automatic Model Comparison: An Adaptive Sequential Monte Carlo Approach"
-#' \href{http://arxiv.org/abs/1303.3123}{arXiv:1303.3123} [stat.ME]
+#' \href{https://arxiv.org/abs/1303.3123}{arXiv:1303.3123} [stat.ME]
 reWeightParticles <- function(spectra, peaks, baselines, i, start, sigma, old_weights, alpha, idx) {
     .Call('_serrsBayes_reWeightParticles', PACKAGE = 'serrsBayes', spectra, peaks, baselines, i, start, sigma, old_weights, alpha, idx)
 }
@@ -74,11 +74,10 @@ reWeightParticles <- function(spectra, peaks, baselines, i, start, sigma, old_we
 #' @return Vector of indices to the particles that will be propagated forward to the next generation (i.e. the parents)
 #' @references
 #' Liu & Chen (1998) "Sequential Monte Carlo methods for dynamic systems," JASA 93(443): 1032-1044,
-#' DOI: \href{http://dx.doi.org/10.1080/01621459.1998.10473765}{10.1080/01621459.1998.10473765}
+#' \doi{10.1080/01621459.1998.10473765}
 #' 
 #' Douc, Cappe & Moulines (2005) "Comparison of resampling schemes for particle filtering"
-#' In Proc. 4th IEEE Int. Symp. ISPA, pp. 64-69,
-#' DOI: \href{http://dx.doi.org/10.1109/ISPA.2005.195385}{10.1109/ISPA.2005.195385}
+#' In Proc. 4th IEEE Int. Symp. ISPA, pp. 64-69, \doi{10.1109/ISPA.2005.195385}
 residualResampling <- function(log_wt) {
     .Call('_serrsBayes_residualResampling', PACKAGE = 'serrsBayes', log_wt)
 }
@@ -95,7 +94,7 @@ residualResampling <- function(log_wt) {
 #' @param nwl number of wavenumbers
 #' @return Vector of indices to the parents of the resampled particles.
 #' @references
-#' Murray, L.M., Lee, A. & Jacob, P.E. (2015) "Parallel resampling in the particle filter" \href{http://arxiv.org/abs/1301.4019}{arXiv:1301.4019v3}
+#' Murray, L.M., Lee, A. & Jacob, P.E. (2015) "Parallel resampling in the particle filter" \href{https://arxiv.org/abs/1301.4019}{arXiv:1301.4019v3}
 #' @seealso \code{\link{residualResampling}}
 resampleParticles <- function(log_weights, ampMx, scaleMx, peaks, baselines, n_y, nwl) {
     .Call('_serrsBayes_resampleParticles', PACKAGE = 'serrsBayes', log_weights, ampMx, scaleMx, peaks, baselines, n_y, nwl)
@@ -171,10 +170,10 @@ weightedGaussian <- function(location, scale, amplitude, wavelengths) {
 #' @return The number of RWMH proposals that were accepted.
 #' @references
 #' Chib (1995) "Marginal Likelihood from the Gibbs Output," JASA 90(432): 1313--1321,
-#' DOI: \href{http://dx.doi.org/10.1080/01621459.1995.10476635}{10.1080/01621459.1995.10476635}
+#' \doi{10.1080/01621459.1995.10476635}
 #' 
 #' Rosenthal (2000) "Parallel computing and Monte Carlo algorithms" Far East J. Theor. Stat. 4(2): 207--236,
-#' URL: \href{http://www.pphmj.com/abstract/1961.htm}{http://www.pphmj.com/abstract/1961.htm}
+#' URL: \href{https://www.pphmj.com/abstract/1961.htm}{https://www.pphmj.com/abstract/1961.htm}
 marginalMetropolisUpdate <- function(spectra, n, conc, wavelengths, peakWL, betaMx, scaleMx, sigma, expMx, baselines, sd_mh, priors) {
     .Call('_serrsBayes_marginalMetropolisUpdate', PACKAGE = 'serrsBayes', spectra, n, conc, wavelengths, peakWL, betaMx, scaleMx, sigma, expMx, baselines, sd_mh, priors)
 }
@@ -241,7 +240,7 @@ sumDlogNorm <- function(x, meanlog, sdlog) {
 #'   mixedVoigt(loc,scG,scL,amp,Cal_V)
 #' @references
 #' Thompson, Cox & Hastings (1987) "Rietveld refinement of Debye--Scherrer synchrotron X-ray data from \eqn{Al_2 O_3},"
-#' J. Appl. Crystallogr. 20(2): 79--83, DOI: \href{https://doi.org/10.1107/S0021889887087090}{10.1107/S0021889887087090}
+#' J. Appl. Crystallogr. 20(2): 79--83, DOI: \doi{10.1107/S0021889887087090}
 mixedVoigt <- function(location, scale_G, scale_L, amplitude, wavenum) {
     .Call('_serrsBayes_mixedVoigt', PACKAGE = 'serrsBayes', location, scale_G, scale_L, amplitude, wavenum)
 }
@@ -263,7 +262,7 @@ mixedVoigt <- function(location, scale_G, scale_L, amplitude, wavenum) {
 #' @return The Voigt mixing weights for each peak, between 0 (Gaussian) and 1 (Lorentzian).
 #' @references
 #' Thompson, Cox & Hastings (1987) "Rietveld refinement of Debye--Scherrer synchrotron X-ray data from \eqn{Al_2 O_3},"
-#' J. Appl. Crystallogr. 20(2): 79--83, DOI: \href{https://doi.org/10.1107/S0021889887087090}{10.1107/S0021889887087090}
+#' J. Appl. Crystallogr. 20(2): 79--83, \doi{10.1107/S0021889887087090}
 getVoigtParam <- function(scale_G, scale_L) {
     .Call('_serrsBayes_getVoigtParam', PACKAGE = 'serrsBayes', scale_G, scale_L)
 }
@@ -323,10 +322,10 @@ computeLogLikelihood <- function(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal
 #' @return The number of RWMH proposals that were accepted.
 #' @references
 #' Chib (1995) "Marginal Likelihood from the Gibbs Output," JASA 90(432): 1313--1321,
-#' DOI: \href{http://dx.doi.org/10.1080/01621459.1995.10476635}{10.1080/01621459.1995.10476635}
+#' \doi{10.1080/01621459.1995.10476635}
 #' 
 #' Rosenthal (2000) "Parallel computing and Monte Carlo algorithms" Far East J. Theor. Stat. 4(2): 207--236,
-#' URL: \href{http://www.pphmj.com/abstract/1961.htm}{http://www.pphmj.com/abstract/1961.htm}
+#' URL: \href{https://www.pphmj.com/abstract/1961.htm}{https://www.pphmj.com/abstract/1961.htm}
 mhUpdateVoigt <- function(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx, mhChol, priors) {
     .Call('_serrsBayes_mhUpdateVoigt', PACKAGE = 'serrsBayes', spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx, mhChol, priors)
 }

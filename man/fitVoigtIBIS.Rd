@@ -49,5 +49,5 @@ Fit the model with Voigt peaks using iterated batch importance sampling (IBIS).
 }
 \references{
 Chopin (2002) "A Sequential Particle Filter Method for Static Models," Biometrika 89(3): 539--551,
-DOI: \href{http://dx.doi.org/10.1093/biomet/89.3.539}{10.1093/biomet/89.3.539}
+\doi{10.1093/biomet/89.3.539}
 }

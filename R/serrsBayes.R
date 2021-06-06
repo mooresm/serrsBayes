@@ -38,10 +38,10 @@
 #' @author
 #' M. T. Moores, J. Carson & M. Girolami
 #' 
-#' Maintainer: Matt Moores <M.T.Moores@@warwick.ac.uk>
+#' Maintainer: Matt Moores <mmoores@gmail.com>
 #' 
 #' @references
-#' Moores, Gracie, Carson, Faulds, Graham & Girolami "Bayesian modelling and quantification of Raman spectroscopy," \href{http://arxiv.org/find/stat/1/au:+Moores_M/0/1/0/all/0/1}{arXiv preprint}
+#' Moores, Gracie, Carson, Faulds, Graham & Girolami "Bayesian modelling and quantification of Raman spectroscopy," \href{https://arxiv.org/abs/1604.07299}{arXiv preprint}
 #' @examples
 #' # simulate some data with known parameter values
 #' wavenumbers <- seq(700,1400,by=2)

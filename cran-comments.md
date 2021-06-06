@@ -1,12 +1,13 @@
+Fixed WARN due to options digits=0 in vignette
 
 ## Test environments
 
 * Travis CI on Ubuntu, see status at
     + <https://travis-ci.org/mooresm/serrsBayes>
+* `devtools::check_win_devel` OK, see status at
+  + <https://win-builder.r-project.org/ODnQ0xjcpf02/00check.log>
 * `rhub::check_for_cran`, see status at
-    + Ubuntu Linux, R-devel, GCC <https://builder.r-hub.io/status/serrsBayes_0.4-1.tar.gz-a570a771ceb54c3a8b0bc9d4dd520e83>
-    + Oracle Solaris 10, x86, 32 bit, R-patched <https://builder.r-hub.io/status/serrsBayes_0.4-1.tar.gz-0f235d6f0df443ac83b8915b39e8c966>
-    + macOS 10.11 El Capitan, R-release <https://builder.r-hub.io/status/serrsBayes_0.4-1.tar.gz-a40d113a0cb240889326bde56db0de56>
+   + `debian-gcc-devel` <https://builder.r-hub.io/status/serrsBayes_0.4-2.tar.gz-0d94698673984883a094f9c140137025>
 
 ## R CMD check results
 

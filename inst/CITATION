@@ -30,13 +30,13 @@ citEntry(entry = "Article",
                                    as.person("Mark Girolami")),
          journal      = "arXiv preprint",
          year         = "2016",
-         url          = "http://arxiv.org/abs/1604.07299",
+         url          = "https://arxiv.org/abs/1604.07299",
          
          textVersion  =
            paste("Matthew T. Moores, Kirsten Gracie, Jake Carson, Karen Faulds, Duncan Graham & Mark Girolami (2016).",
                  "Bayesian modelling and quantification of Raman spectroscopy.",
                  "arXiv preprint arXiv:1604.07299 [stat.AP]",
-                 "URL http://arxiv.org/abs/1604.07299")
+                 "URL https://arxiv.org/abs/1604.07299")
 )
 
 citEntry(entry = "Article",
@@ -48,11 +48,11 @@ citEntry(entry = "Article",
                                    person(c("Erik","M."),"Vartiainen")),
          journal      = "arXiv preprint",
          year         = "2020",
-         url          = "http://arxiv.org/abs/2005.06830",
+         url          = "https://arxiv.org/abs/2005.06830",
          
          textVersion  =
            paste("Harkonen T, Roininen L, Moores MT & Vartiainen EM (2020).",
                  "Bayesian quantification for coherent anti-Stokes Raman scattering spectroscopy.",
                  "arXiv preprint arXiv:2005.06830 [stat.AP]",
-                 "URL http://arxiv.org/abs/2005.06830")
+                 "URL https://arxiv.org/abs/2005.06830")
 )

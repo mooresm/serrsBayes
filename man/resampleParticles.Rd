@@ -30,7 +30,7 @@ Resample in place to avoid expensive copying of data structures, using a permuta
 of the ancestry vector.
 }
 \references{
-Murray, L.M., Lee, A. & Jacob, P.E. (2015) "Parallel resampling in the particle filter" \href{http://arxiv.org/abs/1301.4019}{arXiv:1301.4019v3}
+Murray, L.M., Lee, A. & Jacob, P.E. (2015) "Parallel resampling in the particle filter" \href{https://arxiv.org/abs/1301.4019}{arXiv:1301.4019v3}
 }
 \seealso{
 \code{\link{residualResampling}}

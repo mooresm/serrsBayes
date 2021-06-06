@@ -6,7 +6,7 @@
 #' @param lResult List of results from the previous call to ``fitVoigtPeaksSMC`` or ``fitVoigtIBIS``
 #' @references
 #' Chopin (2002) "A Sequential Particle Filter Method for Static Models," Biometrika 89(3): 539--551,
-#' DOI: \href{http://dx.doi.org/10.1093/biomet/89.3.539}{10.1093/biomet/89.3.539}
+#' \doi{10.1093/biomet/89.3.539}
 fitVoigtIBIS <- function(wl, spc, n, lResult, conc=rep(1.0,nrow(spc)), batch=rep(1,nrow(spc)),
                          npart=10000, rate=0.9, mcAR=0.23, mcSteps=10, minESS=npart/2, destDir=NA) {
   ptm <- proc.time()
