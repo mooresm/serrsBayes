@@ -1,3 +1,17 @@
+# serrsBayes 0.4-2
+
+## New Features
+
+* MCMC iterations will stop when temp ESS reaches the total number of particles (adaptive number of MCMC steps)
+* Added DOI from Zenodo to CITATION file.
+
+## Bug Fixes
+
+* Fixed issue with digits = 0 in vignettes (CRAN WARN)
+* Removed obsolete call to `Rcpp::LdFlags()` from Makevars.win
+* Added fallback to boost MCMC acceptance rate if it falls below 15% of proposals
+* Regenerated the datasets result.rda	& result2.rda to adjust for the new way of calculating FWHM
+
 # serrsBayes 0.4-1
 
 ## New Features

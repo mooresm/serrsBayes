@@ -4,11 +4,13 @@
 \name{methanol}
 \alias{methanol}
 \title{Raman spectrum of methanol (CH3OH)}
-\format{A list containing 2 variables:
+\format{
+A list containing 2 variables:
 \describe{
   \item{wavenumbers}{a numeric Vector of 331 wavenumbers (cm^-1)}
   \item{wavenumbers}{a \code{1 * 331} Matrix of intensity values (a.u.)}
- }}
+ }
+}
 \usage{
 methanol
 }

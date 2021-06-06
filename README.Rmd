@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 [![cran version](http://www.r-pkg.org/badges/version/serrsBayes)](https://cran.r-project.org/package=serrsBayes)
+[![DOI](https://zenodo.org/badge/121410558.svg)](https://zenodo.org/badge/latestdoi/121410558)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/serrsBayes)](https://github.com/metacran/cranlogs.app)
 [![Travis-CI Build Status](https://travis-ci.org/mooresm/serrsBayes.svg?branch=master)](https://travis-ci.org/mooresm/serrsBayes)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mooresm/serrsBayes/master.svg)](https://codecov.io/github/mooresm/serrsBayes?branch=master)

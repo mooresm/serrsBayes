@@ -5,6 +5,7 @@
 
 [![cran
 version](http://www.r-pkg.org/badges/version/serrsBayes)](https://cran.r-project.org/package=serrsBayes)
+[![DOI](https://zenodo.org/badge/121410558.svg)](https://zenodo.org/badge/latestdoi/121410558)
 [![rstudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/serrsBayes)](https://github.com/metacran/cranlogs.app)
 [![Travis-CI Build
@@ -31,9 +32,7 @@ Therapy](http://gow.epsrc.ac.uk/NGBOViewGrant.aspx?GrantRef=EP/L014165/1)”
 Stable releases, including binary packages for Windows & Mac OS, are
 available from CRAN:
 
-  - <https://CRAN.R-project.org/package=serrsBayes>
-
-<!-- end list -->
+-   <https://CRAN.R-project.org/package=serrsBayes>
 
 ``` r
 install.packages("serrsBayes")
@@ -81,7 +80,7 @@ Sample 200 particles from the posterior distribution:
 ``` r
 print(tm)
 #>    user  system elapsed 
-#>  450.61    4.12  116.87
+#>  878.88    2.11  162.00
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 for (pt in samp.idx) {

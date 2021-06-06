@@ -4,8 +4,17 @@
 \alias{mhUpdateVoigt}
 \title{Update the parameters of the Voigt peaks using marginal Metropolis-Hastings.}
 \usage{
-mhUpdateVoigt(spectra, n, kappa, conc, wavenum, thetaMx, logThetaMx,
-  mhChol, priors)
+mhUpdateVoigt(
+  spectra,
+  n,
+  kappa,
+  conc,
+  wavenum,
+  thetaMx,
+  logThetaMx,
+  mhChol,
+  priors
+)
 }
 \arguments{
 \item{spectra}{\code{n_y * nwl} Matrix of observed Raman spectra.}

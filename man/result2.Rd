@@ -4,7 +4,9 @@
 \name{result2}
 \alias{result2}
 \title{SMC particles for methanol (CH3OH)}
-\format{A list containing 15 variables.}
+\format{
+A list containing 15 variables.
+}
 \usage{
 result2
 }

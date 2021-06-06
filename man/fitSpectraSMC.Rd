@@ -4,8 +4,17 @@
 \alias{fitSpectraSMC}
 \title{Fit the model using Sequential Monte Carlo (SMC).}
 \usage{
-fitSpectraSMC(wl, spc, peakWL, lPriors, conc = rep(1, nrow(spc)),
-  npart = 10000, rate = 0.9, minESS = npart/2, destDir = NA)
+fitSpectraSMC(
+  wl,
+  spc,
+  peakWL,
+  lPriors,
+  conc = rep(1, nrow(spc)),
+  npart = 10000,
+  rate = 0.9,
+  minESS = npart/2,
+  destDir = NA
+)
 }
 \arguments{
 \item{wl}{Vector of \code{nwl} wavenumbers at which the spetra are observed.}

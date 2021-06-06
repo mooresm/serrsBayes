@@ -7,7 +7,7 @@ output:
     fig_caption: yes
 bibliography: refs.bib
 vignette: >
-  %\VignetteIndexEntry{Introduction}
+  %\VignetteIndexEntry{Introducing serrsBayes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -62,15 +62,16 @@ Now we run the SMC algorithm to fit the model:
 ```{r SMC, results='hide'}
 data("result", package = "serrsBayes")
 if(!exists("result")) {
-  tm <- system.time(result <- fitVoigtPeaksSMC(wavenumbers, spectra, priors, npart=2000))
-  result$time <- tm
-  save(result, file="result.rda")
+  t1 <- Sys.time()
+  result <- fitVoigtPeaksSMC(wavenumbers, spectra, priors, npart=2000)
+  result$time <- Sys.time() - t1
+  save(result, file="Figure 2/result.rda")
 }
 ```
 
-The default values for the number of particles, Markov chain steps, and learning rate can be somewhat conservative, depending on the application. Unfortunately, the new function `fitVoigtPeaksSMC` has not been parallelised yet, so it only runs on a single core. Thus, it can take a long time to fit the model with 34 peaks and 2401 wavenumbers:
+The default values for the number of particles, Markov chain steps, and learning rate can be somewhat conservative, depending on the application. With 34 peaks and 2401 wavenumbers, fitting the model can take a fair amount of time, even running in parallel with 8 CPU cores:
 ```{r time}
-print(paste(format(result$time["elapsed"]/3600, digits=3),"hours for",length(result$ess),"SMC iterations."))
+print(paste(format(result$time, digits=3),"for",length(result$ess),"SMC iterations."))
 ```
 
 The downside of choosing smaller values for these tuning parameters is that you run the risk of the SMC collapsing. The quality of the particle distribution deteriorates with each iteration, as measured by the effective sample size (ESS):
@@ -83,14 +84,14 @@ plot.ts(result$accept, ylab="accept", main="M-H Acceptance Rate",
         xlab="SMC iteration", ylim=c(0,max(result$accept)))
 abline(h=0.234, col=4, lty=2)
 abline(h=0,lty=2)
-plot.ts(result$times, ylab="time (s)", main="Elapsed Time", xlab="SMC iteration")
+plot.ts(result$times/60, ylab="time (min)", main="Elapsed Time", xlab="SMC iteration")
 plot.ts(result$kappa, ylab=expression(kappa), main="Likelihood Tempering",
         xlab="SMC iteration")
 abline(h=0,lty=2)
 abline(h=1,lty=3,col=4)
 ```
 
-If SMC collapses, the best solution is to increase the number of particles and run it again. Thus, choosing a conservative number to begin with is a sensible strategy. With 2000 particles and 10 M-H steps per SMC iteration, we can see from the above plots that the algorithm has converged to the target distribution. More detailed convergence diagnostics can be obtained from the genealogical history of the particles [@Jacob2015,@Lee2015], but this is not yet implemented in the R package.
+If SMC collapses, the best solution is to increase the number of particles and run it again. Thus, choosing a conservative number to begin with is a sensible strategy. With 8000 particles and a maximum of 60 MCMC steps per SMC iteration, we can see from the above plots that the algorithm has converged to the target distribution. More detailed convergence diagnostics can be obtained from the genealogical history of the particles [@Jacob2015,@Lee2015], but this is not yet implemented in the R package.
 
 ## Posterior Inference
 
@@ -105,8 +106,8 @@ for (pt in 1:length(samp.idx)) {
   k <- samp.idx[pt]
   samp.mat[pt,] <- mixedVoigt(result$location[k,], result$scale_G[k,],
                               result$scale_L[k,], result$beta[k,], wavenumbers)
-  samp.sigi[pt] <- result$sigma
-  samp.lambda[pt] <- result$lambda
+  samp.sigi[pt] <- result$sigma[k]
+  samp.lambda[pt] <- result$lambda[k]
   
   Obsi <- spectra[1,] - samp.mat[pt,]
   g0_Cal <- length(Obsi) * samp.lambda[pt] * result$priors$bl.precision
@@ -152,13 +153,13 @@ for (k in 1:nrow(result$beta)) {
 }
 
 voigtCI <- apply(result$voigt, 2, function(x) quantile(x,probs=c(0.025,0.975)))
-fmtVoigtCI <- format(voigtCI,dig=2)
+fmtVoigtCI <- format(voigtCI,digits=2)
 fwhmCI <- apply(result$FWHM, 2, function(x) quantile(x,probs=c(0.025,0.975)))
-fmtFWHMci <- format(fwhmCI,dig=2)
+fmtFWHMci <- format(fwhmCI,digits=2)
 ampCI <- apply(result$beta, 2, function(x) quantile(x,probs=c(0.025,0.975)))
-fmtAmpCI <- format(ampCI,digits=0,scientific=FALSE)
+fmtAmpCI <- format(ampCI,digits=1,scientific=FALSE)
 locCI <- apply(result$location, 2, function(x) quantile(x,probs=c(0.025,0.975)))
-fmtLocCI <- format(locCI,dig=3)
+fmtLocCI <- format(locCI,digits=3)
 
 library(knitr)
 tabCI <- cbind(paste0("[", fmtLocCI[1,], "; ", fmtLocCI[2,], "]"),

@@ -4,8 +4,7 @@
 \alias{fitSpectraMCMC}
 \title{Fit the model using Markov chain Monte Carlo.}
 \usage{
-fitSpectraMCMC(wl, spc, peakWL, lPriors, sd_mh, niter = 10000,
-  nchains = 4)
+fitSpectraMCMC(wl, spc, peakWL, lPriors, sd_mh, niter = 10000, nchains = 4)
 }
 \arguments{
 \item{wl}{Vector of \code{nwl} wavenumbers at which the spetra are observed.}

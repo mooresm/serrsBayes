@@ -4,8 +4,17 @@
 \alias{reWeightParticles}
 \title{Update the importance weights of each particle.}
 \usage{
-reWeightParticles(spectra, peaks, baselines, i, start, sigma, old_weights,
-  alpha, idx)
+reWeightParticles(
+  spectra,
+  peaks,
+  baselines,
+  i,
+  start,
+  sigma,
+  old_weights,
+  alpha,
+  idx
+)
 }
 \arguments{
 \item{spectra}{\code{n_y * nwl} Matrix of observed Raman spectra.}

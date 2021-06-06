@@ -21,7 +21,7 @@
 #'    scaL.sd=0.4, bl.smooth=5, bl.knots=20, loc.mu=peakLocations, loc.sd=c(5,5),
 #'    beta.mu=c(5000,5000), beta.sd=c(5000,5000), noise.sd=200, noise.nu=4)
 #' result <- fitVoigtPeaksSMC(wavenumbers, spectra, lPriors, npart=50, mcSteps=1)
-fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10000, rate=0.9, mcAR=0.23, mcSteps=10, minESS=npart/2, destDir=NA) {
+fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10000, rate=0.9, mcAR=0.234, mcSteps=20, minESS=npart/2, destDir=NA) {
   N_Peaks <- length(lPriors$loc.mu)
   N_WN_Cal <- length(wl)
   N_Obs_Cal <- nrow(spc)
@@ -119,7 +119,7 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
   Kappa_Hist[1]<-0
   Time_Hist[1]<-iTime[3]
   print(paste("Step 1: initialization for",N_Peaks,"Voigt peaks took",iTime[3],"sec."))
-  print(colMeans(Sample[,(3*N_Peaks+1):(4*N_Peaks)]))
+#  print(colMeans(Sample[,(3*N_Peaks+1):(4*N_Peaks)]))
 
   i<-1
   Cal_I <- 1
@@ -179,7 +179,8 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
       Kappa_Hist[i]<-Kappa
       ESS_Hist[i]<-Temp_ESS
       
-      print(paste0("Reweighting took ",(proc.time()-ptm)[3],"sec. for ESS ",Temp_ESS," with new kappa ",Kappa,"."))
+      print(paste0("Reweighting took ",format((proc.time()-ptm)[3],digits=3),
+                   "sec. for ESS ",format(Temp_ESS,digits=6)," with new kappa ",Kappa,"."))
       
       Acc<-0
       
@@ -219,14 +220,20 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
       
       if(!is.na(MC_AR[i-1])){
         MCMC_MP<-2^(-5*(0.23-MC_AR[i-1]))*MCMC_MP
+        if (MC_AR[i-1] < 0.15) {
+          print(paste("WARNING: M-H Acceptance Rate",MC_AR[i-1],"has fallen below minimum threshold."))
+          MCMC_MP <- MCMC_MP * MC_AR[i-1]^3 # emergency recovery from particle degeneracy
+        }
       }
       mhCov <- MCMC_MP*(2.38^2/(4*N_Peaks))*Prop_Cov
       mhChol <- t(chol(mhCov, pivot = FALSE)) # error if not non-negative definite
 
-      for(mcr in 1:mcSteps){
+      mcr <- 0
+      while(mcr < mcSteps && (mcr == 0 || N_UP < npart)) {
         MC_Steps[i]<-MC_Steps[i]+1
         mh_acc <- mhUpdateVoigt(spc, Cal_I, Kappa_Hist[i], conc, wl, Sample, T_Sample, mhChol, lPriors)
         Acc <- Acc + mh_acc
+        mcr <- mcr + 1
 
         # update effective sample size
         US1<-unique(Sample[,1])
@@ -236,10 +243,10 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
           Temp_W[k]<-sum(Sample[which(Sample[,1]==US1[k]),Offset_1+1])
         }
         Temp_ESS<-1/sum(Temp_W^2)
-        print(paste(mh_acc,"M-H proposals accepted. Temp ESS is",Temp_ESS))
+        print(paste(mh_acc,"M-H proposals accepted. Temp ESS is",format(Temp_ESS,digits=6),
+                    "with",N_UP,"unique particles."))
         ESS_AR[i]<-Temp_ESS
       }
-      
       MC_AR[i]<-Acc/(npart*MC_Steps[i])
     })
     
@@ -252,7 +259,7 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
       print(paste("Interim results saved to",iFile))
     }
 
-    print(colMeans(Sample[,(3*N_Peaks+1):(4*N_Peaks)]))
+#    print(colMeans(Sample[,(3*N_Peaks+1):(4*N_Peaks)]))
     print(paste0("Iteration ",i," took ",iTime[3],"sec. for ",MC_Steps[i]," MCMC loops (acceptance rate ",MC_AR[i],")"))
     if (Kappa >= 1 || MC_AR[i] < 1/npart) {
       break

@@ -4,7 +4,8 @@
 \name{result}
 \alias{result}
 \title{SMC particles for TAMRA+DNA (T20)}
-\format{A list containing 15 variables:
+\format{
+A list containing 15 variables:
 \describe{
   \item{weights}{normalised importance weights for each particle}
   \item{location}{location parameters of 32 peaks}
@@ -20,7 +21,8 @@
   \item{mhSteps}{history of Metropolis-Hastings steps}
   \item{times}{history of times for each SMC iteration}
   \item{time}{computation time taken by the SMC algorithm}
-}}
+}
+}
 \usage{
 result
 }

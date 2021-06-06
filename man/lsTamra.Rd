@@ -4,11 +4,13 @@
 \name{lsTamra}
 \alias{lsTamra}
 \title{Surface-enhanced Raman spectram of tetramethylrhodamine+DNA (T20)}
-\format{A list containing 2 variables:
+\format{
+A list containing 2 variables:
 \describe{
   \item{wavenumbers}{a numeric Vector of 2401 wavenumbers (cm^-1)}
   \item{wavenumbers}{a \code{1 * 2401} Matrix of intensity values (a.u.)}
- }}
+ }
+}
 \usage{
 lsTamra
 }

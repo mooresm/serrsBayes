@@ -3,7 +3,6 @@
 \docType{package}
 \name{serrsBayes}
 \alias{serrsBayes}
-\alias{serrsBayes-package}
 \title{Bayesian modelling and quantification of Raman spectroscopy}
 \description{
 This R package implements sequential Monte Carlo (SMC) algorithms for fitting a
