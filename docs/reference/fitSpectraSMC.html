@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Fit the model using Sequential Monte Carlo (SMC). — fitSpectraSMC" />
 <meta property="og:description" content="Fit the model using Sequential Monte Carlo (SMC)." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -55,7 +58,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">serrsBayes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4-2</span>
       </span>
     </div>
 
@@ -77,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,8 +108,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/mooresm/serrsBayes">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/mooresm/serrsBayes/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,8 +135,17 @@
     <p>Fit the model using Sequential Monte Carlo (SMC).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fitSpectraSMC</span>(<span class='no'>wl</span>, <span class='no'>spc</span>, <span class='no'>peakWL</span>, <span class='no'>lPriors</span>, <span class='kw'>conc</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>spc</span>)),
-  <span class='kw'>npart</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>rate</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>minESS</span> <span class='kw'>=</span> <span class='no'>npart</span>/<span class='fl'>2</span>, <span class='kw'>destDir</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
+    <pre class="usage"><span class='fu'>fitSpectraSMC</span><span class='op'>(</span>
+  <span class='va'>wl</span>,
+  <span class='va'>spc</span>,
+  <span class='va'>peakWL</span>,
+  <span class='va'>lPriors</span>,
+  conc <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span><span class='op'>)</span>,
+  npart <span class='op'>=</span> <span class='fl'>10000</span>,
+  rate <span class='op'>=</span> <span class='fl'>0.9</span>,
+  minESS <span class='op'>=</span> <span class='va'>npart</span><span class='op'>/</span><span class='fl'>2</span>,
+  destDir <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,7 +190,7 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a List containing weighted parameter values, known as particles:</p><dl class='dl-horizontal'>
+    <p>a List containing weighted parameter values, known as particles:</p><dl>
   <dt><code>weights</code></dt><dd><p>Vector of importance weights for each particle.</p></dd>
   <dt><code>beta</code></dt><dd><p><code>npart * npeaks</code> Matrix of regression coefficients for the amplitudes.</p></dd>
   <dt><code>scale</code></dt><dd><p><code>npart * npeaks</code> Matrix of scale parameters.</p></dd>
@@ -196,159 +208,28 @@
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Chopin (2002) "A Sequential Particle Filter Method for Static Models," Biometrika 89(3): 539--551,
-DOI: <a href='http://dx.doi.org/10.1093/biomet/89.3.539'>10.1093/biomet/89.3.539</a></p>
+doi: <a href='https://doi.org/10.1093/biomet/89.3.539'>10.1093/biomet/89.3.539</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>wavenumbers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>200</span>,<span class='fl'>600</span>,<span class='kw'>by</span><span class='kw'>=</span><span class='fl'>10</span>)
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>ncol</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>wavenumbers</span>))
-<span class='no'>peakLocations</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>300</span>,<span class='fl'>500</span>)
-<span class='no'>peakAmplitude</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10000</span>,<span class='fl'>4000</span>)
-<span class='no'>peakScale</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>15</span>)
-<span class='no'>signature</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weightedLorentzian.html'>weightedLorentzian</a></span>(<span class='no'>peakLocations</span>, <span class='no'>peakScale</span>, <span class='no'>peakAmplitude</span>, <span class='no'>wavenumbers</span>)
-<span class='no'>baseline</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>*<span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span>(<span class='no'>wavenumbers</span>/<span class='fl'>200</span>) + <span class='fl'>2</span>*<span class='no'>wavenumbers</span>
-<span class='no'>spectra</span>[<span class='fl'>1</span>,] <span class='kw'>&lt;-</span> <span class='no'>signature</span> + <span class='no'>baseline</span> + <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>wavenumbers</span>),<span class='fl'>0</span>,<span class='fl'>200</span>)
-<span class='no'>lPriors</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>scale.mu</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>11.6</span>) - (<span class='fl'>0.4</span>^<span class='fl'>2</span>)/<span class='fl'>2</span>, <span class='kw'>scale.sd</span><span class='kw'>=</span><span class='fl'>0.4</span>, <span class='kw'>bl.smooth</span><span class='kw'>=</span><span class='fl'>10</span>^<span class='fl'>11</span>, <span class='kw'>bl.knots</span><span class='kw'>=</span><span class='fl'>20</span>,
-                <span class='kw'>beta.mu</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>beta.sd</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>noise.sd</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>noise.nu</span><span class='kw'>=</span><span class='fl'>4</span>)
-<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>fitSpectraSMC</span>(<span class='no'>wavenumbers</span>, <span class='no'>spectra</span>, <span class='no'>peakLocations</span>, <span class='no'>lPriors</span>, <span class='kw'>npart</span><span class='kw'>=</span><span class='fl'>500</span>)</div><div class='output co'>#&gt; [1] "SMC with 1 observations at 1 unique concentrations, 500 particles, and 41 wavenumbers."
-#&gt; [1] "Step 0: computing 20 B-spline basis functions took 0 sec."
-#&gt; [1] "Step 1: initialization for 2 peaks took 0.0199999999999996 sec."
-#&gt; [1] "Observation 1 20200206-171236"
-#&gt; [1] "Baselines took 0 sec"
-#&gt; previous ESS 500 (target: 450 for observation 1 of 1; wavenumber 1 of 41)
-#&gt; Required 1 iterations to reduce ESS from 500 to 124.347
-#&gt; [1] "reweighting took 0 sec for ESS 124.347094238812"
-#&gt; [1] "*** Resampling with 141 unique indices took 0 sec ***"
-#&gt; [1] "MH acceptance rate 0.628 took 0.0100000000000007 sec."
-#&gt; previous ESS 500 (target: 450 for observation 1 of 1; wavenumber 2 of 41)
-#&gt; Required 1 iterations to reduce ESS from 500 to 320.74
-#&gt; [1] "reweighting took 0 sec for ESS 320.740377088985"
-#&gt; [1] "MH acceptance rate 0.326 took 0 sec."
-#&gt; previous ESS 320.74 (target: 288.666 for observation 1 of 1; wavenumber 3 of 41)
-#&gt; Required 1 iterations to reduce ESS from 320.74 to 214.813
-#&gt; [1] "reweighting took 0 sec for ESS 214.812562402227"
-#&gt; [1] "*** Resampling with 213 unique indices took 0.0199999999999996 sec ***"
-#&gt; [1] "MH acceptance rate 0.51 took 0 sec."
-#&gt; previous ESS 500 (target: 450 for observation 1 of 1; wavenumber 4 of 41)
-#&gt; Required 1 iterations to reduce ESS from 500 to 378.378
-#&gt; [1] "reweighting took 0 sec for ESS 378.378221512996"
-#&gt; [1] "MH acceptance rate 0.262 took 0.00999999999999979 sec."
-#&gt; previous ESS 378.378 (target: 340.54 for observation 1 of 1; wavenumber 5 of 41)
-#&gt; Required 1 iterations to reduce ESS from 378.378 to 212.431
-#&gt; [1] "reweighting took 0 sec for ESS 212.43115567311"
-#&gt; [1] "*** Resampling with 209 unique indices took 0 sec ***"
-#&gt; [1] "MH acceptance rate 0.52 took 0.0200000000000005 sec."
-#&gt; previous ESS 500 (target: 450 for observation 1 of 1; wavenumber 6 of 41)
-#&gt; Required 1 iterations to reduce ESS from 500 to 418.27
-#&gt; [1] "reweighting took 0 sec for ESS 418.270434952814"
-#&gt; [1] "MH acceptance rate 0.266 took 0.00999999999999979 sec."
-#&gt; previous ESS 418.27 (target: 376.443 for observation 1 of 1; wavenumber 7 of 41)
-#&gt; Required 1 iterations to reduce ESS from 418.27 to 313.419
-#&gt; [1] "reweighting took 0 sec for ESS 313.419097710268"
-#&gt; [1] "MH acceptance rate 0.27 took 0 sec."
-#&gt; previous ESS 313.419 (target: 282.077 for observation 1 of 1; wavenumber 8 of 41)
-#&gt; Required 1 iterations to reduce ESS from 313.419 to 234.918
-#&gt; [1] "reweighting took 0 sec for ESS 234.918384156081"
-#&gt; [1] "*** Resampling with 221 unique indices took 0.0200000000000005 sec ***"
-#&gt; [1] "MH acceptance rate 0.53 took 0.0199999999999996 sec."
-#&gt; previous ESS 500 (target: 450 for observation 1 of 1; wavenumber 9 of 41)
-#&gt; Required 1 iterations to reduce ESS from 500 to 382.101
-#&gt; [1] "reweighting took 0 sec for ESS 382.10113787029"
-#&gt; [1] "MH acceptance rate 0.252 took 0 sec."
-#&gt; previous ESS 382.101 (target: 343.891 for observation 1 of 1; wavenumber 10 of 41)
-#&gt; Required 2 iterations to reduce ESS from 382.101 to 340.752
-#&gt; [1] "reweighting took 0 sec for ESS 340.75175185415"
-#&gt; [1] "MH acceptance rate 0.24 took 0.00999999999999979 sec."
-#&gt; previous ESS 340.752 (target: 306.677 for observation 1 of 1; wavenumber 12 of 41)
-#&gt; Required 1 iterations to reduce ESS from 340.752 to 257.469
-#&gt; [1] "reweighting took 0 sec for ESS 257.468567934346"
-#&gt; [1] "MH acceptance rate 0.248 took 0.0199999999999996 sec."
-#&gt; previous ESS 257.469 (target: 231.722 for observation 1 of 1; wavenumber 13 of 41)
-#&gt; Required 1 iterations to reduce ESS from 257.469 to 163.637
-#&gt; [1] "reweighting took 0 sec for ESS 163.636924827613"
-#&gt; [1] "*** Resampling with 196 unique indices took 0 sec ***"
-#&gt; [1] "MH acceptance rate 0.38 took 0 sec."
-#&gt; previous ESS 500 (target: 450 for observation 1 of 1; wavenumber 14 of 41)
-#&gt; Required 2 iterations to reduce ESS from 500 to 383.54
-#&gt; [1] "reweighting took 0 sec for ESS 383.539733218961"
-#&gt; [1] "MH acceptance rate 0.236 took 0.00999999999999979 sec."
-#&gt; previous ESS 383.54 (target: 345.186 for observation 1 of 1; wavenumber 16 of 41)
-#&gt; Required 1 iterations to reduce ESS from 383.54 to 329.147
-#&gt; [1] "reweighting took 0 sec for ESS 329.146760390885"
-#&gt; [1] "MH acceptance rate 0.246 took 0.0200000000000014 sec."
-#&gt; previous ESS 329.147 (target: 296.232 for observation 1 of 1; wavenumber 17 of 41)
-#&gt; Required 2 iterations to reduce ESS from 329.147 to 262.715
-#&gt; [1] "reweighting took 0 sec for ESS 262.71519124484"
-#&gt; [1] "MH acceptance rate 0.266 took 0 sec."
-#&gt; previous ESS 262.715 (target: 236.444 for observation 1 of 1; wavenumber 19 of 41)
-#&gt; Required 1 iterations to reduce ESS from 262.715 to 172.819
-#&gt; [1] "reweighting took 0 sec for ESS 172.819040418002"
-#&gt; [1] "*** Resampling with 182 unique indices took 0 sec ***"
-#&gt; [1] "MH acceptance rate 0.546 took 0.00999999999999979 sec."
-#&gt; previous ESS 500 (target: 450 for observation 1 of 1; wavenumber 20 of 41)
-#&gt; Required 2 iterations to reduce ESS from 500 to 445.054
-#&gt; [1] "reweighting took 0 sec for ESS 445.054009605662"
-#&gt; [1] "MH acceptance rate 0.31 took 0.0199999999999996 sec."
-#&gt; previous ESS 445.054 (target: 400.549 for observation 1 of 1; wavenumber 22 of 41)
-#&gt; Required 2 iterations to reduce ESS from 445.054 to 343.64
-#&gt; [1] "reweighting took 0 sec for ESS 343.640127656283"
-#&gt; [1] "MH acceptance rate 0.31 took 0.00999999999999979 sec."
-#&gt; previous ESS 343.64 (target: 309.276 for observation 1 of 1; wavenumber 24 of 41)
-#&gt; Required 2 iterations to reduce ESS from 343.64 to 305.199
-#&gt; [1] "reweighting took 0 sec for ESS 305.198702121203"
-#&gt; [1] "MH acceptance rate 0.302 took 0.0199999999999996 sec."
-#&gt; previous ESS 305.199 (target: 274.679 for observation 1 of 1; wavenumber 26 of 41)
-#&gt; Required 1 iterations to reduce ESS from 305.199 to 259.667
-#&gt; [1] "reweighting took 0 sec for ESS 259.667238819587"
-#&gt; [1] "MH acceptance rate 0.302 took 0 sec."
-#&gt; previous ESS 259.667 (target: 233.701 for observation 1 of 1; wavenumber 27 of 41)
-#&gt; Required 1 iterations to reduce ESS from 259.667 to 210.444
-#&gt; [1] "reweighting took 0.0200000000000014 sec for ESS 210.444067988262"
-#&gt; [1] "*** Resampling with 205 unique indices took 0 sec ***"
-#&gt; [1] "MH acceptance rate 0.484 took 0 sec."
-#&gt; previous ESS 500 (target: 450 for observation 1 of 1; wavenumber 28 of 41)
-#&gt; Required 2 iterations to reduce ESS from 500 to 445.484
-#&gt; [1] "reweighting took 0 sec for ESS 445.48425386648"
-#&gt; [1] "MH acceptance rate 0.3 took 0.00999999999999979 sec."
-#&gt; previous ESS 445.484 (target: 400.936 for observation 1 of 1; wavenumber 30 of 41)
-#&gt; Required 1 iterations to reduce ESS from 445.484 to 321.032
-#&gt; [1] "reweighting took 0 sec for ESS 321.031879468013"
-#&gt; [1] "MH acceptance rate 0.336 took 0 sec."
-#&gt; previous ESS 321.032 (target: 288.929 for observation 1 of 1; wavenumber 31 of 41)
-#&gt; Required 2 iterations to reduce ESS from 321.032 to 287.012
-#&gt; [1] "reweighting took 0.0199999999999996 sec for ESS 287.012114827201"
-#&gt; [1] "MH acceptance rate 0.324 took 0 sec."
-#&gt; previous ESS 287.012 (target: 258.311 for observation 1 of 1; wavenumber 33 of 41)
-#&gt; Required 2 iterations to reduce ESS from 287.012 to 175.12
-#&gt; [1] "reweighting took 0 sec for ESS 175.120181697452"
-#&gt; [1] "*** Resampling with 166 unique indices took 0 sec ***"
-#&gt; [1] "MH acceptance rate 0.57 took 0.00999999999999979 sec."
-#&gt; previous ESS 500 (target: 450 for observation 1 of 1; wavenumber 35 of 41)
-#&gt; Required 3 iterations to reduce ESS from 500 to 391.914
-#&gt; [1] "reweighting took 0 sec for ESS 391.914312402872"
-#&gt; [1] "MH acceptance rate 0.376 took 0.0199999999999996 sec."
-#&gt; previous ESS 391.914 (target: 352.723 for observation 1 of 1; wavenumber 38 of 41)
-#&gt; Required 1 iterations to reduce ESS from 391.914 to 349.783
-#&gt; [1] "reweighting took 0 sec for ESS 349.782811791971"
-#&gt; [1] "MH acceptance rate 0.338 took 0 sec."
-#&gt; previous ESS 349.783 (target: 314.805 for observation 1 of 1; wavenumber 39 of 41)
-#&gt; Required 1 iterations to reduce ESS from 349.783 to 301.755
-#&gt; [1] "reweighting took 0 sec for ESS 301.755196114894"
-#&gt; [1] "MH acceptance rate 0.41 took 0.0100000000000016 sec."
-#&gt; previous ESS 301.755 (target: 271.58 for observation 1 of 1; wavenumber 40 of 41)
-#&gt; Required 2 iterations to reduce ESS from 301.755 to 268.804
-#&gt; [1] "reweighting took 0 sec for ESS 268.803973327769"
-#&gt; [1] "MH acceptance rate 0.444 took 0.0199999999999996 sec."
-#&gt; [1] "SMC iter. 1 took 0.46 sec."</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>wavenumbers</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>200</span>,<span class='fl'>600</span>,by<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>nrow<span class='op'>=</span><span class='fl'>1</span>, ncol<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>wavenumbers</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>peakLocations</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>300</span>,<span class='fl'>500</span><span class='op'>)</span>
+<span class='va'>peakAmplitude</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10000</span>,<span class='fl'>4000</span><span class='op'>)</span>
+<span class='va'>peakScale</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>15</span><span class='op'>)</span>
+<span class='va'>signature</span> <span class='op'>&lt;-</span> <span class='fu'><a href='weightedLorentzian.html'>weightedLorentzian</a></span><span class='op'>(</span><span class='va'>peakLocations</span>, <span class='va'>peakScale</span>, <span class='va'>peakAmplitude</span>, <span class='va'>wavenumbers</span><span class='op'>)</span>
+<span class='va'>baseline</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span><span class='op'>(</span><span class='va'>wavenumbers</span><span class='op'>/</span><span class='fl'>200</span><span class='op'>)</span> <span class='op'>+</span> <span class='fl'>2</span><span class='op'>*</span><span class='va'>wavenumbers</span>
+<span class='va'>spectra</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>signature</span> <span class='op'>+</span> <span class='va'>baseline</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>wavenumbers</span><span class='op'>)</span>,<span class='fl'>0</span>,<span class='fl'>200</span><span class='op'>)</span>
+<span class='va'>lPriors</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>scale.mu<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>11.6</span><span class='op'>)</span> <span class='op'>-</span> <span class='op'>(</span><span class='fl'>0.4</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>, scale.sd<span class='op'>=</span><span class='fl'>0.4</span>, bl.smooth<span class='op'>=</span><span class='fl'>10</span><span class='op'>^</span><span class='fl'>11</span>, bl.knots<span class='op'>=</span><span class='fl'>20</span>,
+                beta.mu<span class='op'>=</span><span class='fl'>5000</span>, beta.sd<span class='op'>=</span><span class='fl'>5000</span>, noise.sd<span class='op'>=</span><span class='fl'>200</span>, noise.nu<span class='op'>=</span><span class='fl'>4</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>result</span> <span class='op'>&lt;-</span> <span class='fu'>fitSpectraSMC</span><span class='op'>(</span><span class='va'>wavenumbers</span>, <span class='va'>spectra</span>, <span class='va'>peakLocations</span>, <span class='va'>lPriors</span>, npart<span class='op'>=</span><span class='fl'>500</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -359,7 +240,7 @@ DOI: <a href='http://dx.doi.org/10.1093/biomet/89.3.539'>10.1093/biomet/89.3.539
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -24,8 +24,8 @@ spectroscopy.](https://arxiv.org/abs/1604.07299)” Development of this
 software was supported by the UK Engineering & Physical Sciences
 Research Council (EPSRC) programme grant “[In Situ Nanoparticle
 Assemblies for Healthcare Diagnostics and
-Therapy](http://gow.epsrc.ac.uk/NGBOViewGrant.aspx?GrantRef=EP/L014165/1)”
-(ref: EP/L014165/1).
+Therapy](https://gtr.ukri.org/projects?ref=EP%2FL014165%2F1)” (ref:
+EP/L014165/1).
 
 # Installation Instructions
 
@@ -80,7 +80,7 @@ Sample 200 particles from the posterior distribution:
 ``` r
 print(tm)
 #>    user  system elapsed 
-#> 259.117   3.388 278.926
+#> 238.885   2.582 245.232
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 for (pt in samp.idx) {

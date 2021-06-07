@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Fit the model with Voigt peaks using Sequential Monte Carlo (SMC). — fitVoigtPeaksSMC" />
 <meta property="og:description" content="Fit the model with Voigt peaks using Sequential Monte Carlo (SMC)." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -55,7 +58,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">serrsBayes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4-2</span>
       </span>
     </div>
 
@@ -77,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,8 +108,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/mooresm/serrsBayes">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/mooresm/serrsBayes/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,9 +135,18 @@
     <p>Fit the model with Voigt peaks using Sequential Monte Carlo (SMC).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fitVoigtPeaksSMC</span>(<span class='no'>wl</span>, <span class='no'>spc</span>, <span class='no'>lPriors</span>, <span class='kw'>conc</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>spc</span>)),
-  <span class='kw'>npart</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>rate</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>mcAR</span> <span class='kw'>=</span> <span class='fl'>0.23</span>, <span class='kw'>mcSteps</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>minESS</span> <span class='kw'>=</span> <span class='no'>npart</span>/<span class='fl'>2</span>, <span class='kw'>destDir</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
+    <pre class="usage"><span class='fu'>fitVoigtPeaksSMC</span><span class='op'>(</span>
+  <span class='va'>wl</span>,
+  <span class='va'>spc</span>,
+  <span class='va'>lPriors</span>,
+  conc <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span><span class='op'>)</span>,
+  npart <span class='op'>=</span> <span class='fl'>10000</span>,
+  rate <span class='op'>=</span> <span class='fl'>0.9</span>,
+  mcAR <span class='op'>=</span> <span class='fl'>0.234</span>,
+  mcSteps <span class='op'>=</span> <span class='fl'>20</span>,
+  minESS <span class='op'>=</span> <span class='va'>npart</span><span class='op'>/</span><span class='fl'>2</span>,
+  destDir <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -183,166 +195,26 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>wavenumbers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>200</span>,<span class='fl'>600</span>,<span class='kw'>by</span><span class='kw'>=</span><span class='fl'>10</span>)
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>ncol</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>wavenumbers</span>))
-<span class='no'>peakLocations</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>300</span>,<span class='fl'>500</span>)
-<span class='no'>peakAmplitude</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10000</span>,<span class='fl'>4000</span>)
-<span class='no'>peakScale</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>15</span>)
-<span class='no'>signature</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weightedLorentzian.html'>weightedLorentzian</a></span>(<span class='no'>peakLocations</span>, <span class='no'>peakScale</span>, <span class='no'>peakAmplitude</span>, <span class='no'>wavenumbers</span>)
-<span class='no'>baseline</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>*<span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span>(<span class='no'>wavenumbers</span>/<span class='fl'>200</span>) + <span class='fl'>2</span>*<span class='no'>wavenumbers</span>
-<span class='no'>spectra</span>[<span class='fl'>1</span>,] <span class='kw'>&lt;-</span> <span class='no'>signature</span> + <span class='no'>baseline</span> + <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>wavenumbers</span>),<span class='fl'>0</span>,<span class='fl'>200</span>)
-<span class='no'>lPriors</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>scaG.mu</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>11.6</span>) - (<span class='fl'>0.4</span>^<span class='fl'>2</span>)/<span class='fl'>2</span>, <span class='kw'>scaG.sd</span><span class='kw'>=</span><span class='fl'>0.4</span>, <span class='kw'>scaL.mu</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>11.6</span>) - (<span class='fl'>0.4</span>^<span class='fl'>2</span>)/<span class='fl'>2</span>,
-   <span class='kw'>scaL.sd</span><span class='kw'>=</span><span class='fl'>0.4</span>, <span class='kw'>bl.smooth</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>bl.knots</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>loc.mu</span><span class='kw'>=</span><span class='no'>peakLocations</span>, <span class='kw'>loc.sd</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>,<span class='fl'>5</span>),
-   <span class='kw'>beta.mu</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5000</span>,<span class='fl'>5000</span>), <span class='kw'>beta.sd</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5000</span>,<span class='fl'>5000</span>), <span class='kw'>noise.sd</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>noise.nu</span><span class='kw'>=</span><span class='fl'>4</span>)
-<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>fitVoigtPeaksSMC</span>(<span class='no'>wavenumbers</span>, <span class='no'>spectra</span>, <span class='no'>lPriors</span>, <span class='kw'>npart</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>mcSteps</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] "SMC with 1 observations at 1 unique concentrations, 50 particles, and 41 wavenumbers."
-#&gt; [1] "Step 0: computing 24 B-spline basis functions (r=21.0526315789474) took 0.289999999999999sec."
-#&gt; [1] "Mean noise parameter sigma is now 251.707012172913"
-#&gt; [1] "Mean spline penalty lambda is now 5"
-#&gt; [1] "Step 1: initialization for 2 Voigt peaks took 0.0199999999999996 sec."
-#&gt; [1] 6635.002 6180.201
-#&gt; [1] "Reweighting took 0sec. for ESS 45.0219890215427 with new kappa 0.02734375."
-#&gt; [1] "17 M-H proposals accepted. Temp ESS is 45.0219890215427"
-#&gt; [1] 6263.616 6076.730
-#&gt; [1] "Iteration 2 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.34)"
-#&gt; [1] "Reweighting took 0sec. for ESS 40.6913327506059 with new kappa 0.04254150390625."
-#&gt; [1] "11 M-H proposals accepted. Temp ESS is 40.6913327506059"
-#&gt; [1] 5998.973 5780.276
-#&gt; [1] "Iteration 3 took 0sec. for 1 MCMC loops (acceptance rate 0.22)"
-#&gt; [1] "Reweighting took 0sec. for ESS 36.3819571500594 with new kappa 0.0575017929077148."
-#&gt; [1] "10 M-H proposals accepted. Temp ESS is 36.3819571500594"
-#&gt; [1] 5914.771 5548.921
-#&gt; [1] "Iteration 4 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.2)"
-#&gt; [1] "Reweighting took 0sec. for ESS 32.3199226209689 with new kappa 0.0722283273935318."
-#&gt; [1] "11 M-H proposals accepted. Temp ESS is 32.3199226209689"
-#&gt; [1] 5468.343 5197.696
-#&gt; [1] "Iteration 5 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.22)"
-#&gt; [1] "Reweighting took 0sec. for ESS 28.58510501772 with new kappa 0.0867247597780079."
-#&gt; [1] "11 M-H proposals accepted. Temp ESS is 28.58510501772"
-#&gt; [1] 5629.045 5066.258
-#&gt; [1] "Iteration 6 took 0sec. for 1 MCMC loops (acceptance rate 0.22)"
-#&gt; [1] "Reweighting took 0.0199999999999996sec. for ESS 24.8852320535079 with new kappa 0.100994685406476."
-#&gt; [1] "*** Resampling with 21 unique indices took 0 sec ***"
-#&gt; [1] "16 M-H proposals accepted. Temp ESS is 22.7272727272727"
-#&gt; [1] 4953.456 4185.926
-#&gt; [1] "Iteration 7 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.32)"
-#&gt; [1] "Reweighting took 0sec. for ESS 20.1822388001957 with new kappa 0.115041643447."
-#&gt; [1] "*** Resampling with 23 unique indices took 0 sec ***"
-#&gt; [1] "11 M-H proposals accepted. Temp ESS is 18.6567164179104"
-#&gt; [1] 4454.265 3934.373
-#&gt; [1] "Iteration 8 took 0.0200000000000014sec. for 1 MCMC loops (acceptance rate 0.22)"
-#&gt; [1] "Reweighting took 0sec. for ESS 17.0638534353983 with new kappa 0.121955380607571."
-#&gt; [1] "*** Resampling with 27 unique indices took 0 sec ***"
-#&gt; [1] "9 M-H proposals accepted. Temp ESS is 25.5102040816327"
-#&gt; [1] 4390.723 3725.357
-#&gt; [1] "Iteration 9 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.18)"
-#&gt; [1] "Reweighting took 0sec. for ESS 22.461867856145 with new kappa 0.135674827785577."
-#&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
-#&gt; [1] "12 M-H proposals accepted. Temp ESS is 21.551724137931"
-#&gt; [1] 5103.714 3876.222
-#&gt; [1] "Iteration 10 took 0sec. for 1 MCMC loops (acceptance rate 0.24)"
-#&gt; [1] "Reweighting took 0sec. for ESS 19.9746123938649 with new kappa 0.149179908601428."
-#&gt; [1] "*** Resampling with 18 unique indices took 0 sec ***"
-#&gt; [1] "12 M-H proposals accepted. Temp ESS is 19.53125"
-#&gt; [1] 5553.547 3681.095
-#&gt; [1] "Iteration 11 took 0sec. for 1 MCMC loops (acceptance rate 0.24)"
-#&gt; [1] "Reweighting took 0sec. for ESS 16.7016852074047 with new kappa 0.175768036457633."
-#&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
-#&gt; [1] "8 M-H proposals accepted. Temp ESS is 19.2307692307692"
-#&gt; [1] 5543.164 3722.722
-#&gt; [1] "Iteration 12 took 0.00999999999999979sec. for 1 MCMC loops (acceptance rate 0.16)"
-#&gt; [1] "Reweighting took 0sec. for ESS 17.6771492494723 with new kappa 0.188646660887983."
-#&gt; [1] "*** Resampling with 17 unique indices took 0 sec ***"
-#&gt; [1] "16 M-H proposals accepted. Temp ESS is 25.5102040816327"
-#&gt; [1] 5720.547 3180.812
-#&gt; [1] "Iteration 13 took 0sec. for 1 MCMC loops (acceptance rate 0.32)"
-#&gt; [1] "Reweighting took 0sec. for ESS 23.1239742072579 with new kappa 0.239356244582484."
-#&gt; [1] "*** Resampling with 25 unique indices took 0 sec ***"
-#&gt; [1] "9 M-H proposals accepted. Temp ESS is 20.1612903225806"
-#&gt; [1] 6298.792 3004.667
-#&gt; [1] "Iteration 14 took 0sec. for 1 MCMC loops (acceptance rate 0.18)"
-#&gt; [1] "Reweighting took 0sec. for ESS 18.336896992616 with new kappa 0.286896479296078."
-#&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
-#&gt; [1] "14 M-H proposals accepted. Temp ESS is 17.8571428571429"
-#&gt; [1] 6449.332 3051.928
-#&gt; [1] "Iteration 15 took 0sec. for 1 MCMC loops (acceptance rate 0.28)"
-#&gt; [1] "Reweighting took 0.0199999999999996sec. for ESS 16.1983228556296 with new kappa 0.331465449340073."
-#&gt; [1] "*** Resampling with 19 unique indices took 0 sec ***"
-#&gt; [1] "13 M-H proposals accepted. Temp ESS is 20.1612903225806"
-#&gt; [1] 6597.955 2861.793
-#&gt; [1] "Iteration 16 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.26)"
-#&gt; [1] "Reweighting took 0sec. for ESS 17.9813650806255 with new kappa 0.352357154048196."
-#&gt; [1] "*** Resampling with 26 unique indices took 0 sec ***"
-#&gt; [1] "15 M-H proposals accepted. Temp ESS is 21.1864406779661"
-#&gt; [1] 6765.555 2978.587
-#&gt; [1] "Iteration 17 took 0.0200000000000014sec. for 1 MCMC loops (acceptance rate 0.3)"
-#&gt; [1] "Reweighting took 0.00999999999999979sec. for ESS 19.3603429285685 with new kappa 0.362476573516193."
-#&gt; [1] "*** Resampling with 26 unique indices took 0 sec ***"
-#&gt; [1] "5 M-H proposals accepted. Temp ESS is 18.1159420289855"
-#&gt; [1] 6848.542 2928.699
-#&gt; [1] "Iteration 18 took 0.00999999999999979sec. for 1 MCMC loops (acceptance rate 0.1)"
-#&gt; [1] "Reweighting took 0sec. for ESS 16.3145035262298 with new kappa 0.382399180593812."
-#&gt; [1] "*** Resampling with 24 unique indices took 0 sec ***"
-#&gt; [1] "15 M-H proposals accepted. Temp ESS is 26.0416666666667"
-#&gt; [1] 6901.877 2881.806
-#&gt; [1] "Iteration 19 took 0sec. for 1 MCMC loops (acceptance rate 0.3)"
-#&gt; [1] "Reweighting took 0sec. for ESS 23.9521036768412 with new kappa 0.401699206200256."
-#&gt; [1] "*** Resampling with 24 unique indices took 0 sec ***"
-#&gt; [1] "14 M-H proposals accepted. Temp ESS is 26.0416666666667"
-#&gt; [1] 6733.589 3028.415
-#&gt; [1] "Iteration 20 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.28)"
-#&gt; [1] "Reweighting took 0.00999999999999979sec. for ESS 22.7662892950956 with new kappa 0.43909300581274."
-#&gt; [1] "*** Resampling with 22 unique indices took 0 sec ***"
-#&gt; [1] "8 M-H proposals accepted. Temp ESS is 17.6056338028169"
-#&gt; [1] 7097.211 3013.068
-#&gt; [1] "Iteration 21 took 0.00999999999999979sec. for 1 MCMC loops (acceptance rate 0.16)"
-#&gt; [1] "Reweighting took 0sec. for ESS 14.9787087456132 with new kappa 0.474149692949443."
-#&gt; [1] "*** Resampling with 20 unique indices took 0 sec ***"
-#&gt; [1] "12 M-H proposals accepted. Temp ESS is 13.1578947368421"
-#&gt; [1] 7377.151 3067.840
-#&gt; [1] "Iteration 22 took 0sec. for 1 MCMC loops (acceptance rate 0.24)"
-#&gt; [1] "Reweighting took 0sec. for ESS 11.374196803767 with new kappa 0.507015337140103."
-#&gt; [1] "*** Resampling with 17 unique indices took 0 sec ***"
-#&gt; [1] "12 M-H proposals accepted. Temp ESS is 10.2459016393443"
-#&gt; [1] 7678.229 3230.539
-#&gt; [1] "Iteration 23 took 0sec. for 1 MCMC loops (acceptance rate 0.24)"
-#&gt; [1] "Reweighting took 0sec. for ESS 9.09202415093272 with new kappa 0.537826878568847."
-#&gt; [1] "*** Resampling with 16 unique indices took 0 sec ***"
-#&gt; [1] "11 M-H proposals accepted. Temp ESS is 11.3636363636364"
-#&gt; [1] 7857.739 3300.104
-#&gt; [1] "Iteration 24 took 0sec. for 1 MCMC loops (acceptance rate 0.22)"
-#&gt; [1] "Reweighting took 0sec. for ESS 9.96441413979713 with new kappa 0.595598518747741."
-#&gt; [1] "*** Resampling with 16 unique indices took 0 sec ***"
-#&gt; [1] "16 M-H proposals accepted. Temp ESS is 12.7551020408163"
-#&gt; [1] 8050.136 3148.604
-#&gt; [1] "Iteration 25 took 0sec. for 1 MCMC loops (acceptance rate 0.32)"
-#&gt; [1] "Reweighting took 0sec. for ESS 11.3063638020647 with new kappa 0.79779925937387."
-#&gt; [1] "*** Resampling with 14 unique indices took 0 sec ***"
-#&gt; [1] "13 M-H proposals accepted. Temp ESS is 15.625"
-#&gt; [1] 8743.733 3133.301
-#&gt; [1] "Iteration 26 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.26)"
-#&gt; [1] "Reweighting took 0sec. for ESS 13.1415203588948 with new kappa 0.898899629686935."
-#&gt; [1] "*** Resampling with 20 unique indices took 0 sec ***"
-#&gt; [1] "7 M-H proposals accepted. Temp ESS is 13.8888888888889"
-#&gt; [1] 8747.184 3105.890
-#&gt; [1] "Iteration 27 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.14)"
-#&gt; [1] "Reweighting took 0sec. for ESS 12.4626912816888 with new kappa 0.949449814843468."
-#&gt; [1] "*** Resampling with 19 unique indices took 0 sec ***"
-#&gt; [1] "11 M-H proposals accepted. Temp ESS is 15.4320987654321"
-#&gt; [1] 8879.895 3051.112
-#&gt; [1] "Iteration 28 took 0.0200000000000014sec. for 1 MCMC loops (acceptance rate 0.22)"
-#&gt; [1] "Reweighting took 0sec. for ESS 14.060139388755 with new kappa 1."
-#&gt; [1] "*** Resampling with 20 unique indices took 0 sec ***"
-#&gt; [1] "21 M-H proposals accepted. Temp ESS is 18.9393939393939"
-#&gt; [1] 8818.267 3008.041
-#&gt; [1] "Iteration 29 took 0.0199999999999996sec. for 1 MCMC loops (acceptance rate 0.42)"</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>wavenumbers</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>200</span>,<span class='fl'>600</span>,by<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>nrow<span class='op'>=</span><span class='fl'>1</span>, ncol<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>wavenumbers</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>peakLocations</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>300</span>,<span class='fl'>500</span><span class='op'>)</span>
+<span class='va'>peakAmplitude</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10000</span>,<span class='fl'>4000</span><span class='op'>)</span>
+<span class='va'>peakScale</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>15</span><span class='op'>)</span>
+<span class='va'>signature</span> <span class='op'>&lt;-</span> <span class='fu'><a href='weightedLorentzian.html'>weightedLorentzian</a></span><span class='op'>(</span><span class='va'>peakLocations</span>, <span class='va'>peakScale</span>, <span class='va'>peakAmplitude</span>, <span class='va'>wavenumbers</span><span class='op'>)</span>
+<span class='va'>baseline</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span><span class='op'>(</span><span class='va'>wavenumbers</span><span class='op'>/</span><span class='fl'>200</span><span class='op'>)</span> <span class='op'>+</span> <span class='fl'>2</span><span class='op'>*</span><span class='va'>wavenumbers</span>
+<span class='va'>spectra</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>signature</span> <span class='op'>+</span> <span class='va'>baseline</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>wavenumbers</span><span class='op'>)</span>,<span class='fl'>0</span>,<span class='fl'>200</span><span class='op'>)</span>
+<span class='va'>lPriors</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>scaG.mu<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>11.6</span><span class='op'>)</span> <span class='op'>-</span> <span class='op'>(</span><span class='fl'>0.4</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>, scaG.sd<span class='op'>=</span><span class='fl'>0.4</span>, scaL.mu<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>11.6</span><span class='op'>)</span> <span class='op'>-</span> <span class='op'>(</span><span class='fl'>0.4</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>,
+   scaL.sd<span class='op'>=</span><span class='fl'>0.4</span>, bl.smooth<span class='op'>=</span><span class='fl'>5</span>, bl.knots<span class='op'>=</span><span class='fl'>20</span>, loc.mu<span class='op'>=</span><span class='va'>peakLocations</span>, loc.sd<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>,<span class='fl'>5</span><span class='op'>)</span>,
+   beta.mu<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5000</span>,<span class='fl'>5000</span><span class='op'>)</span>, beta.sd<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5000</span>,<span class='fl'>5000</span><span class='op'>)</span>, noise.sd<span class='op'>=</span><span class='fl'>200</span>, noise.nu<span class='op'>=</span><span class='fl'>4</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>result</span> <span class='op'>&lt;-</span> <span class='fu'>fitVoigtPeaksSMC</span><span class='op'>(</span><span class='va'>wavenumbers</span>, <span class='va'>spectra</span>, <span class='va'>lPriors</span>, npart<span class='op'>=</span><span class='fl'>50</span>, mcSteps<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -353,7 +225,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

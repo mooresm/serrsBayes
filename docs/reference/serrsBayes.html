@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -43,7 +47,6 @@ hyperspectral signal into three components: a sequence of Lorentzian or Gaussian
 smoothly-varying baseline; and zero-mean, additive white noise. The parameters of each component of
 the model are estimated iteratively using SMC. The posterior distributions of the parameters
 given the observed spectra are represented as a population of weighted particles." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -61,7 +64,7 @@ given the observed spectra are represented as a population of weighted particles
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -75,7 +78,7 @@ given the observed spectra are represented as a population of weighted particles
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">serrsBayes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4-2</span>
       </span>
     </div>
 
@@ -83,7 +86,7 @@ given the observed spectra are represented as a population of weighted particles
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,8 +114,8 @@ given the observed spectra are represented as a population of weighted particles
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/mooresm/serrsBayes">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/mooresm/serrsBayes/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -174,49 +177,50 @@ limit of detection of each peak. A consistent, unbiased estimate of the model ev
 is also computed. This can be used to evaluate whether Gaussian or Lorentzian peaks are a better fit to the data.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Moores, Gracie, Carson, Faulds, Graham &amp; Girolami "Bayesian modelling and quantification of Raman spectroscopy," <a href='http://arxiv.org/find/stat/1/au:+Moores_M/0/1/0/all/0/1'>arXiv preprint</a></p>
+    <p>Moores, Gracie, Carson, Faulds, Graham &amp; Girolami "Bayesian modelling and quantification of Raman spectroscopy," <a href='https://arxiv.org/abs/1604.07299'>arXiv preprint</a></p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>M. T. Moores, J. Carson &amp; M. Girolami</p>
+<p>Maintainer: Matt Moores &lt;mmoores@gmail.com&gt;</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate some data with known parameter values</span>
-<span class='no'>wavenumbers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>700</span>,<span class='fl'>1400</span>,<span class='kw'>by</span><span class='kw'>=</span><span class='fl'>2</span>)
-<span class='no'>spectra</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>ncol</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>wavenumbers</span>))
-<span class='no'>peakLocations</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>840</span>,  <span class='fl'>960</span>, <span class='fl'>1140</span>, <span class='fl'>1220</span>, <span class='fl'>1290</span>)
-<span class='no'>peakAmplitude</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>11500</span>, <span class='fl'>2500</span>, <span class='fl'>4000</span>, <span class='fl'>3000</span>, <span class='fl'>2500</span>)
-<span class='no'>peakScale</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>15</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>12</span>)
-<span class='no'>signature</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weightedLorentzian.html'>weightedLorentzian</a></span>(<span class='no'>peakLocations</span>, <span class='no'>peakScale</span>, <span class='no'>peakAmplitude</span>, <span class='no'>wavenumbers</span>)
-<span class='no'>baseline</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>*<span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span>(<span class='no'>wavenumbers</span>/<span class='fl'>200</span>) + <span class='fl'>2</span>*<span class='no'>wavenumbers</span>
-<span class='no'>spectra</span>[<span class='fl'>1</span>,] <span class='kw'>&lt;-</span> <span class='no'>signature</span> + <span class='no'>baseline</span> + <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>wavenumbers</span>),<span class='fl'>0</span>,<span class='fl'>200</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>wavenumbers</span>, <span class='no'>spectra</span>[<span class='fl'>1</span>,], <span class='kw'>type</span><span class='kw'>=</span><span class='st'>'l'</span>, <span class='kw'>xlab</span><span class='kw'>=</span><span class='st'>"Raman offset"</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"intensity"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>wavenumbers</span>, <span class='no'>baseline</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>4</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>wavenumbers</span>, <span class='no'>baseline</span> + <span class='no'>signature</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='fl'>4</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='img'><img src='serrsBayes-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>wavenumbers</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>700</span>,<span class='fl'>1400</span>,by<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>spectra</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>nrow<span class='op'>=</span><span class='fl'>1</span>, ncol<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>wavenumbers</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>peakLocations</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>840</span>,  <span class='fl'>960</span>, <span class='fl'>1140</span>, <span class='fl'>1220</span>, <span class='fl'>1290</span><span class='op'>)</span>
+<span class='va'>peakAmplitude</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>11500</span>, <span class='fl'>2500</span>, <span class='fl'>4000</span>, <span class='fl'>3000</span>, <span class='fl'>2500</span><span class='op'>)</span>
+<span class='va'>peakScale</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>15</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>12</span><span class='op'>)</span>
+<span class='va'>signature</span> <span class='op'>&lt;-</span> <span class='fu'><a href='weightedLorentzian.html'>weightedLorentzian</a></span><span class='op'>(</span><span class='va'>peakLocations</span>, <span class='va'>peakScale</span>, <span class='va'>peakAmplitude</span>, <span class='va'>wavenumbers</span><span class='op'>)</span>
+<span class='va'>baseline</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span><span class='op'>(</span><span class='va'>wavenumbers</span><span class='op'>/</span><span class='fl'>200</span><span class='op'>)</span> <span class='op'>+</span> <span class='fl'>2</span><span class='op'>*</span><span class='va'>wavenumbers</span>
+<span class='va'>spectra</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>signature</span> <span class='op'>+</span> <span class='va'>baseline</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>wavenumbers</span><span class='op'>)</span>,<span class='fl'>0</span>,<span class='fl'>200</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>wavenumbers</span>, <span class='va'>spectra</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span>, type<span class='op'>=</span><span class='st'>'l'</span>, xlab<span class='op'>=</span><span class='st'>"Raman offset"</span>, ylab<span class='op'>=</span><span class='st'>"intensity"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span><span class='op'>(</span><span class='va'>wavenumbers</span>, <span class='va'>baseline</span>, col<span class='op'>=</span><span class='fl'>2</span>, lty<span class='op'>=</span><span class='fl'>4</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span><span class='op'>(</span><span class='va'>wavenumbers</span>, <span class='va'>baseline</span> <span class='op'>+</span> <span class='va'>signature</span>, col<span class='op'>=</span><span class='fl'>4</span>, lty<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+</div><div class='img'><img src='serrsBayes-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># fit the model using SMC</span>
-<span class='no'>lPriors</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>scale.mu</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='fl'>11.6</span>) - (<span class='fl'>0.4</span>^<span class='fl'>2</span>)/<span class='fl'>2</span>, <span class='kw'>scale.sd</span><span class='kw'>=</span><span class='fl'>0.4</span>, <span class='kw'>bl.smooth</span><span class='kw'>=</span><span class='fl'>10</span>^<span class='fl'>11</span>, <span class='kw'>bl.knots</span><span class='kw'>=</span><span class='fl'>50</span>,
-                <span class='kw'>beta.mu</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>beta.sd</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>noise.sd</span><span class='kw'>=</span><span class='fl'>200</span>, <span class='kw'>noise.nu</span><span class='kw'>=</span><span class='fl'>4</span>)
+<span class='va'>lPriors</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>scale.mu<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>11.6</span><span class='op'>)</span> <span class='op'>-</span> <span class='op'>(</span><span class='fl'>0.4</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>, scale.sd<span class='op'>=</span><span class='fl'>0.4</span>, bl.smooth<span class='op'>=</span><span class='fl'>10</span><span class='op'>^</span><span class='fl'>11</span>, bl.knots<span class='op'>=</span><span class='fl'>50</span>,
+                beta.mu<span class='op'>=</span><span class='fl'>5000</span>, beta.sd<span class='op'>=</span><span class='fl'>5000</span>, noise.sd<span class='op'>=</span><span class='fl'>200</span>, noise.nu<span class='op'>=</span><span class='fl'>4</span><span class='op'>)</span>
 
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>## takes approx. 1 minute for 100 SMC iterations with 10,000 particles</span>
-<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='fitSpectraSMC.html'>fitSpectraSMC</a></span>(<span class='no'>wavenumbers</span>, <span class='no'>spectra</span>, <span class='no'>peakLocations</span>, <span class='no'>lPriors</span>)
-<span class='fu'><a href='https://rdrr.io/r/stats/plot.ts.html'>plot.ts</a></span>(<span class='no'>result</span>$<span class='no'>ess</span>, <span class='kw'>xlab</span><span class='kw'>=</span><span class='st'>"SMC iterations"</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"ESS"</span>)
+<span class='va'>result</span> <span class='op'>&lt;-</span> <span class='fu'><a href='fitSpectraSMC.html'>fitSpectraSMC</a></span><span class='op'>(</span><span class='va'>wavenumbers</span>, <span class='va'>spectra</span>, <span class='va'>peakLocations</span>, <span class='va'>lPriors</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/plot.ts.html'>plot.ts</a></span><span class='op'>(</span><span class='va'>result</span><span class='op'>$</span><span class='va'>ess</span>, xlab<span class='op'>=</span><span class='st'>"SMC iterations"</span>, ylab<span class='op'>=</span><span class='st'>"ESS"</span><span class='op'>)</span>
 
 <span class='co'># sample 200 particles from the posterior distribution</span>
-<span class='no'>samp.idx</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>result</span>$<span class='no'>weights</span>), <span class='fl'>200</span>, <span class='kw'>prob</span><span class='kw'>=</span><span class='no'>result</span>$<span class='no'>weights</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>wavenumbers</span>, <span class='no'>spectra</span>[<span class='fl'>1</span>,], <span class='kw'>type</span><span class='kw'>=</span><span class='st'>'l'</span>, <span class='kw'>xlab</span><span class='kw'>=</span><span class='st'>"Raman offset"</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"intensity"</span>)
-<span class='kw'>for</span> (<span class='no'>pt</span> <span class='kw'>in</span> <span class='no'>samp.idx</span>) {
-  <span class='no'>bl.est</span> <span class='kw'>&lt;-</span> <span class='no'>result</span>$<span class='no'>basis</span> <span class='kw'>%*%</span> <span class='no'>result</span>$<span class='no'>alpha</span>[,<span class='fl'>1</span>,<span class='no'>pt</span>]
-  <span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>wavenumbers</span>, <span class='no'>bl.est</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"#C3000009"</span>)
-  <span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='no'>wavenumbers</span>, <span class='no'>bl.est</span> + <span class='no'>result</span>$<span class='no'>expFn</span>[<span class='no'>pt</span>,], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"#0000C309"</span>)
-}
-}</div></pre>
+<span class='va'>samp.idx</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>result</span><span class='op'>$</span><span class='va'>weights</span><span class='op'>)</span>, <span class='fl'>200</span>, prob<span class='op'>=</span><span class='va'>result</span><span class='op'>$</span><span class='va'>weights</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>wavenumbers</span>, <span class='va'>spectra</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span>, type<span class='op'>=</span><span class='st'>'l'</span>, xlab<span class='op'>=</span><span class='st'>"Raman offset"</span>, ylab<span class='op'>=</span><span class='st'>"intensity"</span><span class='op'>)</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>pt</span> <span class='kw'>in</span> <span class='va'>samp.idx</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>bl.est</span> <span class='op'>&lt;-</span> <span class='va'>result</span><span class='op'>$</span><span class='va'>basis</span> <span class='op'>%*%</span> <span class='va'>result</span><span class='op'>$</span><span class='va'>alpha</span><span class='op'>[</span>,<span class='fl'>1</span>,<span class='va'>pt</span><span class='op'>]</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span><span class='op'>(</span><span class='va'>wavenumbers</span>, <span class='va'>bl.est</span>, col<span class='op'>=</span><span class='st'>"#C3000009"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span><span class='op'>(</span><span class='va'>wavenumbers</span>, <span class='va'>bl.est</span> <span class='op'>+</span> <span class='va'>result</span><span class='op'>$</span><span class='va'>expFn</span><span class='op'>[</span><span class='va'>pt</span>,<span class='op'>]</span>, col<span class='op'>=</span><span class='st'>"#0000C309"</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>M. T. Moores, J. Carson &amp; M. Girolami</p>
-<p>Maintainer: Matt Moores &lt;M.T.Moores@warwick.ac.uk&gt;</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -227,7 +231,7 @@ is also computed. This can be used to evaluate whether Gaussian or Lorentzian pe
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
