@@ -31,7 +31,7 @@ Eigen::VectorXd dCauchy(Eigen::VectorXd Cal_V, double loc, double scale)
   VectorXd Sigi = VectorXd::Zero(Cal_V.size());
   for (int i=0; i < Cal_V.size(); i++)
   {
-    Sigi[i] = 1/(PI*scale*(1 + pow((Cal_V[i] - loc)/scale, 2)));
+    Sigi[i] = 1/(M_PI*scale*(1 + pow((Cal_V[i] - loc)/scale, 2)));
   }
   return Sigi;
 }
@@ -41,7 +41,7 @@ Eigen::VectorXd dNorm(Eigen::VectorXd Cal_V, double loc, double sd)
   VectorXd Sigi = VectorXd::Zero(Cal_V.size());
   for (int i=0; i < Cal_V.size(); i++)
   {
-    Sigi[i] = 1/(sqrt(2*PI)*sd) * exp(-pow(Cal_V[i] - loc, 2)/(2*pow(sd,2)));
+    Sigi[i] = 1/(sqrt(2*M_PI)*sd) * exp(-pow(Cal_V[i] - loc, 2)/(2*pow(sd,2)));
   }
   return Sigi;
 }
@@ -70,7 +70,7 @@ double sumDnorm(Eigen::VectorXd x, Eigen::VectorXd mean, Eigen::VectorXd sd)
   double logLik = 0;
   for (int pk=0; pk < x.size(); pk++)
   {
-    logLik += -pow(x[pk] - mean[pk], 2.0)/(2*pow(sd[pk],2.0)) - log(sd[pk] * sqrt(2*PI));
+    logLik += -pow(x[pk] - mean[pk], 2.0)/(2*pow(sd[pk],2.0)) - log(sd[pk] * sqrt(2*M_PI));
   }
   return logLik;
 }
@@ -96,7 +96,7 @@ double sumDlogNorm(Eigen::VectorXd x, double meanlog, double sdlog)
 {
   double var = pow(sdlog, 2.0);
   ArrayXd sqDiff = (x.array().log() - meanlog).pow(2.0);
-  ArrayXd logConst = (x.array() * sdlog * sqrt(2*PI)).log();
+  ArrayXd logConst = (x.array() * sdlog * sqrt(2*M_PI)).log();
   ArrayXd logLik = -sqDiff/(2*var) - logConst;
   return logLik.sum();
 }
@@ -141,7 +141,7 @@ Eigen::VectorXd mixedVoigt(Eigen::VectorXd location, Eigen::VectorXd scale_G, Ei
   for (int j=0; j < location.size(); j++)
   {
     // combined scale is the average of the scales of the Gaussian/Lorentzian components
-    double f_G = 2.0*scale_G(j)*sqrt(2.0*PI);
+    double f_G = 2.0*scale_G(j)*sqrt(2.0*M_PI);
     double f_L = 2.0*scale_L(j);
     double Temp_f = calcVoigtFWHM(f_G, f_L);
 
@@ -149,7 +149,7 @@ Eigen::VectorXd mixedVoigt(Eigen::VectorXd location, Eigen::VectorXd scale_G, Ei
     double Temp_e = 1.36603*(f_L/Temp_f) - 0.47719*pow(f_L/Temp_f, 2) + 0.11116*pow(f_L/Temp_f, 3);
 
     // weighted additive combination of Cauchy and Gaussian functions
-    Sigi += amplitude[j] * (Temp_e*dCauchy(wavenum,location[j],Temp_f/2.0) + (1.0-Temp_e)*dNorm(wavenum,location[j],Temp_f/(2.0*sqrt(2.0*log(2.0)))))/(Temp_e*(1.0/(PI*(Temp_f/2.0))) + (1.0-Temp_e)*(1.0/sqrt(2.0*PI*pow(Temp_f/(2.0*sqrt(2.0*log(2.0))), 2.0))));
+    Sigi += amplitude[j] * (Temp_e*dCauchy(wavenum,location[j],Temp_f/2.0) + (1.0-Temp_e)*dNorm(wavenum,location[j],Temp_f/(2.0*sqrt(2.0*log(2.0)))))/(Temp_e*(1.0/(M_PI*(Temp_f/2.0))) + (1.0-Temp_e)*(1.0/sqrt(2.0*M_PI*pow(Temp_f/(2.0*sqrt(2.0*log(2.0))), 2.0))));
   }
   return Sigi;
 }  
@@ -179,7 +179,7 @@ Eigen::VectorXd getVoigtParam(Eigen::VectorXd scale_G, Eigen::VectorXd scale_L)
   for (int j=0; j < scale_G.size(); j++)
   {
     // combined scale is the average of the scales of the Gaussian/Lorentzian components
-    double f_G = 2.0*scale_G(j)*sqrt(2.0*PI);
+    double f_G = 2.0*scale_G(j)*sqrt(2.0*M_PI);
     double f_L = 2.0*scale_L(j);
     double Temp_f = calcVoigtFWHM(f_G, f_L);
 
@@ -260,7 +260,7 @@ double computeLogLikelihood(Eigen::VectorXd obsi, double lambda, double prErrNu,
 //  Rcpp::Rcout << sqDiff << "; " << bi_Cal << "; ";
 
   // log-likelihood:
-  double L_Ev = -((nWL/2.0)*log(2.0*PI)) + 0.5*g0_Det - 0.5*gi_Det;
+  double L_Ev = -((nWL/2.0)*log(2.0*M_PI)) + 0.5*g0_Det - 0.5*gi_Det;
   L_Ev +=  a0_Cal*log(prErrSS) - ai_Cal*log(bi_Cal) + lgamma(ai_Cal) - lgamma(a0_Cal);
   return L_Ev;
 }
