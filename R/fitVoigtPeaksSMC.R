@@ -3,8 +3,9 @@
 #' @inheritParams fitSpectraSMC
 #' @param mcAR target acceptance rate for the MCMC kernel
 #' @param mcSteps number of iterations of the MCMC kernel
+#' @param minPart target number of unique particles for the MCMC iterations
 #' @importFrom methods as
-#' @importFrom stats rlnorm rnorm rgamma runif cov.wt cov2cor median
+#' @importFrom stats rlnorm rnorm rgamma runif cov.wt cov2cor median var
 #' @importFrom truncnorm rtruncnorm
 #' @importFrom splines bs
 #' @importFrom Matrix Matrix crossprod determinant
@@ -23,7 +24,7 @@
 #' \dontrun{
 #' result <- fitVoigtPeaksSMC(wavenumbers, spectra, lPriors, npart=50, mcSteps=1)
 #' }
-fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10000, rate=0.9, mcAR=0.234, mcSteps=20, minESS=npart/2, destDir=NA) {
+fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10000, rate=0.9, mcAR=0.234, mcSteps=20, minESS=npart/2, destDir=NA, minPart=npart) {
   N_Peaks <- length(lPriors$loc.mu)
   N_WN_Cal <- length(wl)
   N_Obs_Cal <- nrow(spc)
@@ -209,29 +210,35 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
       
       Prop_Cov<-(1.4826*MADs)%*%t(1.4826*MADs)*Prop_Cor
       
-      US1<-unique(T_Sample[,1])
+      # update effective sample size
+      US1<-unique(Sample[,1])
       N_UP<-length(US1)
-      
       Temp_W<-numeric(N_UP)
       for(k in 1:N_UP){
-        Temp_W[k]<-sum(T_Sample[which(T_Sample[,1]==US1[k]),Offset_1+1])
+        Temp_W[k]<-sum(Sample[which(Sample[,1]==US1[k]),Offset_1+1])
       }
-      
       Temp_ESS<-1/sum(Temp_W^2)
       ESS_AR[i]<-Temp_ESS
-      
-      if(!is.na(MC_AR[i-1])){
-        MCMC_MP<-2^(-5*(0.23-MC_AR[i-1]))*MCMC_MP
+
+      if(!is.na(MC_AR[i-1]) && MC_Steps[i-1] > 0){
+        MCMC_MP<-2^(-5*(mcAR-MC_AR[i-1]))*MCMC_MP
         if (MC_AR[i-1] < 0.15) {
           print(paste("WARNING: M-H Acceptance Rate",MC_AR[i-1],"has fallen below minimum threshold."))
           MCMC_MP <- MCMC_MP * MC_AR[i-1]^3 # emergency recovery from particle degeneracy
         }
       }
       mhCov <- MCMC_MP*(2.38^2/(4*N_Peaks))*Prop_Cov
-      mhChol <- t(chol(mhCov, pivot = FALSE)) # error if not non-negative definite
+      ch <- try(chol(mhCov, pivot = FALSE)) # error if not positive-definite
+      if (inherits(ch, "try-error")) { # fallback to diagonal matrix (independent proposals)
+        v <- apply(T_Sample[,1:(4*N_Peaks)],2,var)
+        mhCov <-  MCMC_MP*(2.38^2/(4*N_Peaks))*diag(v, nrow=4*N_Peaks) + diag(1e-9, nrow=4*N_Peaks)
+        ch <- chol(mhCov, pivot = FALSE)
+      }
+      mhChol <- t(ch) 
 
       mcr <- 0
-      while(mcr < mcSteps && (mcr == 0 || N_UP < npart)) {
+      MC_AR[i] <- MC_AR[i-1]
+      while(mcr < mcSteps && N_UP < minPart) {
         MC_Steps[i]<-MC_Steps[i]+1
         mh_acc <- mhUpdateVoigt(spc, Cal_I, Kappa_Hist[i], conc, wl, Sample, T_Sample, mhChol, lPriors)
         Acc <- Acc + mh_acc
@@ -248,8 +255,8 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
         print(paste(mh_acc,"M-H proposals accepted. Temp ESS is",format(Temp_ESS,digits=6),
                     "with",N_UP,"unique particles."))
         ESS_AR[i]<-Temp_ESS
+        MC_AR[i]<-Acc/(npart*MC_Steps[i])
       }
-      MC_AR[i]<-Acc/(npart*MC_Steps[i])
     })
     
     Time_Hist[i]<-iTime[3]

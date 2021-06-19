@@ -2,8 +2,6 @@ Fixed WARN due to options digits=0 in vignette
 
 ## Test environments
 
-* Travis CI on Ubuntu, see status at
-    + <https://travis-ci.org/mooresm/serrsBayes>
 * `devtools::check_win_devel` OK, see status at
   + <https://win-builder.r-project.org/q4W4R40DY3OU/00check.log>
 * `rhub::check_for_cran`, see status at

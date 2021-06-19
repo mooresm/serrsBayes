@@ -14,7 +14,8 @@ fitVoigtPeaksSMC(
   mcAR = 0.234,
   mcSteps = 20,
   minESS = npart/2,
-  destDir = NA
+  destDir = NA,
+  minPart = npart
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ fitVoigtPeaksSMC(
 \item{minESS}{minimum effective sample size, below which the particles are resampled.}
 
 \item{destDir}{destination directory to save intermediate results (for long-running computations)}
+
+\item{minPart}{target number of unique particles for the MCMC iterations}
 }
 \description{
 Fit the model with Voigt peaks using Sequential Monte Carlo (SMC).

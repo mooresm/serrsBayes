@@ -100,6 +100,7 @@ A subsample of particles can be used to plot the posterior distribution of the b
 samp.idx <- sample.int(length(result$weights), 50, prob=result$weights)
 samp.mat <- resid.mat <- matrix(0,nrow=length(samp.idx), ncol=nWL)
 samp.sigi <- samp.lambda <- numeric(length=nrow(samp.mat))
+samp.loc <- colMeans(result$location)
 spectra <- as.matrix(spectra)
 plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 for (pt in 1:length(samp.idx)) {
@@ -120,6 +121,7 @@ for (pt in 1:length(samp.idx)) {
   resid.mat[pt,] <- Obsi - bl.est[,1]
 }
 title(main="Baseline for TAMRA")
+rug(samp.loc, col=4,lwd=2)
 
 plot(range(wavenumbers), range(samp.mat), type='n', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 abline(h=0,lty=2)
@@ -127,6 +129,7 @@ for (pt in 1:length(samp.idx)) {
   lines(wavenumbers, samp.mat[pt,], col=4)
 }
 title(main="Spectral Signature")
+rug(samp.loc,col=4,lwd=2)
 ```
 
 Notice that the uncertainty in the baseline is greatest where the peaks are bunched close together, which is exactly what we would expect. This is also reflected in uncertainty of the spectral signature. 
