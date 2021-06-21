@@ -165,6 +165,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// sumDexp
+double sumDexp(Eigen::VectorXd x, double rate);
+RcppExport SEXP _serrsBayes_sumDexp(SEXP xSEXP, SEXP rateSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Eigen::VectorXd >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type rate(rateSEXP);
+    rcpp_result_gen = Rcpp::wrap(sumDexp(x, rate));
+    return rcpp_result_gen;
+END_RCPP
+}
 // mixedVoigt
 Eigen::VectorXd mixedVoigt(Eigen::VectorXd location, Eigen::VectorXd scale_G, Eigen::VectorXd scale_L, Eigen::VectorXd amplitude, Eigen::VectorXd wavenum);
 RcppExport SEXP _serrsBayes_mixedVoigt(SEXP locationSEXP, SEXP scale_GSEXP, SEXP scale_LSEXP, SEXP amplitudeSEXP, SEXP wavenumSEXP) {
@@ -256,6 +268,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_serrsBayes_marginalMetropolisUpdate", (DL_FUNC) &_serrsBayes_marginalMetropolisUpdate, 12},
     {"_serrsBayes_sumDnorm", (DL_FUNC) &_serrsBayes_sumDnorm, 3},
     {"_serrsBayes_sumDlogNorm", (DL_FUNC) &_serrsBayes_sumDlogNorm, 3},
+    {"_serrsBayes_sumDexp", (DL_FUNC) &_serrsBayes_sumDexp, 2},
     {"_serrsBayes_mixedVoigt", (DL_FUNC) &_serrsBayes_mixedVoigt, 5},
     {"_serrsBayes_getVoigtParam", (DL_FUNC) &_serrsBayes_getVoigtParam, 2},
     {"_serrsBayes_copyLogProposals", (DL_FUNC) &_serrsBayes_copyLogProposals, 2},

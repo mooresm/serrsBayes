@@ -3,6 +3,7 @@
 ## New Features
 
 * Zero MCMC iterations will be performed if the number of unique particles is already >= minPart (adaptive number of MCMC steps)
+* Replaced the default uniform prior distribution for the peak amplitudes with an exponential prior
 
 ## Bug Fixes
 

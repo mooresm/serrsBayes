@@ -8,7 +8,7 @@
 #' Chopin (2002) "A Sequential Particle Filter Method for Static Models," Biometrika 89(3): 539--551,
 #' \doi{10.1093/biomet/89.3.539}
 fitVoigtIBIS <- function(wl, spc, n, lResult, conc=rep(1.0,nrow(spc)), batch=rep(1,nrow(spc)),
-                         npart=10000, rate=0.9, mcAR=0.23, mcSteps=10, minESS=npart/2, destDir=NA) {
+                         npart=10000, rate=0.9, mcAR=0.234, mcSteps=20, minESS=npart/2, minPart=npart, destDir=NA) {
   ptm <- proc.time()
   lPriors <- lResult$priors
   N_Peaks <- length(lPriors$loc.mu)
