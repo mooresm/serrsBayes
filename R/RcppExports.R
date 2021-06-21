@@ -220,6 +220,21 @@ sumDlogNorm <- function(x, meanlog, sdlog) {
     .Call('_serrsBayes_sumDlogNorm', PACKAGE = 'serrsBayes', x, meanlog, sdlog)
 }
 
+#' Sum log-likelihoods of i.i.d. exponential.
+#' 
+#' This is an internal function that is only exposed on the public API for unit testing purposes.
+#' 
+#' The sum of the log-likelihoods (log of the product of the likelihoods)
+#' for independent, identically-distributed, exponential random variables. 
+#' Note: this Rcpp function is thread-safe, unlike the equivalent alternatives. 
+#' @param x Vector of i.i.d. exponential random varibles
+#' @param rate parameter of the exponential distribution
+#' @return log-likelihood of x
+#' @seealso \code{sum(dexp(x, rate, log=TRUE))}
+sumDexp <- function(x, rate) {
+    .Call('_serrsBayes_sumDexp', PACKAGE = 'serrsBayes', x, rate)
+}
+
 #' Compute the spectral signature using Voigt peaks.
 #' 
 #' Calculates the value of the pseudo-Voigt broadening function at the given wavenumbers,

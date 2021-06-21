@@ -69,12 +69,15 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
     Sample[k,(2*N_Peaks+1):(3*N_Peaks)] <- sort(propLoc)
   }
   # optional prior on beta
+  exp_pen <- 15
   if (exists("beta.mu", lPriors) && exists("beta.sd", lPriors)) {
     for (j in 1:N_Peaks) {
-      Sample[,3*N_Peaks+j] <- rtruncnorm(npart, a=0, mean=lPriors$beta.mu[j], sd=lPriors$beta.sd[j])
+      Sample[,3*N_Peaks+j] <- rtruncnorm(npart, a=0, b=max(spc)/max(conc), mean=lPriors$beta.mu[j], sd=lPriors$beta.sd[j])
     }
-  } else { # otherwise, use uniform prior
-    Sample[,(3*N_Peaks+1):(4*N_Peaks)] <- runif(N_Peaks*npart, 0, diff(range(spc))/max(conc))
+  } else { # otherwise, use exponential prior with P(beta > diff) = 0.00012
+    if (exists("beta.exp", lPriors)) exp_pen <- lPriors$beta.exp
+    Sample[,(3*N_Peaks+1):(4*N_Peaks)] <- rexp(N_Peaks*npart, max(conc)*exp_pen/diff(range(spc)))
+    lPriors$beta.rate <- max(conc)*exp_pen/diff(range(spc))
   }
   Offset_1<-4*N_Peaks
   Offset_2<-Offset_1 + N_Obs_Cal + 1
@@ -200,7 +203,8 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
         
         Sample[,Offset_1+1]<-rep(1/npart,npart)
         T_Sample[,Offset_1+1]<-rep(1/npart,npart)
-        print(paste("*** Resampling with",length(unique(T_Sample[,1])),"unique indices took",(proc.time()-ptm)[3],"sec ***"))
+        print(paste("*** Resampling with",length(unique(Sample[,1])),"unique indices took",
+                    format((proc.time()-ptm)[3],digits=6),"sec ***"))
       }
       
       for(j in 1:(4*N_Peaks)){
@@ -269,7 +273,8 @@ fitVoigtPeaksSMC <- function(wl, spc, lPriors, conc=rep(1.0,nrow(spc)), npart=10
     }
 
 #    print(colMeans(Sample[,(3*N_Peaks+1):(4*N_Peaks)]))
-    print(paste0("Iteration ",i," took ",iTime[3],"sec. for ",MC_Steps[i]," MCMC loops (acceptance rate ",MC_AR[i],")"))
+    print(paste0("Iteration ",i," took ",format(iTime[3],digits=6),"sec. for ",
+                 MC_Steps[i]," MCMC loops (acceptance rate ",format(MC_AR[i],digits=5),")"))
     if (Kappa >= 1 || MC_AR[i] < 1/npart) {
       break
     }

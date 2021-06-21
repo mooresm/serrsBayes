@@ -52,9 +52,9 @@ peakLocations <- c(615, 631, 664, 673, 702, 705, 771, 819, 895, 923, 1014,
                    1047, 1049, 1084, 1125, 1175, 1192, 1273, 1291, 1307, 1351, 1388, 1390,
                    1419, 1458, 1505, 1530, 1577, 1601, 1615, 1652, 1716)
 nPK <- length(peakLocations)
-priors <- list(loc.mu=peakLocations, loc.sd=rep(50,nPK), scaG.mu=log(16.47) - (0.34^2)/2,
+priors <- list(loc.mu=peakLocations, loc.sd=rep(25,nPK), scaG.mu=log(16.47) - (0.34^2)/2,
                scaG.sd=0.34, scaL.mu=log(25.27) - (0.4^2)/2, scaL.sd=0.4, noise.nu=5, noise.sd=50,
-               bl.smooth=2, bl.knots=121)
+               bl.smooth=1, bl.knots=121)
 ```
 
 ## Computation
@@ -63,7 +63,7 @@ Now we run the SMC algorithm to fit the model:
 data("result", package = "serrsBayes")
 if(!exists("result")) {
   t1 <- Sys.time()
-  result <- fitVoigtPeaksSMC(wavenumbers, spectra, priors, npart=2000)
+  result <- fitVoigtPeaksSMC(wavenumbers, spectra, priors, npart=8000, mcSteps=100, minPart = 7950)
   result$time <- Sys.time() - t1
   save(result, file="Figure 2/result.rda")
 }
@@ -71,7 +71,7 @@ if(!exists("result")) {
 
 The default values for the number of particles, Markov chain steps, and learning rate can be somewhat conservative, depending on the application. With 34 peaks and 2401 wavenumbers, fitting the model can take a fair amount of time, even running in parallel with 8 CPU cores:
 ```{r time}
-print(paste(format(result$time["elapsed"]/3600,digits=4)," hours for",length(result$ess),"SMC iterations."))
+print(paste(format(result$time,digits=4)," for",length(result$ess),"SMC iterations."))
 ```
 
 The downside of choosing smaller values for these tuning parameters is that you run the risk of the SMC collapsing. The quality of the particle distribution deteriorates with each iteration, as measured by the effective sample size (ESS):

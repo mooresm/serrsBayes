@@ -101,6 +101,28 @@ double sumDlogNorm(Eigen::VectorXd x, double meanlog, double sdlog)
   return logLik.sum();
 }
 
+//' Sum log-likelihoods of i.i.d. exponential.
+//' 
+//' This is an internal function that is only exposed on the public API for unit testing purposes.
+//' 
+//' The sum of the log-likelihoods (log of the product of the likelihoods)
+//' for independent, identically-distributed, exponential random variables. 
+//' Note: this Rcpp function is thread-safe, unlike the equivalent alternatives. 
+//' @param x Vector of i.i.d. exponential random varibles
+//' @param rate parameter of the exponential distribution
+//' @return log-likelihood of x
+//' @seealso \code{sum(dexp(x, rate, log=TRUE))}
+// [[Rcpp::export]]
+double sumDexp(Eigen::VectorXd x, double rate)
+{
+  double logLik = 0;
+  for (int pk=0; pk < x.size(); pk++)
+  {
+    logLik += log(rate) - rate*x[pk];
+  }
+  return logLik;
+}  
+
 double calcVoigtFWHM(double f_G, double f_L)
 {
   // combined scale is the average of the scales of the Gaussian/Lorentzian components
@@ -310,6 +332,11 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
     prAmpMu = priors["beta.mu"];
     prAmpSD = priors["beta.sd"];
   }
+  double prExpRate;
+  if (priors.containsElementNamed("beta.exp"))
+  {
+    prExpRate = priors["beta.rate"];
+  }
   double lambda = priors["bl.smooth"];
   int nPK = prLocMu.size();
   int nPart = thetaMx.rows();
@@ -370,6 +397,10 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
     {
       lLik += sumDnorm(Prop_Theta.segment(3*nPK,nPK), prAmpMu, prAmpSD);
       lLik -= sumDnorm(theta.segment(3*nPK,nPK), prAmpMu, prAmpSD);
+    } else if (priors.containsElementNamed("beta.exp"))
+    {
+      lLik += sumDexp(Prop_Theta.segment(3*nPK,nPK), prExpRate);
+      lLik -= sumDexp(theta.segment(3*nPK,nPK), prExpRate);
     }
 
     // account for previous observations when n > 1
