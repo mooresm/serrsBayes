@@ -52,9 +52,9 @@ peakLocations <- c(615, 631, 664, 673, 702, 705, 771, 819, 895, 923, 1014,
                    1047, 1049, 1084, 1125, 1175, 1192, 1273, 1291, 1307, 1351, 1388, 1390,
                    1419, 1458, 1505, 1530, 1577, 1601, 1615, 1652, 1716)
 nPK <- length(peakLocations)
-priors <- list(loc.mu=peakLocations, loc.sd=rep(25,nPK), scaG.mu=log(16.47) - (0.34^2)/2,
-               scaG.sd=0.34, scaL.mu=log(25.27) - (0.4^2)/2, scaL.sd=0.4, noise.nu=5, noise.sd=20,
-               bl.smooth=2, bl.knots=121, beta.exp=20)
+priors <- list(loc.mu=peakLocations, loc.sd=rep(25,nPK), scaG.mu=log(10) - (0.34^2)/2,
+               scaG.sd=0.34, scaL.mu=log(10) - (0.4^2)/2, scaL.sd=0.4, noise.nu=5, noise.sd=20,
+               bl.smooth=2, bl.knots=121, beta.exp=50)
 ```
 
 ## Computation
@@ -63,7 +63,7 @@ Now we run the SMC algorithm to fit the model:
 data("result", package = "serrsBayes")
 if(!exists("result")) {
   t1 <- Sys.time()
-  result <- fitVoigtPeaksSMC(wavenumbers, spectra, priors, mcSteps=50, minPart = 19000, npart = 2e4)
+  result <- fitVoigtPeaksSMC(wavenumbers, spectra, priors, mcSteps=50, minPart = 4950, npart = 5000)
   result$time <- Sys.time() - t1
   save(result, file="Figure 2/result.rda")
 }
