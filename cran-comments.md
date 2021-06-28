@@ -4,7 +4,7 @@
 ## Test environments
 
 * `devtools::check_win_devel` OK, see status at
-  + <https://win-builder.r-project.org/q4W4R40DY3OU/00check.log>
+  + <https://win-builder.r-project.org/XeiRy39aMOsM/00check.log>
 * `rhub::check_for_cran`, see status at
    + `ubuntu-gcc-release` <https://builder.r-hub.io/status/serrsBayes_0.5-0.tar.gz-e3de8d7b411f403993881505e06d557c>
    + `solaris-x86-patched` <https://builder.r-hub.io/status/serrsBayes_0.5-0.tar.gz-9a792b8b48964b5cb0111a648fd3df9d>
