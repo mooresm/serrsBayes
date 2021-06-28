@@ -5,7 +5,7 @@
 #' @param mcSteps number of iterations of the MCMC kernel
 #' @param minPart target number of unique particles for the MCMC iterations
 #' @importFrom methods as
-#' @importFrom stats rlnorm rnorm rgamma runif cov.wt cov2cor median var
+#' @importFrom stats rlnorm rnorm rgamma runif cov.wt cov2cor median var rexp
 #' @importFrom truncnorm rtruncnorm
 #' @importFrom splines bs
 #' @importFrom Matrix Matrix crossprod determinant

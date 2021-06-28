@@ -13,9 +13,10 @@ fitVoigtIBIS(
   batch = rep(1, nrow(spc)),
   npart = 10000,
   rate = 0.9,
-  mcAR = 0.23,
-  mcSteps = 10,
+  mcAR = 0.234,
+  mcSteps = 20,
   minESS = npart/2,
+  minPart = npart,
   destDir = NA
 )
 }
@@ -41,6 +42,8 @@ fitVoigtIBIS(
 \item{mcSteps}{number of iterations of the MCMC kernel}
 
 \item{minESS}{minimum effective sample size, below which the particles are resampled.}
+
+\item{minPart}{target number of unique particles for the MCMC iterations}
 
 \item{destDir}{destination directory to save intermediate results (for long-running computations)}
 }

@@ -1,14 +1,14 @@
-Fixed WARN due to options digits=0 in vignette
+* Fixed broken link to EPSRC grants website (now uses UKRI Gateway to Research)
+* Merged pull request from Rcpp team to use constant M_PI instead of PI to support STRICT_R_HEADERS
 
 ## Test environments
 
 * `devtools::check_win_devel` OK, see status at
   + <https://win-builder.r-project.org/q4W4R40DY3OU/00check.log>
 * `rhub::check_for_cran`, see status at
-   + `fedora-gcc-devel` <https://builder.r-hub.io/status/serrsBayes_0.4-2.tar.gz-76473afc0c7144c3b8c73cf823a56c2f>
-   + `debian-gcc-devel` <https://builder.r-hub.io/status/serrsBayes_0.4-2.tar.gz-88e82684651a419b8e30268e2c8fd496>
-   + `macos-highsierra-release-cran` <https://builder.r-hub.io/status/serrsBayes_0.4-2.tar.gz-2659021ad8ba4e4a95f2887be8a7b362>
-   + `solaris-x86-patched` <https://builder.r-hub.io/status/serrsBayes_0.4-2.tar.gz-c39ee8b1f4e44f988d95c73c1293be7f>
+   + `ubuntu-gcc-release` <https://builder.r-hub.io/status/serrsBayes_0.5-0.tar.gz-e3de8d7b411f403993881505e06d557c>
+   + `solaris-x86-patched` <https://builder.r-hub.io/status/serrsBayes_0.5-0.tar.gz-9a792b8b48964b5cb0111a648fd3df9d>
+   + `windows-x86_64-devel` <https://builder.r-hub.io/status/serrsBayes_0.5-0.tar.gz-85c4772eb0e64a7eb925223a45c157d8>
 
 ## R CMD check results
 
