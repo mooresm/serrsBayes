@@ -1,4 +1,4 @@
-# serrsBayes 0.4-3.000
+# serrsBayes 0.5-0
 
 ## New Features
 
@@ -8,6 +8,7 @@
 ## Bug Fixes
 
 * Merged pull request from Rcpp team to use constant M_PI instead of PI to support STRICT_R_HEADERS
+* Fixed issue with plots in Introduction vignette
 * Fixed broken link to EPSRC grants website (now uses UKRI Gateway to Research)
 * Added package Hmisc to suggests to fix Undeclared package in Rd xrefs NOTE on CRAN
 * Try-catch when computing Cholesky decomposition of the Gaussian random walk variance-covariance matrix (fallback to diagonal matrix by default)
