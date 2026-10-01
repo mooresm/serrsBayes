@@ -419,7 +419,7 @@ long marginalMetropolisUpdate(Eigen::MatrixXd spectra, unsigned n, Eigen::Vector
   int nWL = wavelengths.size();
   int nPart = betaMx.cols();
   MatrixXd basisMx = priors["bl.basis"];
-  const MappedSparseMatrix<double> prPrecMx(as<MappedSparseMatrix<double> >(priors["bl.precision"]));
+  const Map<SparseMatrix<double>> prPrecMx(as<Map<SparseMatrix<double>>>(priors["bl.precision"]));
   int nBasis = prPrecMx.cols();
   SparseMatrix<double> xTx = (basisMx.transpose() * basisMx).sparseView();
   SparseMatrix<double> giPrecMx = xTx + prPrecMx;
