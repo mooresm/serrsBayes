@@ -30,7 +30,7 @@ The Voigt function is a *convolution* of a Gaussian and a Lorentzian: $f_V(\nu_j
 $$
 s_i(\nu_j) = \sum_{p=1}^P A_{i,p} f_V(\nu_j ; \ell_p, \varphi_p, \eta_p) 
 $$
-where $A_{i,p}$ is the *amplitude* of peak $p$; $\ell_p$ is the peak *location*; and $\varphi_p$ is the *broadening*. The horizontal axis of a Raman spectrum is measured in *wavenumbers* $\nu_j \in \Delta\tilde\nu$, with units of inverse centimetres (cm$^{-1}$). The vertical axis is measured in arbitrary units (a.u.), since the *intensity* of the Raman signal depends on the properties of the spectrometer. This functional model is explained further in our paper, @Moores2016.
+where $A_{i,p}$ is the *amplitude* of peak $p$; $\ell_p$ is the peak *location*; and $\varphi_p$ is the *broadening*. The horizontal axis of a Raman spectrum is measured in *wavenumbers* $\nu_j \in \Delta\tilde\nu$, with units of inverse centimetres (cm$^{-1}$). The vertical axis is measured in arbitrary units (a.u.), since the *intensity* of the Raman signal depends on the properties of the spectrometer. This functional model is explained further in our paper, @Moores2016raman.
 
 ## Data
 
@@ -46,7 +46,7 @@ nWL <- length(wavenumbers)
 ```
 
 ## Priors
-We will use the same priors that were described in the paper [@Moores2016], including the TD-DFT peak locations from @Watanabe2005:
+We will use the same priors that were described in the paper [@Moores2016raman], including the TD-DFT peak locations from @Watanabe2005:
 ```{r priors}
 peakLocations <- c(615, 631, 664, 673, 702, 705, 771, 819, 895, 923, 1014,
                    1047, 1049, 1084, 1125, 1175, 1192, 1273, 1291, 1307, 1351, 1388, 1390,

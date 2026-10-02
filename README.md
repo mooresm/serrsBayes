@@ -14,9 +14,9 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/serrsBayes)](https://gi
 `serrsBayes` provides model-based quantification of surface-enhanced
 resonance Raman spectroscopy (SERRS) using sequential Monte Carlo (SMC)
 algorithms. The details of the Bayesian model and informative priors are
-provided in the arXiv preprint, Moores et al. (2016; v2 2018) “[Bayesian
-modelling and quantification of Raman
-spectroscopy.](https://arxiv.org/abs/1604.07299)” Development of this
+provided in Moores et al. (2026) “[Bayesian modelling and quantification
+of Raman spectroscopy.](https://www.matrix-inst.org.au/wp_Matrix2016/wp-content/uploads/2025/2025_Pathiraja/MOORES.pdf),”
+published in the *2025 MATRIX Annals, Part II* (Springer). Development of this
 software was supported by the UK Engineering & Physical Sciences
 Research Council (EPSRC) programme grant “[In Situ Nanoparticle
 Assemblies for Healthcare Diagnostics and

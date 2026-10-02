@@ -14,7 +14,7 @@ Authors@R: c(
     person("University of Warwick", role="cph"))
 Description: Sequential Monte Carlo (SMC) algorithms for fitting a generalised additive
     mixed model (GAMM) to surface-enhanced resonance Raman spectroscopy (SERRS),
-    using the method of Moores et al. (2016) <arXiv:1604.07299>. Multivariate
+    using the method of Moores et al. (2026) <doi:10.48550/arXiv.1604.07299>. Multivariate
     observations of SERRS are highly collinear and lend themselves to a reduced-rank
     representation. The GAMM separates the SERRS signal into three components: a
     sequence of Lorentzian, Gaussian, or pseudo-Voigt peaks; a smoothly-varying baseline;

@@ -75,7 +75,7 @@ for (pt in samp.idx) {
 }
 }
 \references{
-Moores, Gracie, Carson, Faulds, Graham & Girolami "Bayesian modelling and quantification of Raman spectroscopy," \href{https://arxiv.org/abs/1604.07299}{arXiv preprint}
+Moores, Gracie, Carson, Faulds, Graham & Girolami "Bayesian modelling and quantification of Raman spectroscopy," in D.R. Wood, A.M. Etheridge, J. de Gier & N. Joshi (eds.) \emph{2025 MATRIX Annals, Part II}, MATRIX Book Ser. 10, pp. 417--428. Springer, Cham, Switzerland (2026). \doi{10.48550/arXiv.1604.07299}
 }
 \author{
 M. T. Moores, J. Carson & M. Girolami
