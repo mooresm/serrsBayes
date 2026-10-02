@@ -21,6 +21,7 @@ src-i386
 src-x64
 # other documentation
 inst/doc
+CLAUDE.md
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
