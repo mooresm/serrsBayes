@@ -1,5 +1,12 @@
 # serrsBayes 0.5-1
 
+## New Features
+
+* Added SHLIB_OPENMP_CXXFLAGS to Makevars for parallel computation on supported platforms
+  (e.g. Apple clang 21 and libomp 17.0.6)
+
+## Bug Fixes
+
 * Merged PR #4 from Dirk Eddelbuettel for compatibility with Eigen 5.0
 * Replaced deprecated Matrix coercions `as(., "dgCMatrix")` with coercions via virtual classes
 * Fixed NOTE for using old-style personList() or as.personList() in CITATION

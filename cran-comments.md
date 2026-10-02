@@ -1,6 +1,7 @@
 * Merged pull request from Dirk Eddelbuettel for compatibility with Eigen 5.0
 * Replaced deprecated Matrix coercions `as(., "dgCMatrix")` with coercions via virtual classes
 * Fixed NOTE for using old-style personList() or as.personList() in CITATION
+* Added SHLIB_OPENMP_CXXFLAGS to Makevars for parallel computation on supported platforms
 * Replaced Travis with GitHub Actions for CI and code coverage
 
 ## Test environments

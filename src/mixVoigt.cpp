@@ -328,13 +328,16 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
   VectorXd prLocMu = priors["loc.mu"];
   VectorXd prLocSD = priors["loc.sd"];
   VectorXd prAmpMu, prAmpSD;
-  if (priors.containsElementNamed("beta.mu"))
+  // check once here: the R API must not be called inside the parallel loop
+  const bool ampNormal = priors.containsElementNamed("beta.mu");
+  const bool ampExp = priors.containsElementNamed("beta.exp");
+  if (ampNormal)
   {
     prAmpMu = priors["beta.mu"];
     prAmpSD = priors["beta.sd"];
   }
   double prExpRate;
-  if (priors.containsElementNamed("beta.exp"))
+  if (ampExp)
   {
     prExpRate = priors["beta.rate"];
   }
@@ -394,11 +397,11 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
     lLik += -kappa*thetaMx(pt,4*nPK+n) - sumDlogNorm(theta.segment(0,nPK), prScaGmu, prScaGsd);
     lLik -= sumDlogNorm(theta.segment(nPK,nPK), prScaLmu, prScaLsd);
     lLik -= sumDnorm(theta.segment(2*nPK,nPK), prLocMu, prLocSD);
-    if (priors.containsElementNamed("beta.mu"))
+    if (ampNormal)
     {
       lLik += sumDnorm(Prop_Theta.segment(3*nPK,nPK), prAmpMu, prAmpSD);
       lLik -= sumDnorm(theta.segment(3*nPK,nPK), prAmpMu, prAmpSD);
-    } else if (priors.containsElementNamed("beta.exp"))
+    } else if (ampExp)
     {
       lLik += sumDexp(Prop_Theta.segment(3*nPK,nPK), prExpRate);
       lLik -= sumDexp(theta.segment(3*nPK,nPK), prExpRate);
