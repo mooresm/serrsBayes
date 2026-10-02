@@ -345,8 +345,8 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
   // matrices for the cubic B-spline
   MatrixXd basisMx = priors["bl.basis"];
   VectorXd eigVal = priors["bl.eigen"];
-  const MappedSparseMatrix<double> precMx(as<MappedSparseMatrix<double> >(priors["bl.precision"]));
-  const MappedSparseMatrix<double> xTx(as<MappedSparseMatrix<double> >(priors["bl.XtX"]));
+  const Map<SparseMatrix<double>> precMx(as<Map<SparseMatrix<double>>>(priors["bl.precision"]));
+  const Map<SparseMatrix<double>> xTx(as<Map<SparseMatrix<double>>>(priors["bl.XtX"]));
   MatrixXd aMx = priors["bl.orthog"]; // orthogonal, Demmler-Reinsch basis
   MatrixXd ruMx = priors["bl.Ru"];
 
