@@ -1,4 +1,4 @@
-* Merged pull request from RcppEigen team for compatibility with Eigen 5.0
+* Merged pull request from Dirk Eddelbuettel for compatibility with Eigen 5.0
 * Replaced deprecated Matrix coercions `as(., "dgCMatrix")` with coercions via virtual classes
 * Fixed NOTE for using old-style personList() or as.personList() in CITATION
 * Replaced Travis with GitHub Actions for CI and code coverage

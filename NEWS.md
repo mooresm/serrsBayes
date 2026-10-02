@@ -1,6 +1,6 @@
 # serrsBayes 0.5-1
 
-* Merged pull request from RcppEigen team for compatibility with Eigen 5.0
+* Merged PR #4 from Dirk Eddelbuettel for compatibility with Eigen 5.0
 * Replaced deprecated Matrix coercions `as(., "dgCMatrix")` with coercions via virtual classes
 * Fixed NOTE for using old-style personList() or as.personList() in CITATION
 * Added citation to Moores et al. (2025 MATRIX Annals Part II) instead of arXiv preprint
