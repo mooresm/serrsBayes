@@ -17,32 +17,28 @@ knitr::opts_chunk$set(
 ```
 
 [![cran version](https://www.r-pkg.org/badges/version/serrsBayes)](https://cran.r-project.org/package=serrsBayes)
+[![R-CMD-check](https://github.com/mooresm/serrsBayes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mooresm/serrsBayes/actions/workflows/R-CMD-check.yaml)
 [![DOI](https://zenodo.org/badge/121410558.svg)](https://zenodo.org/badge/latestdoi/121410558)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/serrsBayes)](https://github.com/r-hub/cranlogs.app)
 
 ```{r hexSticker, echo=FALSE, message=FALSE, warning=FALSE, fig.align='right', fig.asp=1, out.width='100px',out.height='100px'}
-tmp <- tempfile()
-download.file("https://pure.strath.ac.uk/portal/files/43595106/Figure_2.zip", tmp)
-tmp2 <- unzip(tmp, "Figure 2/T20 SERS spectra/T20_1_ REP1  Well_A1.SPC")
-library(hyperSpec)
-spcT20 <- read.spc (tmp2)
-spectra <- spcT20[1,,600~1800]
-wavenumbers <- wl(spectra)
-nWL <- length(wavenumbers)
 library(serrsBayes)
+data("lsTamra", package = "serrsBayes")
+wavenumbers <- lsTamra$wavenumbers
+spectra <- lsTamra$spectra
+nWL <- length(wavenumbers)
 data("result", package = "serrsBayes")
-samp.idx <- sample.int(length(result$weights), 50, prob=result$weights)
+samp.idx <- seq_along(result$weights)
 samp.mat <- resid.mat <- matrix(0,nrow=length(samp.idx), ncol=nWL)
 samp.sigi <- samp.lambda <- numeric(length=nrow(samp.mat))
-spectra <- as.matrix(spectra)
 library(hexSticker)
 sticker(expression({plot(wavenumbers, spectra[1,], type='l', ann=FALSE, xaxt='n', yaxt='n', bty='n', lwd=2, col="#000000C0", xlim=c(1100,1800))
 for (pt in 1:length(samp.idx)) {
     k <- samp.idx[pt]
     samp.mat[pt,] <- mixedVoigt(result$location[k,], result$scale_G[k,],
                                 result$scale_L[k,], result$beta[k,], wavenumbers)
-    samp.sigi[pt] <- result$sigma
-    samp.lambda[pt] <- result$lambda
+    samp.sigi[pt] <- result$sigma[k]
+    samp.lambda[pt] <- result$lambda[k]
     
     Obsi <- spectra[1,] - samp.mat[pt,]
     g0_Cal <- length(Obsi) * samp.lambda[pt] * result$priors$bl.precision

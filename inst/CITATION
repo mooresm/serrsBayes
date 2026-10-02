@@ -53,6 +53,45 @@ bibentry(bibtype = "InCollection",
 )
 
 bibentry(bibtype = "Article",
+         header       = "The TAMRA+DNA spectrum in the lsTamra dataset was published in:",
+         title        = "Preferential attachment of specific fluorescent dyes and dye labeled {DNA} sequences in a surface enhanced {R}aman scattering multiplex",
+         author       = c(person("Kirsten", "Gracie"),
+                          person("Matthew", "Moores"),
+                          person(c("W.","Ewen"), "Smith"),
+                          person("Kerry", "Harding"),
+                          person("Mark", "Girolami"),
+                          person("Duncan", "Graham"),
+                          person("Karen", "Faulds")),
+         journal      = "Analytical Chemistry",
+         year         = "2016",
+         volume       = "88",
+         number       = "2",
+         pages        = "1147--1153",
+         doi          = "10.1021/acs.analchem.5b02776",
+
+         textVersion  =
+           paste("Gracie K, Moores M, Smith WE, Harding K, Girolami M, Graham D & Faulds K (2016).",
+                 "Preferential attachment of specific fluorescent dyes and dye labeled DNA sequences",
+                 "in a surface enhanced Raman scattering multiplex.",
+                 "Analytical Chemistry 88(2): 1147-1153. DOI: 10.1021/acs.analchem.5b02776")
+)
+
+bibentry(bibtype = "Misc",
+         header       = "The dataset is available under a CC BY 4.0 licence from:",
+         title        = "Preferential attachment of specific fluorescent dyes and dye labelled {DNA} sequences in a {SERS} multiplex",
+         author       = person("Kirsten", "Gracie"),
+         year         = "2015",
+         publisher    = "University of Strathclyde",
+         note         = "Dataset",
+         doi          = "10.15129/2c186689-2334-4746-955e-f9579ca15909",
+
+         textVersion  =
+           paste("Gracie K (2015).",
+                 "Preferential attachment of specific fluorescent dyes and dye labelled DNA sequences in a SERS multiplex",
+                 "[Dataset]. University of Strathclyde. DOI: 10.15129/2c186689-2334-4746-955e-f9579ca15909")
+)
+
+bibentry(bibtype = "Article",
          header = "An extension of the model for CARS spectroscopy:",
          title        = "Bayesian quantification for coherent anti-{S}tokes {R}aman scattering spectroscopy",
          author       = c(person("Teemu","H{\"a}rk{\"o}nen"),

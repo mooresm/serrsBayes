@@ -1,5 +1,7 @@
-* Fixed broken link to EPSRC grants website (now uses UKRI Gateway to Research)
-* Merged pull request from Rcpp team to use constant M_PI instead of PI to support STRICT_R_HEADERS
+* Merged pull request from RcppEigen team for compatibility with Eigen 5.0
+* Replaced deprecated Matrix coercions `as(., "dgCMatrix")` with coercions via virtual classes
+* Fixed NOTE for using old-style personList() or as.personList() in CITATION
+* Replaced Travis with GitHub Actions for CI and code coverage
 
 ## Test environments
 
@@ -12,13 +14,7 @@
 
 ## R CMD check results
 
-There were no ERRORs nor WARNings. 
-
-There was 1 NOTE:
-
-* Check: installed package size 
-    - sub-directories of 1Mb or more: libs  16.2Mb
-    - (this is a known issue with RcppEigen when compiled with debug symbols)
+Status OK: no ERRORs, WARNINGs, nor NOTEs.
 
 ## Downstream dependencies
 
