@@ -57,7 +57,7 @@ fitSpectraSMC <- function(wl, spc, peakWL, lPriors, conc=rep(1.0,nrow(spc)), npa
   basisFn <- getBsplineBasis(wl, lPriors$bl.knots, lPriors$bl.smooth)
   lPriors$bl.knots <- ncol(basisFn$basis)
   lPriors$bl.basis <- basisFn$basis
-  lPriors$bl.precision <- as(basisFn$precision, "dgCMatrix") # cast to the parent class
+  lPriors$bl.precision <- as(as(as(basisFn$precision, "dMatrix"), "generalMatrix"), "CsparseMatrix") # cast to the parent class
   gi <- t(lPriors$bl.basis)%*%lPriors$bl.basis + lPriors$bl.precision
   Sgi<-solve(gi,sparse=TRUE)
   bl.smoother <- tcrossprod(Sgi, lPriors$bl.basis)

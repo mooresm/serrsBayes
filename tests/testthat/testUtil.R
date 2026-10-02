@@ -43,8 +43,8 @@ test_that("computeLogLikelihood for a single observation", {
   Ru <- Rinv %*% Rsvd$u
   A <- X_Cal %*% Rinv %*% Rsvd$u
   lPriors$bl.basis <- X_Cal
-  lPriors$bl.precision <- as(Pre_Cal, "dgCMatrix")
-  lPriors$bl.XtX <- as(XtX, "dgCMatrix")
+  lPriors$bl.precision <- as(as(as(Pre_Cal, "dMatrix"), "generalMatrix"), "CsparseMatrix")
+  lPriors$bl.XtX <- as(as(as(XtX, "dMatrix"), "generalMatrix"), "CsparseMatrix")
   lPriors$bl.orthog <- as.matrix(A)
   lPriors$bl.Ru <- as.matrix(Ru)
   lPriors$bl.eigen <- Rsvd$d
@@ -96,8 +96,8 @@ test_that("computeLogLikelihood using Jake's code", {
   Ru <- Rinv %*% Rsvd$u
   A <- X_Cal %*% Rinv %*% Rsvd$u
   lPriors$bl.basis <- X_Cal
-  lPriors$bl.precision <- as(Pre_Cal, "dgCMatrix")
-  lPriors$bl.XtX <- as(XtX, "dgCMatrix")
+  lPriors$bl.precision <- as(as(as(Pre_Cal, "dMatrix"), "generalMatrix"), "CsparseMatrix")
+  lPriors$bl.XtX <- as(as(as(XtX, "dMatrix"), "generalMatrix"), "CsparseMatrix")
   lPriors$bl.orthog <- as.matrix(A)
   lPriors$bl.Ru <- as.matrix(Ru)
   lPriors$bl.eigen <- Rsvd$d

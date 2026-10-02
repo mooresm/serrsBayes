@@ -49,7 +49,7 @@ fitSpectraMCMC <- function(wl, spc, peakWL, lPriors, sd_mh, niter=10000, nchains
   basisFn <- getBsplineBasis(wl, lPriors$bl.knots, lPriors$bl.smooth)
   lPriors$bl.knots <- ncol(basisFn$basis)
   lPriors$bl.basis <- basisFn$basis
-  lPriors$bl.precision <- as(basisFn$precision, "dgCMatrix") # cast to the parent class
+  lPriors$bl.precision <- as(as(as(basisFn$precision, "dMatrix"), "generalMatrix"), "CsparseMatrix") # cast to the parent class
   gi <- t(lPriors$bl.basis)%*%lPriors$bl.basis + lPriors$bl.precision
   Sgi<-solve(gi,sparse=TRUE)
   print(paste("Step 0: computing",lPriors$bl.knots,"B-spline basis functions took",(proc.time() - ptm)[3],"sec."))
