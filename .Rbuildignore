@@ -16,3 +16,5 @@
 ^CLAUDE\.md$
 ^\.github$
 ^codecov\.yml$
+^CRAN-SUBMISSION$
+^\.zenodo\.json$

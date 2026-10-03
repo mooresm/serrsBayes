@@ -1,0 +1,34 @@
+{
+  "title": "serrsBayes: Bayesian Modelling of Raman Spectroscopy",
+  "upload_type": "software",
+  "description": "<p>Sequential Monte Carlo (SMC) algorithms for fitting a generalised additive mixed model (GAMM) to surface-enhanced resonance Raman spectroscopy (SERRS), using the method of Moores et al. (2026). Multivariate observations of SERRS are highly collinear and lend themselves to a reduced-rank representation. The GAMM separates the SERRS signal into three components: a sequence of Lorentzian, Gaussian, or pseudo-Voigt peaks; a smoothly-varying baseline; and additive white noise. The parameters of each component of the model are estimated iteratively using SMC. The posterior distributions of the parameters given the observed spectra are represented as a population of weighted particles.</p>",
+  "license": "GPL-2.0-or-later",
+  "creators": [
+    {"name": "Moores, Matt", "orcid": "0000-0003-4531-3572"},
+    {"name": "Carson, Jake", "orcid": "0000-0002-7896-0971"},
+    {"name": "Girolami, Mark", "orcid": "0000-0003-3008-253X"}
+  ],
+  "contributors": [
+    {"name": "Eddelbuettel, Dirk", "orcid": "0000-0001-6419-907X", "type": "Other"},
+    {"name": "Moskowitz, Benjamin", "orcid": "0000-0003-1005-8639", "type": "Other"},
+    {"name": "Gracie, Kirsten", "type": "DataCollector"},
+    {"name": "Faulds, Karen", "orcid": "0000-0002-5567-7399", "type": "DataCollector"},
+    {"name": "Graham, Duncan", "orcid": "0000-0002-6079-2105", "type": "DataCollector"}
+  ],
+  "grants": [
+    {"id": "10.13039/501100000266::EP/L014165/1"}
+  ],
+  "keywords": [
+    "R",
+    "Raman spectroscopy",
+    "SERS",
+    "sequential Monte Carlo",
+    "Bayesian inference"
+  ],
+  "related_identifiers": [
+    {"identifier": "https://CRAN.R-project.org/package=serrsBayes", "relation": "isIdenticalTo", "resource_type": "software"},
+    {"identifier": "10.48550/arXiv.1604.07299", "relation": "isSupplementTo", "resource_type": "publication-preprint"},
+    {"identifier": "10.1021/acs.analchem.5b02776", "relation": "references", "resource_type": "publication-article"},
+    {"identifier": "10.15129/2c186689-2334-4746-955e-f9579ca15909", "relation": "references", "resource_type": "dataset"}
+  ]
+}
