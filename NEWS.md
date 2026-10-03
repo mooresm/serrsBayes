@@ -4,6 +4,7 @@
 
 * Added SHLIB_OPENMP_CXXFLAGS to Makevars for parallel computation on supported platforms
   (e.g. Apple clang 21 and libomp 17.0.6)
+* `mhUpdateVoigt` no longer copies the spline matrices for each particle, using pass-by-reference instead.
 
 ## Bug Fixes
 
@@ -14,6 +15,7 @@
 * Also cited Gracie et al. (Anal. Chem. 2016) and its associated SERS dataset (Gracie 2015)
 * Replaced Travis with GitHub Actions for CI and codecov for code coverage
 * Enabled Rhub 2 GitHub Action
+* Added new unit tests for SMC functions
 
 # serrsBayes 0.5-0
 

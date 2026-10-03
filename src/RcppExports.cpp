@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // weightedLorentzian
 Eigen::VectorXd weightedLorentzian(Eigen::VectorXd location, Eigen::VectorXd scale, Eigen::VectorXd amplitude, Eigen::VectorXd wavelengths);
 RcppExport SEXP _serrsBayes_weightedLorentzian(SEXP locationSEXP, SEXP scaleSEXP, SEXP amplitudeSEXP, SEXP wavelengthsSEXP) {
@@ -217,21 +222,21 @@ BEGIN_RCPP
 END_RCPP
 }
 // computeLogLikelihood
-double computeLogLikelihood(Eigen::VectorXd obsi, double lambda, double prErrNu, double prErrSS, Eigen::MatrixXd basisMx, Eigen::VectorXd eigVal, Eigen::SparseMatrix<double> precMx, Eigen::SparseMatrix<double> xTx, Eigen::MatrixXd aMx, Eigen::MatrixXd ruMx);
+double computeLogLikelihood(const Eigen::Map<Eigen::VectorXd> obsi, double lambda, double prErrNu, double prErrSS, const Eigen::Map<Eigen::MatrixXd> basisMx, const Eigen::Map<Eigen::VectorXd> eigVal, const Eigen::Map<Eigen::SparseMatrix<double> > precMx, const Eigen::Map<Eigen::SparseMatrix<double> > xTx, const Eigen::Map<Eigen::MatrixXd> aMx, const Eigen::Map<Eigen::MatrixXd> ruMx);
 RcppExport SEXP _serrsBayes_computeLogLikelihood(SEXP obsiSEXP, SEXP lambdaSEXP, SEXP prErrNuSEXP, SEXP prErrSSSEXP, SEXP basisMxSEXP, SEXP eigValSEXP, SEXP precMxSEXP, SEXP xTxSEXP, SEXP aMxSEXP, SEXP ruMxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Eigen::VectorXd >::type obsi(obsiSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::VectorXd> >::type obsi(obsiSEXP);
     Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
     Rcpp::traits::input_parameter< double >::type prErrNu(prErrNuSEXP);
     Rcpp::traits::input_parameter< double >::type prErrSS(prErrSSSEXP);
-    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type basisMx(basisMxSEXP);
-    Rcpp::traits::input_parameter< Eigen::VectorXd >::type eigVal(eigValSEXP);
-    Rcpp::traits::input_parameter< Eigen::SparseMatrix<double> >::type precMx(precMxSEXP);
-    Rcpp::traits::input_parameter< Eigen::SparseMatrix<double> >::type xTx(xTxSEXP);
-    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type aMx(aMxSEXP);
-    Rcpp::traits::input_parameter< Eigen::MatrixXd >::type ruMx(ruMxSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type basisMx(basisMxSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::VectorXd> >::type eigVal(eigValSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::SparseMatrix<double> > >::type precMx(precMxSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::SparseMatrix<double> > >::type xTx(xTxSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type aMx(aMxSEXP);
+    Rcpp::traits::input_parameter< const Eigen::Map<Eigen::MatrixXd> >::type ruMx(ruMxSEXP);
     rcpp_result_gen = Rcpp::wrap(computeLogLikelihood(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal, precMx, xTx, aMx, ruMx));
     return rcpp_result_gen;
 END_RCPP

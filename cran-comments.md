@@ -6,7 +6,7 @@
 
 ## Test environments
 
-* R-hub v2 (`rhub::rhub_check()`): linux, macos, windows, clang-asan, gcc-asan, valgrind
+* R-hub v2 (`rhub::rhub_check()`): linux, macos, windows, clang-asan, gcc-asan
   + <https://github.com/mooresm/serrsBayes/actions/runs/37103178091>
 
 valgrind: 0 bytes definitely lost; 368 bytes 'possibly lost' in libgomp thread-local storage, allocated when OpenMP creates its thread pool. This is a known valgrind false positive for OpenMP.

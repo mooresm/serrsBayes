@@ -27,6 +27,11 @@ using namespace Rcpp;
 using namespace Eigen;
 // [[Rcpp::plugins(openmp)]]
 
+double logLikelihood(const Ref<const VectorXd>& obsi, double lambda, double prErrNu, double prErrSS,
+            const Ref<const VectorXd>& eigVal, const Ref<const SparseMatrix<double> >& precMx,
+            const Ref<const SparseMatrix<double> >& xTx, const Ref<const MatrixXd>& aMx,
+            const Ref<const MatrixXd>& ruMx);
+
 Eigen::VectorXd dCauchy(Eigen::VectorXd Cal_V, double loc, double scale)
 {
   VectorXd Sigi = VectorXd::Zero(Cal_V.size());
@@ -256,9 +261,20 @@ Eigen::VectorXd copyLogProposals(int nPK, Eigen::VectorXd T_Prop_Theta)
 //' @param ruMx product of Ru from the Demmler-Reinsch factorisation
 //' @return The logarithm of the likelihood.
 // [[Rcpp::export]]
-double computeLogLikelihood(Eigen::VectorXd obsi, double lambda, double prErrNu, double prErrSS,
-            Eigen::MatrixXd basisMx, Eigen::VectorXd eigVal, Eigen::SparseMatrix<double> precMx,
-            Eigen::SparseMatrix<double> xTx, Eigen::MatrixXd aMx, Eigen::MatrixXd ruMx)
+double computeLogLikelihood(const Eigen::Map<Eigen::VectorXd> obsi, double lambda, double prErrNu, double prErrSS,
+            const Eigen::Map<Eigen::MatrixXd> basisMx, const Eigen::Map<Eigen::VectorXd> eigVal,
+            const Eigen::Map<Eigen::SparseMatrix<double> > precMx, const Eigen::Map<Eigen::SparseMatrix<double> > xTx,
+            const Eigen::Map<Eigen::MatrixXd> aMx, const Eigen::Map<Eigen::MatrixXd> ruMx)
+{
+  return logLikelihood(obsi, lambda, prErrNu, prErrSS, eigVal, precMx, xTx, aMx, ruMx);
+}
+
+// Pass by reference to avoid copying the matrices, since this is called for every particle.
+// Eigen::Ref binds to either a Map of the R objects or a local Eigen object, without a copy.
+double logLikelihood(const Ref<const VectorXd>& obsi, double lambda, double prErrNu, double prErrSS,
+            const Ref<const VectorXd>& eigVal, const Ref<const SparseMatrix<double> >& precMx,
+            const Ref<const SparseMatrix<double> >& xTx, const Ref<const MatrixXd>& aMx,
+            const Ref<const MatrixXd>& ruMx)
 {
   double nWL = obsi.size();
   double a0_Cal = prErrNu/2.0;
@@ -346,13 +362,12 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
   int nPart = thetaMx.rows();
   int nWL = wavenum.size();
 
-  // matrices for the cubic B-spline
-  MatrixXd basisMx = priors["bl.basis"];
-  VectorXd eigVal = priors["bl.eigen"];
+  // matrices for the cubic B-spline (mapped to the R objects, rather than copied)
+  const Map<VectorXd> eigVal(as<Map<VectorXd>>(priors["bl.eigen"]));
   const Map<SparseMatrix<double>> precMx(as<Map<SparseMatrix<double>>>(priors["bl.precision"]));
   const Map<SparseMatrix<double>> xTx(as<Map<SparseMatrix<double>>>(priors["bl.XtX"]));
-  MatrixXd aMx = priors["bl.orthog"]; // orthogonal, Demmler-Reinsch basis
-  MatrixXd ruMx = priors["bl.Ru"];
+  const Map<MatrixXd> aMx(as<Map<MatrixXd>>(priors["bl.orthog"])); // orthogonal, Demmler-Reinsch basis
+  const Map<MatrixXd> ruMx(as<Map<MatrixXd>>(priors["bl.Ru"]));
 
   // RNG is not thread-safe
   const NumericVector stdNorm = rnorm(nPK * nPart * 4, 0, 1);
@@ -389,8 +404,8 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
     // smoothing spline:
     //double lambda = thetaMx(pt,4*nPK+2) / thetaMx(pt,4*nPK+3);
     // log-likelihood:
-    double L_Ev = computeLogLikelihood(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal,
-                                       precMx, xTx, aMx, ruMx);
+    double L_Ev = logLikelihood(obsi, lambda, prErrNu, prErrSS, eigVal,
+                                precMx, xTx, aMx, ruMx);
     double lLik = kappa*L_Ev + sumDlogNorm(Prop_Theta.segment(0,nPK), prScaGmu, prScaGsd);
     lLik += sumDlogNorm(Prop_Theta.segment(nPK,nPK), prScaLmu, prScaLsd);
     lLik += sumDnorm(Prop_Theta.segment(2*nPK,nPK), prLocMu, prLocSD);
@@ -413,7 +428,7 @@ long mhUpdateVoigt(Eigen::MatrixXd spectra, unsigned n, double kappa, Eigen::Vec
       sigi = conc(i) * mixedVoigt(Prop_Theta.segment(2*nPK,nPK), Prop_Theta.segment(0,nPK),
                   Prop_Theta.segment(nPK,nPK), Prop_Theta.segment(3*nPK,nPK), wavenum);
       obsi = spectra.row(i).transpose() - sigi;
-      oldLogLik(i) = computeLogLikelihood(obsi, lambda, prErrNu, prErrSS, basisMx, eigVal,
+      oldLogLik(i) = logLikelihood(obsi, lambda, prErrNu, prErrSS, eigVal,
                 precMx, xTx, aMx, ruMx);
       lLik += oldLogLik(i);
       lLik -= thetaMx(pt,4*nPK+i+1);
