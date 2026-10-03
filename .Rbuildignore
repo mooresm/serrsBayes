@@ -1,5 +1,4 @@
 ^.*\.Rproj$
-^.travis.yml$
 ^\.Rproj\.user$
 ^\.git
 ^cran-comments.md
@@ -16,3 +15,4 @@
 ^CRAN-RELEASE$
 ^CLAUDE\.md$
 ^\.github$
+^codecov\.yml$
