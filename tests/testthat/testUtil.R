@@ -63,7 +63,8 @@ test_that("computeLogLikelihood for a single observation", {
   mi_New <- as.vector(Ru %*% bRatio)
   bi_Cal <- b0_Cal + 0.5*(t(Obsi)%*%Obsi-t(mi_New)%*%gi_Cal%*%mi_New)[1,1]
 
-  L_Ev <- -(N_WN_Cal/2)*log(2*pi)+0.5*Matrix::determinant(g0_Cal)$modulus[1] -
+  # g0_Cal is rank-deficient, so use LU: a failed sparse Cholesky leaks memory in Matrix (valgrind)
+  L_Ev <- -(N_WN_Cal/2)*log(2*pi)+0.5*Matrix::determinant(as(g0_Cal, "generalMatrix"))$modulus[1] -
     0.5*Matrix::determinant(gi_Cal)$modulus[1]+a0_Cal*log(b0_Cal)-ai_Cal*log(bi_Cal) +
     lgamma(ai_Cal)-lgamma(a0_Cal)
   expect_equal(computeLogLikelihood(Obsi, lambda, lPriors$noise.nu, lPriors$noise.SS,
@@ -117,7 +118,8 @@ test_that("computeLogLikelihood using Jake's code", {
   mi_Cal<-Sgi_Cal%*%(tX_Cal%*%Obsi)[,1]
   bi_Cal<-b0_Cal+0.5*(t(Obsi)%*%Obsi-t(mi_Cal)%*%gi_Cal%*%mi_Cal)[1,1]
   
-  L_Ev <- -(N_WN_Cal/2)*log(2*pi)+0.5*Matrix::determinant(g0_Cal)$modulus[1]-0.5*Matrix::determinant(gi_Cal)$modulus[1]+a0_Cal*log(b0_Cal)-ai_Cal*log(bi_Cal)+lgamma(ai_Cal)-lgamma(a0_Cal)
+  # g0_Cal is rank-deficient, so use LU: a failed sparse Cholesky leaks memory in Matrix (valgrind)
+  L_Ev <- -(N_WN_Cal/2)*log(2*pi)+0.5*Matrix::determinant(as(g0_Cal, "generalMatrix"))$modulus[1]-0.5*Matrix::determinant(gi_Cal)$modulus[1]+a0_Cal*log(b0_Cal)-ai_Cal*log(bi_Cal)+lgamma(ai_Cal)-lgamma(a0_Cal)
   expect_equal(computeLogLikelihood(Obsi, lambda, lPriors$noise.nu, lPriors$noise.SS,
                                     X_Cal, Rsvd$d, lPriors$bl.precision, lPriors$bl.XtX,
                                     lPriors$bl.orthog, lPriors$bl.Ru), L_Ev, tolerance=200)

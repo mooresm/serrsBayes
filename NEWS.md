@@ -1,4 +1,4 @@
-# serrsBayes 0.5-1
+# serrsBayes 0.6-0
 
 ## New Features
 
@@ -12,7 +12,8 @@
 * Fixed NOTE for using old-style personList() or as.personList() in CITATION
 * Added citation to Moores et al. (2025 MATRIX Annals Part II) instead of arXiv preprint
 * Also cited Gracie et al. (Anal. Chem. 2016) and its associated SERS dataset (Gracie 2015)
-* Replaced Travis with GitHub Actions for CI and code coverage
+* Replaced Travis with GitHub Actions for CI and codecov for code coverage
+* Enabled Rhub 2 GitHub Action
 
 # serrsBayes 0.5-0
 

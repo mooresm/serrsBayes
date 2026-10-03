@@ -2,16 +2,14 @@
 * Replaced deprecated Matrix coercions `as(., "dgCMatrix")` with coercions via virtual classes
 * Fixed NOTE for using old-style personList() or as.personList() in CITATION
 * Added SHLIB_OPENMP_CXXFLAGS to Makevars for parallel computation on supported platforms
-* Replaced Travis with GitHub Actions for CI and code coverage
+* Replaced Travis with Rhub 2 GitHub Actions for CI and codecov for code coverage
 
 ## Test environments
 
-* `devtools::check_win_devel` OK, see status at
-  + <https://win-builder.r-project.org/XeiRy39aMOsM/00check.log>
-* `rhub::check_for_cran`, see status at
-   + `ubuntu-gcc-release` <https://builder.r-hub.io/status/serrsBayes_0.5-0.tar.gz-e3de8d7b411f403993881505e06d557c>
-   + `solaris-x86-patched` <https://builder.r-hub.io/status/serrsBayes_0.5-0.tar.gz-9a792b8b48964b5cb0111a648fd3df9d>
-   + `windows-x86_64-devel` <https://builder.r-hub.io/status/serrsBayes_0.5-0.tar.gz-85c4772eb0e64a7eb925223a45c157d8>
+* R-hub v2 (`rhub::rhub_check()`): linux, macos, windows, valgrind (atomic-stegosaurus).
+  + <https://github.com/mooresm/serrsBayes/actions/runs/37101179890>
+
+R-hub macos-arm64 and m1-san could not install the suggested package Hmisc from source (flang toolchain error); not related to serrsBayes.
 
 ## R CMD check results
 
