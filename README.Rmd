@@ -24,32 +24,25 @@ knitr::opts_chunk$set(
 
 ```{r hexSticker, echo=FALSE, message=FALSE, warning=FALSE, fig.align='right', fig.asp=1, out.width='100px',out.height='100px',fig.alt="serrsBayes hex sticker logo"}
 library(serrsBayes)
-data("lsTamra", package = "serrsBayes")
-wavenumbers <- lsTamra$wavenumbers
-spectra <- lsTamra$spectra
-nWL <- length(wavenumbers)
-data("result", package = "serrsBayes")
-samp.idx <- seq_along(result$weights)
-samp.mat <- resid.mat <- matrix(0,nrow=length(samp.idx), ncol=nWL)
-samp.sigi <- samp.lambda <- numeric(length=nrow(samp.mat))
 library(hexSticker)
-sticker(expression({plot(wavenumbers, spectra[1,], type='l', ann=FALSE, xaxt='n', yaxt='n', bty='n', lwd=2, col="#000000C0", xlim=c(1100,1800))
-for (pt in 1:length(samp.idx)) {
-    k <- samp.idx[pt]
-    samp.mat[pt,] <- mixedVoigt(result$location[k,], result$scale_G[k,],
-                                result$scale_L[k,], result$beta[k,], wavenumbers)
-    samp.sigi[pt] <- result$sigma[k]
-    samp.lambda[pt] <- result$lambda[k]
-    
-    Obsi <- spectra[1,] - samp.mat[pt,]
-    g0_Cal <- length(Obsi) * samp.lambda[pt] * result$priors$bl.precision
-    gi_Cal <- crossprod(result$priors$bl.basis) + g0_Cal
-    mi_Cal <- as.vector(solve(gi_Cal, crossprod(result$priors$bl.basis, Obsi)))
-    
-    bl.est <- result$priors$bl.basis %*% mi_Cal # smoothed residuals = estimated basline
+showtext::showtext_opts(dpi = 300) # match the dpi of the saved sticker, so the text is the right size
+# the plot expression is evaluated outside this chunk, so it must not depend on local variables
+sticker(expression({
+  wavenumbers <- serrsBayes::lsTamra$wavenumbers
+  spectra <- serrsBayes::lsTamra$spectra
+  result <- serrsBayes::result
+  basis <- result$priors$bl.basis
+  plot(wavenumbers, spectra[1,], type='l', ann=FALSE, xaxt='n', yaxt='n', bty='n', lwd=2, col="#000000C0", xlim=c(1100,1800))
+  for (k in seq_along(result$weights)) {
+    sigi <- mixedVoigt(result$location[k,], result$scale_G[k,],
+                       result$scale_L[k,], result$beta[k,], wavenumbers)
+    Obsi <- spectra[1,] - sigi
+    g0_Cal <- length(Obsi) * result$lambda[k] * result$priors$bl.precision
+    gi_Cal <- crossprod(basis) + g0_Cal
+    mi_Cal <- as.vector(solve(gi_Cal, crossprod(basis, Obsi)))
+    bl.est <- basis %*% mi_Cal # smoothed residuals = estimated baseline
     lines(wavenumbers, bl.est, col="#0000FF40")
-    lines(wavenumbers, bl.est + samp.mat[pt,], col="#FF00002F", lwd=0.5)
-    resid.mat[pt,] <- Obsi - bl.est[,1]
+    lines(wavenumbers, bl.est + sigi, col="#FF00002F", lwd=0.5)
 }}),package="serrsBayes",p_size=8, s_x=0.75, s_y=.75, s_width=2.7, s_height=2.5, p_color = 2, h_color = "#0000FFC0", h_fill ="#FFFFFFFF", filename = "inst/image/README-logo.png", p_y=0.7,
 url="https://mooresm.github.io/serrsBayes/", u_x=0.92, u_y=0.08)
 knitr::include_graphics("inst/image/README-logo.png", dpi=600)
