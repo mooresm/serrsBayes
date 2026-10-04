@@ -18,3 +18,4 @@
 ^codecov\.yml$
 ^CRAN-SUBMISSION$
 ^\.zenodo\.json$
+^\.claude$

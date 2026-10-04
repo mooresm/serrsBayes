@@ -35,3 +35,4 @@ vignettes/refs.bib.sav
 *.utf8.md
 *.knit.md
 .Rproj.user
+docs/CLAUDE.html

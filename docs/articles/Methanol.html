@@ -6,19 +6,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Methanol example • serrsBayes</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Methanol example">
-<meta property="og:description" content="serrsBayes">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,25 +32,19 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">serrsBayes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4-2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -67,9 +62,9 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/mooresm/serrsBayes/">
+  <a href="https://github.com/mooresm/serrsBayes/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -80,199 +75,291 @@
 </div>
 <!--/.navbar -->
 
-      
 
-      </header><script src="Methanol_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Methanol example</h1>
-                        <h4 class="author">Matt Moores, Benjamin Moskowitz and Karen Faulds</h4>
+                        <h4 data-toc-skip class="author">Matt Moores,
+Benjamin Moskowitz and Karen Faulds</h4>
             
-            <h4 class="date">2021-06-07</h4>
+            <h4 data-toc-skip class="date">2026-10-03</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/mooresm/serrsBayes/blob/master/vignettes/Methanol.Rmd"><code>vignettes/Methanol.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/mooresm/serrsBayes/blob/HEAD/vignettes/Methanol.Rmd" class="external-link"><code>vignettes/Methanol.Rmd</code></a></small>
       <div class="hidden name"><code>Methanol.Rmd</code></div>
 
     </div>
 
     
     
-<p>There are 3 R functions available in the package <strong>serrsBayes</strong> for model-based, statistical analysis of spectroscopy:</p>
+<p>There are 3 R functions available in the package
+<strong>serrsBayes</strong> for model-based, statistical analysis of
+spectroscopy:</p>
 <ul>
 <li><code>fitSpectraMCMC</code></li>
 <li><code>fitSpectraSMC</code></li>
 <li><code>fitVoigtPeaksSMC</code></li>
 </ul>
-<p>This vignette will provide recommendations for choosing which function to use for a given purpose. As an example, let’s say I wanted to fit a Raman spectrum of methanol. With a quick Google search, I find that there should be 4 peaks located at wavenumbers 1033 (C-O stretching), 1106 (CH3 rocking), 1149 (CH3 bending), and 1448 cm<span class="math inline">\(^{-1}\)</span>. However, we know that these peaks can shift slightly due to differences in temperature, pressure, spectrometer calibration, etc. My sample is in the liquid phase, so these peaks will not be exactly Gaussian or Lorentzian, but somewhere in the middle. On the other hand, I don’t want to wait for hours for SMC to finish running.</p>
-<p>The first point to emphasise is that <code>fitSpectraMCMC</code> should <em>not</em> be used for real data. It exists mainly to illustrate the differences between MCMC and SMC algorithms, so is only of interest to computational statisticians.</p>
-<p><code>fitSpectraSMC</code> is the fastest method, but can also be difficult to tune. You need to choose either Lorentzian or Gaussian broadening functions. You also need to use fixed peak locations and the results are sensitive to the choice of <code>priors$bl.smooth</code>, however if you manage to get it working for your data then there is no real reason to use <code>fitVoigtPeaksSMC</code>.</p>
-<p>The main differences in <code>fitVoigtPeaksSMC</code> are as follows:</p>
+<p>This vignette will provide recommendations for choosing which
+function to use for a given purpose. As an example, let’s say I wanted
+to fit a Raman spectrum of methanol. With a quick Google search, I find
+that there should be 4 peaks located at wavenumbers 1033 (C-O
+stretching), 1106 (CH3 rocking), 1149 (CH3 bending), and 1448
+cm<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi></mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">^{-1}</annotation></semantics></math>.
+However, we know that these peaks can shift slightly due to differences
+in temperature, pressure, spectrometer calibration, etc. My sample is in
+the liquid phase, so these peaks will not be exactly Gaussian or
+Lorentzian, but somewhere in the middle. On the other hand, I don’t want
+to wait for hours for SMC to finish running.</p>
+<p>The first point to emphasise is that <code>fitSpectraMCMC</code>
+should <em>not</em> be used for real data. It exists mainly to
+illustrate the differences between MCMC and SMC algorithms, so is only
+of interest to computational statisticians.</p>
+<p><code>fitSpectraSMC</code> is the fastest method, but can also be
+difficult to tune. You need to choose either Lorentzian or Gaussian
+broadening functions. You also need to use fixed peak locations and the
+results are sensitive to the choice of <code>priors$bl.smooth</code>,
+however if you manage to get it working for your data then there is no
+real reason to use <code>fitVoigtPeaksSMC</code>.</p>
+<p>The main differences in <code>fitVoigtPeaksSMC</code> are as
+follows:</p>
 <ul>
-<li>There are 2 scale parameters, <span class="math inline">\(\psi_G\)</span> and <span class="math inline">\(\psi_L\)</span>, that control the full-width at half-maximum (FWHM) of the peaks. The broadening profile is a mixture of Gaussian and Lorentzian, also known as a <a href="https://en.wikipedia.org/wiki/Voigt_profile#Numeric_approximations">pseudo-Voigt function</a>.</li>
-<li>The peak locations are not fixed. Instead, they are estimated as parameters of the model. This means that you need to supply informative prior distributions for the peak locations, <code>loc.mu</code> (mean) and <code>loc.sd</code> (standard deviation), in wavenumbers <span class="math inline">\(\left(\mathrm{cm}^{-1}\right)\)</span>.</li>
-<li>The underlying SMC algorithm works differently. The main effect of this is that you should set <code>priors$bl.smooth = 1</code> if you are using <code>fitVoigtPeaksSMC</code>, instead of <code>priors$bl.smooth=10^11</code> or something like that. The baseline estimation is more robust and easier to tune for “difficult” spectra.</li>
-<li>You do not need to set a prior for the amplitudes of the peaks (<code>beta.mu</code> and <code>beta.sd</code>). If you leave it out, then a uniform prior will be used by default. However, you can also set informative priors for the amplitude of each peak in the spectrum if that information is available.</li>
+<li>There are 2 scale parameters,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ψ</mi><mi>G</mi></msub><annotation encoding="application/x-tex">\psi_G</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ψ</mi><mi>L</mi></msub><annotation encoding="application/x-tex">\psi_L</annotation></semantics></math>,
+that control the full-width at half-maximum (FWHM) of the peaks. The
+broadening profile is a mixture of Gaussian and Lorentzian, also known
+as a <a href="https://en.wikipedia.org/wiki/Voigt_profile#Numeric_approximations" class="external-link">pseudo-Voigt
+function</a>.</li>
+<li>The peak locations are not fixed. Instead, they are estimated as
+parameters of the model. This means that you need to supply informative
+prior distributions for the peak locations, <code>loc.mu</code> (mean)
+and <code>loc.sd</code> (standard deviation), in wavenumbers
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><msup><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">m</mi></mrow><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\left(\mathrm{cm}^{-1}\right)</annotation></semantics></math>.</li>
+<li>The underlying SMC algorithm works differently. The main effect of
+this is that you should set <code>priors$bl.smooth = 1</code> if you are
+using <code>fitVoigtPeaksSMC</code>, instead of
+<code>priors$bl.smooth=10^11</code> or something like that. The baseline
+estimation is more robust and easier to tune for “difficult”
+spectra.</li>
+<li>You do not need to set a prior for the amplitudes of the peaks
+(<code>beta.mu</code> and <code>beta.sd</code>). If you leave it out,
+then a uniform prior will be used by default. However, you can also set
+informative priors for the amplitude of each peak in the spectrum if
+that information is available.</li>
 </ul>
-<div id="raw-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#raw-data" class="anchor"></a>Raw Data</h2>
-<p>The first step is always to read in the spectrum and plot it. Normally I would use the R package <strong>hyperSpec</strong> for this, but the data that we are going to use is included in the R package <strong>serrsBayes</strong>:</p>
+<div class="section level3">
+<h3 id="raw-data">Raw Data<a class="anchor" aria-label="anchor" href="#raw-data"></a>
+</h3>
+<p>The first step is always to read in the spectrum and plot it.
+Normally I would use the R package <strong>hyperSpec</strong> for this,
+but the data that we are going to use is included in the R package
+<strong>serrsBayes</strong>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mooresm/serrsBayes">serrsBayes</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"methanol"</span>, package <span class="op">=</span> <span class="st">"serrsBayes"</span><span class="op">)</span>
-<span class="va">wavenumbers</span> <span class="op">&lt;-</span> <span class="va">methanol</span><span class="op">$</span><span class="va">wavenumbers</span>
-<span class="va">spectra</span> <span class="op">&lt;-</span> <span class="va">methanol</span><span class="op">$</span><span class="va">spectra</span>
-
-<span class="va">peakLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1033</span>, <span class="fl">1106</span>, <span class="fl">1149</span>, <span class="fl">1448</span><span class="op">)</span>
-<span class="va">nPK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">peakLocations</span><span class="op">)</span>
-<span class="va">pkIdx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="va">nPK</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nPK</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">pkIdx</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="va">wavenumbers</span> <span class="op">&lt;</span> <span class="va">peakLocations</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="va">nWL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">wavenumbers</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, type<span class="op">=</span><span class="st">'l'</span>, col<span class="op">=</span><span class="fl">4</span>,
-     xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Raman shift (cm"</span><span class="op">^</span><span class="op">{</span><span class="op">-</span><span class="fl">1</span><span class="op">}</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"Intensity (a.u.)"</span>, main<span class="op">=</span><span class="st">"Observed Raman spectrum for methanol"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">peakLocations</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="va">pkIdx</span><span class="op">]</span>, cex<span class="op">=</span><span class="fl">2</span>, col<span class="op">=</span><span class="fl">2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="va">peakLocations</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">20</span>,<span class="fl">40</span>,<span class="fl">0</span><span class="op">)</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="va">pkIdx</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">700</span>,<span class="fl">400</span>,<span class="fl">700</span><span class="op">)</span>, labels<span class="op">=</span><span class="va">peakLocations</span><span class="op">)</span></code></pre></div>
-<p><img src="Methanol_files/figure-html/data-1.png" width="576"></p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mooresm/serrsBayes" class="external-link">serrsBayes</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"methanol"</span>, package <span class="op">=</span> <span class="st">"serrsBayes"</span><span class="op">)</span></span>
+<span><span class="va">wavenumbers</span> <span class="op">&lt;-</span> <span class="va">methanol</span><span class="op">$</span><span class="va">wavenumbers</span></span>
+<span><span class="va">spectra</span> <span class="op">&lt;-</span> <span class="va">methanol</span><span class="op">$</span><span class="va">spectra</span></span>
+<span></span>
+<span><span class="va">peakLocations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1033</span>, <span class="fl">1106</span>, <span class="fl">1149</span>, <span class="fl">1448</span><span class="op">)</span></span>
+<span><span class="va">nPK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">peakLocations</span><span class="op">)</span></span>
+<span><span class="va">pkIdx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="va">nPK</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nPK</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">pkIdx</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.min</a></span><span class="op">(</span><span class="va">wavenumbers</span> <span class="op">&lt;</span> <span class="va">peakLocations</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">nWL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">wavenumbers</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, type<span class="op">=</span><span class="st">'l'</span>, col<span class="op">=</span><span class="fl">4</span>,</span>
+<span>     xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Raman shift (cm"</span><span class="op">^</span><span class="op">{</span><span class="op">-</span><span class="fl">1</span><span class="op">}</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"Intensity (a.u.)"</span>, main<span class="op">=</span><span class="st">"Observed Raman spectrum for methanol"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">peakLocations</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="va">pkIdx</span><span class="op">]</span>, cex<span class="op">=</span><span class="fl">2</span>, col<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="va">peakLocations</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">20</span>,<span class="fl">40</span>,<span class="fl">0</span><span class="op">)</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="va">pkIdx</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">700</span>,<span class="fl">400</span>,<span class="fl">700</span><span class="op">)</span>, labels<span class="op">=</span><span class="va">peakLocations</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Methanol_files/figure-html/data-1.png" class="r-plt" alt="" width="576"></p>
 </div>
-<div id="fitspectrasmc" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fitspectrasmc" class="anchor"></a>fitSpectraSMC</h2>
-<p>We can use exactly the same priors as given in the package README:</p>
+<div class="section level3">
+<h3 id="fitspectrasmc">fitSpectraSMC<a class="anchor" aria-label="anchor" href="#fitspectrasmc"></a>
+</h3>
+<p>We can use exactly the same priors as given in the package
+README:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">lPriors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>scale.mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">11.6</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">0.4</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, scale.sd<span class="op">=</span><span class="fl">0.4</span>, bl.smooth<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="fl">11</span>, bl.knots<span class="op">=</span><span class="fl">50</span>,
-                 beta.mu<span class="op">=</span><span class="fl">5000</span>, beta.sd<span class="op">=</span><span class="fl">5000</span>, noise.sd<span class="op">=</span><span class="fl">200</span>, noise.nu<span class="op">=</span><span class="fl">4</span><span class="op">)</span>
-<span class="va">tm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fitSpectraSMC.html">fitSpectraSMC</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span>, <span class="va">peakLocations</span>, <span class="va">lPriors</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">lPriors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>scale.mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">11.6</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">0.4</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, scale.sd<span class="op">=</span><span class="fl">0.4</span>, bl.smooth<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="fl">11</span>, bl.knots<span class="op">=</span><span class="fl">50</span>,</span>
+<span>                 beta.mu<span class="op">=</span><span class="fl">5000</span>, beta.sd<span class="op">=</span><span class="fl">5000</span>, noise.sd<span class="op">=</span><span class="fl">200</span>, noise.nu<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">tm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fitSpectraSMC.html">fitSpectraSMC</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span>, <span class="va">peakLocations</span>, <span class="va">lPriors</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">tm</span><span class="op">[</span><span class="st">"elapsed"</span><span class="op">]</span><span class="op">/</span><span class="fl">60</span>, <span class="st">"minutes"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "3.19111666666667 minutes"</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">tm</span><span class="op">[</span><span class="st">"elapsed"</span><span class="op">]</span><span class="op">/</span><span class="fl">60</span>, <span class="st">"minutes"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "0.740516666666667 minutes"</span></span></code></pre>
 <p>We can see there is a problem with the model fit:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">samp.idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span>, <span class="fl">200</span>, prob<span class="op">=</span><span class="va">result</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, type<span class="op">=</span><span class="st">'l'</span>, lwd<span class="op">=</span><span class="fl">3</span>,
-     xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Raman shift (cm"</span><span class="op">^</span><span class="op">{</span><span class="op">-</span><span class="fl">1</span><span class="op">}</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"Intensity (a.u.)"</span>, main<span class="op">=</span><span class="st">"Fitted model with Lorentzian peaks"</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">pt</span> <span class="kw">in</span> <span class="va">samp.idx</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">bl.est</span> <span class="op">&lt;-</span> <span class="va">result</span><span class="op">$</span><span class="va">basis</span> <span class="op">%*%</span> <span class="va">result</span><span class="op">$</span><span class="va">alpha</span><span class="op">[</span>,<span class="fl">1</span>,<span class="va">pt</span><span class="op">]</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span>, col<span class="op">=</span><span class="st">"#C3000009"</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span> <span class="op">+</span> <span class="va">result</span><span class="op">$</span><span class="va">expFn</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span>, col<span class="op">=</span><span class="st">"#00C30009"</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<p><img src="Methanol_files/figure-html/fitSpectraBL-1.png" width="576"></p>
-<p>Adjusting the priors is not going to fix this. The underlying issue is that the peak location of 1448 cm<span class="math inline">\(^{-1}\)</span> doesn’t match our observed data. Even a small difference in the location of one of the peaks can adversely effect the entire model fit. This is the kind of issue that the function <code>fitVoigtPeaksSMC</code> is designed to handle.</p>
+<code class="sourceCode R"><span><span class="va">samp.idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span>, <span class="fl">200</span>, prob<span class="op">=</span><span class="va">result</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, type<span class="op">=</span><span class="st">'l'</span>, lwd<span class="op">=</span><span class="fl">3</span>,</span>
+<span>     xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Raman shift (cm"</span><span class="op">^</span><span class="op">{</span><span class="op">-</span><span class="fl">1</span><span class="op">}</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"Intensity (a.u.)"</span>, main<span class="op">=</span><span class="st">"Fitted model with Lorentzian peaks"</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">pt</span> <span class="kw">in</span> <span class="va">samp.idx</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">bl.est</span> <span class="op">&lt;-</span> <span class="va">result</span><span class="op">$</span><span class="va">basis</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">result</span><span class="op">$</span><span class="va">alpha</span><span class="op">[</span>,<span class="fl">1</span>,<span class="va">pt</span><span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span>, col<span class="op">=</span><span class="st">"#C3000009"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span> <span class="op">+</span> <span class="va">result</span><span class="op">$</span><span class="va">expFn</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span>, col<span class="op">=</span><span class="st">"#00C30009"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p><img src="Methanol_files/figure-html/fitSpectraBL-1.png" class="r-plt" alt="" width="576"></p>
+<p>Adjusting the priors is not going to fix this. The underlying issue
+is that the peak location of 1448
+cm<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi></mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">^{-1}</annotation></semantics></math>
+doesn’t match our observed data. Even a small difference in the location
+of one of the peaks can adversely effect the entire model fit. This is
+the kind of issue that the function <code>fitVoigtPeaksSMC</code> is
+designed to handle.</p>
 </div>
-<div id="fitvoigtpeakssmc" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fitvoigtpeakssmc" class="anchor"></a>fitVoigtPeaksSMC</h2>
-<p>The priors here are very similar to what we used for TAMRA in <a href="https://mooresm.github.io/serrsBayes/articles/Introduction.html">the other vignette</a>. However, we don’t need as many <code>bl.knots</code> because we have a narrower range of wavenumbers. Instead, we will use <code>bl.knots = 50</code>, the same as what we used for <code>fitSpectraSMC</code> above.</p>
+<div class="section level3">
+<h3 id="fitvoigtpeakssmc">fitVoigtPeaksSMC<a class="anchor" aria-label="anchor" href="#fitvoigtpeakssmc"></a>
+</h3>
+<p>The priors here are very similar to what we used for TAMRA in <a href="https://mooresm.github.io/serrsBayes/articles/Introduction.html" class="external-link">the
+other vignette</a>. However, we don’t need as many <code>bl.knots</code>
+because we have a narrower range of wavenumbers. Instead, we will use
+<code>bl.knots = 50</code>, the same as what we used for
+<code>fitSpectraSMC</code> above.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">lPriors2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>loc.mu<span class="op">=</span><span class="va">peakLocations</span>, loc.sd<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">50</span>,<span class="va">nPK</span><span class="op">)</span>, scaG.mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">16.47</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">0.34</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>,
-                 scaG.sd<span class="op">=</span><span class="fl">0.34</span>, scaL.mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">25.27</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">0.4</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, scaL.sd<span class="op">=</span><span class="fl">0.4</span>, noise.nu<span class="op">=</span><span class="fl">5</span>,
-                 noise.sd<span class="op">=</span><span class="fl">50</span>, bl.smooth<span class="op">=</span><span class="fl">1</span>, bl.knots<span class="op">=</span><span class="fl">50</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"result2"</span>, package <span class="op">=</span> <span class="st">"serrsBayes"</span><span class="op">)</span>
-<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/exists.html">exists</a></span><span class="op">(</span><span class="st">"result2"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">tm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="va">result2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fitVoigtPeaksSMC.html">fitVoigtPeaksSMC</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span>, <span class="va">lPriors2</span>, npart<span class="op">=</span><span class="fl">3000</span>, rate<span class="op">=</span><span class="fl">0.499</span>,mcSteps<span class="op">=</span><span class="fl">50</span><span class="op">)</span>
-  <span class="va">result2</span><span class="op">$</span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">tm2</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">result2</span>, file<span class="op">=</span><span class="st">"Figure 2/result2.rda"</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<p><code>fitVoigtPeaksSMC</code> takes more than twice as long to fit the model, due to estimating the additional parameters. However, we obtain a much better fit to the observed spectrum:</p>
+<code class="sourceCode R"><span><span class="va">lPriors2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>loc.mu<span class="op">=</span><span class="va">peakLocations</span>, loc.sd<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">50</span>,<span class="va">nPK</span><span class="op">)</span>, scaG.mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">16.47</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">0.34</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>,</span>
+<span>                 scaG.sd<span class="op">=</span><span class="fl">0.34</span>, scaL.mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">25.27</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">0.4</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, scaL.sd<span class="op">=</span><span class="fl">0.4</span>, noise.nu<span class="op">=</span><span class="fl">5</span>,</span>
+<span>                 noise.sd<span class="op">=</span><span class="fl">50</span>, bl.smooth<span class="op">=</span><span class="fl">1</span>, bl.knots<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"result2"</span>, package <span class="op">=</span> <span class="st">"serrsBayes"</span><span class="op">)</span></span>
+<span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/exists.html" class="external-link">exists</a></span><span class="op">(</span><span class="st">"result2"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">tm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">result2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fitVoigtPeaksSMC.html">fitVoigtPeaksSMC</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span>, <span class="va">lPriors2</span>, npart<span class="op">=</span><span class="fl">3000</span>, rate<span class="op">=</span><span class="fl">0.499</span>,mcSteps<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span>
+<span>  <span class="va">result2</span><span class="op">$</span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">tm2</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">result2</span>, file<span class="op">=</span><span class="st">"Figure 2/result2.rda"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p><code>fitVoigtPeaksSMC</code> takes more than twice as long to fit
+the model, due to estimating the additional parameters. However, we
+obtain a much better fit to the observed spectrum:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">time</span><span class="op">)</span>, <span class="st">"for"</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">ess</span><span class="op">)</span>,<span class="st">"SMC iterations."</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "7.083923 mins for 19 SMC iterations."</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">time</span><span class="op">)</span>, <span class="st">"for"</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">ess</span><span class="op">)</span>,<span class="st">"SMC iterations."</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "7.083923 mins for 19 SMC iterations."</span></span></code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">samp.idx</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, type<span class="op">=</span><span class="st">'l'</span>, lwd<span class="op">=</span><span class="fl">3</span>,
-     xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Raman shift (cm"</span><span class="op">^</span><span class="op">{</span><span class="op">-</span><span class="fl">1</span><span class="op">}</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"Intensity (a.u.)"</span>, main<span class="op">=</span><span class="st">"Fitted model with Voigt peaks"</span><span class="op">)</span>
-<span class="va">samp.mat</span> <span class="op">&lt;-</span> <span class="va">resid.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>,nrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">samp.idx</span><span class="op">)</span>, ncol<span class="op">=</span><span class="va">nWL</span><span class="op">)</span>
-<span class="va">samp.sigi</span> <span class="op">&lt;-</span> <span class="va">samp.lambda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span>length<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">samp.mat</span><span class="op">)</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">pt</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">samp.idx</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">k</span> <span class="op">&lt;-</span> <span class="va">samp.idx</span><span class="op">[</span><span class="va">pt</span><span class="op">]</span>
-  <span class="va">samp.mat</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mixedVoigt.html">mixedVoigt</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>, <span class="va">result2</span><span class="op">$</span><span class="va">scale_G</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>,
-                              <span class="va">result2</span><span class="op">$</span><span class="va">scale_L</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>, <span class="va">result2</span><span class="op">$</span><span class="va">beta</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>, <span class="va">wavenumbers</span><span class="op">)</span>
-  <span class="va">samp.sigi</span><span class="op">[</span><span class="va">pt</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">result2</span><span class="op">$</span><span class="va">sigma</span><span class="op">[</span><span class="va">k</span><span class="op">]</span>
-  <span class="va">samp.lambda</span><span class="op">[</span><span class="va">pt</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">result2</span><span class="op">$</span><span class="va">lambda</span><span class="op">[</span><span class="va">k</span><span class="op">]</span>
-  
-  <span class="va">Obsi</span> <span class="op">&lt;-</span> <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">-</span> <span class="va">samp.mat</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span>
-  <span class="va">g0_Cal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">Obsi</span><span class="op">)</span> <span class="op">*</span> <span class="va">samp.lambda</span><span class="op">[</span><span class="va">pt</span><span class="op">]</span> <span class="op">*</span> <span class="va">result2</span><span class="op">$</span><span class="va">priors</span><span class="op">$</span><span class="va">bl.precision</span>
-  <span class="va">gi_Cal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html">crossprod</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">priors</span><span class="op">$</span><span class="va">bl.basis</span><span class="op">)</span> <span class="op">+</span> <span class="va">g0_Cal</span>
-  <span class="va">mi_Cal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">gi_Cal</span>, <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html">crossprod</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">priors</span><span class="op">$</span><span class="va">bl.basis</span>, <span class="va">Obsi</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-  <span class="va">bl.est</span> <span class="op">&lt;-</span> <span class="va">result2</span><span class="op">$</span><span class="va">priors</span><span class="op">$</span><span class="va">bl.basis</span> <span class="op">%*%</span> <span class="va">mi_Cal</span> <span class="co"># smoothed residuals = estimated basline</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span>, col<span class="op">=</span><span class="st">"#C3000009"</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span> <span class="op">+</span> <span class="va">samp.mat</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span>, col<span class="op">=</span><span class="st">"#00C30009"</span><span class="op">)</span>
-  <span class="va">resid.mat</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="va">Obsi</span> <span class="op">-</span> <span class="va">bl.est</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>
-<span class="op">}</span></code></pre></div>
-<p><img src="Methanol_files/figure-html/fitVoigtBL-1.png" width="576"></p>
-<p>The model fit could be further improved. For example, it appears that there is a shoulder peak around 1550 cm<span class="math inline">\(^{-1}\)</span>. However, we can see that the posterior distribution for the fourth peak location is very far away from the theoretical value of 1448:</p>
+<code class="sourceCode R"><span><span class="va">samp.idx</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, type<span class="op">=</span><span class="st">'l'</span>, lwd<span class="op">=</span><span class="fl">3</span>,</span>
+<span>     xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Raman shift (cm"</span><span class="op">^</span><span class="op">{</span><span class="op">-</span><span class="fl">1</span><span class="op">}</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"Intensity (a.u.)"</span>, main<span class="op">=</span><span class="st">"Fitted model with Voigt peaks"</span><span class="op">)</span></span>
+<span><span class="va">samp.mat</span> <span class="op">&lt;-</span> <span class="va">resid.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>,nrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">samp.idx</span><span class="op">)</span>, ncol<span class="op">=</span><span class="va">nWL</span><span class="op">)</span></span>
+<span><span class="va">samp.sigi</span> <span class="op">&lt;-</span> <span class="va">samp.lambda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span>length<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">samp.mat</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">pt</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">samp.idx</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">k</span> <span class="op">&lt;-</span> <span class="va">samp.idx</span><span class="op">[</span><span class="va">pt</span><span class="op">]</span></span>
+<span>  <span class="va">samp.mat</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mixedVoigt.html">mixedVoigt</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>, <span class="va">result2</span><span class="op">$</span><span class="va">scale_G</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>,</span>
+<span>                              <span class="va">result2</span><span class="op">$</span><span class="va">scale_L</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>, <span class="va">result2</span><span class="op">$</span><span class="va">beta</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>, <span class="va">wavenumbers</span><span class="op">)</span></span>
+<span>  <span class="va">samp.sigi</span><span class="op">[</span><span class="va">pt</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">result2</span><span class="op">$</span><span class="va">sigma</span><span class="op">[</span><span class="va">k</span><span class="op">]</span></span>
+<span>  <span class="va">samp.lambda</span><span class="op">[</span><span class="va">pt</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">result2</span><span class="op">$</span><span class="va">lambda</span><span class="op">[</span><span class="va">k</span><span class="op">]</span></span>
+<span>  </span>
+<span>  <span class="va">Obsi</span> <span class="op">&lt;-</span> <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="op">-</span> <span class="va">samp.mat</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span></span>
+<span>  <span class="va">g0_Cal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">Obsi</span><span class="op">)</span> <span class="op">*</span> <span class="va">samp.lambda</span><span class="op">[</span><span class="va">pt</span><span class="op">]</span> <span class="op">*</span> <span class="va">result2</span><span class="op">$</span><span class="va">priors</span><span class="op">$</span><span class="va">bl.precision</span></span>
+<span>  <span class="va">gi_Cal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/matmult-methods.html" class="external-link">crossprod</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">priors</span><span class="op">$</span><span class="va">bl.basis</span><span class="op">)</span> <span class="op">+</span> <span class="va">g0_Cal</span></span>
+<span>  <span class="va">mi_Cal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">gi_Cal</span>, <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/matmult-methods.html" class="external-link">crossprod</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">priors</span><span class="op">$</span><span class="va">bl.basis</span>, <span class="va">Obsi</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">bl.est</span> <span class="op">&lt;-</span> <span class="va">result2</span><span class="op">$</span><span class="va">priors</span><span class="op">$</span><span class="va">bl.basis</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">mi_Cal</span> <span class="co"># smoothed residuals = estimated basline</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span>, col<span class="op">=</span><span class="st">"#C3000009"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span> <span class="op">+</span> <span class="va">samp.mat</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span>, col<span class="op">=</span><span class="st">"#00C30009"</span><span class="op">)</span></span>
+<span>  <span class="va">resid.mat</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="va">Obsi</span> <span class="op">-</span> <span class="va">bl.est</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p><img src="Methanol_files/figure-html/fitVoigtBL-1.png" class="r-plt" alt="" width="576"></p>
+<p>The model fit could be further improved. For example, it appears that
+there is a shoulder peak around 1550
+cm<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi></mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">^{-1}</annotation></semantics></math>.
+However, we can see that the posterior distribution for the fourth peak
+location is very far away from the theoretical value of 1448:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nPK</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span>, main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Peak"</span>,<span class="va">j</span><span class="op">)</span>,
-       xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Peak location (cm"</span><span class="op">^</span><span class="op">{</span><span class="op">-</span><span class="fl">1</span><span class="op">}</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span>,
-       freq<span class="op">=</span><span class="cn">FALSE</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span>, <span class="va">peakLocations</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/density.html">density</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span><span class="op">)</span>, col<span class="op">=</span><span class="fl">4</span>, lty<span class="op">=</span><span class="fl">2</span>, lwd<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v<span class="op">=</span><span class="va">peakLocations</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>, col<span class="op">=</span><span class="fl">2</span>, lty<span class="op">=</span><span class="fl">3</span>, lwd<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nPK</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span>, main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Peak"</span>,<span class="va">j</span><span class="op">)</span>,</span>
+<span>       xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Peak location (cm"</span><span class="op">^</span><span class="op">{</span><span class="op">-</span><span class="fl">1</span><span class="op">}</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>       freq<span class="op">=</span><span class="cn">FALSE</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span>, <span class="va">peakLocations</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/density.html" class="external-link">density</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span><span class="op">)</span>, col<span class="op">=</span><span class="fl">4</span>, lty<span class="op">=</span><span class="fl">2</span>, lwd<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v<span class="op">=</span><span class="va">peakLocations</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>, col<span class="op">=</span><span class="fl">2</span>, lty<span class="op">=</span><span class="fl">3</span>, lwd<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <div class="figure">
-<img src="Methanol_files/figure-html/peakLoc-1.png" alt="Posteriors for the peak locations." width="288"><img src="Methanol_files/figure-html/peakLoc-2.png" alt="Posteriors for the peak locations." width="288"><img src="Methanol_files/figure-html/peakLoc-3.png" alt="Posteriors for the peak locations." width="288"><img src="Methanol_files/figure-html/peakLoc-4.png" alt="Posteriors for the peak locations." width="288"><p class="caption">
+<img src="Methanol_files/figure-html/peakLoc-1.png" class="r-plt" alt="Posteriors for the peak locations." width="288"><img src="Methanol_files/figure-html/peakLoc-2.png" class="r-plt" alt="Posteriors for the peak locations." width="288"><img src="Methanol_files/figure-html/peakLoc-3.png" class="r-plt" alt="Posteriors for the peak locations." width="288"><img src="Methanol_files/figure-html/peakLoc-4.png" class="r-plt" alt="Posteriors for the peak locations." width="288"><p class="caption">
 Posteriors for the peak locations.
 </p>
 </div>
-<p>This explains why the results from <code>fitSpectraSMC</code> were so poor. You really need to have very precise information about all of the peak locations in order for that function to perform well. Otherwise, <code>fitVoigtPeaksSMC</code> will usually give much better fit to the observed spectrum.</p>
+<p>This explains why the results from <code>fitSpectraSMC</code> were so
+poor. You really need to have very precise information about all of the
+peak locations in order for that function to perform well. Otherwise,
+<code>fitVoigtPeaksSMC</code> will usually give much better fit to the
+observed spectrum.</p>
 </div>
-<div id="fitspectrasmc-redux" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fitspectrasmc-redux" class="anchor"></a>fitSpectraSMC, redux</h2>
-<p>We can use the posterior from <code>fitVoigtPeaksSMC</code> to obtain priors for running <code>fitSpectraSMC</code>. This can be useful, for example, for fitting the model to multiple datasets that were obtained under the same experimental conditions.</p>
-<p>The first question is whether to use Lorentzian or Gaussian broadening functions. We can transform the posteriors for <span class="math inline">\(\psi_G\)</span> and <span class="math inline">\(\psi_L\)</span> to obtain a number <span class="math inline">\(\eta\)</span> between 0 and 1 for each peak, where 0 implies pure Gaussian and 1 implies Lorentzian. The <a href="https://en.wikipedia.org/wiki/Voigt_profile#Pseudo-Voigt_approximation">Wikipedia page</a> provides the equations <span class="citation">(Thompson, Cox, and Hastings 1987)</span>: <span class="math display">\[
+<div class="section level3">
+<h3 id="fitspectrasmc-redux">fitSpectraSMC, redux<a class="anchor" aria-label="anchor" href="#fitspectrasmc-redux"></a>
+</h3>
+<p>We can use the posterior from <code>fitVoigtPeaksSMC</code> to obtain
+priors for running <code>fitSpectraSMC</code>. This can be useful, for
+example, for fitting the model to multiple datasets that were obtained
+under the same experimental conditions.</p>
+<p>The first question is whether to use Lorentzian or Gaussian
+broadening functions. We can transform the posteriors for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ψ</mi><mi>G</mi></msub><annotation encoding="application/x-tex">\psi_G</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ψ</mi><mi>L</mi></msub><annotation encoding="application/x-tex">\psi_L</annotation></semantics></math>
+to obtain a number
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>η</mi><annotation encoding="application/x-tex">\eta</annotation></semantics></math>
+between 0 and 1 for each peak, where 0 implies pure Gaussian and 1
+implies Lorentzian. The <a href="https://en.wikipedia.org/wiki/Voigt_profile#Pseudo-Voigt_approximation" class="external-link">Wikipedia
+page</a> provides the equations <span class="citation">(Thompson et al.
+1987)</span>: <span class="math display">$$
 f_G = 2\psi_G\sqrt{2\log\{2\}} \\
 f_L = 2\psi_L \\
 f_V \approx 0.5346 f_L + \sqrt{0.2166f_L^2 + f_G^2} \\
-f_{total} \approx \left(f_G^5 + 2.69269f_G^4 f_L + 2.42843f_G^3 f_L^2 + 4.47163f_G^2 f_L^3 + 0.07842f_G f_L^4 + f_L^5 \right)^{1/5} \\
-\eta \approx 1.33603 \frac{f_L}{f_{total}} - 0.47719 \left(\frac{f_L}{f_{total}} \right)^2 + 0.11116 \left(\frac{f_L}{f_{total}} \right)^3
-\]</span> The above equations are implemented by the function <code>getVoigtParam</code>:</p>
+f_{total} \approx \left(f_G^5 + 2.69269f_G^4 f_L + 2.42843f_G^3 f_L^2 +
+4.47163f_G^2 f_L^3 + 0.07842f_G f_L^4 + f_L^5 \right)^{1/5} \\
+\eta \approx 1.33603 \frac{f_L}{f_{total}} - 0.47719
+\left(\frac{f_L}{f_{total}} \right)^2 + 0.11116
+\left(\frac{f_L}{f_{total}} \right)^3
+$$</span> The above equations are implemented by the function
+<code>getVoigtParam</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nPart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">beta</span><span class="op">)</span>
-<span class="va">result2</span><span class="op">$</span><span class="va">voigt</span> <span class="op">&lt;-</span> <span class="va">result2</span><span class="op">$</span><span class="va">FWHM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>nrow<span class="op">=</span><span class="va">nPart</span>, ncol<span class="op">=</span><span class="va">nPK</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nPart</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">result2</span><span class="op">$</span><span class="va">voigt</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getVoigtParam.html">getVoigtParam</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">scale_G</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>, <span class="va">result2</span><span class="op">$</span><span class="va">scale_L</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span><span class="op">)</span>
-  <span class="va">f_G</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="va">result2</span><span class="op">$</span><span class="va">scale_G</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
-  <span class="va">f_L</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="va">result2</span><span class="op">$</span><span class="va">scale_L</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>
-  <span class="va">result2</span><span class="op">$</span><span class="va">FWHM</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0.5346</span><span class="op">*</span><span class="va">f_L</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">0.2166</span><span class="op">*</span><span class="va">f_L</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">f_G</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nPK</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">voigt</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span>, main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Peak"</span>,<span class="va">j</span><span class="op">)</span>,
-       xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">eta</span><span class="op">)</span>, freq<span class="op">=</span><span class="cn">FALSE</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/density.html">density</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">voigt</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span><span class="op">)</span>, col<span class="op">=</span><span class="fl">4</span>, lty<span class="op">=</span><span class="fl">2</span>, lwd<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<p><img src="Methanol_files/figure-html/voigt-1.png" width="288"><img src="Methanol_files/figure-html/voigt-2.png" width="288"><img src="Methanol_files/figure-html/voigt-3.png" width="288"><img src="Methanol_files/figure-html/voigt-4.png" width="288"></p>
-<p>The two largest peaks definitely look Lorentzian, while there is more uncertainty about the line shape for the smaller peaks. This gives us confidence that <code>fitSpectraSMC</code> should be able to give us a good fit to the data, as long as we get the peak locations closer to the correct values. We can also use moment matching to set informative priors for the amplitudes:</p>
+<code class="sourceCode R"><span><span class="va">nPart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">beta</span><span class="op">)</span></span>
+<span><span class="va">result2</span><span class="op">$</span><span class="va">voigt</span> <span class="op">&lt;-</span> <span class="va">result2</span><span class="op">$</span><span class="va">FWHM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>nrow<span class="op">=</span><span class="va">nPart</span>, ncol<span class="op">=</span><span class="va">nPK</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nPart</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">result2</span><span class="op">$</span><span class="va">voigt</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getVoigtParam.html">getVoigtParam</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">scale_G</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span>, <span class="va">result2</span><span class="op">$</span><span class="va">scale_L</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">f_G</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="va">result2</span><span class="op">$</span><span class="va">scale_G</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">f_L</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="va">result2</span><span class="op">$</span><span class="va">scale_L</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span></span>
+<span>  <span class="va">result2</span><span class="op">$</span><span class="va">FWHM</span><span class="op">[</span><span class="va">k</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0.5346</span><span class="op">*</span><span class="va">f_L</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">0.2166</span><span class="op">*</span><span class="va">f_L</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">f_G</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">nPK</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">voigt</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span>, main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Peak"</span>,<span class="va">j</span><span class="op">)</span>,</span>
+<span>       xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">eta</span><span class="op">)</span>, freq<span class="op">=</span><span class="cn">FALSE</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/density.html" class="external-link">density</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">voigt</span><span class="op">[</span>,<span class="va">j</span><span class="op">]</span><span class="op">)</span>, col<span class="op">=</span><span class="fl">4</span>, lty<span class="op">=</span><span class="fl">2</span>, lwd<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p><img src="Methanol_files/figure-html/voigt-1.png" class="r-plt" alt="" width="288"><img src="Methanol_files/figure-html/voigt-2.png" class="r-plt" alt="" width="288"><img src="Methanol_files/figure-html/voigt-3.png" class="r-plt" alt="" width="288"><img src="Methanol_files/figure-html/voigt-4.png" class="r-plt" alt="" width="288"></p>
+<p>The two largest peaks definitely look Lorentzian, while there is more
+uncertainty about the line shape for the smaller peaks. This gives us
+confidence that <code>fitSpectraSMC</code> should be able to give us a
+good fit to the data, as long as we get the peak locations closer to the
+correct values. We can also use moment matching to set informative
+priors for the amplitudes:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">lPriors3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>scale.mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">11.6</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">0.4</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, scale.sd<span class="op">=</span><span class="fl">0.4</span>, bl.smooth<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="fl">11</span>, bl.knots<span class="op">=</span><span class="fl">50</span>, noise.sd<span class="op">=</span><span class="fl">200</span>, noise.nu<span class="op">=</span><span class="fl">4</span><span class="op">)</span>
-<span class="va">lPriors3</span><span class="op">$</span><span class="va">beta.mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">beta</span><span class="op">)</span>
-<span class="va">lPriors3</span><span class="op">$</span><span class="va">beta.sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">beta</span><span class="op">)</span>
-<span class="va">pkLocNew</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">)</span>, <span class="fl">1550</span><span class="op">)</span>
-<span class="va">tm3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="va">result3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fitSpectraSMC.html">fitSpectraSMC</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span>, <span class="va">pkLocNew</span>, <span class="va">lPriors3</span>, npart<span class="op">=</span><span class="fl">2000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">lPriors3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>scale.mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">11.6</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">0.4</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, scale.sd<span class="op">=</span><span class="fl">0.4</span>, bl.smooth<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="fl">11</span>, bl.knots<span class="op">=</span><span class="fl">50</span>, noise.sd<span class="op">=</span><span class="fl">200</span>, noise.nu<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">lPriors3</span><span class="op">$</span><span class="va">beta.mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">beta</span><span class="op">)</span></span>
+<span><span class="va">lPriors3</span><span class="op">$</span><span class="va">beta.sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">beta</span><span class="op">)</span></span>
+<span><span class="va">pkLocNew</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/colSums-methods.html" class="external-link">colMeans</a></span><span class="op">(</span><span class="va">result2</span><span class="op">$</span><span class="va">location</span><span class="op">)</span>, <span class="fl">1550</span><span class="op">)</span></span>
+<span><span class="va">tm3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">result3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fitSpectraSMC.html">fitSpectraSMC</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span>, <span class="va">pkLocNew</span>, <span class="va">lPriors3</span>, npart<span class="op">=</span><span class="fl">2000</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">tm3</span><span class="op">[</span><span class="st">"elapsed"</span><span class="op">]</span><span class="op">/</span><span class="fl">60</span>, <span class="st">"minutes"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "0.875933333333334 minutes"</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">tm3</span><span class="op">[</span><span class="st">"elapsed"</span><span class="op">]</span><span class="op">/</span><span class="fl">60</span>, <span class="st">"minutes"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "0.186433333333333 minutes"</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">samp.idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">result3</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span>, <span class="fl">200</span>, prob<span class="op">=</span><span class="va">result3</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, type<span class="op">=</span><span class="st">'l'</span>, lwd<span class="op">=</span><span class="fl">3</span>,
-     xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Raman shift (cm"</span><span class="op">^</span><span class="op">{</span><span class="op">-</span><span class="fl">1</span><span class="op">}</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"Intensity (a.u.)"</span>, main<span class="op">=</span><span class="st">"Fitted model with informative priors"</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">pt</span> <span class="kw">in</span> <span class="va">samp.idx</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">bl.est</span> <span class="op">&lt;-</span> <span class="va">result3</span><span class="op">$</span><span class="va">basis</span> <span class="op">%*%</span> <span class="va">result3</span><span class="op">$</span><span class="va">alpha</span><span class="op">[</span>,<span class="fl">1</span>,<span class="va">pt</span><span class="op">]</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span>, col<span class="op">=</span><span class="st">"#C3000009"</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span> <span class="op">+</span> <span class="va">result3</span><span class="op">$</span><span class="va">expFn</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span>, col<span class="op">=</span><span class="st">"#00C30009"</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/rug.html">rug</a></span><span class="op">(</span><span class="va">pkLocNew</span>, col<span class="op">=</span><span class="fl">4</span>, lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
-<p><img src="Methanol_files/figure-html/fitRedux-1.png" width="576"></p>
+<code class="sourceCode R"><span><span class="va">samp.idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">result3</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span>, <span class="fl">200</span>, prob<span class="op">=</span><span class="va">result3</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, type<span class="op">=</span><span class="st">'l'</span>, lwd<span class="op">=</span><span class="fl">3</span>,</span>
+<span>     xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Raman shift (cm"</span><span class="op">^</span><span class="op">{</span><span class="op">-</span><span class="fl">1</span><span class="op">}</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"Intensity (a.u.)"</span>, main<span class="op">=</span><span class="st">"Fitted model with informative priors"</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">pt</span> <span class="kw">in</span> <span class="va">samp.idx</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">bl.est</span> <span class="op">&lt;-</span> <span class="va">result3</span><span class="op">$</span><span class="va">basis</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">result3</span><span class="op">$</span><span class="va">alpha</span><span class="op">[</span>,<span class="fl">1</span>,<span class="va">pt</span><span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span>, col<span class="op">=</span><span class="st">"#C3000009"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">bl.est</span> <span class="op">+</span> <span class="va">result3</span><span class="op">$</span><span class="va">expFn</span><span class="op">[</span><span class="va">pt</span>,<span class="op">]</span>, col<span class="op">=</span><span class="st">"#00C30009"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/rug.html" class="external-link">rug</a></span><span class="op">(</span><span class="va">pkLocNew</span>, col<span class="op">=</span><span class="fl">4</span>, lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Methanol_files/figure-html/fitRedux-1.png" class="r-plt" alt="" width="576"></p>
 </div>
-<div id="references" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<div class="section level2">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Thompson1987" class="csl-entry">
-Thompson, P., D. E. Cox, and J. B. Hastings. 1987. <span>“Rietveld Refinement of <span>D</span>ebye-<span>S</span>cherrer Synchrotron <span>X</span>-Ray Data from <span class="math inline">\(Al_2O_3\)</span>.”</span> <em>J. Appl. Crystallogr.</em> 20 (2): 79–83. <a href="https://doi.org/10.1107/S0021889887087090">https://doi.org/10.1107/S0021889887087090</a>.
+Thompson, P., D. E. Cox, and J. B. Hastings. 1987. <span>“Rietveld
+Refinement of <span>D</span>ebye-<span>S</span>cherrer Synchrotron
+<span>X</span>-Ray Data from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mi>l</mi><mn>2</mn></msub><msub><mi>O</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">Al_2O_3</annotation></semantics></math>.”</span>
+<em>J. Appl. Crystallogr.</em> 20 (2): 79–83. <a href="https://doi.org/10.1107/S0021889887087090" class="external-link">https://doi.org/10.1107/S0021889887087090</a>.
 </div>
 </div>
 </div>
@@ -280,26 +367,28 @@ Thompson, P., D. E. Cox, and J. B. Hastings. 1987. <span>“Rietveld Refinement 
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
 
 
       <footer><div class="copyright">
-  <p>Developed by Matt Moores, Jake Carson, Mark Girolami, Engineering and Physical Sciences Research Council.</p>
+  <p></p>
+<p>Developed by Matt Moores, Jake Carson, Mark Girolami, Engineering and Physical Sciences Research Council.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer>
 </div>
 
-  
+
+
+
 
 
   </body>
