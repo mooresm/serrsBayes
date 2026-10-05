@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
   comment = "#>",
-  fig.path = "inst/image/README-"
+  fig.path = "man/figures/README-"
 )
 ```
 
@@ -22,7 +22,8 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/121410558.svg)](https://zenodo.org/badge/latestdoi/121410558)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/serrsBayes)](https://github.com/r-hub/cranlogs.app)
 
-```{r hexSticker, echo=FALSE, message=FALSE, warning=FALSE, fig.align='right', fig.asp=1, out.width='100px',out.height='100px',fig.alt="serrsBayes hex sticker logo"}
+```{r hexSticker, eval=FALSE, echo=FALSE}
+# code that created man/figures/logo.png (kept for reference, not run)
 library(serrsBayes)
 library(hexSticker)
 showtext::showtext_opts(dpi = 300) # match the dpi of the saved sticker, so the text is the right size
@@ -43,9 +44,8 @@ sticker(expression({
     bl.est <- basis %*% mi_Cal # smoothed residuals = estimated baseline
     lines(wavenumbers, bl.est, col="#0000FF40")
     lines(wavenumbers, bl.est + sigi, col="#FF00002F", lwd=0.5)
-}}),package="serrsBayes",p_size=8, s_x=0.75, s_y=.75, s_width=2.7, s_height=2.5, p_color = 2, h_color = "#0000FFC0", h_fill ="#FFFFFFFF", filename = "inst/image/README-logo.png", p_y=0.7,
+}}),package="serrsBayes",p_size=8, s_x=0.75, s_y=.75, s_width=2.7, s_height=2.5, p_color = 2, h_color = "#0000FFC0", h_fill ="#FFFFFFFF", filename = "man/figures/logo.png", p_y=0.7,
 url="https://mooresm.github.io/serrsBayes/", u_x=0.92, u_y=0.08)
-knitr::include_graphics("inst/image/README-logo.png", dpi=600)
 ```
 
 `serrsBayes` provides model-based quantification of surface-enhanced resonance Raman spectroscopy (SERRS) using sequential Monte Carlo (SMC) algorithms. The details of the Bayesian model and informative priors are provided in Moores et al. (2026) "[Bayesian modelling and quantification of Raman spectroscopy.](https://www.matrix-inst.org.au/wp_Matrix2016/wp-content/uploads/2025/2025_Pathiraja/MOORES.pdf)," published in the *2025 MATRIX Annals, Part II* (Springer). Development of this software was supported by the UK 

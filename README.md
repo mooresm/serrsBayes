@@ -12,8 +12,6 @@ coverage](https://codecov.io/gh/mooresm/serrsBayes/graph/badge.svg)](https://app
 [![rstudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/serrsBayes)](https://github.com/r-hub/cranlogs.app)
 
-<img src="inst/image/README-logo.png" alt="serrsBayes hex sticker logo" width="100px" height="100px" style="display: block; margin: auto 0 auto auto;" />
-
 `serrsBayes` provides model-based quantification of surface-enhanced
 resonance Raman spectroscopy (SERRS) using sequential Monte Carlo (SMC)
 algorithms. The details of the Bayesian model and informative priors are
@@ -65,7 +63,7 @@ lines(wavenumbers, baseline, col=2, lty=4)
 lines(wavenumbers, baseline + signature, col=4, lty=2, lwd=2)
 ```
 
-<img src="inst/image/README-example-1.png" alt="Simulated Raman spectrum from 700 to 1400 per cm with five peaks at 840, 960, 1140, 1220 and 1290 per cm, the largest at 840. The noisy observed spectrum (black) closely follows the true signal plus baseline (blue, dashed), and the true baseline (red, dash-dot) rises smoothly from about 500 to 3500."  />
+<img src="man/figures/README-example-1.png" alt="Simulated Raman spectrum from 700 to 1400 per cm with five peaks at 840, 960, 1140, 1220 and 1290 per cm, the largest at 840. The noisy observed spectrum (black) closely follows the true signal plus baseline (blue, dashed), and the true baseline (red, dash-dot) rises smoothly from about 500 to 3500."  />
 
 Fit the model using SMC:
 
@@ -80,7 +78,7 @@ Sample 200 particles from the posterior distribution:
 ``` r
 print(tm)
 #>    user  system elapsed 
-#> 164.263   1.925  43.341
+#>  96.905   1.102  98.514
 samp.idx <- sample.int(length(result$weights), 200, prob=result$weights)
 plot(wavenumbers, spectra[1,], type='l', xlab=expression(paste("Raman shift (cm"^{-1}, ")")), ylab="Intensity (a.u.)")
 for (pt in samp.idx) {
@@ -90,4 +88,4 @@ for (pt in samp.idx) {
 }
 ```
 
-<img src="inst/image/README-plotting-1.png" alt="The same simulated spectrum (black) overlaid with 200 posterior samples of the fitted spectrum (blue) and the estimated baseline (red). The samples form narrow bands that follow all five peaks and the smoothly rising baseline, showing that the model recovers both components."  />
+<img src="man/figures/README-plotting-1.png" alt="The same simulated spectrum (black) overlaid with 200 posterior samples of the fitted spectrum (blue) and the estimated baseline (red). The samples form narrow bands that follow all five peaks and the smoothly rising baseline, showing that the model recovers both components."  />
