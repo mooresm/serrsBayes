@@ -37,5 +37,6 @@ Suggests:
     rmarkdown,
     Hmisc
 LazyData: true
-RoxygenNote: 7.1.1
+Encoding: UTF-8
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.1.0

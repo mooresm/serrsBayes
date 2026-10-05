@@ -75,12 +75,9 @@
 #' }
 #' }
 #' @useDynLib serrsBayes
-#' @import RcppEigen
 #' @importFrom Rcpp evalCpp
 #' @exportPattern "^[[:alpha:]]+"
-#' @docType package
-#' @name serrsBayes
-NULL
+"_PACKAGE"
 
 .onUnload <- function (libpath) {
   library.dynam.unload("serrsBayes", libpath)

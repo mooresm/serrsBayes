@@ -13,7 +13,7 @@ A list containing 2 variables:
 }
 \source{
 Gracie et al. (Anal. Chem., 2016), Figure 2, spectrum T20_1 REP1 Well A1,
-restricted to 600--1800 cm^-1. Dataset \doi{10.15129/2c186689-2334-4746-955e-f9579ca15909}
+  restricted to 600--1800 cm^-1. Dataset \doi{10.15129/2c186689-2334-4746-955e-f9579ca15909}
 }
 \usage{
 lsTamra

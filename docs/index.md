@@ -1,0 +1,93 @@
+# serrsBayes
+
+[![cran
+version](https://www.r-pkg.org/badges/version/serrsBayes)](https://cran.r-project.org/package=serrsBayes)
+[![R-CMD-check](https://github.com/mooresm/serrsBayes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mooresm/serrsBayes/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/mooresm/serrsBayes/graph/badge.svg)](https://app.codecov.io/gh/mooresm/serrsBayes)
+[![DOI](https://zenodo.org/badge/121410558.svg)](https://zenodo.org/badge/latestdoi/121410558)
+[![rstudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/serrsBayes)](https://github.com/r-hub/cranlogs.app)
+
+![serrsBayes hex sticker logo](inst/image/README-logo.png)
+
+`serrsBayes` provides model-based quantification of surface-enhanced
+resonance Raman spectroscopy (SERRS) using sequential Monte Carlo (SMC)
+algorithms. The details of the Bayesian model and informative priors are
+provided in Moores et al. (2026) “[Bayesian modelling and quantification
+of Raman
+spectroscopy.](https://www.matrix-inst.org.au/wp_Matrix2016/wp-content/uploads/2025/2025_Pathiraja/MOORES.pdf),”
+published in the *2025 MATRIX Annals, Part II* (Springer). Development
+of this software was supported by the UK Engineering & Physical Sciences
+Research Council (EPSRC) programme grant “[In Situ Nanoparticle
+Assemblies for Healthcare Diagnostics and
+Therapy](https://gtr.ukri.org/projects?ref=EP%2FL014165%2F1)” (ref:
+EP/L014165/1).
+
+# Installation Instructions
+
+Stable releases, including binary packages for Windows & Mac OS, are
+available from CRAN:
+
+- <https://CRAN.R-project.org/package=serrsBayes>
+
+\
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"serrsBayes"``)`
+
+The current development version can be installed from GitHub:
+
+\
+`devtools``::`[`install_github`](https://devtools.r-lib.org/reference/install-deprecated.html)`(``"mooresm/serrsBayes"``)`
+
+# Example Usage
+
+To simulate a synthetic Raman spectrum with known parameters:
+
+\
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``1234``)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`serrsBayes`](https://github.com/mooresm/serrsBayes)`)`\
+\
+`wavenumbers`` ``<-`` `[`seq`](https://rdrr.io/r/base/seq.html)`(``700``,``1400``,by``=``2``)`\
+`spectra`` ``<-`` `[`matrix`](https://rdrr.io/r/base/matrix.html)`(``nrow``=``1``, ncol``=`[`length`](https://rdrr.io/r/base/length.html)`(``wavenumbers``)``)`\
+`peakLocations`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``840``,  ``960``, ``1140``, ``1220``, ``1290``)`\
+`peakAmplitude`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``11500``, ``2500``, ``4000``, ``3000``, ``2500``)`\
+`peakScale`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``10``, ``15``, ``20``, ``10``, ``12``)`\
+`signature`` ``<-`` `[`weightedLorentzian`](https://mooresm.github.io/serrsBayes/reference/weightedLorentzian.md)`(``peakLocations``, ``peakScale``, ``peakAmplitude``, ``wavenumbers``)`\
+`baseline`` ``<-`` ``1000``*`[`cos`](https://rdrr.io/r/base/Trig.html)`(``wavenumbers``/``200``)`` ``+`` ``2``*``wavenumbers`\
+`spectra``[``1``,``]`` ``<-`` ``signature`` ``+`` ``baseline`` ``+`` `[`rnorm`](https://rdrr.io/r/stats/Normal.html)`(`[`length`](https://rdrr.io/r/base/length.html)`(``wavenumbers``)``,``0``,``200``)`\
+[`plot`](https://rdrr.io/r/graphics/plot.default.html)`(``wavenumbers``, ``spectra``[``1``,``]``, type``=``'l'``, xlab``=`[`expression`](https://rdrr.io/r/base/expression.html)`(`[`paste`](https://rdrr.io/r/base/paste.html)`(``"Raman shift (cm"``^``{``-``1``}``, ``")"``)``)``, ylab``=``"Intensity (a.u.)"``)`\
+[`lines`](https://rdrr.io/r/graphics/lines.html)`(``wavenumbers``, ``baseline``, col``=``2``, lty``=``4``)`\
+[`lines`](https://rdrr.io/r/graphics/lines.html)`(``wavenumbers``, ``baseline`` ``+`` ``signature``, col``=``4``, lty``=``2``, lwd``=``2``)`
+
+![Simulated Raman spectrum from 700 to 1400 per cm with five peaks at
+840, 960, 1140, 1220 and 1290 per cm, the largest at 840. The noisy
+observed spectrum (black) closely follows the true signal plus baseline
+(blue, dashed), and the true baseline (red, dash-dot) rises smoothly
+from about 500 to 3500.](inst/image/README-example-1.png)
+
+Fit the model using SMC:
+
+\
+`lPriors`` ``<-`` `[`list`](https://rdrr.io/r/base/list.html)`(``scale.mu``=`[`log`](https://rdrr.io/r/base/Log.html)`(``11.6``)`` ``-`` ``(``0.4``^``2``)``/``2``, scale.sd``=``0.4``, bl.smooth``=``10``^``11``, bl.knots``=``50``,`\
+`                 beta.mu``=``5000``, beta.sd``=``5000``, noise.sd``=``200``, noise.nu``=``4``)`\
+`tm`` ``<-`` `[`system.time`](https://rdrr.io/r/base/system.time.html)`(``result`` ``<-`` `[`fitSpectraSMC`](https://mooresm.github.io/serrsBayes/reference/fitSpectraSMC.md)`(``wavenumbers``, ``spectra``, ``peakLocations``, ``lPriors``)``)`
+
+Sample 200 particles from the posterior distribution:
+
+\
+[`print`](https://rdrr.io/r/base/print.html)`(``tm``)`\
+`#>    user  system elapsed `\
+`#> 164.263   1.925  43.341`\
+`samp.idx`` ``<-`` `[`sample.int`](https://rdrr.io/r/base/sample.html)`(`[`length`](https://rdrr.io/r/base/length.html)`(``result``$``weights``)``, ``200``, prob``=``result``$``weights``)`\
+[`plot`](https://rdrr.io/r/graphics/plot.default.html)`(``wavenumbers``, ``spectra``[``1``,``]``, type``=``'l'``, xlab``=`[`expression`](https://rdrr.io/r/base/expression.html)`(`[`paste`](https://rdrr.io/r/base/paste.html)`(``"Raman shift (cm"``^``{``-``1``}``, ``")"``)``)``, ylab``=``"Intensity (a.u.)"``)`\
+`for`` ``(``pt`` ``in`` ``samp.idx``)`` ``{`\
+`  ``bl.est`` ``<-`` ``result``$``basis`` `[`%*%`](https://rdrr.io/r/base/matmult.html)` ``result``$``alpha``[``,``1``,``pt``]`\
+`  `[`lines`](https://rdrr.io/r/graphics/lines.html)`(``wavenumbers``, ``bl.est``, col``=``"#C3000009"``)`\
+`  `[`lines`](https://rdrr.io/r/graphics/lines.html)`(``wavenumbers``, ``bl.est`` ``+`` ``result``$``expFn``[``pt``,``]``, col``=``"#0000C309"``)`\
+`}`
+
+![The same simulated spectrum (black) overlaid with 200 posterior
+samples of the fitted spectrum (blue) and the estimated baseline (red).
+The samples form narrow bands that follow all five peaks and the
+smoothly rising baseline, showing that the model recovers both
+components.](inst/image/README-plotting-1.png)

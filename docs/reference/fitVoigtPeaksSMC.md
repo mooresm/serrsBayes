@@ -1,0 +1,90 @@
+# Fit the model with Voigt peaks using Sequential Monte Carlo (SMC).
+
+Fit the model with Voigt peaks using Sequential Monte Carlo (SMC).
+
+## Usage
+
+``` r
+fitVoigtPeaksSMC(
+  wl,
+  spc,
+  lPriors,
+  conc = rep(1, nrow(spc)),
+  npart = 10000,
+  rate = 0.9,
+  mcAR = 0.234,
+  mcSteps = 20,
+  minESS = npart/2,
+  destDir = NA,
+  minPart = npart
+)
+```
+
+## Arguments
+
+- wl:
+
+  Vector of `nwl` wavenumbers at which the spetra are observed.
+
+- spc:
+
+  `n_y * nwl` Matrix of observed Raman spectra.
+
+- lPriors:
+
+  List of hyperparameters for the prior distributions.
+
+- conc:
+
+  Vector of `n_y` nanomolar (nM) dye concentrations for each
+  observation.
+
+- npart:
+
+  number of SMC particles to use for the importance sampling
+  distribution.
+
+- rate:
+
+  the target rate of reduction in the effective sample size (ESS).
+
+- mcAR:
+
+  target acceptance rate for the MCMC kernel
+
+- mcSteps:
+
+  number of iterations of the MCMC kernel
+
+- minESS:
+
+  minimum effective sample size, below which the particles are
+  resampled.
+
+- destDir:
+
+  destination directory to save intermediate results (for long-running
+  computations)
+
+- minPart:
+
+  target number of unique particles for the MCMC iterations
+
+## Examples
+
+``` r
+wavenumbers <- seq(200,600,by=10)
+spectra <- matrix(nrow=1, ncol=length(wavenumbers))
+peakLocations <- c(300,500)
+peakAmplitude <- c(10000,4000)
+peakScale <- c(10, 15)
+signature <- weightedLorentzian(peakLocations, peakScale, peakAmplitude, wavenumbers)
+baseline <- 1000*cos(wavenumbers/200) + 2*wavenumbers
+spectra[1,] <- signature + baseline + rnorm(length(wavenumbers),0,200)
+lPriors <- list(scaG.mu=log(11.6) - (0.4^2)/2, scaG.sd=0.4, scaL.mu=log(11.6) - (0.4^2)/2,
+   scaL.sd=0.4, bl.smooth=5, bl.knots=20, loc.mu=peakLocations, loc.sd=c(5,5),
+   beta.mu=c(5000,5000), beta.sd=c(5000,5000), noise.sd=200, noise.nu=4)
+if (FALSE) { # \dontrun{
+result <- fitVoigtPeaksSMC(wavenumbers, spectra, lPriors, npart=50, mcSteps=1)
+} # }
+```

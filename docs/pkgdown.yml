@@ -4,4 +4,7 @@ pkgdown_sha: ~
 articles:
   Introduction: Introduction.html
   Methanol: Methanol.html
-last_built: 2026-10-03T12:33Z
+last_built: 2026-10-05T08:24Z
+urls:
+  reference: https://mooresm.github.io/serrsBayes/reference
+  article: https://mooresm.github.io/serrsBayes/articles

@@ -19,3 +19,5 @@
 ^CRAN-SUBMISSION$
 ^\.zenodo\.json$
 ^\.claude$
+^_pkgdown\.yml$
+^pkgdown$
