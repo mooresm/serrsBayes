@@ -29,3 +29,35 @@ test_that("weightedLorentzian computes the spectral signature", {
   expect_equal(weightedLorentzian(loc,scL,amp,Cal_V), Sigi)
 })
 
+
+test_that("residualResampling keeps every parent in place without modifying the weights", {
+  set.seed(1)
+  for (t in 1:200) {
+    n <- 100
+    log_wt <- rnorm(n, 0, sample(c(0.5, 2, 5), 1))
+    log_wt <- log_wt - log(sum(exp(log_wt)))
+    orig <- log_wt + 0 # a copy, for comparison
+    idx <- residualResampling(log_wt)
+    expect_identical(log_wt, orig)
+    expect_true(all(idx >= 1 & idx <= n))
+    parents <- unique(idx)
+    expect_identical(idx[parents], parents) # Condition 9 of Murray, Lee & Jacob (2015)
+  }
+})
+
+test_that("resampleParticles copies whole particles in place", {
+  set.seed(2)
+  npart <- 100; nPK <- 5; nWL <- 50; nB <- 8; n_y <- 2
+  ampMx <- matrix(rnorm(nPK*npart), nPK, npart)
+  scaleMx <- matrix(rnorm(nPK*npart), nPK, npart)
+  peaks <- matrix(rnorm(nWL*npart), nWL, npart)
+  baselines <- array(rnorm(nB*n_y*npart), dim=c(nB, n_y, npart))
+  orig <- list(amp=ampMx + 0, scale=scaleMx + 0, peaks=peaks + 0, bl=baselines + 0)
+  log_wt <- rnorm(npart, 0, 2)
+  log_wt <- log_wt - log(sum(exp(log_wt)))
+  idx <- resampleParticles(log_wt, ampMx, scaleMx, peaks, baselines, n_y, nB)
+  expect_equal(ampMx, orig$amp[, idx])
+  expect_equal(scaleMx, orig$scale[, idx])
+  expect_equal(peaks, orig$peaks[, idx])
+  expect_equal(baselines, orig$bl[, , idx])
+})

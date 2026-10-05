@@ -190,6 +190,7 @@ Eigen::ArrayXi residualResampling(NumericVector log_wt)
 {
   const int n = log_wt.size();
   ArrayXi idx(n);
+  log_wt = clone(log_wt); // work on a copy, so that the caller's weights are not modified
 
   // first loop is deterministic: only accept particles with n*weight > 1
   int r=0;
@@ -225,16 +226,21 @@ Eigen::ArrayXi residualResampling(NumericVector log_wt)
     }
   }
 
-  // permute the index vector to ensure Condition 9 of Murray, Lee & Jacob (2015)
+  // permute the index vector to ensure Condition 9 of Murray, Lee & Jacob (2015):
+  // every parent keeps its own position, so that resampleParticles can copy in place
+  // (and in parallel) without overwriting a particle that is the source of another copy
+  std::vector<int> perm(n, -1), extra;
   for (int i=0; i<n; i++)
   {
-    if ((idx[i] != i) && (idx[idx[i]] != idx[i]))
-    {
-      int old = idx[i];
-      idx[i] = idx[idx[i]];
-      idx[idx[i]] = old;
-    }
+    if (perm[idx[i]] < 0) perm[idx[i]] = idx[i];
+    else extra.push_back(idx[i]);
   }
+  // the remaining offspring replace the particles that had none
+  for (int i=0, k=0; i<n; i++)
+  {
+    if (perm[i] < 0) perm[i] = extra[k++];
+  }
+  for (int i=0; i<n; i++) idx[i] = perm[i];
   return idx + 1;
 }
 
@@ -256,7 +262,6 @@ Eigen::ArrayXi residualResampling(NumericVector log_wt)
 Eigen::ArrayXi resampleParticles(NumericVector log_weights, NumericMatrix ampMx, NumericMatrix scaleMx,
                                 NumericMatrix peaks, NumericVector baselines, int n_y, int nwl)
 {
-  struct timeval t1,t2;
   ArrayXi idx = residualResampling(log_weights);
 
 #pragma omp parallel for
@@ -269,7 +274,10 @@ Eigen::ArrayXi resampleParticles(NumericVector log_weights, NumericMatrix ampMx,
       {
         ampMx(j,p) = ampMx(j,idx[p]-1);
         scaleMx(j,p) = scaleMx(j,idx[p]-1);
-        peaks(j,p) = peaks(j,idx[p]-1);
+      }
+      for (int w=0; w < peaks.rows(); w++)
+      {
+        peaks(w,p) = peaks(w,idx[p]-1);
       }
       for (int i=0; i < n_y; i++)
       {
