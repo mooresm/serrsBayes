@@ -33,14 +33,15 @@
 Source:
 [`inst/CITATION`](https://github.com/mooresm/serrsBayes/blob/HEAD/inst/CITATION)
 
-Moores MT, Carson J, Moskowitz B, Gracie K, Faulds K & Girolami M
-(2020). serrsBayes: Bayesian Modelling of Raman Spectroscopy. R package
-version 0.4-1 URL: https://CRAN.R-project.org/package=serrsBayes
+Moores MT, Carson J, Eddelbuettel D, Moskowitz B, Gracie K, Faulds K,
+Graham D & Girolami M (2026). serrsBayes: Bayesian Modelling of Raman
+Spectroscopy. R package version 0.6-1 URL:
+https://CRAN.R-project.org/package=serrsBayes
 
 @Manual{,\
   title = {{serrsBayes}: {B}ayesian Modelling of {R}aman Spectroscopy},\
-  author = {Matthew T. Moores and Jake Carson and Benjamin Moskowitz and Kirsten Gracie and Karen Faulds and Mark Girolami},\
-  year = {2020},\
+  author = {Matthew T. Moores and Jake Carson and Dirk Eddelbuettel and Benjamin Moskowitz and Kirsten Gracie and Karen Faulds and Duncan Graham and Mark Girolami},\
+  year = {2026},\
   doi = {10.5281/zenodo.3861862},\
   url = {https://CRAN.R-project.org/package=serrsBayes},\
 }
@@ -49,12 +50,12 @@ Matthew Moores, Kirsten Gracie, Jake Carson, Karen Faulds, Duncan Graham
 & Mark Girolami (2026). Bayesian modelling and quantification of Raman
 spectroscopy. In D.R. Wood, A.M. Etheridge, J. de Gier & N. Joshi (eds.)
 2025 MATRIX Annals, Part II. MATRIX Book Ser. 10, pp. 417-428. Springer,
-Cham, Switzerland. DOI: 10.48550/arXiv.1604.07299 URL
+Cham, Switzerland. URL
 https://www.matrix-inst.org.au/wp_Matrix2016/wp-content/uploads/2025/2025_Pathiraja/MOORES.pdf
 
-@InCollection{Moores2016raman,\
+@InCollection{Moores2026raman,\
   title = {Bayesian modelling and quantification of {R}aman spectroscopy},\
-  author = {Matthew Moores and Kirsten Gracie and Jake Carson and Karen Faulds and Duncan Graham and Mark Girolami},\
+  author = {Matthew T. Moores and Kirsten Gracie and Jake Carson and Karen Faulds and Duncan Graham and Mark Girolami},\
   editor = {D. R. Wood and A. M. Etheridge and J. {de Gier} and N. Joshi},\
   booktitle = {2025 {MATRIX} annals. {P}art {II}},\
   series = {MATRIX Book Ser.},\
@@ -67,14 +68,14 @@ https://www.matrix-inst.org.au/wp_Matrix2016/wp-content/uploads/2025/2025_Pathir
   url = {https://www.matrix-inst.org.au/wp_Matrix2016/wp-content/uploads/2025/2025_Pathiraja/MOORES.pdf},\
 }
 
-Gracie K, Moores M, Smith WE, Harding K, Girolami M, Graham D & Faulds K
-(2016). Preferential attachment of specific fluorescent dyes and dye
+Gracie K, Moores MT, Smith WE, Harding K, Girolami M, Graham D & Faulds
+K (2016). Preferential attachment of specific fluorescent dyes and dye
 labeled DNA sequences in a surface enhanced Raman scattering multiplex.
 Analytical Chemistry 88(2): 1147-1153. DOI: 10.1021/acs.analchem.5b02776
 
 @Article{,\
   title = {Preferential attachment of specific fluorescent dyes and dye labeled {DNA} sequences in a surface enhanced {R}aman scattering multiplex},\
-  author = {Kirsten Gracie and Matthew Moores and W. Ewen Smith and Kerry Harding and Mark Girolami and Duncan Graham and Karen Faulds},\
+  author = {Kirsten Gracie and Matthew T. Moores and W. Ewen Smith and Kerry Harding and Mark Girolami and Duncan Graham and Karen Faulds},\
   journal = {Analytical Chemistry},\
   year = {2016},\
   volume = {88},\
@@ -97,15 +98,18 @@ University of Strathclyde. DOI:
   doi = {10.15129/2c186689-2334-4746-955e-f9579ca15909},\
 }
 
-Harkonen T, Roininen L, Moores MT & Vartiainen EM (2020). Bayesian
+Härkönen T, Roininen L, Moores MT & Vartiainen EM (2020). Bayesian
 quantification for coherent anti-Stokes Raman scattering spectroscopy.
-arXiv preprint arXiv:2005.06830 \[stat.AP\] URL
-https://arxiv.org/abs/2005.06830
+The Journal of Physical Chemistry B 124(32): 7005-7012. DOI:
+10.1021/acs.jpcb.0c04378
 
-@Article{,\
+@Article{Harkonen2020,\
   title = {Bayesian quantification for coherent anti-{S}tokes {R}aman scattering spectroscopy},\
-  author = {Teemu H{"a}rk{"o}nen and Lassi Roininen and Matthew T. Moores and Erik M. Vartiainen},\
-  journal = {arXiv preprint},\
+  author = {Teemu Härkönen and Lassi Roininen and Matthew T. Moores and Erik M. Vartiainen},\
+  journal = {The Journal of Physical Chemistry B},\
   year = {2020},\
-  url = {https://arxiv.org/abs/2005.06830},\
+  volume = {124},\
+  number = {32},\
+  pages = {7005--7012},\
+  doi = {10.1021/acs.jpcb.0c04378},\
 }

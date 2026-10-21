@@ -78,8 +78,8 @@ lPriors <- list(scale.mu=log(11.6) - (0.4^2)/2, scale.sd=0.4, bl.smooth=10^11, b
 rw_bw <- c(100, 100, 2, 2)
 result <- fitSpectraMCMC(wavenumbers, spectra, peakLocations, lPriors, rw_bw, 500)
 #> [1] "MCMC with 1 observations of 2 peaks at 41 wavenumbers."
-#> [1] "Step 0: computing 20 B-spline basis functions took 0.0379999999999994 sec."
-#> [1] "Step 1: initialization took 0.00100000000000033 sec for 4 parallel chains."
+#> [1] "Step 0: computing 20 B-spline basis functions took 0.0180000000000007 sec."
+#> [1] "Step 1: initialization took 0.000999999999999446 sec for 4 parallel chains."
 result$n_acc
 #> [1] 769
 ```

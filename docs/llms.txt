@@ -9,8 +9,6 @@ coverage](https://codecov.io/gh/mooresm/serrsBayes/graph/badge.svg)](https://app
 [![rstudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/serrsBayes)](https://github.com/r-hub/cranlogs.app)
 
-![serrsBayes hex sticker logo](inst/image/README-logo.png)
-
 `serrsBayes` provides model-based quantification of surface-enhanced
 resonance Raman spectroscopy (SERRS) using sequential Monte Carlo (SMC)
 algorithms. The details of the Bayesian model and informative priors are
@@ -63,7 +61,7 @@ To simulate a synthetic Raman spectrum with known parameters:
 840, 960, 1140, 1220 and 1290 per cm, the largest at 840. The noisy
 observed spectrum (black) closely follows the true signal plus baseline
 (blue, dashed), and the true baseline (red, dash-dot) rises smoothly
-from about 500 to 3500.](inst/image/README-example-1.png)
+from about 500 to 3500.](reference/figures/README-example-1.png)
 
 Fit the model using SMC:
 
@@ -77,7 +75,7 @@ Sample 200 particles from the posterior distribution:
 \
 [`print`](https://rdrr.io/r/base/print.html)`(``tm``)`\
 `#>    user  system elapsed `\
-`#> 164.263   1.925  43.341`\
+`#>  96.905   1.102  98.514`\
 `samp.idx`` ``<-`` `[`sample.int`](https://rdrr.io/r/base/sample.html)`(`[`length`](https://rdrr.io/r/base/length.html)`(``result``$``weights``)``, ``200``, prob``=``result``$``weights``)`\
 [`plot`](https://rdrr.io/r/graphics/plot.default.html)`(``wavenumbers``, ``spectra``[``1``,``]``, type``=``'l'``, xlab``=`[`expression`](https://rdrr.io/r/base/expression.html)`(`[`paste`](https://rdrr.io/r/base/paste.html)`(``"Raman shift (cm"``^``{``-``1``}``, ``")"``)``)``, ylab``=``"Intensity (a.u.)"``)`\
 `for`` ``(``pt`` ``in`` ``samp.idx``)`` ``{`\
@@ -90,7 +88,7 @@ Sample 200 particles from the posterior distribution:
 samples of the fitted spectrum (blue) and the estimated baseline (red).
 The samples form narrow bands that follow all five peaks and the
 smoothly rising baseline, showing that the model recovers both
-components.](inst/image/README-plotting-1.png)
+components.](reference/figures/README-plotting-1.png)
 
 # Package index
 

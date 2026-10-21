@@ -2,6 +2,13 @@
 
 ## serrsBayes 0.6-1
 
+### New Features
+
+- Added unit tests for `residualResampling` and `resampleParticles`
+- Migrated pkgdown website from
+
+### Bug Fixes
+
 - Fixed residual resampling in `fitSpectraSMC`: parents were not kept in
   place, so the in-place (OpenMP-parallel) copy could overwrite
   particles that were still being copied from. This caused biased
@@ -10,7 +17,6 @@
 - `resampleParticles` now copies the full spectral signature of each
   particle, not only the first `npeaks` wavenumbers
 - `residualResampling` no longer modifies the caller’s log-weights
-- Added unit tests for `residualResampling` and `resampleParticles`
 
 ## serrsBayes 0.6-0
 

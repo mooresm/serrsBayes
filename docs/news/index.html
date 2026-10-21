@@ -38,14 +38,21 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6-1" id="serrsbayes-06-1">serrsBayes 0.6-1<a class="anchor" aria-label="anchor" href="#serrsbayes-06-1"></a></h2>
+<div class="section level3">
+<h3 id="new-features-0-6-1">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-6-1"></a></h3>
+<ul><li>Added unit tests for <code>residualResampling</code> and <code>resampleParticles</code>
+</li>
+<li>Migrated pkgdown website from</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-6-1">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-6-1"></a></h3>
 <ul><li>Fixed residual resampling in <code>fitSpectraSMC</code>: parents were not kept in place, so the in-place (OpenMP-parallel) copy could overwrite particles that were still being copied from. This caused biased resampling and, with multiple threads, a data race (CRAN check failure on r-devel-linux-x86_64-fedora-gcc)</li>
 <li>
 <code>resampleParticles</code> now copies the full spectral signature of each particle, not only the first <code>npeaks</code> wavenumbers</li>
 <li>
 <code>residualResampling</code> no longer modifies the caller’s log-weights</li>
-<li>Added unit tests for <code>residualResampling</code> and <code>resampleParticles</code>
-</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6-0" id="serrsbayes-06-0">serrsBayes 0.6-0<a class="anchor" aria-label="anchor" href="#serrsbayes-06-0"></a></h2><p class="text-muted">CRAN release: 2026-10-03</p>
 <div class="section level3">

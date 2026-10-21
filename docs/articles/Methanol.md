@@ -91,7 +91,7 @@ We can use exactly the same priors as given in the package README:
 \
 [`print`](https://rdrr.io/r/base/print.html)`(`[`paste`](https://rdrr.io/r/base/paste.html)`(``tm``[``"elapsed"``]``/``60``, ``"minutes"``)``)`
 
-    ## [1] "54.2650666666667 minutes"
+    ## [1] "7.78191666666667 minutes"
 
 We can see there is a problem with the model fit:
 
@@ -253,7 +253,7 @@ the amplitudes:
 \
 [`print`](https://rdrr.io/r/base/print.html)`(`[`paste`](https://rdrr.io/r/base/paste.html)`(``tm3``[``"elapsed"``]``/``60``, ``"minutes"``)``)`
 
-    ## [1] "28.6862833333333 minutes"
+    ## [1] "1.83566666666667 minutes"
 
 \
 `samp.idx`` ``<-`` `[`sample.int`](https://rdrr.io/r/base/sample.html)`(`[`length`](https://rdrr.io/r/base/length.html)`(``result3``$``weights``)``, ``200``, prob``=``result3``$``weights``)`\

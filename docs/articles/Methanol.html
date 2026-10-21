@@ -65,7 +65,7 @@
                         <h4 data-toc-skip class="author">Matt Moores,
 Benjamin Moskowitz and Karen Faulds</h4>
             
-            <h4 data-toc-skip class="date">2026-10-05</h4>
+            <h4 data-toc-skip class="date">2026-10-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mooresm/serrsBayes/blob/HEAD/vignettes/Methanol.Rmd" class="external-link"><code>vignettes/Methanol.Rmd</code></a></small>
       <div class="d-none name"><code>Methanol.Rmd</code></div>
@@ -167,7 +167,7 @@ README:</p>
 <span><span class="va">tm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fitSpectraSMC.html">fitSpectraSMC</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span>, <span class="va">peakLocations</span>, <span class="va">lPriors</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">tm</span><span class="op">[</span><span class="st">"elapsed"</span><span class="op">]</span><span class="op">/</span><span class="fl">60</span>, <span class="st">"minutes"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "54.2650666666667 minutes"</span></span></code></pre>
+<pre><code><span><span class="co">## [1] "7.78191666666667 minutes"</span></span></code></pre>
 <p>We can see there is a problem with the model fit:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">samp.idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span>, <span class="fl">200</span>, prob<span class="op">=</span><span class="va">result</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span></span>
@@ -317,7 +317,7 @@ priors for the amplitudes:</p>
 <span><span class="va">tm3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">result3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fitSpectraSMC.html">fitSpectraSMC</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span>, <span class="va">pkLocNew</span>, <span class="va">lPriors3</span>, npart<span class="op">=</span><span class="fl">2000</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">tm3</span><span class="op">[</span><span class="st">"elapsed"</span><span class="op">]</span><span class="op">/</span><span class="fl">60</span>, <span class="st">"minutes"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "28.6862833333333 minutes"</span></span></code></pre>
+<pre><code><span><span class="co">## [1] "1.83566666666667 minutes"</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">samp.idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">result3</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span>, <span class="fl">200</span>, prob<span class="op">=</span><span class="va">result3</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">wavenumbers</span>, <span class="va">spectra</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, type<span class="op">=</span><span class="st">'l'</span>, lwd<span class="op">=</span><span class="fl">3</span>,</span>
