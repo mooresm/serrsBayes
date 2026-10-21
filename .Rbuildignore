@@ -21,3 +21,4 @@
 ^\.claude$
 ^_pkgdown\.yml$
 ^pkgdown$
+^\.mailmap$
