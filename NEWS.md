@@ -1,9 +1,11 @@
+# serrsBayes (development version)
+
 # serrsBayes 0.6-1
 
 ## New Features
 
 * Added unit tests for `residualResampling` and `resampleParticles`
-* Migrated pkgdown website from 
+* Migrated pkgdown website from bootstrap 3 to 5 
 
 ## Bug Fixes
 
