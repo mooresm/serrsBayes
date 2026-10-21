@@ -20,7 +20,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -34,29 +34,40 @@ jobs:
       - name: Query OSV for installed dependencies
         shell: Rscript {0}
         run: |
-          pkg <- read.dcf("DESCRIPTION", fields = "Package")[1, 1]
-          ip  <- installed.packages()
+          desc <- read.dcf("DESCRIPTION")
+          pkg  <- desc[1, "Package"]
+          ip   <- installed.packages()
 
-          # Recursive hard dependencies, including LinkingTo (e.g. RcppEigen)
-          deps <- tools::package_dependencies(
-            pkg, db = ip, recursive = TRUE,
+          # The package itself is not installed on the runner, so take its direct
+          # dependencies from DESCRIPTION and expand them using the installed packages
+          # (recursive hard dependencies, including LinkingTo, e.g. RcppEigen)
+          fields <- intersect(c("Depends", "Imports", "LinkingTo"), colnames(desc))
+          direct <- trimws(sub("\\(.*$", "", unlist(strsplit(desc[1, fields], ","))))
+          direct <- direct[nzchar(direct)]
+          deps <- unique(c(direct, unlist(tools::package_dependencies(
+            direct, db = ip, recursive = TRUE,
             which = c("Depends", "Imports", "LinkingTo")
-          )[[1]]
+          ))))
           base <- rownames(ip)[ip[, "Priority"] %in% "base"]
           deps <- sort(setdiff(intersect(deps, rownames(ip)), c(base, "R")))
+          if (length(deps) == 0) stop("No dependencies of ", pkg, " found: are they installed?")
           vers <- unname(ip[deps, "Version"])
 
           cat("Checking", length(deps), "dependencies of", pkg, ":\n")
           print(data.frame(package = deps, version = vers), row.names = FALSE)
 
-          res <- rosv::osv_query(deps, version = vers,
-                                 ecosystem = rep("CRAN", length(deps)),
-                                 all_affected = FALSE, cache = FALSE)
+          # osv_querybatch() rather than osv_query(): in rosv 0.5.1, osv_query() fails
+          # when none of the packages has an advisory. Each row of $content is one
+          # advisory, and $result is the (1-based) index of the affected package in deps.
+          res <- rosv::osv_querybatch(deps, version = vers,
+                                      ecosystem = rep("CRAN", length(deps)))$content
 
-          if (is.null(res) || NROW(res) == 0) {
+          if (NROW(res) == 0) {
             cat("\nNo known vulnerabilities in installed dependency versions.\n")
           } else {
             cat("\nVulnerabilities found:\n")
-            print(res)
+            i <- as.integer(res$result) # a character string in rosv 0.5.1
+            print(data.frame(package = deps[i], version = vers[i],
+                             id = res$id, modified = res$modified), row.names = FALSE)
             quit(status = 1)
           }
