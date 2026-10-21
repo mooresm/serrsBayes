@@ -4,26 +4,28 @@ bibentry(bibtype = "Manual",
          title        = "{serrsBayes}: {B}ayesian Modelling of {R}aman Spectroscopy",
          author       = c(person(c("Matthew","T."),"Moores"),
                           person("Jake", "Carson"),
-                          person("Benjamin","Moskowitz"),
-                          person("Kirsten","Gracie"),
+                          person("Dirk", "Eddelbuettel"),
+                          person("Benjamin", "Moskowitz"),
+                          person("Kirsten", "Gracie"),
                           person("Karen", "Faulds"),
+                          person("Duncan", "Graham"),
                           person("Mark", "Girolami")),
-         year         = "2020",
+         year         = "2026",
          doi          = "10.5281/zenodo.3861862",
          url          = "https://CRAN.R-project.org/package=serrsBayes",
 
          textVersion  =
-           paste("Moores MT, Carson J, Moskowitz B, Gracie K, Faulds K & Girolami M (2020).",
+           paste("Moores MT, Carson J, Eddelbuettel D, Moskowitz B, Gracie K, Faulds K, Graham D & Girolami M (2026).",
                  "serrsBayes: Bayesian Modelling of Raman Spectroscopy.",
-                 "R package version 0.4-1",
+                 "R package version 0.6-1",
                  "URL: https://CRAN.R-project.org/package=serrsBayes")
 )
 
 bibentry(bibtype = "InCollection",
-         key          = "Moores2016raman",
+         key          = "Moores2026raman",
          header       = "The Bayesian model and SMC algorithm were first introduced in:",
          title        = "Bayesian modelling and quantification of {R}aman spectroscopy",
-         author       = c(person("Matthew", "Moores"),
+         author       = c(person(c("Matthew","T."),"Moores"),
                           person("Kirsten", "Gracie"),
                           person("Jake", "Carson"),
                           person("Karen", "Faulds"),
@@ -48,7 +50,7 @@ bibentry(bibtype = "InCollection",
                  "Bayesian modelling and quantification of Raman spectroscopy.",
                  "In D.R. Wood, A.M. Etheridge, J. de Gier & N. Joshi (eds.)",
                  "2025 MATRIX Annals, Part II. MATRIX Book Ser. 10, pp. 417-428.",
-                 "Springer, Cham, Switzerland. DOI: 10.48550/arXiv.1604.07299",
+                 "Springer, Cham, Switzerland.",
                  "URL https://www.matrix-inst.org.au/wp_Matrix2016/wp-content/uploads/2025/2025_Pathiraja/MOORES.pdf")
 )
 
@@ -56,7 +58,7 @@ bibentry(bibtype = "Article",
          header       = "The TAMRA+DNA spectrum in the lsTamra dataset was published in:",
          title        = "Preferential attachment of specific fluorescent dyes and dye labeled {DNA} sequences in a surface enhanced {R}aman scattering multiplex",
          author       = c(person("Kirsten", "Gracie"),
-                          person("Matthew", "Moores"),
+                          person(c("Matthew","T."),"Moores"),
                           person(c("W.","Ewen"), "Smith"),
                           person("Kerry", "Harding"),
                           person("Mark", "Girolami"),
@@ -70,7 +72,7 @@ bibentry(bibtype = "Article",
          doi          = "10.1021/acs.analchem.5b02776",
 
          textVersion  =
-           paste("Gracie K, Moores M, Smith WE, Harding K, Girolami M, Graham D & Faulds K (2016).",
+           paste("Gracie K, Moores MT, Smith WE, Harding K, Girolami M, Graham D & Faulds K (2016).",
                  "Preferential attachment of specific fluorescent dyes and dye labeled DNA sequences",
                  "in a surface enhanced Raman scattering multiplex.",
                  "Analytical Chemistry 88(2): 1147-1153. DOI: 10.1021/acs.analchem.5b02776")
@@ -92,19 +94,23 @@ bibentry(bibtype = "Misc",
 )
 
 bibentry(bibtype = "Article",
+         key          = "Harkonen2020",
          header = "An extension of the model for CARS spectroscopy:",
          title        = "Bayesian quantification for coherent anti-{S}tokes {R}aman scattering spectroscopy",
-         author       = c(person("Teemu","H{\"a}rk{\"o}nen"),
+         author       = c(person("Teemu","Härkönen"),
                           person("Lassi","Roininen"),
                           person(c("Matthew","T."),"Moores"),
                           person(c("Erik","M."),"Vartiainen")),
-         journal      = "arXiv preprint",
+         journal      = "The Journal of Physical Chemistry B",
          year         = "2020",
-         url          = "https://arxiv.org/abs/2005.06830",
+         volume       = "124",
+         number       = "32",
+         pages        = "7005--7012",
+         doi          = "10.1021/acs.jpcb.0c04378",
 
          textVersion  =
-           paste("Harkonen T, Roininen L, Moores MT & Vartiainen EM (2020).",
+           paste("Härkönen T, Roininen L, Moores MT & Vartiainen EM (2020).",
                  "Bayesian quantification for coherent anti-Stokes Raman scattering spectroscopy.",
-                 "arXiv preprint arXiv:2005.06830 [stat.AP]",
-                 "URL https://arxiv.org/abs/2005.06830")
+                 "The Journal of Physical Chemistry B 124(32): 7005-7012.",
+                 "DOI: 10.1021/acs.jpcb.0c04378")
 )

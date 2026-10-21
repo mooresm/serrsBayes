@@ -13,11 +13,14 @@ OpenMP-parallel resampling code.
 * R-hub v2 (`rhub::rhub_check()`): linux, macos, windows, gcc-asan
   + <https://github.com/mooresm/serrsBayes/actions/runs/39572089082>
 * R-hub v2 valgrind
-  + <https://github.com/mooresm/serrsBayes/actions/runs/37277879907>
+  + <https://github.com/mooresm/serrsBayes/actions/runs/39574011600>
 * win-builder (`devtools::check_win_devel()`)
-  + <https://win-builder.r-project.org/WINBUILDER_ID/00check.log>
+  + <https://win-builder.r-project.org/zskFojqMH23b/00check.log>
 
-valgrind: 0 bytes definitely lost in both the examples and the tests; one block of 368-384 bytes 'possibly lost' in libgomp thread-local storage, allocated when OpenMP creates its thread pool. This is a known valgrind false positive for OpenMP.
+valgrind: 0 bytes definitely lost in both the examples and the tests; 
+one block of 368-384 bytes 'possibly lost' in libgomp thread-local storage, 
+allocated when OpenMP creates its thread pool. 
+This is a known valgrind false positive for OpenMP.
 
 ## R CMD check results
 
